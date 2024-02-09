@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/index.dart';
 
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -13,10 +14,11 @@ class MyApp extends StatelessWidget {
       title: 'VitalMoveCBI',
       initialRoute: '/',
       routes: {
-        '/': (context) => LoginPage(),
+        '/': (context) => UsuarioLogin(),
         '/evaluador': (context) => EvaluadorLogin(),
         '/evaluadorHome': (context) => HomeEvaluador(),
-        '/usuarioLogin': (context) => UsuarioLogin(),
+        '/usuarioLogin': (context) => LoginPage(),
+        '/homeUsuario': (context) => HomeUsuario(),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
@@ -26,3 +28,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
