@@ -7,77 +7,77 @@ class UsuarioLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: nav(context),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsetsDirectional.symmetric(
-                horizontal: size.width * .1, vertical: size.height * .1),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("Documento de Identidad",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w300,
-                            color: Colors.black)),
-                    SizedBox(height: 10),
-                    inputLogin("Ingrese Documento de Identidad"),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("Contraseña",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w300,
-                            color: Colors.black)),
-                    SizedBox(height: 10),
-                    inputLogin("Ingrese tu contraseña"),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
+        body: ListView(
+      children: [
+        nav(context),
+        SizedBox(
+          height: 30,
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: size.width * 0.1),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Documento de Identidad",
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black)),
+              const SizedBox(
+                height: 3,
+              ),
+              inputLogin("Ingrese Documento de Identidad"),
+              SizedBox(height: 19),
+              const Text("Contraseña",
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black)),
+              const SizedBox(
+                height: 3,
+              ),
+              inputLogin("Ingrese tu contraseña"),
+              const SizedBox(height: 35),
+              Container(
+                width: size.width,
+                margin: EdgeInsets.symmetric(horizontal: size.width * 0.1),
+                child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        fixedSize: Size(size.width * .7, size.height * .07),
+                        fixedSize: Size(size.width * .4, size.height * .06),
                         backgroundColor: Color.fromRGBO(0, 150, 199, 1),
                         foregroundColor: Color.fromRGBO(255, 255, 255, 1),
                         padding: EdgeInsets.all(size.height * .002),
                         textStyle: const TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
+                            fontSize: 18, fontWeight: FontWeight.bold),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40))),
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, '/homeUsuario');
                     },
                     child: Text('Acceder')),
-              ],
-            ),
+              ),
+            ],
           ),
-        ));
+        ),
+      ],
+    ));
   }
 }
 
-PreferredSizeWidget nav(context) {
+nav(context) {
   final size = MediaQuery.of(context).size;
-  return PreferredSize(
-    preferredSize: Size.fromHeight(size.height * 0.4),
-    child: Container(
-      width: size.width * 1,
-      decoration: BoxDecoration(
-        color: Color(0xFFADE8F4),
-        borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(size.width * 0.2),
-        ),
+  return Container(
+    width: size.width,
+    height: size.height * 0.35,
+    decoration: BoxDecoration(
+      color: Color(0xFFADE8F4),
+      borderRadius: BorderRadius.vertical(
+        bottom: Radius.circular(size.width * 0.2),
       ),
-      child: Center(
-        child: Image.asset("img/logo.png"),
-      ),
+    ),
+    child: Center(
+      child: Image.asset("img/logo.png"),
     ),
   );
 }
@@ -85,14 +85,19 @@ PreferredSizeWidget nav(context) {
 Widget inputLogin(String campo) {
   return Container(
       decoration: BoxDecoration(
-          color: const Color.fromARGB(34, 174, 174, 174),
-          borderRadius: BorderRadius.circular(50)),
+          color: Color(0xffF5F5F5),
+          boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
+          borderRadius: BorderRadius.circular(10)),
       child: TextField(
-          cursorColor: Colors.orangeAccent,
+          cursorColor: Color.fromARGB(33, 15, 15, 15),
           decoration: InputDecoration(
+              hintStyle: TextStyle(
+                  color: Colors.grey.shade500,
+                  fontStyle: FontStyle.normal,
+                  fontSize: 14),
               contentPadding: EdgeInsets.symmetric(horizontal: 20),
               hintText: campo,
               border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none))));
 }
