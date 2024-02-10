@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40))),
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/evaluador');
+                  Navigator.pushReplacementNamed(context, '/evaluadorHome');
                 },
                 child: Text('Evaluador')),
             SizedBox(

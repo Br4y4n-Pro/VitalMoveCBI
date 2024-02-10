@@ -14,8 +14,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => LoginPage(),
-        '/evaluador': (context) => EvaluadorLogin(),
-        '/evaluadorHome': (context) => HomeEvaluador(),
+        // '/evaluadorHome': (context) => (),
         '/usuarioLogin': (context) => UsuarioLogin(),
       },
       onGenerateRoute: (settings) {
