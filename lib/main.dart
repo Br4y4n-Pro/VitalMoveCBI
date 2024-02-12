@@ -13,13 +13,13 @@ class MyApp extends StatelessWidget {
       title: 'VitalMoveCBI',
       initialRoute: '/',
       routes: {
-        '/': (context) => Tests (),
+        '/': (context) => Testbruce (),
         // '/evaluadorHome': (context) => (),
         '/usuarioLogin': (context) => UsuarioLogin(),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
-          builder: (context) => Tests(),
+          builder: (context) => Testbruce(),
         );
       },
     );

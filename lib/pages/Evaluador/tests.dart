@@ -31,7 +31,7 @@ class _TestsState extends State<Tests> {
             "Seleccione el test que se va a realizar:",
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 18, // Puedes ajustar el tamaño del texto aquí
+              fontSize: 20, // Puedes ajustar el tamaño del texto aquí
             ),
           ),
           SizedBox(height: 20), // Espacio entre el texto y el primer cuadro
