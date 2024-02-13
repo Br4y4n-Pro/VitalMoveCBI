@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PerfilVistaContact extends StatefulWidget {
   const PerfilVistaContact({super.key});
@@ -12,6 +13,7 @@ class PerfilVistaContact extends StatefulWidget {
 
 class _PerfilVistaContactState extends State<PerfilVistaContact> {
   int _paginaActual = 0;
+  final telefono = 3245243933.toString();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -65,8 +67,14 @@ class _PerfilVistaContactState extends State<PerfilVistaContact> {
                             fontSize: 20, fontWeight: FontWeight.bold),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40))),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/usuarioLogin');
+                    onPressed: () async {
+                      final Uri url = Uri(scheme: 'tel', path: telefono);
+                      await launchUrl(url);
+                      if (await launchUrl(url)) {
+                        await launchUrl(url);
+                      } else {
+                        print("No se pduo hacer la llamada");
+                      }
                     },
                     child: const Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
