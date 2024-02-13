@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/index.dart';
-
+import 'package:vitalmovecbi/pages/Usuario/homeusuario.dart';
 
 void main() => runApp(const MyApp());
 
@@ -14,18 +14,20 @@ class MyApp extends StatelessWidget {
       title: 'VitalMoveCBI',
       initialRoute: '/',
       routes: {
-        '/': (context) => UsuarioLogin(),
-        '/evaluador': (context) => EvaluadorLogin(),
-        '/evaluadorHome': (context) => HomeEvaluador(),
-        '/usuarioLogin': (context) => LoginPage(),
-        '/homeUsuario': (context) => HomeUsuario(),
+        '/homeUsuario': (context) => const HomeUser(),
+        '/contact': (context) => const PerfilVistaContact(),
+        '/perfil': (context) => const PerfilVista(),
+        '/evaluador': (context) => const EvaluadorLogin(),
+        '/evaluadorHome': (context) => const HomeEvaluador(),
+        '/usuarioLogin': (context) => const LoginPage(),
+        '/estadisticas': (context) => const Estadisticas(),
+        '/': (context) => const LoginPage(),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
-          builder: (context) => LoginPage(),
+          builder: (context) => const LoginPage(),
         );
       },
     );
   }
 }
-

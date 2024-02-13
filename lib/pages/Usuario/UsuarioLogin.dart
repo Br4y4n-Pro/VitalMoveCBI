@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class UsuarioLogin extends StatelessWidget {
@@ -10,7 +12,7 @@ class UsuarioLogin extends StatelessWidget {
         body: ListView(
       children: [
         nav(context),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
         Container(
@@ -28,7 +30,7 @@ class UsuarioLogin extends StatelessWidget {
                 height: 3,
               ),
               inputLogin("Ingrese Documento de Identidad"),
-              SizedBox(height: 19),
+              const SizedBox(height: 19),
               const Text("Contraseña",
                   style: TextStyle(
                       fontSize: 15,
@@ -45,8 +47,8 @@ class UsuarioLogin extends StatelessWidget {
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         fixedSize: Size(size.width * .4, size.height * .06),
-                        backgroundColor: Color.fromRGBO(0, 150, 199, 1),
-                        foregroundColor: Color.fromRGBO(255, 255, 255, 1),
+                        backgroundColor: const Color.fromRGBO(0, 150, 199, 1),
+                        foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
                         padding: EdgeInsets.all(size.height * .002),
                         textStyle: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
@@ -55,7 +57,7 @@ class UsuarioLogin extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, '/homeUsuario');
                     },
-                    child: Text('Acceder')),
+                    child: const Text('Acceder')),
               ),
             ],
           ),
@@ -71,7 +73,7 @@ nav(context) {
     width: size.width,
     height: size.height * 0.35,
     decoration: BoxDecoration(
-      color: Color(0xFFADE8F4),
+      color: const Color(0xFFADE8F4),
       borderRadius: BorderRadius.vertical(
         bottom: Radius.circular(size.width * 0.2),
       ),
@@ -85,17 +87,17 @@ nav(context) {
 Widget inputLogin(String campo) {
   return Container(
       decoration: BoxDecoration(
-          color: Color(0xffF5F5F5),
+          color: const Color(0xffF5F5F5),
           boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
           borderRadius: BorderRadius.circular(10)),
       child: TextField(
-          cursorColor: Color.fromARGB(33, 15, 15, 15),
+          cursorColor: const Color.fromARGB(33, 15, 15, 15),
           decoration: InputDecoration(
               hintStyle: TextStyle(
                   color: Colors.grey.shade500,
                   fontStyle: FontStyle.normal,
                   fontSize: 14),
-              contentPadding: EdgeInsets.symmetric(horizontal: 20),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 20),
               hintText: campo,
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
