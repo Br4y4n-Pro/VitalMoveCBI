@@ -11,15 +11,25 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'VitalMoveCBI',
-      initialRoute: '/',
+      initialRoute: '/usuarioLogin',
       routes: {
-        '/': (context) => Testbruce (),
-        // '/evaluadorHome': (context) => (),
-        '/usuarioLogin': (context) => UsuarioLogin(),
+        '/registerUser': (context) => const RegistroUsuario(),
+        '/homeUsuario': (context) => const HomeUser(),
+        '/contact': (context) => const PerfilVistaContact(),
+        '/perfil': (context) => const PerfilVista(),
+        '/evaluador': (context) => const EvaluadorLogin(),
+        '/evaluadorHome': (context) => const HomeEvaluador(),
+        '/usuarioLogin': (context) => const UsuarioLogin(),
+        '/estadisticas': (context) => const Estadisticas(),
+        '/pageBruce': (context) => const PageBruces(),
+        '/pageCaminata': (context) => const PageCaminata(),
+        '/pageVOdos': (context) => const ConsumoVo(),
+        '/pageIMC': (context) => const PageIMC(),
+        '/pagePeso': (context) => const PagePeso(),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
-          builder: (context) => Testbruce(),
+          builder: (context) => const UsuarioLogin(),
         );
       },
     );

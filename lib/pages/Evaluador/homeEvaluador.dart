@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class HomeEvaluador extends StatefulWidget {
@@ -13,6 +15,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
       final size = MediaQuery.of(context).size;
 
     return Scaffold(
+
       body: ListView(
         children: [
           nav(context, size.height * .35),
@@ -51,6 +54,11 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
             ),
           ),
         ],
+
+      appBar: AppBar(title: const Text('Home De Evaluador')),
+      body: const Center(
+        child: Text('Home Evaluador'),
+
       ),
     );
   }
