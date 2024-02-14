@@ -18,4 +18,5 @@ export 'package:vitalmovecbi/pages/graficos/caminatas.dart';
 export 'package:vitalmovecbi/pages/graficos/consumovo.dart';
 export 'package:vitalmovecbi/pages/graficos/peso.dart';
 export 'package:vitalmovecbi/pages/Evaluador/RegistroUsuario.dart';
-
+export 'package:vitalmovecbi/pages/Evaluador/PerfilInformativo.dart';
+export 'package:vitalmovecbi/pages/Evaluador/BuscarPersona.dart';
