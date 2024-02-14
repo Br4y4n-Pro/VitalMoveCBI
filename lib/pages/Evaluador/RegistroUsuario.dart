@@ -1,7 +1,5 @@
-// ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-
 import '../../widgets/InputText.dart';
 import 'package:date_field/date_field.dart';
 
@@ -42,10 +40,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
         centerTitle: true, // Centra el título del AppBar
         title: const Text('Registro de Usuario'),
       ),
-      body:
-
-       Container(
-        
+      body: Container(
         margin: EdgeInsets.symmetric(horizontal: size.width * 0.07),
         child: Form(
           key: _formKey,
@@ -55,19 +50,19 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
               ListView(
                 padding: const EdgeInsets.all(10.0),
                 children: <Widget>[
+                  
                   Container(
-                          height: 100,
-                          width: 100,
-                          decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(150),
-                          ),
-                          child: const CircleAvatar(
-                          radius: 30,
-                          backgroundImage: AssetImage("img/usuario2.png"),
-                          ),
-                          ),
-                          const SizedBox(height: 15),
-
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(150),
+                    ),
+                    child: const CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage("img/Usuario/usu2.png"),
+                    ),
+                  ),
+                  const SizedBox(height: 15),
                   inputLogin(
                     'Nombre',
                     size.width,
@@ -84,19 +79,15 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                   ),
                   const SizedBox(height: 15),
                   Container(
-
-
-                    decoration:BoxDecoration(
-                       color: const Color(0xffF5F5F5),
-          boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
-          borderRadius: BorderRadius.circular(10)
-                    
-                                        ),
-                                        
+                    decoration: BoxDecoration(
+                      color: const Color(0xffF5F5F5),
+                      boxShadow: [
+                        BoxShadow(color: Colors.grey.shade300, blurRadius: 3)
+                      ],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: DateTimeFormField(
                       decoration: InputDecoration(
-                        
-                        // fillColor: Color.fromARGB(255, 201, 142, 142),
                         hintStyle: TextStyle(
                             color: Colors.grey.shade500,
                             fontStyle: FontStyle.normal,
@@ -105,7 +96,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                             const EdgeInsets.symmetric(horizontal: 20),
                         hintText: "Fecha de Nacimiento ",
                         border: const OutlineInputBorder(
-                            // borderRadius: BorderRadius.circular(10),
                             borderSide: BorderSide.none),
                       ),
                       firstDate: DateTime.now().add(const Duration(days: 10)),
@@ -118,77 +108,76 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     ),
                   ),
                   const SizedBox(height: 15),
-                      
-                      
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-
-                   Container(
-                    width: size.width*.5,
-                    padding: const EdgeInsets.symmetric(horizontal: 18),
-          decoration: BoxDecoration(
-            color: const Color(0xffF5F5F5),
-            boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
-            borderRadius: BorderRadius.circular(10),
-            
-          ),
-
-          child: DropdownButton<String>(
-            style: TextStyle( color: Colors.grey.shade500,fontSize: 14,fontWeight: FontWeight.w500 ),
-            value: dropdownValues,
-            icon: const Icon(Icons.keyboard_arrow_down),
-            items: generoItems.map((String item) {
-              return DropdownMenuItem<String>(
-                value: item,
-                child: Text(item),
-              );
-            }).toList(),
-            onChanged: (String? newValue) {
-              setState(() {
-                dropdownValues = newValue!;
-              });
-            },
-            dropdownColor: Colors.white, // Color de fondo del menú desplegable
-            underline: Container(), // Esto elimina la línea que atraviesa de lado a lado
-          ),
-        ),
-
-                  const SizedBox(height: 15),
-                   Container(
-                    width: size.width*.21,
-                    padding: const EdgeInsets.symmetric(horizontal: 
-                    11),
-                   decoration:BoxDecoration(
-                     color: const Color(0xffF5F5F5),
-          boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
-          borderRadius: BorderRadius.circular(10)
-                   ),
-                    child: DropdownButton<String>(
-                                  style: TextStyle( color: Colors.grey.shade500,fontSize: 16,fontWeight: FontWeight.w500 ),
-
-                      value: dropdownValue,
-                      icon: const Icon(Icons.keyboard_arrow_down),
-                      items: items.map((String item) {
-                        return DropdownMenuItem<String>(
-                          value: item,
-                          child: Text(item),
-                        );
-                      }).toList(),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          dropdownValue = newValue!;
-                        });
-                      },
-                       dropdownColor: Colors.white, // Color de fondo del menú desplegable
-                       underline: Container(), 
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: size.width * 0.5,
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                        decoration: BoxDecoration(
+                          color: const Color(0xffF5F5F5),
+                          boxShadow: [
+                            BoxShadow(color: Colors.grey.shade300, blurRadius: 3)
+                          ],
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: DropdownButton<String>(
+                          style: TextStyle(
+                              color: Colors.grey.shade500,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500),
+                          value: dropdownValues,
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          items: generoItems.map((String item) {
+                            return DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(item),
+                            );
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownValues = newValue!;
+                            });
+                          },
+                          dropdownColor: Colors.white,
+                          underline: Container(),
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      Container(
+                        width: size.width * 0.21,
+                        padding: const EdgeInsets.symmetric(horizontal: 11),
+                        decoration: BoxDecoration(
+                            color: const Color(0xffF5F5F5),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.shade300, blurRadius: 3)
+                            ],
+                            borderRadius: BorderRadius.circular(10)),
+                        child: DropdownButton<String>(
+                          style: TextStyle(
+                              color: Colors.grey.shade500,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500),
+                          value: dropdownValue,
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          items: items.map((String item) {
+                            return DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(item),
+                            );
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownValue = newValue!;
+                            });
+                          },
+                          dropdownColor: Colors.white,
+                          underline: Container(),
+                        ),
+                      ),
+                    ],
                   ),
-
-                ],
-                ),
-                     
                   const SizedBox(height: 15),
                   inputLogin(
                     'Dirección',
@@ -215,15 +204,58 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
               Positioned(
                 bottom: 15,
                 right: 10,
-                // height: 40,
+                child: 
+                Row(
+                  children: [
+                
+                   Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const SizedBox(height: 40, width: 40),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
 
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      // Procesar los datos del formulario si es válido
-                    }
-                  },
-                  child: const Icon(Icons.arrow_forward),
+                        IconButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/registerUser');
+                            },
+                            icon: const Icon(
+                              Icons.circle_rounded,
+                              size: 10,
+                            )),
+                              IconButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/registerUser2');
+                            },
+                            icon: const Icon(
+                              Icons.circle_outlined,
+                              size: 10,
+                            )),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/registerUser3');
+                          },
+                          icon: const Icon(
+                            Icons.circle_outlined,
+                            size: 10,
+                          ),
+                        )
+                      ],
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/registerUser2');
+                        },
+                        icon: const Icon(
+                          Icons.keyboard_arrow_right,
+                          size: 40,
+                        ))
+                  ],
+                )
+                  ],
                 ),
               ),
             ],
