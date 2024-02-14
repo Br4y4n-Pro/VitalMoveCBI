@@ -8,7 +8,9 @@ Widget textSub(String data) {
       ));
 }
 
-Widget textContent(String data) {
+Widget textContent(
+  String data,
+) {
   return Text(
     data,
     style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
