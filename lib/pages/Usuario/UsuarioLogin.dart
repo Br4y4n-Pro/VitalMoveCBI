@@ -31,7 +31,7 @@ class UsuarioLogin extends StatelessWidget {
               const SizedBox(
                 height: 3,
               ),
-              inputLogin("Ingrese Documento de Identidad"),
+              inputLogin("Ingrese Documento de Identidad", size.width),
               const SizedBox(height: 19),
               const Text("Contraseña",
                   style: TextStyle(
@@ -41,7 +41,7 @@ class UsuarioLogin extends StatelessWidget {
               const SizedBox(
                 height: 3,
               ),
-              inputLogin("Ingrese tu contraseña",size.width),
+              inputLogin("Ingrese tu contraseña", size.width),
               const SizedBox(height: 35),
               Container(
                 width: size.width,
@@ -68,41 +68,3 @@ class UsuarioLogin extends StatelessWidget {
     ));
   }
 }
-
-nav(context) {
-  final size = MediaQuery.of(context).size;
-  return Container(
-    width: size.width,
-    height: size.height * 0.35,
-    decoration: BoxDecoration(
-      color: const Color(0xFFADE8F4),
-      borderRadius: BorderRadius.vertical(
-        bottom: Radius.circular(size.width * 0.2),
-      ),
-    ),
-    child: Center(
-      child: Image.asset("img/logo.png"),
-    ),
-  );
-}
-
-Widget inputLogin(String campo) {
-  return Container(
-      decoration: BoxDecoration(
-          color: const Color(0xffF5F5F5),
-          boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
-          borderRadius: BorderRadius.circular(10)),
-      child: TextField(
-          cursorColor: const Color.fromARGB(33, 15, 15, 15),
-          decoration: InputDecoration(
-              hintStyle: TextStyle(
-                  color: Colors.grey.shade500,
-                  fontStyle: FontStyle.normal,
-                  fontSize: 14),
-              contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-              hintText: campo,
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none))));
-}
-
