@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/index.dart';
 
@@ -15,19 +17,17 @@ class _BuscarPersonaState extends State<BuscarPersona> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Container(
-          child: const Text(
-            "Buscar Persona",
-            style: TextStyle(
-              color: Color.fromRGBO(
-                  11, 35, 173, 1), // Cambia aquí el color del texto del nav
-            ),
+        title: const Text(
+          "Buscar Persona",
+          style: TextStyle(
+            color: Color.fromRGBO(
+                11, 35, 173, 1), // Cambia aquí el color del texto del nav
           ),
         ),
         backgroundColor: const Color(0xFFADE8F4),
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         children: [
           const SizedBox(height: 60),
           inputLogin(
@@ -59,11 +59,9 @@ class _BuscarPersonaState extends State<BuscarPersona> {
             ),
           ),
           const SizedBox(height: 40),
-          Container(
-            child: Center(
-              child: Text("No hay ningún usuario",
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18)),
-            ),
+          const Center(
+            child: Text("No hay ningún usuario",
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18)),
           )
         ],
       ),
