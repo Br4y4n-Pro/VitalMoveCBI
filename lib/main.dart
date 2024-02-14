@@ -28,6 +28,9 @@ class MyApp extends StatelessWidget {
         '/pageVOdos': (context) => const ConsumoVo(),
         '/pageIMC': (context) => const PageIMC(),
         '/pagePeso': (context) => const PagePeso(),
+        '/configuracion': (context) => const Configuracion(),
+        '/pageTestB': (context) => const Testbruce(),
+        '/pageTests': (context) => const Tests(),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
