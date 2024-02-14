@@ -26,13 +26,13 @@ class _HomeUserState extends State<HomeUser> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 blueSquare(
-                  text: "Tests",
-                  imagePath: "img/Tests.png",
+                  text: "Estadisticas",
+                  imagePath: "img/Usuario/statistics.svg",
                 ),
                 const SizedBox(width: 50),
                 blueSquare(
-                  text: "Estadisticas",
-                  imagePath: "img/estadistica.svg",
+                  text: "Perfil",
+                  imagePath: "img/Usuario/user.svg",
                 ),
               ],
             ),
@@ -44,12 +44,12 @@ class _HomeUserState extends State<HomeUser> {
               children: [
                 blueSquare(
                   text: "Perfil",
-                  imagePath: "img/cellphone.svg",
+                  imagePath: "img/Usuario/call.svg",
                 ),
                 const SizedBox(width: 50),
                 blueSquare(
                   text: "Configuracion",
-                  imagePath: "img/setting.svg",
+                  imagePath: "img/Evaluador/setting.svg",
                 ),
               ],
             ),

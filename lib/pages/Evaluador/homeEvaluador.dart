@@ -27,12 +27,12 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
               children: [
                 blueSquare(
                   text: "Tests",
-                  imagePath: "img/tests.svg",
+                  imagePath: "img/Evaluador/test.svg",
                 ),
                 const SizedBox(width: 50),
                 blueSquare(
                   text: "Lista usuarios",
-                  imagePath: "img/listUser.svg",
+                  imagePath: "img/Evaluador/groupuser.svg",
                 ),
               ],
             ),
@@ -44,12 +44,12 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
               children: [
                 blueSquare(
                   text: "Crear usuario",
-                  imagePath: "img/user.svg",
+                  imagePath: "img/Evaluador/user_add.svg",
                 ),
                 const SizedBox(width: 50),
                 blueSquare(
                   text: "Configuracion",
-                  imagePath: "img/setting.svg",
+                  imagePath: "img/Evaluador/setting.svg",
                 ),
               ],
             ),
