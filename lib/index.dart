@@ -9,7 +9,7 @@ export 'package:vitalmovecbi/pages/Evaluador/testbruce.dart';
 
 export 'package:vitalmovecbi/pages/Usuario/perfilVista.dart';
 export 'package:vitalmovecbi/pages/Usuario/perfilVistaContac.dart';
-export 'package:vitalmovecbi/pages/Evaluador/general/configuracion.dart';
+export 'package:vitalmovecbi/pages/general/configuracion.dart';
 export 'package:vitalmovecbi/pages/Usuario/estadisticas.dart';
 export 'package:vitalmovecbi/pages/graficos/imc.dart';
 export 'package:vitalmovecbi/pages/Usuario/homeusuario.dart';

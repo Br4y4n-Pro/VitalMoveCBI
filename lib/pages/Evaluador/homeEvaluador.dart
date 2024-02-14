@@ -12,15 +12,14 @@ class HomeEvaluador extends StatefulWidget {
 class _HomeEvaluadorState extends State<HomeEvaluador> {
   @override
   Widget build(BuildContext context) {
-      final size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
 
     return Scaffold(
-
       body: ListView(
         children: [
-          nav(context, size.height * .35),
+          navEvaluador(context, size.height * .35),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 55.0),
+            padding: const EdgeInsets.symmetric(vertical: 55.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -28,7 +27,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                   text: "Tests",
                   imagePath: "img/Tests.png",
                 ),
-                SizedBox(width: 50),
+                const SizedBox(width: 50),
                 blueSquare(
                   text: "Lista usuarios",
                   imagePath: "img/ListaU.png",
@@ -37,7 +36,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.0),
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -45,7 +44,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                   text: "Crear usuario",
                   imagePath: "img/CrearU.png",
                 ),
-                SizedBox(width: 50),
+                const SizedBox(width: 50),
                 blueSquare(
                   text: "Configuracion",
                   imagePath: "img/Configuracion.png",
@@ -54,24 +53,19 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
             ),
           ),
         ],
-
-      appBar: AppBar(title: const Text('Home De Evaluador')),
-      body: const Center(
-        child: Text('Home Evaluador'),
-
       ),
     );
   }
 }
 
-Widget nav(context, double height) {
-    final size = MediaQuery.of(context).size;
+Widget navEvaluador(context, double height) {
+  final size = MediaQuery.of(context).size;
 
   return Container(
     width: size.width,
     height: height,
     decoration: BoxDecoration(
-      color: Color(0xFFADE8F4),
+      color: const Color(0xFFADE8F4),
       borderRadius: BorderRadius.vertical(
         bottom: Radius.circular(size.width * 0.2),
       ),
@@ -82,12 +76,15 @@ Widget nav(context, double height) {
   );
 }
 
-Widget blueSquare({required String text, required String imagePath,}) {
+Widget blueSquare({
+  required String text,
+  required String imagePath,
+}) {
   return Container(
     width: 119,
     height: 117,
     decoration: BoxDecoration(
-      color: Color(0xFFADE8F4),
+      color: const Color(0xFFADE8F4),
       borderRadius: BorderRadius.circular(10),
     ),
     child: Stack(
@@ -106,7 +103,7 @@ Widget blueSquare({required String text, required String imagePath,}) {
           child: Center(
             child: Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color.fromRGBO(11, 35, 173, 1),
                 fontSize: 16,
               ),

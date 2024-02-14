@@ -73,6 +73,7 @@ class _PerfilVistaContactState extends State<PerfilVistaContact> {
                       if (await launchUrl(url)) {
                         await launchUrl(url);
                       } else {
+                        // ignore: avoid_print
                         print("No se pduo hacer la llamada");
                       }
                     },

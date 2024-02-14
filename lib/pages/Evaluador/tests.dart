@@ -26,15 +26,15 @@ class _TestsState extends State<Tests> {
       ),
       body: ListView (
         children: [
-          SizedBox(height: 80), // Espacio entre el nav y el texto
-          Text(
+          const SizedBox(height: 80), // Espacio entre el nav y el texto
+          const Text(
             "Seleccione el test que se va a realizar:",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20, // Puedes ajustar el tamaño del texto aquí
             ),
           ),
-          SizedBox(height: 20), // Espacio entre el texto y el primer cuadro
+          const SizedBox(height: 20), // Espacio entre el texto y el primer cuadro
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 100.0),
             child: Row(

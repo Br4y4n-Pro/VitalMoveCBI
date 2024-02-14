@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 import '../../widgets/InputText.dart';
@@ -159,7 +161,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     padding: const EdgeInsets.symmetric(horizontal: 
                     11),
                    decoration:BoxDecoration(
-                     color: Color(0xffF5F5F5),
+                     color: const Color(0xffF5F5F5),
           boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
           borderRadius: BorderRadius.circular(10)
                    ),
@@ -167,7 +169,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                                   style: TextStyle( color: Colors.grey.shade500,fontSize: 16,fontWeight: FontWeight.w500 ),
 
                       value: dropdownValue,
-                      icon: Icon(Icons.keyboard_arrow_down),
+                      icon: const Icon(Icons.keyboard_arrow_down),
                       items: items.map((String item) {
                         return DropdownMenuItem<String>(
                           value: item,
@@ -221,7 +223,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                       // Procesar los datos del formulario si es válido
                     }
                   },
-                  child: Icon(Icons.arrow_forward),
+                  child: const Icon(Icons.arrow_forward),
                 ),
               ),
             ],

@@ -9,7 +9,7 @@ class ConsumoVo extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text("Estadisticas del ConsumoVO2")),
+        appBar: AppBar(title: const Text("Estadisticas del ConsumoVO2")),
         body: Center(
           child: Container(
             height: 150,
@@ -20,7 +20,7 @@ class ConsumoVo extends StatelessWidget {
                 maxX: 10,
                 minY: 0,
                 maxY: 10,
-                backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                 borderData: FlBorderData(
                   show: false,
                   border: Border.all(color: Colors.transparent),
@@ -57,7 +57,7 @@ class ConsumoVo extends StatelessWidget {
                         ],
                       ),
                     ),
-                    dotData: FlDotData(show: false),
+                    dotData: const FlDotData(show: false),
                   ),
                 ],
                 gridData: FlGridData(
@@ -65,19 +65,19 @@ class ConsumoVo extends StatelessWidget {
                     drawHorizontalLine: false,
                     drawVerticalLine: true,
                     getDrawingVerticalLine: (value) {
-                      return FlLine(
+                      return const FlLine(
                         color: Color.fromARGB(255, 163, 160, 160),
                         strokeWidth: 0.8,
                       );
                     }),
                 titlesData: FlTitlesData(
-                  leftTitles: AxisTitles(
+                  leftTitles: const AxisTitles(
                     sideTitles: SideTitles(showTitles: false),
                   ),
-                  rightTitles: AxisTitles(
+                  rightTitles: const AxisTitles(
                     sideTitles: SideTitles(showTitles: false),
                   ),
-                  topTitles: AxisTitles(
+                  topTitles: const AxisTitles(
                     sideTitles: SideTitles(showTitles: false),
                   ),
                   bottomTitles: AxisTitles(

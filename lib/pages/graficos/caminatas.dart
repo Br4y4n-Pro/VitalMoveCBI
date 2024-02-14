@@ -14,7 +14,7 @@ class _PageCaminataState extends State<PageCaminata> {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text("Estadisticas de Caminatas")),
+        appBar: AppBar(title: const Text("Estadisticas de Caminatas")),
         body: Center(
           child: Container(
             height: 150,
@@ -25,7 +25,7 @@ class _PageCaminataState extends State<PageCaminata> {
                 maxX: 10,
                 minY: 0,
                 maxY: 10,
-                backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                 borderData: FlBorderData(
                   show: false,
                   border: Border.all(color: Colors.transparent),
@@ -62,7 +62,7 @@ class _PageCaminataState extends State<PageCaminata> {
                         ],
                       ),
                     ),
-                    dotData: FlDotData(show: false),
+                    dotData: const FlDotData(show: false),
                   ),
                 ],
                 gridData: FlGridData(
@@ -70,19 +70,19 @@ class _PageCaminataState extends State<PageCaminata> {
                     drawHorizontalLine: false,
                     drawVerticalLine: true,
                     getDrawingVerticalLine: (value) {
-                      return FlLine(
+                      return const FlLine(
                         color: Color.fromARGB(255, 163, 160, 160),
                         strokeWidth: 0.8,
                       );
                     }),
                 titlesData: FlTitlesData(
-                  leftTitles: AxisTitles(
+                  leftTitles: const AxisTitles(
                     sideTitles: SideTitles(showTitles: false),
                   ),
-                  rightTitles: AxisTitles(
+                  rightTitles: const AxisTitles(
                     sideTitles: SideTitles(showTitles: false),
                   ),
-                  topTitles: AxisTitles(
+                  topTitles: const AxisTitles(
                     sideTitles: SideTitles(showTitles: false),
                   ),
                   bottomTitles: AxisTitles(
