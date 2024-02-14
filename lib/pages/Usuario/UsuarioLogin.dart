@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:vitalmovecbi/widgets/InputText.dart';
+import 'package:vitalmovecbi/widgets/navap.dart';
 
 class UsuarioLogin extends StatelessWidget {
   const UsuarioLogin({super.key});
@@ -39,7 +41,7 @@ class UsuarioLogin extends StatelessWidget {
               const SizedBox(
                 height: 3,
               ),
-              inputLogin("Ingrese tu contraseña"),
+              inputLogin("Ingrese tu contraseña",size.width),
               const SizedBox(height: 35),
               Container(
                 width: size.width,
@@ -103,3 +105,4 @@ Widget inputLogin(String campo) {
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none))));
 }
+
