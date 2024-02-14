@@ -24,15 +24,40 @@ class _EstadisticasState extends State<Estadisticas> {
         ),
         child: Column(
           children: [
-            barraInfo("Caminatas"),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/pageCaminata');
+              },
+              child: barraInfo("Caminatas"),
+            ),
             const SizedBox(height: 20),
-            barraInfo("Tests Bruces"),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/pageBruce');
+              },
+              child: barraInfo("Tests Bruces"),
+            ),
             const SizedBox(height: 20),
-            barraInfo("Peso"),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/pagePeso');
+              },
+              child: barraInfo("Peso"),
+            ),
             const SizedBox(height: 20),
-            barraInfo("Consumo VO2"),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/pageVOdos');
+              },
+              child: barraInfo("Consumo VO2"),
+            ),
             const SizedBox(height: 20),
-            barraInfo("IMC"),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/pageIMC');
+              },
+              child: barraInfo("IMC"),
+            ),
             const SizedBox(height: 20),
           ],
         ),
