@@ -13,7 +13,7 @@ class EvaluadorLogin extends StatelessWidget {
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/');
               },
-              icon: Icon(Icons.arrow_back))
+              icon: const Icon(Icons.arrow_back))
         ],
       ),
       body: Center(
@@ -22,8 +22,8 @@ class EvaluadorLogin extends StatelessWidget {
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     fixedSize: Size(size.width * .7, size.height * .08),
-                    backgroundColor: Color.fromRGBO(0, 150, 199, 1),
-                    foregroundColor: Color.fromRGBO(255, 255, 255, 1),
+                    backgroundColor: const Color.fromRGBO(0, 150, 199, 1),
+                    foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
                     padding: EdgeInsets.all(size.height * .025),
                     textStyle: TextStyle(
                         fontSize: size.aspectRatio * 30,
@@ -33,7 +33,7 @@ class EvaluadorLogin extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, '/evaluadorHome');
                 },
-                child: Text('Iniciar Home Evaluador')),
+                child: const Text('Iniciar Home Evaluador')),
           ],
         ),
       ),
