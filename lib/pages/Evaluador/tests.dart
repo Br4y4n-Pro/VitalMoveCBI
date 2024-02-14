@@ -14,7 +14,7 @@ class _TestsState extends State<Tests> {
     return Scaffold(
       appBar: AppBar(
         title: Container(
-          alignment: Alignment.center,
+          alignment: const Alignment(-0.2, 1),
           child: const Text(
             "Tests",
             style: TextStyle(
@@ -40,12 +40,19 @@ class _TestsState extends State<Tests> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: 230, // Ajusta el ancho del cuadro aquí
-                  child: blueSquare(
-                    text: "Test de Bruce modificado",
-                    imagePath: "img/TestB.png",
-                  ),
+                GestureDetector(
+                  onTap: () {
+              Navigator.pushNamed(context, '/pageTestB');
+                    
+                  },
+                  child: 
+                    SizedBox(
+                      width: 230, // Ajusta el ancho del cuadro aquí
+                      child: blueSquare(
+                        text: "Test de Bruce modificado",
+                        imagePath: "img/Evaluador/bruce.svg",
+                      ),
+                    ),
                 ),
               ],
             ),
@@ -59,7 +66,7 @@ class _TestsState extends State<Tests> {
                   width: 230, // Ajusta el ancho del cuadro aquí
                   child: blueSquare(
                     text: "Test de caminata 6 minutos",
-                    imagePath: "img/TestC.png",
+                    imagePath: "img/Evaluador/test.svg",
                   ),
                 ),
               ],
