@@ -1,7 +1,7 @@
-
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:vitalmovecbi/index.dart';
 
 class HomeUser extends StatefulWidget {
   const HomeUser({super.key});
@@ -16,25 +16,46 @@ class _HomeUserState extends State<HomeUser> {
     final size = MediaQuery.of(context).size;
 
     return SafeArea(
-      child: Scaffold(
-        body: Center(
-          child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  fixedSize: Size(size.width * .7, size.height * .08),
-                  backgroundColor: const Color.fromRGBO(0, 150, 199, 1),
-                  foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                  padding: EdgeInsets.all(size.height * .025),
-                  textStyle: TextStyle(
-                      fontSize: size.aspectRatio * 60,
-                      fontWeight: FontWeight.bold),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40))),
-              onPressed: () {
-                Navigator.pushNamed(context, '/perfil');
-              },
-              child: const Text('Perfil')),
-        ),
+        child: Scaffold(
+      body: ListView(
+        children: [
+          navEvaluador(context, size.height * .35),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 55.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                blueSquare(
+                  text: "Tests",
+                  imagePath: "img/Tests.png",
+                ),
+                const SizedBox(width: 50),
+                blueSquare(
+                  text: "Estadisticas",
+                  imagePath: "img/estadistica.svg",
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                blueSquare(
+                  text: "Perfil",
+                  imagePath: "img/cellphone.svg",
+                ),
+                const SizedBox(width: 50),
+                blueSquare(
+                  text: "Configuracion",
+                  imagePath: "img/setting.svg",
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
-    );
+    ));
   }
 }

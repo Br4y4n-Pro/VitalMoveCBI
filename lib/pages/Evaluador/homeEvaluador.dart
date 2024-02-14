@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeEvaluador extends StatefulWidget {
   const HomeEvaluador({Key? key}) : super(key: key);
@@ -25,12 +27,12 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
               children: [
                 blueSquare(
                   text: "Tests",
-                  imagePath: "img/Tests.png",
+                  imagePath: "img/tests.svg",
                 ),
                 const SizedBox(width: 50),
                 blueSquare(
                   text: "Lista usuarios",
-                  imagePath: "img/ListaU.png",
+                  imagePath: "img/listUser.svg",
                 ),
               ],
             ),
@@ -42,12 +44,12 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
               children: [
                 blueSquare(
                   text: "Crear usuario",
-                  imagePath: "img/CrearU.png",
+                  imagePath: "img/user.svg",
                 ),
                 const SizedBox(width: 50),
                 blueSquare(
                   text: "Configuracion",
-                  imagePath: "img/Configuracion.png",
+                  imagePath: "img/setting.svg",
                 ),
               ],
             ),
@@ -90,7 +92,7 @@ Widget blueSquare({
     child: Stack(
       children: [
         Center(
-          child: Image.asset(
+          child: SvgPicture.asset(
             imagePath,
             width: 90,
             height: 60,

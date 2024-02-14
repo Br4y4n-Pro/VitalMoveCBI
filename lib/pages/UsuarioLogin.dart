@@ -57,7 +57,7 @@ class UsuarioLogin extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40))),
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/homeUsuario');
+                      _mostrarDialogo(context);
                     },
                     child: const Text('Acceder')),
               ),
@@ -67,4 +67,32 @@ class UsuarioLogin extends StatelessWidget {
       ],
     ));
   }
+}
+
+void _mostrarDialogo(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Confirmación'),
+        content: const Text('¿Deseas ir a la pantalla siguiente?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Cerrar el diálogo
+              Navigator.pushNamed(context, '/evaluadorHome');
+            },
+            child: const Text('Evaluador'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Cerrar el diálogo
+              Navigator.pushNamed(context, '/homeUsuario');
+            },
+            child: const Text('Usuario'),
+          ),
+        ],
+      );
+    },
+  );
 }
