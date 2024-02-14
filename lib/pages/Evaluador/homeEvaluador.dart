@@ -25,9 +25,14 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                blueSquare(
-                  text: "Tests",
-                  imagePath: "img/Evaluador/test.svg",
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/pageTests');
+                  },
+                  child: blueSquare(
+                    text: "Tests",
+                    imagePath: "img/Evaluador/test.svg",
+                  ),
                 ),
                 const SizedBox(width: 50),
                 blueSquare(
