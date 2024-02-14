@@ -18,13 +18,14 @@ class _TestsState extends State<Tests> {
           child: const Text(
             "Tests",
             style: TextStyle(
-              color: Color.fromRGBO(11, 35, 173, 1), // Cambia aquí el color del texto del nav
+              color: Color.fromRGBO(
+                  11, 35, 173, 1), // Cambia aquí el color del texto del nav
             ),
           ),
         ),
         backgroundColor: const Color(0xFFADE8F4),
       ),
-      body: ListView (
+      body: ListView(
         children: [
           const SizedBox(height: 80), // Espacio entre el nav y el texto
           const Text(
@@ -34,7 +35,8 @@ class _TestsState extends State<Tests> {
               fontSize: 20, // Puedes ajustar el tamaño del texto aquí
             ),
           ),
-          const SizedBox(height: 20), // Espacio entre el texto y el primer cuadro
+          const SizedBox(
+              height: 20), // Espacio entre el texto y el primer cuadro
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 100.0),
             child: Row(
@@ -42,17 +44,15 @@ class _TestsState extends State<Tests> {
               children: [
                 GestureDetector(
                   onTap: () {
-              Navigator.pushNamed(context, '/pageTestB');
-                    
+                    Navigator.pushNamed(context, '/pageTestB');
                   },
-                  child: 
-                    SizedBox(
-                      width: 230, // Ajusta el ancho del cuadro aquí
-                      child: blueSquare(
-                        text: "Test de Bruce modificado",
-                        imagePath: "img/Evaluador/bruce.svg",
-                      ),
+                  child: SizedBox(
+                    width: 230, // Ajusta el ancho del cuadro aquí
+                    child: blueSquare(
+                      text: "Test de Bruce modificado",
+                      imagePath: "img/Evaluador/bruce.svg",
                     ),
+                  ),
                 ),
               ],
             ),

@@ -42,10 +42,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
         centerTitle: true, // Centra el título del AppBar
         title: const Text('Registro de Usuario'),
       ),
-      body:
-
-       Container(
-        
+      body: Container(
         margin: EdgeInsets.symmetric(horizontal: size.width * 0.07),
         child: Form(
           key: _formKey,
@@ -56,18 +53,17 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                 padding: const EdgeInsets.all(10.0),
                 children: <Widget>[
                   Container(
-                          height: 100,
-                          width: 100,
-                          decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(150),
-                          ),
-                          child: const CircleAvatar(
-                          radius: 30,
-                          backgroundImage: AssetImage("img/usuario2.png"),
-                          ),
-                          ),
-                          const SizedBox(height: 15),
-
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(150),
+                    ),
+                    child: const CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage("img/usuario2.png"),
+                    ),
+                  ),
+                  const SizedBox(height: 15),
                   inputLogin(
                     'Nombre',
                     size.width,
@@ -84,18 +80,14 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                   ),
                   const SizedBox(height: 15),
                   Container(
-
-
-                    decoration:BoxDecoration(
-                       color: const Color(0xffF5F5F5),
-          boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
-          borderRadius: BorderRadius.circular(10)
-                    
-                                        ),
-                                        
+                    decoration: BoxDecoration(
+                        color: const Color(0xffF5F5F5),
+                        boxShadow: [
+                          BoxShadow(color: Colors.grey.shade300, blurRadius: 3)
+                        ],
+                        borderRadius: BorderRadius.circular(10)),
                     child: DateTimeFormField(
                       decoration: InputDecoration(
-                        
                         // fillColor: Color.fromARGB(255, 201, 142, 142),
                         hintStyle: TextStyle(
                             color: Colors.grey.shade500,
@@ -118,77 +110,81 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     ),
                   ),
                   const SizedBox(height: 15),
-                      
-                      
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: size.width * .5,
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                        decoration: BoxDecoration(
+                          color: const Color(0xffF5F5F5),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.shade300, blurRadius: 3)
+                          ],
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: DropdownButton<String>(
+                          style: TextStyle(
+                              color: Colors.grey.shade500,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500),
+                          value: dropdownValues,
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          items: generoItems.map((String item) {
+                            return DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(item),
+                            );
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownValues = newValue!;
+                            });
+                          },
+                          dropdownColor: Colors
+                              .white, // Color de fondo del menú desplegable
+                          underline:
+                              Container(), // Esto elimina la línea que atraviesa de lado a lado
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      Container(
+                        width: size.width * .21,
+                        padding: const EdgeInsets.symmetric(horizontal: 11),
+                        decoration: BoxDecoration(
+                            color: const Color(0xffF5F5F5),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.shade300, blurRadius: 3)
+                            ],
+                            borderRadius: BorderRadius.circular(10)),
+                        child: DropdownButton<String>(
+                          style: TextStyle(
+                              color: Colors.grey.shade500,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-
-                   Container(
-                    width: size.width*.5,
-                    padding: const EdgeInsets.symmetric(horizontal: 18),
-          decoration: BoxDecoration(
-            color: const Color(0xffF5F5F5),
-            boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
-            borderRadius: BorderRadius.circular(10),
-            
-          ),
-
-          child: DropdownButton<String>(
-            style: TextStyle( color: Colors.grey.shade500,fontSize: 14,fontWeight: FontWeight.w500 ),
-            value: dropdownValues,
-            icon: const Icon(Icons.keyboard_arrow_down),
-            items: generoItems.map((String item) {
-              return DropdownMenuItem<String>(
-                value: item,
-                child: Text(item),
-              );
-            }).toList(),
-            onChanged: (String? newValue) {
-              setState(() {
-                dropdownValues = newValue!;
-              });
-            },
-            dropdownColor: Colors.white, // Color de fondo del menú desplegable
-            underline: Container(), // Esto elimina la línea que atraviesa de lado a lado
-          ),
-        ),
-
-                  const SizedBox(height: 15),
-                   Container(
-                    width: size.width*.21,
-                    padding: const EdgeInsets.symmetric(horizontal: 
-                    11),
-                   decoration:BoxDecoration(
-                     color: const Color(0xffF5F5F5),
-          boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
-          borderRadius: BorderRadius.circular(10)
-                   ),
-                    child: DropdownButton<String>(
-                                  style: TextStyle( color: Colors.grey.shade500,fontSize: 16,fontWeight: FontWeight.w500 ),
-
-                      value: dropdownValue,
-                      icon: const Icon(Icons.keyboard_arrow_down),
-                      items: items.map((String item) {
-                        return DropdownMenuItem<String>(
-                          value: item,
-                          child: Text(item),
-                        );
-                      }).toList(),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          dropdownValue = newValue!;
-                        });
-                      },
-                       dropdownColor: Colors.white, // Color de fondo del menú desplegable
-                       underline: Container(), 
-                    ),
+                          value: dropdownValue,
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          items: items.map((String item) {
+                            return DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(item),
+                            );
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownValue = newValue!;
+                            });
+                          },
+                          dropdownColor: Colors
+                              .white, // Color de fondo del menú desplegable
+                          underline: Container(),
+                        ),
+                      ),
+                    ],
                   ),
-
-                ],
-                ),
-                     
                   const SizedBox(height: 15),
                   inputLogin(
                     'Dirección',

@@ -104,7 +104,7 @@ Widget blueSquare({
           ),
         ),
         Positioned(
-          bottom: 2,
+          bottom: 5,
           left: 0,
           right: 0,
           child: Center(
