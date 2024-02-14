@@ -25,15 +25,25 @@ class _HomeUserState extends State<HomeUser> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                blueSquare(
-                  text: "Estadisticas",
-                  imagePath: "img/Usuario/statistics.svg",
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/estadisticas');
+                  },
+                  child: blueSquare(
+                    text: "Estadisticas",
+                    imagePath: "img/Usuario/statistics.svg",
+                  ),
                 ),
                 const SizedBox(width: 50),
-                blueSquare(
-                  text: "Perfil",
-                  imagePath: "img/Usuario/user.svg",
-                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/perfil');
+                  },
+                  child: blueSquare(
+                    text: "Perfil",
+                    imagePath: "img/Usuario/user.svg",
+                  ),
+                )
               ],
             ),
           ),
@@ -42,14 +52,24 @@ class _HomeUserState extends State<HomeUser> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                blueSquare(
-                  text: "Perfil",
-                  imagePath: "img/Usuario/call.svg",
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/contact');
+                  },
+                  child: blueSquare(
+                    text: "Llamar",
+                    imagePath: "img/Usuario/call.svg",
+                  ),
                 ),
                 const SizedBox(width: 50),
-                blueSquare(
-                  text: "Configuracion",
-                  imagePath: "img/Evaluador/setting.svg",
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/configuracion');
+                  },
+                  child: blueSquare(
+                    text: "Configuracion",
+                    imagePath: "img/Evaluador/setting.svg",
+                  ),
                 ),
               ],
             ),
