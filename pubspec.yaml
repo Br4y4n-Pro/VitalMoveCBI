@@ -37,12 +37,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   date_field: ^4.0.0
   flutter_svg_provider: ^1.0.7
-  
+  url_launcher: ^6.2.4
+  fl_chart: ^0.66.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  flutter_svg: ^2.0.9
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

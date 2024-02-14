@@ -13,7 +13,7 @@ class _LoginPageState extends State<LoginPage> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login Page'),
+        title: const Text('Login Page'),
       ),
       body: Center(
         child: Column(
@@ -21,8 +21,8 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     fixedSize: Size(size.width * .7, size.height * .08),
-                    backgroundColor: Color.fromRGBO(0, 150, 199, 1),
-                    foregroundColor: Color.fromRGBO(255, 255, 255, 1),
+                    backgroundColor: const Color.fromRGBO(0, 150, 199, 1),
+                    foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
                     padding: EdgeInsets.all(size.height * .025),
                     textStyle: TextStyle(
                         fontSize: size.aspectRatio * 60,
@@ -32,15 +32,15 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, '/evaluador');
                 },
-                child: Text('Evaluador')),
+                child: const Text('Evaluador')),
             SizedBox(
               height: size.height * 0.09,
             ),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     fixedSize: Size(size.width * .7, size.height * .08),
-                    backgroundColor: Color.fromRGBO(0, 150, 199, 1),
-                    foregroundColor: Color.fromRGBO(255, 255, 255, 1),
+                    backgroundColor: const Color.fromRGBO(0, 150, 199, 1),
+                    foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
                     padding: EdgeInsets.all(size.height * .025),
                     textStyle: TextStyle(
                         fontSize: size.aspectRatio * 60,
@@ -48,9 +48,9 @@ class _LoginPageState extends State<LoginPage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40))),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/usuarioLogin');
+                  Navigator.pushNamed(context, '/homeUsuario');
                 },
-                child: Text('Usuario')),
+                child: const Text('Usuario')),
           ],
         ),
       ),
