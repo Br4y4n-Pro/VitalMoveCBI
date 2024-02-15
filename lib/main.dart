@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'VitalMoveCBI',
-      initialRoute: '/registerUser',
+      initialRoute: '/usuarioLogin',
       routes: {
         '/registerUser3': (context) => const RegistroUsertres(),
         '/registerUser2': (context) => const RegistroUserdos(),

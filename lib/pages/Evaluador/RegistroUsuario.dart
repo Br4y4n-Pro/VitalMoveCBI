@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../../widgets/InputText.dart';
 import 'package:date_field/date_field.dart';
@@ -50,7 +49,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
               ListView(
                 padding: const EdgeInsets.all(10.0),
                 children: <Widget>[
-                  
                   Container(
                     height: 100,
                     width: 100,
@@ -59,11 +57,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     ),
                     child: const CircleAvatar(
                       radius: 30,
-<<<<<<< HEAD
-                      backgroundImage: AssetImage("img/usuario2.png"),
-=======
                       backgroundImage: AssetImage("img/Usuario/usu2.png"),
->>>>>>> 75f870ca0cd4bdbf88b6c86cf7ddf0af9c261776
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -84,7 +78,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                   const SizedBox(height: 15),
                   Container(
                     decoration: BoxDecoration(
-<<<<<<< HEAD
                         color: const Color(0xffF5F5F5),
                         boxShadow: [
                           BoxShadow(color: Colors.grey.shade300, blurRadius: 3)
@@ -93,16 +86,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     child: DateTimeFormField(
                       decoration: InputDecoration(
                         // fillColor: Color.fromARGB(255, 201, 142, 142),
-=======
-                      color: const Color(0xffF5F5F5),
-                      boxShadow: [
-                        BoxShadow(color: Colors.grey.shade300, blurRadius: 3)
-                      ],
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: DateTimeFormField(
-                      decoration: InputDecoration(
->>>>>>> 75f870ca0cd4bdbf88b6c86cf7ddf0af9c261776
+
                         hintStyle: TextStyle(
                             color: Colors.grey.shade500,
                             fontStyle: FontStyle.normal,
@@ -127,21 +111,13 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-<<<<<<< HEAD
                         width: size.width * .5,
-=======
-                        width: size.width * 0.5,
->>>>>>> 75f870ca0cd4bdbf88b6c86cf7ddf0af9c261776
                         padding: const EdgeInsets.symmetric(horizontal: 18),
                         decoration: BoxDecoration(
                           color: const Color(0xffF5F5F5),
                           boxShadow: [
-<<<<<<< HEAD
                             BoxShadow(
                                 color: Colors.grey.shade300, blurRadius: 3)
-=======
-                            BoxShadow(color: Colors.grey.shade300, blurRadius: 3)
->>>>>>> 75f870ca0cd4bdbf88b6c86cf7ddf0af9c261776
                           ],
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -163,24 +139,16 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                               dropdownValues = newValue!;
                             });
                           },
-<<<<<<< HEAD
+
                           dropdownColor: Colors
                               .white, // Color de fondo del menú desplegable
                           underline:
                               Container(), // Esto elimina la línea que atraviesa de lado a lado
-=======
-                          dropdownColor: Colors.white,
-                          underline: Container(),
->>>>>>> 75f870ca0cd4bdbf88b6c86cf7ddf0af9c261776
                         ),
                       ),
                       const SizedBox(height: 15),
                       Container(
-<<<<<<< HEAD
                         width: size.width * .21,
-=======
-                        width: size.width * 0.21,
->>>>>>> 75f870ca0cd4bdbf88b6c86cf7ddf0af9c261776
                         padding: const EdgeInsets.symmetric(horizontal: 11),
                         decoration: BoxDecoration(
                             color: const Color(0xffF5F5F5),
@@ -194,10 +162,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                               color: Colors.grey.shade500,
                               fontSize: 16,
                               fontWeight: FontWeight.w500),
-<<<<<<< HEAD
-
-=======
->>>>>>> 75f870ca0cd4bdbf88b6c86cf7ddf0af9c261776
                           value: dropdownValue,
                           icon: const Icon(Icons.keyboard_arrow_down),
                           items: items.map((String item) {
@@ -211,12 +175,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                               dropdownValue = newValue!;
                             });
                           },
-<<<<<<< HEAD
-                          dropdownColor: Colors
-                              .white, // Color de fondo del menú desplegable
-=======
                           dropdownColor: Colors.white,
->>>>>>> 75f870ca0cd4bdbf88b6c86cf7ddf0af9c261776
                           underline: Container(),
                         ),
                       ),
@@ -243,64 +202,69 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     size.width,
                   ),
                   const SizedBox(height: 11),
-                ],
-              ),
-              Positioned(
-                bottom: 15,
-                right: 10,
-                child: 
-                Row(
-                  children: [
-                
-                   Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const SizedBox(height: 40, width: 40),
-                    Row(
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-
-                        IconButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/registerUser');
-                            },
-                            icon: const Icon(
-                              Icons.circle_rounded,
-                              size: 10,
-                            )),
+                        Container(
+                          width: size.width * .8,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const SizedBox(height: 40, width: 56),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  IconButton(
+                                      onPressed: () {
+                                        Navigator.pushNamed(
+                                            context, '/registerUser');
+                                      },
+                                      icon: const Icon(
+                                        Icons.circle_rounded,
+                                        size: 10,
+                                      )),
+                                  IconButton(
+                                      onPressed: () {
+                                        Navigator.pushNamed(
+                                            context, '/registerUser2');
+                                      },
+                                      icon: const Icon(
+                                        Icons.circle_outlined,
+                                        size: 10,
+                                      )),
+                                  IconButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, '/registerUser3');
+                                    },
+                                    icon: const Icon(
+                                      Icons.circle_outlined,
+                                      size: 10,
+                                    ),
+                                  )
+                                ],
+                              ),
                               IconButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/registerUser2');
-                            },
-                            icon: const Icon(
-                              Icons.circle_outlined,
-                              size: 10,
-                            )),
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/registerUser3');
-                          },
-                          icon: const Icon(
-                            Icons.circle_outlined,
-                            size: 10,
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, '/registerUser2');
+                                  },
+                                  icon: const Icon(
+                                    Icons.keyboard_arrow_right,
+                                    size: 40,
+                                  ))
+                            ],
                           ),
                         )
                       ],
                     ),
-                    IconButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/registerUser2');
-                        },
-                        icon: const Icon(
-                          Icons.keyboard_arrow_right,
-                          size: 40,
-                        ))
-                  ],
-                )
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),

@@ -35,10 +35,15 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                   ),
                 ),
                 const SizedBox(width: 50),
-                blueSquare(
-                  text: "Lista usuarios",
-                  imagePath: "img/Evaluador/groupuser.svg",
-                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/pageTestB');
+                  },
+                  child: blueSquare(
+                    text: "Lista usuarios",
+                    imagePath: "img/Evaluador/groupuser.svg",
+                  ),
+                )
               ],
             ),
           ),
@@ -47,15 +52,25 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                blueSquare(
-                  text: "Crear usuario",
-                  imagePath: "img/Evaluador/user_add.svg",
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/registerUser');
+                  },
+                  child: blueSquare(
+                    text: "Crear usuario",
+                    imagePath: "img/Evaluador/user_add.svg",
+                  ),
                 ),
                 const SizedBox(width: 50),
-                blueSquare(
-                  text: "Configuracion",
-                  imagePath: "img/Evaluador/setting.svg",
-                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/configuracion');
+                  },
+                  child: blueSquare(
+                    text: "Configuracion",
+                    imagePath: "img/Evaluador/setting.svg",
+                  ),
+                )
               ],
             ),
           ),
