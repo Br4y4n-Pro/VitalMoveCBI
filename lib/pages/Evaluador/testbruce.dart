@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vitalmovecbi/pages/Evaluador/testUsuario.dart';
-import 'package:vitalmovecbi/widgets/textperfil.dart';
 
 class Persona {
   final String nombre;
@@ -68,7 +66,7 @@ class _Testbruce extends State<Testbruce> {
                     ),
                   ),
                   onPressed: () {
-                  Navigator.pushNamed(context, '/pageTestUsuario');
+                    Navigator.pushNamed(context, '/pageTestUsuario');
                   },
                   child: const Text('Buscar'),
                 ),
