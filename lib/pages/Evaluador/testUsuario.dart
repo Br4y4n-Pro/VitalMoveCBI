@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vitalmovecbi/pages/Evaluador/homeEvaluador.dart';
 
 class Persona {
   final String nombre;
@@ -21,24 +20,22 @@ class _TestUsuario extends State<TestUsuario> {
     Persona("Maria Gomez", "C.C 987654321"),
   ];
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Container(
-          child: const Text(
-            "Usuario",
-            style: TextStyle(
-              color: Color.fromRGBO(
-                  11, 35, 173, 1), // Cambia aquí el color del texto del nav
+        appBar: AppBar(
+          centerTitle: true,
+          title: Container(
+            child: const Text(
+              "Usuario",
+              style: TextStyle(
+                color: Color.fromRGBO(
+                    11, 35, 173, 1), // Cambia aquí el color del texto del nav
+              ),
             ),
           ),
+          backgroundColor: const Color(0xFFADE8F4),
         ),
-        backgroundColor: const Color(0xFFADE8F4),
-      ),
-       body: ListView()
-    );
-  }}
+        body: ListView());
+  }
+}
