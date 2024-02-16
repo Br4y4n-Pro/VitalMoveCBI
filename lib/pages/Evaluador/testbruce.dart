@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vitalmovecbi/pages/Evaluador/testUsuario.dart';
+import 'package:vitalmovecbi/pages/Evaluador/testCaminataFCR.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
 
 class Persona {
@@ -68,7 +68,7 @@ class _Testbruce extends State<Testbruce> {
                     ),
                   ),
                   onPressed: () {
-                  Navigator.pushNamed(context, '/pageTestUsuario');
+                  Navigator.pushNamed(context, '/pageTestCaminataFCR');
                   },
                   child: const Text('Buscar'),
                 ),
@@ -128,13 +128,19 @@ Widget inputLogin(String campo) {
 }
 
 Widget lista(String nombre, String cedula) {
-  return ListTile(
-    tileColor: const Color(0xFFADE8F4),
-    title: Text(nombre),
-    subtitle: Text(cedula),
-    leading: const CircleAvatar(
-      radius: 30,
-      backgroundImage: AssetImage("img/General/viejito.jpg"),
+  return Container(
+    decoration: BoxDecoration(
+      color: const Color(0xFFADE8F4),
+      borderRadius: BorderRadius.circular(10),
+    ),
+    margin: const EdgeInsets.symmetric(vertical: 1),
+    child: ListTile(
+      title: Text(nombre),
+      subtitle: Text(cedula),
+      leading: const CircleAvatar(
+        radius: 30,
+        backgroundImage: AssetImage("img/General/viejito.jpg"),
+      ),
     ),
   );
 }

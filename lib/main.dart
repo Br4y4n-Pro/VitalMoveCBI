@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/index.dart';
-import 'package:vitalmovecbi/pages/Evaluador/testUsuario.dart';
+import 'package:vitalmovecbi/pages/Evaluador/AcercaDe.dart';
+import 'package:vitalmovecbi/pages/Evaluador/testC6M.dart';
+import 'package:vitalmovecbi/pages/Evaluador/testCaminataFCR.dart';
 
 void main() => runApp(const MyApp());
 
@@ -33,7 +35,9 @@ class MyApp extends StatelessWidget {
         '/configuracion': (context) => const Configuracion(),
         '/pageTestB': (context) => const Testbruce(),
         '/pageTests': (context) => const Tests(),
-         '/pageTestUsuario': (context) => const TestUsuario(),
+        '/pageTestCaminataFCR': (context) => const TestCaminataFCR(),
+        '/pageTestC6M': (context) => const TestC6M(),
+         '/pageAcercaDe': (context) => const AcercaDe(),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
