@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 Widget bottombar() {
-  var _select;
   return Container(
     decoration: BoxDecoration(
       borderRadius:
@@ -36,7 +35,7 @@ Widget bottombar() {
                   color: Color.fromARGB(255, 255, 255, 255)),
               child: IconButton(
                 icon: const Icon(Icons.home, color: Color(0xff0096C7)),
-                onPressed: () => _onItemTapped(0),
+                onPressed: () => _onItemTapped(false),
               ),
             ),
             Container(
@@ -47,7 +46,7 @@ Widget bottombar() {
                   color: Color.fromARGB(255, 255, 255, 255)),
               child: IconButton(
                 icon: const Icon(Icons.call, color: Color(0xff0096C7)),
-                onPressed: () => _onItemTapped(0),
+                onPressed: () => _onItemTapped(false),
               ),
             ),
             Container(
@@ -58,7 +57,7 @@ Widget bottombar() {
                   color: Color.fromARGB(255, 255, 255, 255)),
               child: IconButton(
                 icon: const Icon(Icons.bar_chart, color: Color(0xff0096C7)),
-                onPressed: () => _onItemTapped(0),
+                onPressed: () => _onItemTapped(false),
               ),
             ),
             Container(
@@ -66,9 +65,7 @@ Widget bottombar() {
               height: 40,
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(100)),
-                  color: _select == 1 ? Color.fromARGB(255, 255, 255, 255) : Colors.transparent,
-
-                  ),
+                  color: Color.fromARGB(255, 255, 255, 255)),
               child: IconButton(
                 // icon: Icon(Icons.search, color: _selectedIndex == 1 ? Colors.blue : Colors.white), // Cambia el color según la pantalla seleccionada
                 icon: const Icon(Icons.person, color: Color(0xff0096C7)),
@@ -82,6 +79,4 @@ Widget bottombar() {
   );
 }
 
-_onItemTapped(bool bool) {
-}
-
+_onItemTapped(bool bool) {}
