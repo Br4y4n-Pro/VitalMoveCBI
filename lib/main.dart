@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/index.dart';
-import 'package:vitalmovecbi/pages/Evaluador/testUsuario.dart';
 
 void main() => runApp(const MyApp());
 

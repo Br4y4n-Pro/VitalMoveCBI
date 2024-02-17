@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-
-class Persona {
-  final String nombre;
-  final String cedula;
-
-  Persona(this.nombre, this.cedula);
-}
+import 'package:vitalmovecbi/index.dart';
 
 class Testbruce extends StatefulWidget {
   const Testbruce({Key? key}) : super(key: key);
