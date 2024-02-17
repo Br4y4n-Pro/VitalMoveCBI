@@ -69,6 +69,7 @@ class _Testbruce extends State<Testbruce> {
                   ),
                   onPressed: () {
                   Navigator.pushNamed(context, '/pageTestCaminataFCR');
+                    Navigator.pushNamed(context, '/pageTestUsuario');
                   },
                   child: const Text('Buscar'),
                 ),

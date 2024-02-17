@@ -17,68 +17,143 @@ class _EstadisticasState extends State<Estadisticas> {
         title: const Text('Estadisticas'),
         backgroundColor: const Color(0xffADE8F4),
       ),
-      body: Container(
-        margin: EdgeInsets.symmetric(
-          horizontal: size.width * .1,
-          vertical: size.height * .2,
+      body: ListView(children: [
+        const SizedBox(height: 40),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/pageCaminata');
+          },
+          child: Container(
+              margin: EdgeInsets.symmetric(horizontal: size.width * .1),
+              height: 70,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  image: DecorationImage(
+                    image: AssetImage("img/caminar.jpg"),
+                    fit: BoxFit.fitWidth,
+                  )),
+              child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Colors.black.withOpacity(.5),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Caminata",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.w600),
+                    ),
+                  ))),
         ),
-        child: Column(
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/pageCaminata');
-              },
-              child: barraInfo("Caminatas"),
-            ),
-            const SizedBox(height: 20),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/pageBruce');
-              },
-              child: barraInfo("Tests Bruces"),
-            ),
-            const SizedBox(height: 20),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/pagePeso');
-              },
-              child: barraInfo("Peso"),
-            ),
-            const SizedBox(height: 20),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/pageVOdos');
-              },
-              child: barraInfo("Consumo VO2"),
-            ),
-            const SizedBox(height: 20),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/pageIMC');
-              },
-              child: barraInfo("IMC"),
-            ),
-            const SizedBox(height: 20),
-          ],
+        const SizedBox(height: 20),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/pageBruce');
+          },
+          child: Container(
+              margin: EdgeInsets.symmetric(horizontal: size.width * .1),
+              height: 70,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  image: DecorationImage(
+                    image: AssetImage("img/bruce.jpg"),
+                    fit: BoxFit.fitWidth,
+                  )),
+              child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Colors.black.withOpacity(.5),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Bruce",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.w600),
+                    ),
+                  ))),
         ),
-      ),
-    );
-  }
-
-  Widget barraInfo(String data) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          data,
-          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+        const SizedBox(height: 20),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/pagePeso');
+          },
+          child: Container(
+              margin: EdgeInsets.symmetric(horizontal: size.width * .1),
+              height: 70,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  image: DecorationImage(
+                    image: AssetImage("img/peso.jpg"),
+                    fit: BoxFit.fitWidth,
+                  )),
+              child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Colors.black.withOpacity(.5),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Peso",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.w600),
+                    ),
+                  ))),
         ),
-        const Icon(
-          Icons.arrow_circle_right_outlined,
-          size: 30,
-        )
-      ],
+        const SizedBox(height: 20),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/pageVOdos');
+          },
+          child: Container(
+              margin: EdgeInsets.symmetric(horizontal: size.width * .1),
+              height: 70,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  image: DecorationImage(
+                    image: AssetImage("img/Vo2.jpg"),
+                    fit: BoxFit.fitWidth,
+                  )),
+              child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Colors.black.withOpacity(.5),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Vo2",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.w600),
+                    ),
+                  ))),
+        ),
+        const SizedBox(height: 20),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/pageCaminata');
+          },
+          child: Container(
+              margin: EdgeInsets.symmetric(horizontal: size.width * .1),
+              height: 70,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  image: DecorationImage(
+                    image: AssetImage("img/nivel.jpg"),
+                    fit: BoxFit.fitWidth,
+                  )),
+              child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Colors.black.withOpacity(.5),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Nivel Vo2",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.w600),
+                    ),
+                  ))),
+        ),
+      ]),
     );
   }
 }
