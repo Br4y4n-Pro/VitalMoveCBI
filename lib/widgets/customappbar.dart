@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:vitalmovecbi/widgets/colores.dart';
 
-Widget bottombar() {
-  var _select;
+Widget bottombar(BuildContext context, int position) {
   return Container(
     decoration: BoxDecoration(
       borderRadius:
           BorderRadius.circular(20), // ajusta el radio según sea necesario
-      color: Colors.white, // cambia el color de fondo si es necesario
     ),
     child: Container(
       height: 60,
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
-        color: const Color(0xFFADE8F4),
+        color: Colores.primaryColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         boxShadow: [
           BoxShadow(
@@ -24,57 +23,16 @@ Widget bottombar() {
         ],
       ),
       child: BottomAppBar(
+        height: 10,
         color: Colors.transparent,
         child: Row(
+          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Container(
-              width: 60,
-              height: 40,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(100)),
-                  color: Color.fromARGB(255, 255, 255, 255)),
-              child: IconButton(
-                icon: const Icon(Icons.home, color: Color(0xff0096C7)),
-                onPressed: () => _onItemTapped(0),
-              ),
-            ),
-            Container(
-              width: 60,
-              height: 40,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(100)),
-                  color: Color.fromARGB(255, 255, 255, 255)),
-              child: IconButton(
-                icon: const Icon(Icons.call, color: Color(0xff0096C7)),
-                onPressed: () => _onItemTapped(0),
-              ),
-            ),
-            Container(
-              width: 60,
-              height: 40,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(100)),
-                  color: Color.fromARGB(255, 255, 255, 255)),
-              child: IconButton(
-                icon: const Icon(Icons.bar_chart, color: Color(0xff0096C7)),
-                onPressed: () => _onItemTapped(0),
-              ),
-            ),
-            Container(
-              width: 60,
-              height: 40,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(100)),
-                  color: _select == 1 ? Color.fromARGB(255, 255, 255, 255) : Colors.transparent,
-
-                  ),
-              child: IconButton(
-                // icon: Icon(Icons.search, color: _selectedIndex == 1 ? Colors.blue : Colors.white), // Cambia el color según la pantalla seleccionada
-                icon: const Icon(Icons.person, color: Color(0xff0096C7)),
-                onPressed: () => _onItemTapped(true),
-              ),
-            ),
+            _buildBottomNavItem(Icons.home, 1, position == 1),
+            _buildBottomNavItem(Icons.call, 2, position == 2),
+            _buildBottomNavItem(Icons.bar_chart, 3, position == 3),
+            _buildBottomNavItem(Icons.person, 4, position == 4),
           ],
         ),
       ),
@@ -82,6 +40,22 @@ Widget bottombar() {
   );
 }
 
-_onItemTapped(bool bool) {
+Widget _buildBottomNavItem(IconData icon, int index, bool isSelected) {
+  return Container(
+    width: 60,
+    height: 40,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.all(Radius.circular(100)),
+      color: isSelected ? Colors.white : Colors.transparent,
+    ),
+    child: IconButton(
+      icon:
+          Icon(icon, color: isSelected ? Colors.blue : Colores.quaternaryColor),
+      onPressed: () => _onItemTapped(index),
+    ),
+  );
 }
 
+_onItemTapped(int index) {
+  // Aquí maneja la acción según el índice seleccionado
+}
