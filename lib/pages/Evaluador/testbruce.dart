@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:vitalmovecbi/pages/Evaluador/testCaminataFCR.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
 
@@ -8,6 +9,9 @@ class Persona {
 
   Persona(this.nombre, this.cedula);
 }
+=======
+import 'package:vitalmovecbi/index.dart';
+>>>>>>> 67f83a3cf23a479d4376e3effa2667288a825089
 
 class Testbruce extends StatefulWidget {
   const Testbruce({Key? key}) : super(key: key);

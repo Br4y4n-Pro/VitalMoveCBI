@@ -3,7 +3,7 @@ export 'package:vitalmovecbi/pages/Evaluador/homeEvaluador.dart';
 export 'package:vitalmovecbi/pages/UsuarioLogin.dart';
 export 'package:vitalmovecbi/pages/Evaluador/tests.dart';
 export 'package:vitalmovecbi/pages/Evaluador/testbruce.dart';
-
+export 'package:vitalmovecbi/pages/Evaluador/testUsuario.dart';
 export 'package:vitalmovecbi/pages/Usuario/perfilVista.dart';
 export 'package:vitalmovecbi/pages/Usuario/perfilVistaContac.dart';
 export 'package:vitalmovecbi/pages/general/configuracion.dart';

@@ -39,6 +39,7 @@ dependencies:
   flutter_svg_provider: ^1.0.7
   url_launcher: ^6.2.4
   fl_chart: ^0.66.2
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:
