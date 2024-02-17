@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import '../../widgets/InputText.dart';
 import 'package:date_field/date_field.dart';
@@ -202,67 +204,65 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     size.width,
                   ),
                   const SizedBox(height: 11),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: size.width * .8,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const SizedBox(height: 40, width: 56),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  IconButton(
-                                      onPressed: () {
-                                        Navigator.pushNamed(
-                                            context, '/registerUser');
-                                      },
-                                      icon: const Icon(
-                                        Icons.circle_rounded,
-                                        size: 10,
-                                      )),
-                                  IconButton(
-                                      onPressed: () {
-                                        Navigator.pushNamed(
-                                            context, '/registerUser2');
-                                      },
-                                      icon: const Icon(
-                                        Icons.circle_outlined,
-                                        size: 10,
-                                      )),
-                                  IconButton(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: size.width * .8,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const SizedBox(height: 40, width: 56),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: [
+                                IconButton(
                                     onPressed: () {
                                       Navigator.pushNamed(
-                                          context, '/registerUser3');
+                                          context, '/registerUser');
+                                    },
+                                    icon: const Icon(
+                                      Icons.circle_rounded,
+                                      size: 10,
+                                    )),
+                                IconButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, '/registerUser2');
                                     },
                                     icon: const Icon(
                                       Icons.circle_outlined,
                                       size: 10,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              IconButton(
+                                    )),
+                                IconButton(
                                   onPressed: () {
                                     Navigator.pushNamed(
-                                        context, '/registerUser2');
+                                        context, '/registerUser3');
                                   },
                                   icon: const Icon(
-                                    Icons.keyboard_arrow_right,
-                                    size: 40,
-                                  ))
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                                    Icons.circle_outlined,
+                                    size: 10,
+                                  ),
+                                )
+                              ],
+                            ),
+                            IconButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, '/registerUser2');
+                                },
+                                icon: const Icon(
+                                  Icons.keyboard_arrow_right,
+                                  size: 40,
+                                ))
+                          ],
+                        ),
+                      )
+                    ],
                   ),
                 ],
               ),

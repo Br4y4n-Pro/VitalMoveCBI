@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/InputText.dart';
+import 'package:vitalmovecbi/widgets/checkBoxLogin.dart';
+import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/navap.dart';
 
 class UsuarioLogin extends StatelessWidget {
@@ -18,7 +20,7 @@ class UsuarioLogin extends StatelessWidget {
           height: 30,
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: size.width * 0.1),
+          margin: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -42,15 +44,28 @@ class UsuarioLogin extends StatelessWidget {
                 height: 3,
               ),
               inputLogin("Ingrese tu contraseña", size.width),
-              const SizedBox(height: 35),
+              const SizedBox(height: 19),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [CheckBoxInput(), Text("¿Recordar Contraseña?")],
+                  ),
+                  TextButton(
+                      // ignore: prefer_const_constructors
+                      onPressed: () {},
+                      child: const Text("Recuperar contraseña"))
+                ],
+              ),
+              const SizedBox(height: 19),
               Container(
                 width: size.width,
                 margin: EdgeInsets.symmetric(horizontal: size.width * 0.1),
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         fixedSize: Size(size.width * .4, size.height * .06),
-                        backgroundColor: const Color.fromRGBO(0, 150, 199, 1),
-                        foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                        backgroundColor: Colores.primaryColor,
                         padding: EdgeInsets.all(size.height * .002),
                         textStyle: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
@@ -59,7 +74,10 @@ class UsuarioLogin extends StatelessWidget {
                     onPressed: () {
                       _mostrarDialogo(context);
                     },
-                    child: const Text('Acceder')),
+                    child: const Text(
+                      'Acceder',
+                      style: TextStyle(color: Colors.white),
+                    )),
               ),
             ],
           ),
@@ -80,14 +98,13 @@ void _mostrarDialogo(BuildContext context) {
           TextButton(
             onPressed: () {
               Navigator.of(context).pop(); // Cerrar el diálogo
-              Navigator.pushNamed(context, '/evaluadorHome');
+              Navigator.pushReplacementNamed(context, '/evaluadorHome');
             },
             child: const Text('Evaluador'),
           ),
           TextButton(
             onPressed: () {
-              Navigator.of(context).pop(); // Cerrar el diálogo
-              Navigator.pushNamed(context, '/homeUsuario');
+              Navigator.pushReplacementNamed(context, '/homeUsuario');
             },
             child: const Text('Usuario'),
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/pages/Evaluador/homeEvaluador.dart';
+import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 
 class Tests extends StatefulWidget {
@@ -15,13 +16,13 @@ class _TestsState extends State<Tests> {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            iconTheme: const IconThemeData(color: Color.fromARGB(255, 0, 0, 0)),
+            iconTheme: const IconThemeData(color: Colores.quaternaryColor),
             title: const Text(
               "Tests",
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                  color: Colores.quaternaryColor, fontWeight: FontWeight.w500),
             ),
-            backgroundColor: const Color(0xFFADE8F4),
+            backgroundColor: Colores.primaryColor,
           ),
           body: seleccionTests(context),
           bottomNavigationBar: bottombar(context, 1)),

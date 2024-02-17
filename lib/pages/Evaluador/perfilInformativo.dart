@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
 
@@ -30,7 +32,7 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
         backgroundColor: const Color(0xFFADE8F4),
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         children: [
           const SizedBox(height: 20),
           Row(
@@ -56,7 +58,7 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
@@ -64,14 +66,14 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
             children: [
               Column(
                 children: [
-                  Text(" Ultima medicion IMC"),
+                  const Text(" Ultima medicion IMC"),
                   Container(
                     width: 30,
                     height: 30,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Color(0xff0096C7),
                         borderRadius: BorderRadius.all(Radius.circular(10))),
-                    child: Center(
+                    child: const Center(
                         child: Text(
                       "5",
                       style: TextStyle(
@@ -82,7 +84,7 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
               ),
               Column(
                 children: [
-                  Text(" Ultima medicion IMC"),
+                  const Text(" Ultima medicion IMC"),
                   Container(
                     width: 30,
                     height: 30,
@@ -90,7 +92,7 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
                       color: Color(0xff0096C7),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    child: Center(
+                    child: const Center(
                         child: Text(
                       "5",
                       style: TextStyle(
