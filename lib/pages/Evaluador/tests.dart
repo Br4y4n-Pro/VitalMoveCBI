@@ -24,7 +24,7 @@ class _TestsState extends State<Tests> {
             backgroundColor: const Color(0xFFADE8F4),
           ),
           body: seleccionTests(context),
-          bottomNavigationBar: bottombar()),
+          bottomNavigationBar: bottombar(context, 1)),
     );
   }
 }
