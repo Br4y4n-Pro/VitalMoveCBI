@@ -24,8 +24,8 @@ export 'package:vitalmovecbi/pages/Evaluador/AcercaDe.dart';
 export 'package:vitalmovecbi/pages/Evaluador/testC6M.dart';
 export 'package:vitalmovecbi/pages/Evaluador/testCaminataFCR.dart';
 
-
 //widgets route
 
 export 'package:vitalmovecbi/widgets/inputlogin2.dart';
-
+export 'package:vitalmovecbi/widgets/textperfil.dart';
+export 'package:vitalmovecbi/widgets/colores.dart';

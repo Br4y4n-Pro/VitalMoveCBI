@@ -40,7 +40,7 @@ class _Testbruce extends State<Testbruce> {
           iconTheme: const IconThemeData(color: Colores.quaternaryColor),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
           children: [
             const SizedBox(height: 30),
@@ -59,7 +59,7 @@ class _Testbruce extends State<Testbruce> {
                 const SizedBox(height: 40),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    fixedSize: Size(160, 50),
+                    fixedSize: const Size(160, 50),
                     backgroundColor: const Color.fromRGBO(0, 150, 199, 1),
                     foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
                     textStyle: const TextStyle(
@@ -90,7 +90,7 @@ class _Testbruce extends State<Testbruce> {
                       .map((persona) => Column(
                             children: [
                               lista(persona.nombre, persona.cedula),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                             ],
                           ))
                       .toList(),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 import 'package:vitalmovecbi/widgets/grafico.dart';
-import 'package:vitalmovecbi/widgets/textperfil.dart';
 
 class HomeUser extends StatefulWidget {
   const HomeUser({super.key});
@@ -15,9 +14,12 @@ class _HomeUserState extends State<HomeUser> {
   var position = 1;
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading:
+              false, // Evita que aparezca la flecha de retorno
+
           centerTitle: true,
           title: const Text(
             "Principal",
@@ -31,28 +33,14 @@ class _HomeUserState extends State<HomeUser> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           children: [
             const SizedBox(height: 20),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    textSub("Brayan Alexis Cañas Londoño"),
-                    textContent("1193238697"),
-                  ],
-                ),
-                Container(
-                  height: 70,
-                  width: 70,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(150),
-                  ),
-                  child: const CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage("img/Usuario/usu2.png"),
-                  ),
-                ),
-              ],
+            const ListTile(
+              title: Text(
+                "Brayan Alexis Cañas Londoño",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text("CC 1193238697"),
+              leading: CircleAvatar(
+                  backgroundImage: AssetImage("img/Usuario/usu2.png")),
             ),
             const SizedBox(
               height: 30,
@@ -101,7 +89,7 @@ class _HomeUserState extends State<HomeUser> {
                 )
               ],
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 30),
             Container(
               height: 1,
               width: 10,
@@ -109,7 +97,20 @@ class _HomeUserState extends State<HomeUser> {
                 color: Color.fromRGBO(0, 150, 199, 1),
               ),
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 20),
+            Container(
+              height: size.height * .2,
+              decoration: BoxDecoration(
+                  color: Colores.quaternaryColor,
+                  border: Border.all(
+                    color: Colores.tertiaryColor,
+                    width: 2,
+                    style: BorderStyle.solid,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+              // child: ,
+            ),
+            const SizedBox(height: 20),
             grafico(context),
             const SizedBox(height: 40),
           ],
