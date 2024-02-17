@@ -4,7 +4,7 @@ nav(context) {
   final size = MediaQuery.of(context).size;
   return Container(
     width: size.width,
-    height: size.height * 0.35,
+    height: size.height * 0.40,
     decoration: BoxDecoration(
       color: const Color(0xFFADE8F4),
       borderRadius: BorderRadius.vertical(

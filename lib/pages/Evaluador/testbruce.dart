@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:vitalmovecbi/widgets/colores.dart';
+import 'package:vitalmovecbi/widgets/customappbar.dart';
 
 
 class Persona {
@@ -30,10 +32,12 @@ class _Testbruce extends State<Testbruce> {
         title: const Text(
           "Test Bruce",
           style: TextStyle(
-            color: Color.fromRGBO(11, 35, 173, 1),
+            color: Colores.quaternaryColor,
           ),
         ),
-        backgroundColor: const Color(0xFFADE8F4),
+        backgroundColor: Colores.primaryColor,
+        elevation: 1,
+          iconTheme: const IconThemeData(color: Colores.quaternaryColor),
       ),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 20),
@@ -96,7 +100,7 @@ class _Testbruce extends State<Testbruce> {
           ],
         ),
       ),
-    );
+        bottomNavigationBar: bottombar(context, 1));
   }
 }
 

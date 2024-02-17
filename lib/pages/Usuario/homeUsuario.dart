@@ -17,7 +17,6 @@ class _HomeUserState extends State<HomeUser> {
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: Colores.quaternaryColor,
         appBar: AppBar(
           centerTitle: true,
           title: const Text(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/pages/Evaluador/homeEvaluador.dart';
+import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 
 class Tests extends StatefulWidget {
@@ -15,13 +16,14 @@ class _TestsState extends State<Tests> {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            iconTheme: const IconThemeData(color: Color.fromARGB(255, 0, 0, 0)),
+            centerTitle: true,
+            iconTheme: const IconThemeData(color: Colores.quaternaryColor),
             title: const Text(
               "Tests",
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                  color: Colores.quaternaryColor, fontWeight: FontWeight.w500),
             ),
-            backgroundColor: const Color(0xFFADE8F4),
+            backgroundColor: Colores.primaryColor,
           ),
           body: seleccionTests(context),
           bottomNavigationBar: bottombar(context, 1)),
@@ -46,6 +48,8 @@ class _TestsState extends State<Tests> {
 // guardar para cuando se haga la navegavilidad entre estos botones
 
 Widget seleccionTests(context) {
+  final size = MediaQuery.of(context).size;
+
   return ListView(
     children: [
       const SizedBox(height: 80), // Espacio entre el nav y el texto
@@ -69,9 +73,9 @@ Widget seleccionTests(context) {
               child: SizedBox(
                 width: 230, // Ajusta el ancho del cuadro aquí
                 child: blueSquare(
-                  text: "Test de Bruce modificado",
-                  imagePath: "img/Evaluador/bruce.svg",
-                ),
+                    text: "Test de Bruce modificado",
+                    imagePath: "img/Evaluador/bruce.svg",
+                    size: size),
               ),
             ),
           ],
@@ -85,9 +89,9 @@ Widget seleccionTests(context) {
             SizedBox(
               width: 230, // Ajusta el ancho del cuadro aquí
               child: blueSquare(
-                text: "Test de caminata 6 minutos",
-                imagePath: "img/Evaluador/test.svg",
-              ),
+                  text: "Test de caminata 6 minutos",
+                  imagePath: "img/Evaluador/test.svg",
+                  size: size),
             ),
           ],
         ),
