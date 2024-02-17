@@ -1,14 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vitalmovecbi/pages/Evaluador/homeEvaluador.dart';
-import 'package:vitalmovecbi/pages/Evaluador/testbruce.dart';
-
-class Persona {
-  final String nombre;
-  final String cedula;
-
-  Persona(this.nombre, this.cedula);
-}
-
+import 'package:vitalmovecbi/index.dart';
 class TestCaminataFCR extends StatefulWidget {
   const TestCaminataFCR({Key? key}) : super(key: key);
   @override
@@ -101,25 +92,4 @@ class _TestCaminataFCR extends State<TestCaminataFCR> {
           ])),
     );
   }
-}
-
-Widget inputLogin2(String campo) {
-  return Container(
-      margin: EdgeInsets.symmetric(horizontal: 100),
-      decoration: BoxDecoration(
-          color: const Color(0xffF5F5F5),
-          boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
-          borderRadius: BorderRadius.circular(10)),
-      child: TextField(
-          cursorColor: const Color.fromARGB(33, 15, 15, 15),
-          decoration: InputDecoration(
-              hintStyle: TextStyle(
-                  color: Colors.grey.shade500,
-                  fontStyle: FontStyle.normal,
-                  fontSize: 14),
-              contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-              hintText: campo,
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none))));
 }

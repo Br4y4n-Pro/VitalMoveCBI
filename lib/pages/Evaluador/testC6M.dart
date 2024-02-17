@@ -1,14 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vitalmovecbi/pages/Evaluador/homeEvaluador.dart';
-import 'package:vitalmovecbi/pages/Evaluador/testbruce.dart';
-
-class Persona {
-  final String nombre;
-  final String cedula;
-
-  Persona(this.nombre, this.cedula);
-}
-
+import 'package:vitalmovecbi/index.dart';
 class TestC6M extends StatefulWidget {
   const TestC6M({Key? key}) : super(key: key);
   @override
@@ -76,8 +67,8 @@ class _TestC6M extends State<TestC6M> {
             ),
             const SizedBox(height: 19),
             inputLogin2("Distancia M"),
-             const SizedBox(height: 19),
-             inputLogin2("Frecuencia Cardiaca maxima (FCM)"),
+            const SizedBox(height: 19),
+            inputLogin2("Frecuencia Cardiaca maxima (FCM)"),
             const SizedBox(height: 19),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 150),
@@ -105,23 +96,3 @@ class _TestC6M extends State<TestC6M> {
   }
 }
 
-Widget inputLogin2(String campo) {
-  return Container(
-      margin: EdgeInsets.symmetric(horizontal: 100),
-      decoration: BoxDecoration(
-          color: const Color(0xffF5F5F5),
-          boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
-          borderRadius: BorderRadius.circular(10)),
-      child: TextField(
-          cursorColor: const Color.fromARGB(33, 15, 15, 15),
-          decoration: InputDecoration(
-              hintStyle: TextStyle(
-                  color: Colors.grey.shade500,
-                  fontStyle: FontStyle.normal,
-                  fontSize: 14),
-              contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-              hintText: campo,
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none))));
-}

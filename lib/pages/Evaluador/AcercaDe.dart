@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vitalmovecbi/pages/Evaluador/homeEvaluador.dart';
-import 'package:vitalmovecbi/pages/Evaluador/testbruce.dart';
 
 class AcercaDe extends StatefulWidget {
   const AcercaDe({Key? key}) : super(key: key);

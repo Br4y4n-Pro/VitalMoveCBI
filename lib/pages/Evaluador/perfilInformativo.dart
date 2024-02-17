@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
-import 'package:fl_chart/fl_chart.dart';
 
 import '../../widgets/grafico.dart';
 

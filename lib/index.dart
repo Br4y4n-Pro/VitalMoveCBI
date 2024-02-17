@@ -3,7 +3,6 @@ export 'package:vitalmovecbi/pages/Evaluador/homeEvaluador.dart';
 export 'package:vitalmovecbi/pages/UsuarioLogin.dart';
 export 'package:vitalmovecbi/pages/Evaluador/tests.dart';
 export 'package:vitalmovecbi/pages/Evaluador/testbruce.dart';
-export 'package:vitalmovecbi/pages/Evaluador/testUsuario.dart';
 export 'package:vitalmovecbi/pages/Usuario/perfilVista.dart';
 export 'package:vitalmovecbi/pages/Usuario/perfilVistaContac.dart';
 export 'package:vitalmovecbi/pages/general/configuracion.dart';
@@ -24,3 +23,9 @@ export 'package:vitalmovecbi/pages/Evaluador/actiSema.dart';
 export 'package:vitalmovecbi/pages/Evaluador/AcercaDe.dart';
 export 'package:vitalmovecbi/pages/Evaluador/testC6M.dart';
 export 'package:vitalmovecbi/pages/Evaluador/testCaminataFCR.dart';
+
+
+//widgets route
+
+export 'package:vitalmovecbi/widgets/inputlogin2.dart';
+
