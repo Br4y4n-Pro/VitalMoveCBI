@@ -16,10 +16,6 @@ class _TestsState extends State<Tests> {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-<<<<<<< HEAD
-            centerTitle: true,
-=======
->>>>>>> a6ffb5c4d225055525c13d8e22a0f044efa319d6
             iconTheme: const IconThemeData(color: Colores.quaternaryColor),
             title: const Text(
               "Tests",

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+// ignore: unused_import
 import 'package:vitalmovecbi/widgets/navap.dart';
 
 class HomeEvaluador extends StatefulWidget {
