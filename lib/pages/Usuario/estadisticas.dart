@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Estadisticas extends StatefulWidget {
-  const Estadisticas({Key? key}) : super(key: key);
+  const Estadisticas({super.key});
 
   @override
   State<Estadisticas> createState() => _EstadisticasState();
@@ -26,7 +26,7 @@ class _EstadisticasState extends State<Estadisticas> {
           child: Container(
               margin: EdgeInsets.symmetric(horizontal: size.width * .1),
               height: 70,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   image: DecorationImage(
                     image: AssetImage("img/caminar.jpg"),
@@ -34,10 +34,10 @@ class _EstadisticasState extends State<Estadisticas> {
                   )),
               child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                     color: Colors.black.withOpacity(.5),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       "Caminata",
                       style: TextStyle(
@@ -53,7 +53,7 @@ class _EstadisticasState extends State<Estadisticas> {
           child: Container(
               margin: EdgeInsets.symmetric(horizontal: size.width * .1),
               height: 70,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   image: DecorationImage(
                     image: AssetImage("img/bruce.jpg"),
@@ -61,10 +61,10 @@ class _EstadisticasState extends State<Estadisticas> {
                   )),
               child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                     color: Colors.black.withOpacity(.5),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       "Bruce",
                       style: TextStyle(
@@ -80,7 +80,7 @@ class _EstadisticasState extends State<Estadisticas> {
           child: Container(
               margin: EdgeInsets.symmetric(horizontal: size.width * .1),
               height: 70,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   image: DecorationImage(
                     image: AssetImage("img/peso.jpg"),
@@ -88,10 +88,10 @@ class _EstadisticasState extends State<Estadisticas> {
                   )),
               child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                     color: Colors.black.withOpacity(.5),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       "Peso",
                       style: TextStyle(
@@ -107,7 +107,7 @@ class _EstadisticasState extends State<Estadisticas> {
           child: Container(
               margin: EdgeInsets.symmetric(horizontal: size.width * .1),
               height: 70,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   image: DecorationImage(
                     image: AssetImage("img/Vo2.jpg"),
@@ -115,10 +115,10 @@ class _EstadisticasState extends State<Estadisticas> {
                   )),
               child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                     color: Colors.black.withOpacity(.5),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       "Vo2",
                       style: TextStyle(
@@ -134,7 +134,7 @@ class _EstadisticasState extends State<Estadisticas> {
           child: Container(
               margin: EdgeInsets.symmetric(horizontal: size.width * .1),
               height: 70,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   image: DecorationImage(
                     image: AssetImage("img/nivel.jpg"),
@@ -142,10 +142,10 @@ class _EstadisticasState extends State<Estadisticas> {
                   )),
               child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                     color: Colors.black.withOpacity(.5),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       "Nivel Vo2",
                       style: TextStyle(

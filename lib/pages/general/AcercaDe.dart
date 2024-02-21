@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 class AcercaDe extends StatefulWidget {
-  const AcercaDe({Key? key}) : super(key: key);
+  const AcercaDe({super.key});
   @override
   State<AcercaDe> createState() => _AcercaDe();
 }

@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vitalmovecbi/widgets/navap.dart';
 
 class HomeEvaluador extends StatefulWidget {
-  const HomeEvaluador({Key? key}) : super(key: key);
+  const HomeEvaluador({super.key});
 
   @override
   State<HomeEvaluador> createState() => _HomeEvaluadorState();
@@ -17,46 +17,46 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SafeArea(
-        child: Scaffold(
-      body:  GridView.count(
-              crossAxisCount: 2,
-              mainAxisSpacing: 15,
-              crossAxisSpacing: 15,
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-              children: [
-                GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/pageTests');
-                    },
-                    child: blueSquare(
-                        text: "Tests",
-                        imagePath: "img/Evaluador/test.svg",
-                        size: size)),
-                GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/pageTestB');
-                    },
-                    child: blueSquare(
-                        text: "Lista usuarios",
-                        imagePath: "img/Evaluador/groupuser.svg",
-                        size: size)),
-                GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/registerUser');
-                    },
-                    child: blueSquare(
-                        text: "Crear usuario",
-                        imagePath: "img/Evaluador/user_add.svg",
-                        size: size)),
-                GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/configuracion');
-                    },
-                    child: blueSquare(
-                        text: "Configuracion",
-                        imagePath: "img/Evaluador/setting.svg",
-                        size: size)),
-              ]),
+      child: Scaffold(
+        body: GridView.count(
+            crossAxisCount: 2,
+            mainAxisSpacing: 15,
+            crossAxisSpacing: 15,
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+            children: [
+              GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/pageTests');
+                  },
+                  child: blueSquare(
+                      text: "Tests",
+                      imagePath: "img/Evaluador/test.svg",
+                      size: size)),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/pageTestB');
+                  },
+                  child: blueSquare(
+                      text: "Lista usuarios",
+                      imagePath: "img/Evaluador/groupuser.svg",
+                      size: size)),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/registerUser');
+                  },
+                  child: blueSquare(
+                      text: "Crear usuario",
+                      imagePath: "img/Evaluador/user_add.svg",
+                      size: size)),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/configuracion');
+                  },
+                  child: blueSquare(
+                      text: "Configuracion",
+                      imagePath: "img/Evaluador/setting.svg",
+                      size: size)),
+            ]),
       ),
     );
 

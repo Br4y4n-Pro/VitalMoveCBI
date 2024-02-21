@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:vitalmovecbi/index.dart';
+import 'package:vitalmovecbi/widgets/InputText.dart';
 
 class BuscarPersona extends StatefulWidget {
   const BuscarPersona({super.key});
@@ -30,9 +30,7 @@ class _BuscarPersonaState extends State<BuscarPersona> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         children: [
           const SizedBox(height: 60),
-          inputLogin(
-            "Cedula  ò Nombre ",
-          ),
+          inputLogin("Cedula  ò Nombre ", size.width, TextInputType.name),
           const SizedBox(height: 60),
           Container(
             width: size.width,

@@ -4,7 +4,7 @@ import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 
 class Tests extends StatefulWidget {
-  const Tests({Key? key}) : super(key: key);
+  const Tests({super.key});
 
   @override
   State<Tests> createState() => _TestsState();

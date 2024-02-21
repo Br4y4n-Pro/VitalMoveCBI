@@ -5,7 +5,7 @@ import 'package:vitalmovecbi/widgets/colores.dart';
 import '../../widgets/InputText.dart';
 
 class RegistroUsertres extends StatefulWidget {
-  const RegistroUsertres({Key? key}) : super(key: key);
+  const RegistroUsertres({super.key});
 
   @override
   State<RegistroUsertres> createState() => _RegistroUsertres();

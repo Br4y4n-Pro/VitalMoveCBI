@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
@@ -107,7 +109,7 @@ class _HomeUserState extends State<HomeUser> {
                     width: 2,
                     style: BorderStyle.solid,
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
+                  borderRadius: const BorderRadius.all(Radius.circular(10))),
               // child: ,
             ),
             const SizedBox(height: 20),

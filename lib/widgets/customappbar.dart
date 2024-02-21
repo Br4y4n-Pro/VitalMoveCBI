@@ -45,6 +45,7 @@ Widget _buildBottomNavItem(IconData icon, int index, bool isSelected) {
     width: 60,
     height: 40,
     decoration: BoxDecoration(
+      // ignore: prefer_const_constructors
       borderRadius: BorderRadius.all(Radius.circular(100)),
       color: isSelected ? Colors.white : Colors.transparent,
     ),

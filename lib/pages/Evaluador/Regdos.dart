@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/InputText.dart';
 
 class RegistroUserdos extends StatefulWidget {
-  const RegistroUserdos({Key? key}) : super(key: key);
+  const RegistroUserdos({super.key});
 
   @override
   State<RegistroUserdos> createState() => _RegistroUserdos();
@@ -31,7 +31,6 @@ class _RegistroUserdos extends State<RegistroUserdos> {
             children: [
               ListView(
                 padding: const EdgeInsets.all(10.0),
-                
                 children: <Widget>[
                   Column(
                     children: [
@@ -45,84 +44,74 @@ class _RegistroUserdos extends State<RegistroUserdos> {
                       ),
                       const SizedBox(height: 40),
                       inputLogin(
-                        'Nombre Completo ',
-                        size.width,
-                        TextInputType.name
-                      ),
+                          'Nombre Completo ', size.width, TextInputType.name),
                       const SizedBox(height: 15),
-                      inputLogin(
-                        'Teléfono',
-                        size.width,
-                        TextInputType.phone
-                      ),
+                      inputLogin('Teléfono', size.width, TextInputType.phone),
                       const SizedBox(height: 15),
-                      inputLogin(
-                        'Parentezco',
-                        size.width,
-                        TextInputType.text
-                      ),
+                      inputLogin('Parentezco', size.width, TextInputType.text),
                       const SizedBox(height: 15),
                     ],
                   ),
-                 Row(
-  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  crossAxisAlignment: CrossAxisAlignment.center,
-  children: [
-    SizedBox(
-      width: size.width * .8,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const SizedBox(height: 40, width: 56),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/registerUser');
-                },
-                icon: const Icon(
-                  Icons.circle_outlined,
-                  size: 10,
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/registerUser2');
-                },
-                icon: const Icon(
-                  Icons.circle_rounded,
-                  size: 10,
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/registerUser3');
-                },
-                icon: const Icon(
-                  Icons.circle_outlined,
-                  size: 10,
-                ),
-              ),
-            ],
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/registerUser3');
-            },
-            icon: const Icon(
-              Icons.keyboard_arrow_right,
-              size: 40,
-            ),
-          ),
-        ],
-      ),
-    ),
-  ],
-),
-
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: size.width * .8,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const SizedBox(height: 40, width: 56),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    Navigator.pop(context, '/registerUser');
+                                  },
+                                  icon: const Icon(
+                                    Icons.circle_outlined,
+                                    size: 10,
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, '/registerUser2');
+                                  },
+                                  icon: const Icon(
+                                    Icons.circle_rounded,
+                                    size: 10,
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, '/registerUser3');
+                                  },
+                                  icon: const Icon(
+                                    Icons.circle_outlined,
+                                    size: 10,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/registerUser3');
+                              },
+                              icon: const Icon(
+                                Icons.keyboard_arrow_right,
+                                size: 40,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ],
