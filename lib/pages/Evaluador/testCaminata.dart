@@ -10,14 +10,14 @@ class Persona {
   Persona(this.nombre, this.cedula);
 }
 
-class Testbruce extends StatefulWidget {
-  const Testbruce({Key? key}) : super(key: key);
+class TestCaminata extends StatefulWidget {
+  const TestCaminata({Key? key}) : super(key: key);
 
   @override
-  State<Testbruce> createState() => _Testbruce();
+  State<TestCaminata> createState() => _TestCaminata();
 }
 
-class _Testbruce extends State<Testbruce> {
+class _TestCaminata extends State<TestCaminata> {
   List<Persona> personas = [
     Persona("Edison Cuaran", "C.C 1556458585"),
     Persona("Juan Perez", "C.C 123456789"),
@@ -30,7 +30,7 @@ class _Testbruce extends State<Testbruce> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          "Test Bruce",
+          "Test Caminata",
           style: TextStyle(
             color: Colores.quaternaryColor,
           ),
@@ -89,7 +89,7 @@ class _Testbruce extends State<Testbruce> {
       .map((persona) => GestureDetector(
             onTap: () {
               if (persona.nombre == "Edison Cuaran") {
-                Navigator.pushNamed(context, '/pageTestBM');
+                Navigator.pushNamed(context, '/pageTestCaminataFCR');
               } else if (persona.nombre == "Juan Perez") {
                 Navigator.pushNamed(context, '/ruta_juan');
               } else if (persona.nombre == "Maria Gomez") {

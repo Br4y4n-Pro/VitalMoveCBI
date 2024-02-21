@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 Widget inputLogin2(String campo) {
   return Container(
-      margin: EdgeInsets.symmetric(horizontal: 100),
+      margin: EdgeInsets.symmetric(horizontal: 50),
       decoration: BoxDecoration(
           color: const Color(0xffF5F5F5),
           boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],

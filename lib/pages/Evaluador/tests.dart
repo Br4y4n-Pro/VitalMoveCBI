@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/pages/Evaluador/homeEvaluador.dart';
+import 'package:vitalmovecbi/widgets/blueSquare.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 
@@ -85,13 +86,18 @@ Widget seleccionTests(context) {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
+             GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/pageTestC');
+              },
+            child: SizedBox(
               width: 230, // Ajusta el ancho del cuadro aquí
               child: blueSquare(
                   text: "Test de caminata 6 minutos",
                   imagePath: "img/Evaluador/test.svg",
                   size: size),
             ),
+             ),
           ],
         ),
       ),

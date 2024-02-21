@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/index.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:vitalmovecbi/pages/Evaluador/testBruceMod.dart';
+import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
 
 
 
@@ -41,6 +43,8 @@ class MyApp extends StatelessWidget {
         '/pageTestCaminataFCR': (context) => const TestCaminataFCR(),
         '/pageTestC6M': (context) => const TestC6M(),
          '/pageAcercaDe': (context) => const AcercaDe(),
+          '/pageTestC': (context) => const TestCaminata(),
+            '/pageTestBM': (context) => const testBruceMod (),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(

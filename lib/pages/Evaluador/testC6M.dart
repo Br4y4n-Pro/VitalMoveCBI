@@ -73,7 +73,7 @@ class _TestC6M extends State<TestC6M> {
             inputLogin2("Frecuencia Cardiaca maxima (FCM)"),
             const SizedBox(height: 19),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 150),
+              margin: EdgeInsets.symmetric(horizontal: 70),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size(100, 50),
@@ -88,7 +88,7 @@ class _TestC6M extends State<TestC6M> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/pageAcercaDe');
+                  Navigator.pushNamed(context, '/');
                 },
                 child: const Text('Ver resultados'),
               ),
