@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import '../../widgets/InputText.dart';
+import '../../widgets/InputRegistro.dart';
 
 class RegistroUserdos extends StatefulWidget {
   const RegistroUserdos({Key? key}) : super(key: key);
@@ -31,7 +31,6 @@ class _RegistroUserdos extends State<RegistroUserdos> {
             children: [
               ListView(
                 padding: const EdgeInsets.all(10.0),
-                
                 children: <Widget>[
                   Column(
                     children: [
@@ -44,47 +43,86 @@ class _RegistroUserdos extends State<RegistroUserdos> {
                         ),
                       ),
                       const SizedBox(height: 40),
-                      inputLogin(
-                        'Nombre Completo ',
-                        size.width,
+                      inputLoginRe(
+                        campo: 'Nombre completo',
+                        tamano: size.width,
+                        tipo: TextInputType.name,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Por favor ingrese su nombre completo';
+                          }
+
+                          final RegExp nombreCompletoRegExp =
+                              RegExp(r'^[a-zA-Z\s]{5,40}$');
+
+                          if (!nombreCompletoRegExp.hasMatch(value)) {
+                            return 'El nombre completo debe contener solo letras y tener entre 10 y 40 caracteres';
+                          }
+
+                          return null;
+                        },
                       ),
                       const SizedBox(height: 15),
-                      inputLogin(
-                        'Teléfono',
-                        size.width,
+                      inputLoginRe(
+                        campo: 'Numero de Telefono',
+                        tamano: size.width,
+                        tipo: TextInputType.phone,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Por favor ingrese su Numero de telefono';
+                          }
+
+                          // Expresión regular para validar que el valor contenga solo números y tenga exactamente 10 caracteres
+                          final RegExp telefonoRegExp = RegExp(r'^[0-9]{10}$');
+
+                          if (!telefonoRegExp.hasMatch(value)) {
+                            return 'El número de teléfono debe contener exactamente 10 números';
+                          }
+
+                          // Aquí puedes agregar otras validaciones según tus requisitos
+                          return null;
+                        },
                       ),
                       const SizedBox(height: 15),
-                      inputLogin(
-                        'Parentezco',
-                        size.width,
+                      inputLoginRe(
+                        campo: 'Parentezco',
+                        tamano: size.width,
+                        tipo: TextInputType.text,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Por favor ingrese su parentezco';
+                          }
+
+                          // Expresión regular para validar que el valor contenga solo texto y tenga longitud entre 5 y 20 caracteres
+                          final RegExp parentezcoRegExp =
+                              RegExp(r'^[a-zA-Z ]{5,20}$');
+
+                          if (!parentezcoRegExp.hasMatch(value)) {
+                            return 'El parentezco debe contener solo letras y tener entre 5 y 20 caracteres';
+                          }
+
+                          // Aquí puedes agregar otras validaciones según tus requisitos
+                          return null;
+                        },
                       ),
                       const SizedBox(height: 15),
                     ],
                   ),
-                  Container(
-                    color: Colors.blue,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: size.width * .8,
+                        child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const SizedBox(height: 40, width: 40),
+                            const SizedBox(height: 40, width: 56),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, '/registerUser');
-                                  },
-                                  icon: const Icon(
-                                    Icons.keyboard_arrow_left,
-                                    size: 40,
-                                  ),
-                                ),
                                 IconButton(
                                   onPressed: () {
                                     Navigator.pushNamed(
@@ -98,7 +136,7 @@ class _RegistroUserdos extends State<RegistroUserdos> {
                                 IconButton(
                                   onPressed: () {
                                     Navigator.pushNamed(
-                                        context, '/registerUser3');
+                                        context, '/registerUser2');
                                   },
                                   icon: const Icon(
                                     Icons.circle_rounded,
@@ -114,7 +152,7 @@ class _RegistroUserdos extends State<RegistroUserdos> {
                                     Icons.circle_outlined,
                                     size: 10,
                                   ),
-                                )
+                                ),
                               ],
                             ),
                             IconButton(
@@ -125,11 +163,11 @@ class _RegistroUserdos extends State<RegistroUserdos> {
                                 Icons.keyboard_arrow_right,
                                 size: 40,
                               ),
-                            )
+                            ),
                           ],
-                        )
-                      ],
-                    ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

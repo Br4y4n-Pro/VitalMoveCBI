@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
-import '../../widgets/InputText.dart';
+import '../../widgets/InputRegistro.dart';
 
 class RegistroUsertres extends StatefulWidget {
   const RegistroUsertres({Key? key}) : super(key: key);
@@ -86,14 +86,61 @@ class _RegistroUsertres extends State<RegistroUsertres> {
                     ],
                   ),
                   const SizedBox(height: 15),
-                  inputLogin(
-                    'Talla (M) ',
-                    size.width,
+                  inputLoginRe(
+                    campo: 'Talla (M)',
+                    tamano: size.width,
+                    tipo: const TextInputType.numberWithOptions(decimal: true),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingrese su talla';
+                      }
+
+                      // Expresión regular para validar que el valor contenga solo números y opcionalmente un punto decimal
+                      final RegExp tallaRegExp = RegExp(r'^\d+(\.\d+)?$');
+
+                      if (!tallaRegExp.hasMatch(value)) {
+                        return 'La talla debe ser un número válido';
+                      }
+
+                      // Validación de altura mínima y máxima
+                      final double altura = double.parse(value);
+                      const double alturaMinima =
+                          1.0; // Altura mínima permitida
+                      const double alturaMaxima =
+                          2.5; // Altura máxima permitida
+
+                      if (altura < alturaMinima || altura > alturaMaxima) {
+                        return 'La altura debe estar entre $alturaMinima y $alturaMaxima metros';
+                      }
+
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 15),
-                  inputLogin(
-                    'Peso (Kg)',
-                    size.width,
+                  inputLoginRe(
+                    campo: 'Peso (Kg)',
+                    tamano: size.width,
+                    tipo: const TextInputType.numberWithOptions(decimal: true),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingrese su peso';
+                      }
+
+                      // Expresión regular para validar que el valor contenga solo números y opcionalmente un punto decimal
+                      final RegExp pesoRegExp = RegExp(r'^\d*\.?\d*$');
+
+                      if (!pesoRegExp.hasMatch(value)) {
+                        return 'El peso debe ser un número válido';
+                      }
+
+                      // Validar rango mínimo y máximo
+                      final double peso = double.parse(value);
+                      if (peso < 40 || peso > 200) {
+                        return 'El peso debe estar entre 40 y 200 Kg';
+                      }
+
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 50),
                   Container(
@@ -122,62 +169,60 @@ class _RegistroUsertres extends State<RegistroUsertres> {
                 bottom: 15,
                 right: 10,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const SizedBox(height: 40, width: 40),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/registerUser');
-                              },
-                              icon: const Icon(
-                                Icons.keyboard_arrow_left,
-                                size: 40,
-                              ),
-                            ),
-                            IconButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, '/registerUser');
-                                },
-                                icon: const Icon(
-                                  Icons.circle_outlined,
-                                  size: 10,
-                                )),
-                            IconButton(
+                    SizedBox(
+                      width: size.width * .8,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const SizedBox(height: 40, width: 56),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              IconButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, '/registerUser');
+                                  },
+                                  icon: const Icon(
+                                    Icons.circle_outlined,
+                                    size: 10,
+                                  )),
+                              IconButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, '/registerUser2');
+                                  },
+                                  icon: const Icon(
+                                    Icons.circle_outlined,
+                                    size: 10,
+                                  )),
+                              IconButton(
                                 onPressed: () {
                                   Navigator.pushNamed(
-                                      context, '/registerUser2');
+                                      context, '/registerUser3');
                                 },
                                 icon: const Icon(
-                                  Icons.circle_outlined,
+                                  Icons.circle_rounded,
                                   size: 10,
-                                )),
-                            IconButton(
+                                ),
+                              )
+                            ],
+                          ),
+                          IconButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, '/registerUser3');
+                                Navigator.pushNamed(context, '/registerUser2');
                               },
                               icon: const Icon(
-                                Icons.circle_rounded,
-                                size: 10,
-                              ),
-                            )
-                          ],
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '');
-                            },
-                            icon: const Icon(
-                              Icons.keyboard_arrow_right,
-                              size: 40,
-                            ))
-                      ],
+                                Icons.keyboard_arrow_right,
+                                size: 40,
+                              ))
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -217,3 +262,6 @@ void _mostrarDialogo(BuildContext context) {
     },
   );
 }
+
+
+zxczxczx

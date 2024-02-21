@@ -27,7 +27,7 @@ class _EstadisticasState extends State<Estadisticas> {
               margin: EdgeInsets.symmetric(horizontal: size.width * .1),
               height: 70,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
                   image: DecorationImage(
                     image: AssetImage("img/caminar.jpg"),
                     fit: BoxFit.fitWidth,

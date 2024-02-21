@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_svg/flutter_svg.dart';
 // ignore: unused_import
 import 'package:vitalmovecbi/widgets/navap.dart';
@@ -22,7 +23,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
               crossAxisCount: 2,
               mainAxisSpacing: 15,
               crossAxisSpacing: 15,
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               children: [
                 GestureDetector(
                     onTap: () {
@@ -169,3 +170,5 @@ Widget blueSquare({
     ),
   );
 }
+
+zxczxc

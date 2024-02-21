@@ -30,21 +30,7 @@ class _TestsState extends State<Tests> {
   }
 }
 
-// Widget customTapBar(context) {
-//   return Stack(
-//     Positioned(
-//       bottom: 0,
-//       child: Container(
-//         height: 90,
-//         width: 300,
-//         decoration: BoxDecoration(color: Colors.cyan),
-//       ),
-//     ),
-//   );
-// }
 
-// icon: Icon(Icons.search, color: _selectedIndex == 1 ? Colors.blue : Colors.white), // Cambia el color según la pantalla seleccionada
-// guardar para cuando se haga la navegavilidad entre estos botones
 
 Widget seleccionTests(context) {
   final size = MediaQuery.of(context).size;
@@ -67,7 +53,7 @@ Widget seleccionTests(context) {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, '/pageTestB');
+                Navigator.pushNamed(context, '/TB');
               },
               child: SizedBox(
                 width: 230, // Ajusta el ancho del cuadro aquí

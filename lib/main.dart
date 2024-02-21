@@ -38,7 +38,12 @@ class MyApp extends StatelessWidget {
         '/pageTests': (context) => const Tests(),
         '/pageTestCaminataFCR': (context) => const TestCaminataFCR(),
         '/pageTestC6M': (context) => const TestC6M(),
+<<<<<<< HEAD
         '/pageAcercaDe': (context) => const AcercaDe(),
+=======
+         '/pageAcercaDe': (context) => const AcercaDe(),
+         '/TB': (context) => const BruceTest(),
+>>>>>>> 3e547b72bae959c85954f26097ee54bdef807167
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(

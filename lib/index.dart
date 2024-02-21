@@ -1,4 +1,5 @@
 // import 'package:vitalmovecbi/pages/Evaluador/RegistroUsuario.dart';
+
 export 'package:vitalmovecbi/pages/Evaluador/homeEvaluador.dart';
 export 'package:vitalmovecbi/pages/UsuarioLogin.dart';
 export 'package:vitalmovecbi/pages/Evaluador/tests.dart';
@@ -16,11 +17,13 @@ export 'package:vitalmovecbi/pages/graficos/peso.dart';
 export 'package:vitalmovecbi/pages/Evaluador/RegistroUsuario.dart';
 export 'package:vitalmovecbi/pages/Evaluador/PerfilInformativo.dart';
 export 'package:vitalmovecbi/pages/Evaluador/BuscarPersona.dart';
+export 'package:vitalmovecbi/pages/Evaluador/BruceTest.dart';
+
 
 export 'package:vitalmovecbi/pages/Evaluador/Regdos.dart';
 export 'package:vitalmovecbi/pages/Evaluador/actiSema.dart';
 
-export 'package:vitalmovecbi/pages/Evaluador/AcercaDe.dart';
+export "package:vitalmovecbi/pages/general/AcercaDe.dart";
 export 'package:vitalmovecbi/pages/Evaluador/testC6M.dart';
 export 'package:vitalmovecbi/pages/Evaluador/testCaminataFCR.dart';
 
@@ -30,3 +33,4 @@ export 'package:vitalmovecbi/pages/Evaluador/testCaminataFCR.dart';
 export 'package:vitalmovecbi/widgets/inputlogin2.dart';
 export 'package:vitalmovecbi/widgets/textperfil.dart';
 export 'package:vitalmovecbi/widgets/colores.dart';
+export 'package:vitalmovecbi/widgets/inputRegistro.dart';
