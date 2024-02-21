@@ -47,64 +47,57 @@ class _RegistroUserdos extends State<RegistroUserdos> {
                       inputLogin(
                         'Nombre Completo ',
                         size.width,
+                        TextInputType.name
                       ),
                       const SizedBox(height: 15),
                       inputLogin(
                         'Teléfono',
                         size.width,
+                        TextInputType.phone
                       ),
                       const SizedBox(height: 15),
                       inputLogin(
                         'Parentezco',
                         size.width,
+                        TextInputType.text
                       ),
                       const SizedBox(height: 15),
                     ],
                   ),
-                  Container(
-                    color: Colors.blue,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: size.width * .8,
+                        child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const SizedBox(height: 40, width: 40),
+                            const SizedBox(height: 40, width: 56),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
                               children: [
                                 IconButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, '/registerUser');
-                                  },
-                                  icon: const Icon(
-                                    Icons.keyboard_arrow_left,
-                                    size: 40,
-                                  ),
-                                ),
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, '/registerUser');
+                                    },
+                                    icon: const Icon(
+                                      Icons.circle_outlined,
+                                      size: 10,
+                                    )),
                                 IconButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, '/registerUser');
-                                  },
-                                  icon: const Icon(
-                                    Icons.circle_outlined,
-                                    size: 10,
-                                  ),
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, '/registerUser3');
-                                  },
-                                  icon: const Icon(
-                                    Icons.circle_rounded,
-                                    size: 10,
-                                  ),
-                                ),
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, '/registerUser2');
+                                    },
+                                    icon: const Icon(
+                                      Icons.circle_rounded,
+                                      size: 10,
+                                    )),
                                 IconButton(
                                   onPressed: () {
                                     Navigator.pushNamed(
@@ -118,18 +111,18 @@ class _RegistroUserdos extends State<RegistroUserdos> {
                               ],
                             ),
                             IconButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/registerUser3');
-                              },
-                              icon: const Icon(
-                                Icons.keyboard_arrow_right,
-                                size: 40,
-                              ),
-                            )
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, '/registerUser3');
+                                },
+                                icon: const Icon(
+                                  Icons.keyboard_arrow_right,
+                                  size: 40,
+                                ))
                           ],
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
                 ],
               ),

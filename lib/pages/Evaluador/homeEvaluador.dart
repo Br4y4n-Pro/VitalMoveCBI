@@ -22,7 +22,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
               crossAxisCount: 2,
               mainAxisSpacing: 15,
               crossAxisSpacing: 15,
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               children: [
                 GestureDetector(
                     onTap: () {

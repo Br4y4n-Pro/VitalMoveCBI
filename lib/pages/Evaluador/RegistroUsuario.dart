@@ -45,7 +45,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
         margin: EdgeInsets.symmetric(horizontal: size.width * 0.07),
         child: Form(
           key: _formKey,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autovalidateMode: AutovalidateMode.onUserInteraction, 
           child: Stack(
             children: [
               ListView(
@@ -66,19 +66,23 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                   inputLogin(
                     'Nombre',
                     size.width,
+                    TextInputType.name
                   ),
                   const SizedBox(height: 15),
                   inputLogin(
                     'Apellido',
                     size.width,
+                    TextInputType.name
                   ),
                   const SizedBox(height: 15),
                   inputLogin(
                     'Documento de Identidad',
                     size.width,
+                    TextInputType.number
                   ),
                   const SizedBox(height: 15),
                   Container(
+                    
                     decoration: BoxDecoration(
                         color: const Color(0xffF5F5F5),
                         boxShadow: [
@@ -86,6 +90,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                         ],
                         borderRadius: BorderRadius.circular(10)),
                     child: DateTimeFormField(
+                      
                       decoration: InputDecoration(
                         // fillColor: Color.fromARGB(255, 201, 142, 142),
 
@@ -96,9 +101,11 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                         contentPadding:
                             const EdgeInsets.symmetric(horizontal: 20),
                         hintText: "Fecha de Nacimiento ",
+                        
                         border: const OutlineInputBorder(
                             borderSide: BorderSide.none),
                       ),
+                      
                       firstDate: DateTime.now().add(const Duration(days: 10)),
                       lastDate: DateTime.now().add(const Duration(days: 40)),
                       initialPickerDateTime:
@@ -106,10 +113,12 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                       onChanged: (DateTime? value) {
                         selectedDate = value;
                       },
+                      
                     ),
                   ),
                   const SizedBox(height: 15),
                   Row(
+                    
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
@@ -187,21 +196,27 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                   inputLogin(
                     'Dirección',
                     size.width,
+                    TextInputType.text
                   ),
                   const SizedBox(height: 15),
                   inputLogin(
                     'EPS',
                     size.width,
+                    TextInputType.text
+
                   ),
                   const SizedBox(height: 15),
                   inputLogin(
                     'Alergias',
                     size.width,
+                    TextInputType.text
                   ),
                   const SizedBox(height: 15),
                   inputLogin(
                     'Grupo',
                     size.width,
+                    TextInputType.number
+                
                   ),
                   const SizedBox(height: 11),
                   Row(

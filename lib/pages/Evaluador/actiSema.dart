@@ -89,11 +89,13 @@ class _RegistroUsertres extends State<RegistroUsertres> {
                   inputLogin(
                     'Talla (M) ',
                     size.width,
+                    const TextInputType.numberWithOptions(decimal: true),
                   ),
                   const SizedBox(height: 15),
                   inputLogin(
                     'Peso (Kg)',
                     size.width,
+                    const TextInputType.numberWithOptions(decimal: true),
                   ),
                   const SizedBox(height: 50),
                   Container(
@@ -122,65 +124,65 @@ class _RegistroUsertres extends State<RegistroUsertres> {
                 bottom: 15,
                 right: 10,
                 child: Row(
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const SizedBox(height: 40, width: 40),
-                        Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: size.width * .8,
+                        child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            IconButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/registerUser');
-                              },
-                              icon: const Icon(
-                                Icons.keyboard_arrow_left,
-                                size: 40,
-                              ),
+                            const SizedBox(height: 40, width: 56),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: [
+                                IconButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, '/registerUser');
+                                    },
+                                    icon: const Icon(
+                                      Icons.circle_outlined,
+                                      size: 10,
+                                    )),
+                                IconButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, '/registerUser2');
+                                    },
+                                    icon: const Icon(
+                                      Icons.circle_outlined,
+                                      size: 10,
+                                    )),
+                                IconButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, '/registerUser3');
+                                  },
+                                  icon: const Icon(
+                                    Icons.circle_rounded,
+                                    size: 10,
+                                  ),
+                                )
+                              ],
                             ),
-                            IconButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, '/registerUser');
-                                },
-                                icon: const Icon(
-                                  Icons.circle_outlined,
-                                  size: 10,
-                                )),
                             IconButton(
                                 onPressed: () {
                                   Navigator.pushNamed(
                                       context, '/registerUser2');
                                 },
                                 icon: const Icon(
-                                  Icons.circle_outlined,
-                                  size: 10,
-                                )),
-                            IconButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/registerUser3');
-                              },
-                              icon: const Icon(
-                                Icons.circle_rounded,
-                                size: 10,
-                              ),
-                            )
+                                  Icons.keyboard_arrow_right,
+                                  size: 40,
+                                ))
                           ],
                         ),
-                        IconButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '');
-                            },
-                            icon: const Icon(
-                              Icons.keyboard_arrow_right,
-                              size: 40,
-                            ))
-                      ],
-                    )
-                  ],
-                ),
+                      )
+                    ],
+                  ),
               ),
             ],
           ),

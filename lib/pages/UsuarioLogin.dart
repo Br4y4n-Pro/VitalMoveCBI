@@ -33,7 +33,7 @@ class UsuarioLogin extends StatelessWidget {
               const SizedBox(
                 height: 3,
               ),
-              inputLogin("Ingrese Documento de Identidad", size.width),
+              inputLogin("Ingrese Documento de Identidad", size.width,TextInputType.number),
               const SizedBox(height: 19),
               const Text("Contraseña",
                   style: TextStyle(
@@ -43,19 +43,32 @@ class UsuarioLogin extends StatelessWidget {
               const SizedBox(
                 height: 3,
               ),
-              inputLogin("Ingrese tu contraseña", size.width),
-              const SizedBox(height: 19),
+              inputLogin("Ingrese tu contraseña", size.width,
+              TextInputType.visiblePassword),
+              const SizedBox(height: 1),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: [CheckBoxInput(), Text("¿Recordar Contraseña?")],
+                    children: [
+                      CheckBoxInput(),
+                      SizedBox(
+                          width:
+                              0.1), 
+                      Text(
+                        "¿Recordar Contraseña?",
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    ],
                   ),
                   TextButton(
-                      // ignore: prefer_const_constructors
-                      onPressed: () {},
-                      child: const Text("Recuperar contraseña"))
+                    onPressed: () {},
+                    child: const Text(
+                      "Recuperar contraseña",
+                      style: TextStyle(fontSize: 10), 
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 19),
