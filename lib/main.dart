@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/index.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-
+import 'package:vitalmovecbi/pages/Evaluador/testBruceMod.dart';
+import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
 
 void main() => runApp(const MyApp());
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.fredokaTextTheme(),
       ),
-      initialRoute: '/usuarioLogin',
+      initialRoute: '/homeUsuario',
       routes: {
         '/usuarioLogin': (context) => const UsuarioLogin(),
         '/registerUser3': (context) => const RegistroUsertres(),
@@ -40,7 +40,17 @@ class MyApp extends StatelessWidget {
         '/pageTests': (context) => const Tests(),
         '/pageTestCaminataFCR': (context) => const TestCaminataFCR(),
         '/pageTestC6M': (context) => const TestC6M(),
+<<<<<<< HEAD
+        '/pageAcercaDe': (context) => const AcercaDe(),
+=======
          '/pageAcercaDe': (context) => const AcercaDe(),
+<<<<<<< HEAD
+          '/pageTestC': (context) => const TestCaminata(),
+            '/pageTestBM': (context) => const testBruceMod (),
+=======
+         '/TB': (context) => const BruceTest(),
+>>>>>>> 3e547b72bae959c85954f26097ee54bdef807167
+>>>>>>> 14da74b4ba4e006dfd64811fe6305b165e96340b
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(

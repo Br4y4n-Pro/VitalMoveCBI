@@ -26,8 +26,13 @@ class _EstadisticasState extends State<Estadisticas> {
           child: Container(
               margin: EdgeInsets.symmetric(horizontal: size.width * .1),
               height: 70,
+<<<<<<< HEAD
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
+=======
+              decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+>>>>>>> 5d84e3a73635b23461fa8675ba2373a46d381e7e
                   image: DecorationImage(
                     image: AssetImage("img/caminar.jpg"),
                     fit: BoxFit.fitWidth,

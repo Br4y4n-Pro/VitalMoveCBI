@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 
-import '../../widgets/InputText.dart';
 
 class Persona {
   final String nombre;
@@ -11,14 +10,14 @@ class Persona {
   Persona(this.nombre, this.cedula);
 }
 
-class Testbruce extends StatefulWidget {
-  const Testbruce({super.key});
+class TestCaminata extends StatefulWidget {
+  const TestCaminata({Key? key}) : super(key: key);
 
   @override
-  State<Testbruce> createState() => _Testbruce();
+  State<TestCaminata> createState() => _TestCaminata();
 }
 
-class _Testbruce extends State<Testbruce> {
+class _TestCaminata extends State<TestCaminata> {
   List<Persona> personas = [
     Persona("Edison Cuaran", "C.C 1556458585"),
     Persona("Juan Perez", "C.C 123456789"),
@@ -27,83 +26,15 @@ class _Testbruce extends State<Testbruce> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text(
-            "Test Bruce",
-            style: TextStyle(
-              color: Colores.quaternaryColor,
-            ),
-          ),
-          backgroundColor: Colores.primaryColor,
-          elevation: 1,
-          iconTheme: const IconThemeData(color: Colores.quaternaryColor),
-        ),
-        body: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20),
-          child: ListView(
-            children: [
-              const SizedBox(height: 30),
-              const Text(
-                "Buscar Persona:",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 40),
-                  inputLogin("Cedula o Nombre", size.width, TextInputType.name),
-                  const SizedBox(height: 40),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(160, 50),
-                      backgroundColor: const Color.fromRGBO(0, 150, 199, 1),
-                      foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                      textStyle: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/pageTestCaminataFCR');
-                      Navigator.pushNamed(context, '/pageTestUsuario');
-                    },
-                    child: const Text('Buscar'),
-                  ),
-                  const SizedBox(height: 30),
-                  Container(
-                    height: 1.5,
-                    width: 500,
-                    decoration: const BoxDecoration(
-                      color: Color.fromRGBO(0, 150, 199, 1),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Column(
-                    children: personas
-                        .map((persona) => Column(
-                              children: [
-                                lista(persona.nombre, persona.cedula),
-                                const SizedBox(height: 10),
-                              ],
-                            ))
-                        .toList(),
-                  ),
-                ],
-              ),
-            ],
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          "Test Caminata",
+          style: TextStyle(
+            color: Colores.quaternaryColor,
           ),
         ),
-<<<<<<< HEAD
-=======
         backgroundColor: Colores.primaryColor,
         elevation: 1,
           iconTheme: const IconThemeData(color: Colores.quaternaryColor),
@@ -158,7 +89,7 @@ class _Testbruce extends State<Testbruce> {
       .map((persona) => GestureDetector(
             onTap: () {
               if (persona.nombre == "Edison Cuaran") {
-                Navigator.pushNamed(context, '/pageTestBM');
+                Navigator.pushNamed(context, '/pageTestCaminataFCR');
               } else if (persona.nombre == "Juan Perez") {
                 Navigator.pushNamed(context, '/ruta_juan');
               } else if (persona.nombre == "Maria Gomez") {
@@ -179,9 +110,35 @@ class _Testbruce extends State<Testbruce> {
           ],
         ),
       ),
->>>>>>> 5d84e3a73635b23461fa8675ba2373a46d381e7e
         bottomNavigationBar: bottombar(context, 1));
   }
+}
+
+Widget inputLogin(String campo) {
+  return Container(
+    width: 350,
+    decoration: BoxDecoration(
+      color: const Color.fromARGB(255, 240, 240, 240),
+      boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
+      borderRadius: BorderRadius.circular(10),
+    ),
+    child: TextField(
+      cursorColor: const Color.fromARGB(33, 15, 15, 15),
+      decoration: InputDecoration(
+        hintStyle: TextStyle(
+          color: Colors.grey.shade500,
+          fontStyle: FontStyle.normal,
+          fontSize: 14,
+        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+        hintText: campo,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide.none,
+        ),
+      ),
+    ),
+  );
 }
 
 Widget lista(String nombre, String cedula) {
