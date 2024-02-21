@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/index.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -17,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.fredokaTextTheme(),
       ),
-      initialRoute: '/usuarioLogin',
+      initialRoute: '/homeUsuario',
       routes: {
         '/usuarioLogin': (context) => const UsuarioLogin(),
         '/registerUser3': (context) => const RegistroUsertres(),
@@ -40,7 +38,7 @@ class MyApp extends StatelessWidget {
         '/pageTests': (context) => const Tests(),
         '/pageTestCaminataFCR': (context) => const TestCaminataFCR(),
         '/pageTestC6M': (context) => const TestC6M(),
-         '/pageAcercaDe': (context) => const AcercaDe(),
+        '/pageAcercaDe': (context) => const AcercaDe(),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
