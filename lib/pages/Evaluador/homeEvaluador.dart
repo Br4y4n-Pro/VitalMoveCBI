@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vitalmovecbi/pages/Evaluador/testbruce.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
@@ -18,6 +19,7 @@ class HomeEvaluador extends StatefulWidget {
 class _HomeEvaluadorState extends State<HomeEvaluador> {
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return Scaffold(
      appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -72,6 +74,16 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
           Card(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
+=======
+    final size = MediaQuery.of(context).size;
+    return SafeArea(
+        child: Scaffold(
+      body:  GridView.count(
+              crossAxisCount: 2,
+              mainAxisSpacing: 15,
+              crossAxisSpacing: 15,
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+>>>>>>> 14da74b4ba4e006dfd64811fe6305b165e96340b
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -142,3 +154,5 @@ Widget blueSquare({
     ),
   );
 }
+
+zxczxc
