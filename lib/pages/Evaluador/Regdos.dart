@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import '../../widgets/InputRegistro.dart';
@@ -12,10 +12,14 @@ class RegistroUserdos extends StatefulWidget {
 
 class _RegistroUserdos extends State<RegistroUserdos> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController telefono_emergencia = TextEditingController();
+  TextEditingController nombre_emergencia = TextEditingController();
+  TextEditingController parentesco = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlueAccent, // Color azul claro
@@ -61,6 +65,7 @@ class _RegistroUserdos extends State<RegistroUserdos> {
 
                           return null;
                         },
+                        controller: nombre_emergencia.text,
                       ),
                       const SizedBox(height: 15),
                       inputLoginRe(
@@ -82,6 +87,7 @@ class _RegistroUserdos extends State<RegistroUserdos> {
                           // Aquí puedes agregar otras validaciones según tus requisitos
                           return null;
                         },
+                        controller: telefono_emergencia.text,
                       ),
                       const SizedBox(height: 15),
                       inputLoginRe(
@@ -104,6 +110,7 @@ class _RegistroUserdos extends State<RegistroUserdos> {
                           // Aquí puedes agregar otras validaciones según tus requisitos
                           return null;
                         },
+                        controller: parentesco.text,
                       ),
                       const SizedBox(height: 15),
                     ],

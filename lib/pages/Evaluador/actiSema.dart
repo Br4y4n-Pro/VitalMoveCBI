@@ -11,12 +11,16 @@ class RegistroUsertres extends StatefulWidget {
   State<RegistroUsertres> createState() => _RegistroUsertres();
 }
 
+TextEditingController talla = TextEditingController();
+TextEditingController peso = TextEditingController();
+String? fisico;
+
 class _RegistroUsertres extends State<RegistroUsertres> {
   final _formKey = GlobalKey<FormState>();
 
   var items = [
     '0 = Sedentario',
-    '1 = bajo',
+    '1 a 2 = bajo',
     '3 a 7 = Moderado',
   ];
   String dropdownValues = '0 = Sedentario';
@@ -77,6 +81,7 @@ class _RegistroUsertres extends State<RegistroUsertres> {
                           onChanged: (String? newValue) {
                             setState(() {
                               dropdownValues = newValue!;
+                              fisico = newValue;
                             });
                           },
                           dropdownColor: Colors.white,
@@ -115,6 +120,7 @@ class _RegistroUsertres extends State<RegistroUsertres> {
 
                       return null;
                     },
+                    controller: talla,
                   ),
                   const SizedBox(height: 15),
                   inputLoginRe(
@@ -141,6 +147,7 @@ class _RegistroUsertres extends State<RegistroUsertres> {
 
                       return null;
                     },
+                    controller: peso,
                   ),
                   const SizedBox(height: 50),
                   Container(

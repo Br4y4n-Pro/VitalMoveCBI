@@ -21,11 +21,9 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
   TextEditingController eps = TextEditingController();
   TextEditingController alergias = TextEditingController();
   TextEditingController grupo = TextEditingController();
-
-
-
-
+  String? genero;
   File? imagenPath;
+
   final ImagePicker picker = ImagePicker();
 
   final _formKey = GlobalKey<FormState>();
@@ -191,7 +189,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                   ),
                   const SizedBox(height: 15),
                   inputLoginRe(
-                    controller: "apellidos",
+                    controller: apellidos,
                     campo: 'Apellido',
                     tamano: size.width,
                     tipo: TextInputType.name,
@@ -243,7 +241,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: DateTimeFormField(
-
                       mode: DateTimeFieldPickerMode
                           .date, // Modo para seleccionar solo la fecha
                       decoration: InputDecoration(
@@ -318,6 +315,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                           onChanged: (String? newValue) {
                             setState(() {
                               dropdownValues = newValue!;
+                              genero = newValue;
                             });
                           },
                           dropdownColor: Colors.white,
@@ -355,6 +353,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                           onChanged: (String? newValue) {
                             setState(() {
                               dropdownValue = newValue!;
+                              genero = newValue;
                             });
                           },
                           dropdownColor: Colors.white,
