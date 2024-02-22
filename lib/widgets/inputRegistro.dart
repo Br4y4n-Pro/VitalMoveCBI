@@ -1,8 +1,11 @@
 
 
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 Widget inputLoginRe({
+  required controller,
   required String campo,
   required double tamano,
   required TextInputType tipo,
@@ -33,7 +36,8 @@ Widget inputLoginRe({
               borderSide: BorderSide.none,
             ),
           ),
-          validator: validator, // Aquí se proporciona la función de validación
+          validator: validator,
+          controller: controller,// Aquí se proporciona la función de validación
         ),
       ),
     ],

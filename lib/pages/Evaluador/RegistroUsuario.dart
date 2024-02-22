@@ -1,7 +1,5 @@
 // ignore_for_file: file_names
-
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vitalmovecbi/index.dart';
@@ -15,7 +13,19 @@ class RegistroUsuario extends StatefulWidget {
 }
 
 class _RegistroUsuarioState extends State<RegistroUsuario> {
-  String? imagenPath;
+  //Controladores de los textfield de donde se envia la info
+  TextEditingController nombres = TextEditingController();
+  TextEditingController apellidos = TextEditingController();
+  TextEditingController dni = TextEditingController();
+  TextEditingController direccion = TextEditingController();
+  TextEditingController eps = TextEditingController();
+  TextEditingController alergias = TextEditingController();
+  TextEditingController grupo = TextEditingController();
+
+
+
+
+  File? imagenPath;
   final ImagePicker picker = ImagePicker();
 
   final _formKey = GlobalKey<FormState>();
@@ -48,42 +58,43 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
         title: const Text('Registro de Usuario'),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: size.width * 0.07),
+        margin: const EdgeInsets.symmetric(horizontal: 20),
         child: Form(
           key: _formKey,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Stack(
             children: [
               ListView(
-                padding: const EdgeInsets.all(10.0),
                 children: <Widget>[
                   Stack(
                     alignment: Alignment.center,
                     children: [
-                      (imagenPath == null)
-                          ? Container(
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(150),
-                              ),
-                              child: const CircleAvatar(
-                                radius: 30,
-                                backgroundImage:
-                                    AssetImage("img/Usuario/usu2.png"),
-                              ),
-                            )
-                          : Container(
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(150),
-                              ),
-                              child: CircleAvatar(
-                                  radius: 30,
-                                  backgroundImage:
-                                      FileImage(File(imagenPath!))),
-                            ),
+                      if (imagenPath == null)
+                        Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(150),
+                          ),
+                          child: const CircleAvatar(
+                            radius: 30,
+                            backgroundImage: AssetImage("img/Usuario/usu2.png"),
+                          ),
+                        )
+                      else
+                        Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(150),
+                          ),
+                          child: CircleAvatar(
+                            radius: 30,
+                            backgroundImage: imagenPath != null
+                                ? FileImage(imagenPath!)
+                                : null,
+                          ),
+                        ),
                       Positioned(
                           bottom: 1,
                           right: size.width * .35,
@@ -112,12 +123,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                                       TextButton(
                                         onPressed: () async {
                                           Navigator.of(context).pop();
-                                          final XFile? image =
-                                              await picker.pickImage(
-                                                  source: ImageSource.camera);
-                                          imagenPath = image?.path;
-                                          imagenPath ??= null;
-                                          setState(() {});
+                                          selectImage();
                                         },
                                         child: Column(
                                           children: [
@@ -134,12 +140,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                                         onPressed: () async {
                                           Navigator.of(context)
                                               .pop(); // Cerrar el diálogo
-                                          final XFile? image =
-                                              await picker.pickImage(
-                                                  source: ImageSource.gallery);
-                                          imagenPath = image?.path;
-                                          imagenPath ??= null;
-                                          setState(() {});
                                         },
                                         child: Column(
                                           children: [
@@ -169,6 +169,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                   ),
                   const SizedBox(height: 15),
                   inputLoginRe(
+                    controller: nombres,
                     campo: 'Nombre',
                     tamano: size.width,
                     tipo: TextInputType.name,
@@ -190,6 +191,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                   ),
                   const SizedBox(height: 15),
                   inputLoginRe(
+                    controller: "apellidos",
                     campo: 'Apellido',
                     tamano: size.width,
                     tipo: TextInputType.name,
@@ -211,6 +213,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                   ),
                   const SizedBox(height: 15),
                   inputLoginRe(
+                    controller: dni,
                     campo: 'Documento de Identidad',
                     tamano: size.width,
                     tipo: TextInputType.number,
@@ -240,6 +243,9 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: DateTimeFormField(
+
+                      mode: DateTimeFieldPickerMode
+                          .date, // Modo para seleccionar solo la fecha
                       decoration: InputDecoration(
                         hintStyle: TextStyle(
                           color: Colors.grey.shade500,
@@ -359,6 +365,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                   ),
                   const SizedBox(height: 15),
                   inputLoginRe(
+                    controller: direccion,
                     campo: 'Dirección',
                     tamano: size.width,
                     tipo: TextInputType.text,
@@ -383,6 +390,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                   // Validación para el campo EPS con expresión regular
                   // Validación para el campo EPS como texto
                   inputLoginRe(
+                    controller: eps,
                     campo: 'EPS',
                     tamano: size.width,
                     tipo: TextInputType.text,
@@ -406,6 +414,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                   const SizedBox(height: 15),
 // Validación para el campo "Alergias" como texto
                   inputLoginRe(
+                    controller: alergias,
                     campo: 'Alergias',
                     tamano: size.width,
                     tipo: TextInputType.text,
@@ -437,6 +446,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                   // Validación para el campo "Grupo" como texto con longitud exacta de 5 caracteres y que sean números del 1 al 10
                   // Validación para el campo "Grupo" que acepta solo los valores "Grupo 1" o "Grupo 2"
                   inputLoginRe(
+                    controller: grupo,
                     campo: 'Grupo',
                     tamano: size.width,
                     tipo: TextInputType.text,
@@ -528,5 +538,16 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
         ),
       ),
     );
+  }
+
+  Future selectImage() async {
+    XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if (image == null) {
+      return;
+    }
+
+    setState(() {
+      imagenPath = File(image.path);
+    });
   }
 }
