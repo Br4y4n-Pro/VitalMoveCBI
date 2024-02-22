@@ -3,13 +3,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:image_picker/image_picker.dart';
 import 'package:vitalmovecbi/index.dart';
-import '../../widgets/InputText.dart';
-=======
-import '../../widgets/InputRegistro.dart';
->>>>>>> 5d84e3a73635b23461fa8675ba2373a46d381e7e
 import 'package:date_field/date_field.dart';
 
 class RegistroUsuario extends StatefulWidget {
@@ -173,14 +168,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     ],
                   ),
                   const SizedBox(height: 15),
-<<<<<<< HEAD
-                  inputLogin('Nombre', size.width, TextInputType.name),
-                  const SizedBox(height: 15),
-                  inputLogin('Apellido', size.width, TextInputType.name),
-                  const SizedBox(height: 15),
-                  inputLogin('Documento de Identidad', size.width,
-                      TextInputType.number),
-=======
                   inputLoginRe(
                     campo: 'Nombre',
                     tamano: size.width,
@@ -243,7 +230,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                       return null;
                     },
                   ),
->>>>>>> 5d84e3a73635b23461fa8675ba2373a46d381e7e
                   const SizedBox(height: 15),
                   Container(
                     decoration: BoxDecoration(
@@ -263,23 +249,10 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                         contentPadding:
                             const EdgeInsets.symmetric(horizontal: 20),
                         hintText: "Fecha de Nacimiento ",
-<<<<<<< HEAD
-
-=======
->>>>>>> 5d84e3a73635b23461fa8675ba2373a46d381e7e
                         border: const OutlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
                       ),
-<<<<<<< HEAD
-                      firstDate: DateTime.now().add(const Duration(days: 10)),
-                      lastDate: DateTime.now().add(const Duration(days: 40)),
-                      initialPickerDateTime:
-                          DateTime.now().add(const Duration(days: 20)),
-                      onChanged: (DateTime? value) {
-                        selectedDate = value;
-                      },
-=======
                       firstDate: DateTime.now().subtract(const Duration(
                           days: 43800)), // 120 años en días (365 * 120)
                       lastDate: DateTime.now().subtract(const Duration(
@@ -303,7 +276,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                         }
                         return null;
                       },
->>>>>>> 5d84e3a73635b23461fa8675ba2373a46d381e7e
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -386,62 +358,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     ],
                   ),
                   const SizedBox(height: 15),
-<<<<<<< HEAD
-                  inputLogin('Dirección', size.width, TextInputType.text),
-                  const SizedBox(height: 15),
-                  inputLogin('EPS', size.width, TextInputType.text),
-                  const SizedBox(height: 15),
-                  inputLogin('Alergias', size.width, TextInputType.text),
-                  const SizedBox(height: 15),
-                  inputLogin('Grupo', size.width, TextInputType.number),
-                  const SizedBox(height: 11),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: size.width * .8,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const SizedBox(height: 40, width: 56),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                IconButton(
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, '/registerUser');
-                                    },
-                                    icon: const Icon(
-                                      Icons.circle_rounded,
-                                      size: 10,
-                                    )),
-                                IconButton(
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, '/registerUser2');
-                                    },
-                                    icon: const Icon(
-                                      Icons.circle_outlined,
-                                      size: 10,
-                                    )),
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, '/registerUser3');
-                                  },
-                                  icon: const Icon(
-                                    Icons.circle_outlined,
-                                    size: 10,
-                                  ),
-                                )
-                              ],
-                            ),
-                            IconButton(
-=======
                   inputLoginRe(
                     campo: 'Dirección',
                     tamano: size.width,
@@ -571,7 +487,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                                 ),
                               ),
                               IconButton(
->>>>>>> 5d84e3a73635b23461fa8675ba2373a46d381e7e
                                 onPressed: () {
                                   Navigator.pushNamed(
                                       context, '/registerUser2');

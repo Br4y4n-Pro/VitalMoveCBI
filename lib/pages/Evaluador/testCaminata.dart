@@ -1,4 +1,7 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
+import 'package:vitalmovecbi/pages/Evaluador/testbruce.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 
@@ -11,7 +14,7 @@ class Persona {
 }
 
 class TestCaminata extends StatefulWidget {
-  const TestCaminata({Key? key}) : super(key: key);
+  const TestCaminata({super.key});
 
   @override
   State<TestCaminata> createState() => _TestCaminata();
@@ -136,24 +139,6 @@ Widget inputLogin(String campo) {
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
         ),
-      ),
-    ),
-  );
-}
-
-Widget lista(String nombre, String cedula) {
-  return Container(
-    decoration: BoxDecoration(
-      color: const Color(0xFFADE8F4),
-      borderRadius: BorderRadius.circular(10),
-    ),
-    margin: const EdgeInsets.symmetric(vertical: 1),
-    child: ListTile(
-      title: Text(nombre),
-      subtitle: Text(cedula),
-      leading: const CircleAvatar(
-        radius: 30,
-        backgroundImage: AssetImage("img/General/viejito.jpg"),
       ),
     ),
   );

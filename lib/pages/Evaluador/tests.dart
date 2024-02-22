@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/pages/Evaluador/homeEvaluador.dart';
-import 'package:vitalmovecbi/widgets/blueSquare.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 

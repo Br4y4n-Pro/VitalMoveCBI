@@ -1,8 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:vitalmovecbi/index.dart';
-import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 import 'package:vitalmovecbi/widgets/grafico.dart';
 
@@ -30,16 +28,16 @@ class _HomeUserState extends State<HomeUser> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Image.asset(
                       "img/Logo.png",
                       width: 150,
                       height: 150,
                       fit: BoxFit.contain,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     IconButton(
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.settings,
                         color: Color(0xff0096C7),
                       ),
@@ -50,29 +48,8 @@ class _HomeUserState extends State<HomeUser> {
                   ],
                 ),
               ),
-<<<<<<< HEAD
-            ),
-            const SizedBox(height: 20),
-            Container(
-              height: size.height * .2,
-              decoration: BoxDecoration(
-                  color: Colores.quaternaryColor,
-                  border: Border.all(
-                    color: Colores.tertiaryColor,
-                    width: 2,
-                    style: BorderStyle.solid,
-                  ),
-                  borderRadius: const BorderRadius.all(Radius.circular(10))),
-              // child: ,
-            ),
-            const SizedBox(height: 20),
-            grafico(context),
-            const SizedBox(height: 40),
-          ],
-=======
             ],
           ),
->>>>>>> 5d84e3a73635b23461fa8675ba2373a46d381e7e
         ),
         body: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -146,31 +123,29 @@ class _HomeUserState extends State<HomeUser> {
               const SizedBox(height: 20),
               grafico(context),
               const SizedBox(height: 40),
-              Container(
-                child: Text(
-                  "Recomendaciones del dia",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
-                  ),
+              const Text(
+                "Recomendaciones del dia",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
                 ),
               ),
               const SizedBox(height: 20),
               Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          margin: EdgeInsets.all(1),
-                          decoration: BoxDecoration(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          margin: const EdgeInsets.all(1),
+                          decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 241, 242, 242),
                             borderRadius: BorderRadius.all(Radius.circular(5)),
                           ),
-                          child: Column(
+                          child: const Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SizedBox(height: 12),
@@ -194,15 +169,15 @@ class _HomeUserState extends State<HomeUser> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          margin: EdgeInsets.all(1),
-                          decoration: BoxDecoration(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          margin: const EdgeInsets.all(1),
+                          decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 241, 242, 242),
                             borderRadius: BorderRadius.all(Radius.circular(5)),
                           ),
-                          child: Column(
+                          child: const Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SizedBox(height: 12),

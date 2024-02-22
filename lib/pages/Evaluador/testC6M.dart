@@ -71,11 +71,7 @@ class _TestC6M extends State<TestC6M> {
             inputLogin2("Frecuencia Cardiaca maxima (FCM)"),
             const SizedBox(height: 19),
             Container(
-<<<<<<< HEAD
-              margin: const EdgeInsets.symmetric(horizontal: 150),
-=======
-              margin: EdgeInsets.symmetric(horizontal: 70),
->>>>>>> 5d84e3a73635b23461fa8675ba2373a46d381e7e
+              margin: const EdgeInsets.symmetric(horizontal: 70),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(100, 50),

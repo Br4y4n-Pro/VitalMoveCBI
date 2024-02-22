@@ -1,9 +1,10 @@
-// ignore: file_names
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
 import 'package:vitalmovecbi/pages/Evaluador/testbruce.dart';
 
 class BruceTest extends StatefulWidget {
-  const BruceTest({Key? key}) : super(key: key);
+  const BruceTest({super.key});
 
   @override
   State<BruceTest> createState() => _BruceTest();
@@ -11,24 +12,26 @@ class BruceTest extends StatefulWidget {
 
 class _BruceTest extends State<BruceTest> {
   final _formKey = GlobalKey<FormState>();
+  
+  get personas => null;
 
-  List<Persona> personas = [
-    Persona("Edison Cuaran", "C.C 1556458585"),
-  ];
+//bruce test error en esta list dice que estan en dos zonas y no entiendo lo que tratan
+
+  // List<Persona> personas = [
+  //   Persona("Edison Cuaran", "C.C 1556458585"),
+  // ];
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size; // Definir 'size' aquí si es necesario
+    final size =
+        MediaQuery.of(context).size; // Definir 'size' aquí si es necesario
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlueAccent,
         centerTitle: true,
         title: const Text('Test De Bruce '),
-        
       ),
-    
-      body:
-       Container(
+      body: Container(
         margin: EdgeInsets.symmetric(horizontal: size.width * 0.07),
         child: Form(
           key: _formKey,
@@ -36,7 +39,6 @@ class _BruceTest extends State<BruceTest> {
           child: Stack(
             children: [
               ListView(
-                
                 padding: const EdgeInsets.all(10.0),
                 children: <Widget>[
                   const SizedBox(height: 150),
@@ -51,7 +53,6 @@ class _BruceTest extends State<BruceTest> {
                     ),
                   ),
                   const SizedBox(height: 30),
-                 
                   inputLogin(
                     'Etapa final',
                     // size.width,
@@ -107,32 +108,23 @@ class _BruceTest extends State<BruceTest> {
                   ),
                 ],
               ),
-              ...personas.map((persona) =>
-              
-              
-               Column(
-
-
-                   children: [
-                  const SizedBox(height: 20),
-                  const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Usuario seleccionado',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+              ...personas.map((persona) => Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Usuario seleccionado',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  lista(persona.nombre, persona.cedula),
-                  
-                  
-                ],
-
-                
-              )),
+                      const SizedBox(height: 20),
+                      lista(persona.nombre, persona.cedula),
+                    ],
+                  )),
             ],
           ),
         ),
@@ -168,5 +160,3 @@ void _mostrarDialogo(BuildContext context) {
     },
   );
 }
-
-zxczxc

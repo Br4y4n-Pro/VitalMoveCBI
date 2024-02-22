@@ -1,27 +1,32 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/index.dart';
-import 'package:vitalmovecbi/pages/Evaluador/testbruce.dart';
+import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
 
-class testBruceMod extends StatefulWidget {
-  const testBruceMod({Key? key}) : super(key: key);
+class TestBruceMod extends StatefulWidget {
+  const TestBruceMod({super.key});
 
   @override
-  State<testBruceMod> createState() => _testBruceMod();
+  State<TestBruceMod> createState() => _TestBruceMod();
 }
 
-class _testBruceMod extends State<testBruceMod> {
+class _TestBruceMod extends State<TestBruceMod> {
   final _formKey = GlobalKey<FormState>();
 
-  List<Persona> personas = [
-    Persona("Edison Cuaran", "C.C 1556458585"),
-  ];
+  get personas => null;
+
+  // List<Persona> personas = [
+  //   Persona("Edison Cuaran", "C.C 1556458585"),
+  // ];
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size; // Definir 'size' aquí si es necesario
+    final size =
+        MediaQuery.of(context).size; // Definir 'size' aquí si es necesario
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:  Colores.primaryColor,
+        backgroundColor: Colores.primaryColor,
         centerTitle: true,
         title: const Text(
           "Test Bruce",
@@ -29,11 +34,9 @@ class _testBruceMod extends State<testBruceMod> {
             color: Colores.quaternaryColor,
           ),
         ),
-          iconTheme: const IconThemeData(color: Colores.quaternaryColor),
+        iconTheme: const IconThemeData(color: Colores.quaternaryColor),
       ),
-    
-      body:
-       Container(
+      body: Container(
         margin: EdgeInsets.symmetric(horizontal: size.width * 0.07),
         child: Form(
           key: _formKey,
@@ -41,7 +44,6 @@ class _testBruceMod extends State<testBruceMod> {
           child: Stack(
             children: [
               ListView(
-                
                 padding: const EdgeInsets.all(10.0),
                 children: <Widget>[
                   const SizedBox(height: 150),
@@ -56,7 +58,6 @@ class _testBruceMod extends State<testBruceMod> {
                     ),
                   ),
                   const SizedBox(height: 30),
-                 
                   inputLogin(
                     'Etapa final',
                     // size.width,
@@ -112,32 +113,23 @@ class _testBruceMod extends State<testBruceMod> {
                   ),
                 ],
               ),
-              ...personas.map((persona) =>
-              
-              
-               Column(
-
-
-                   children: [
-                  const SizedBox(height: 20),
-                  const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Usuario seleccionado',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+              ...personas.map((persona) => Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Usuario seleccionado',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  lista(persona.nombre, persona.cedula),
-                  
-                  
-                ],
-
-                
-              )),
+                      const SizedBox(height: 20),
+                      lista(persona.nombre, persona.cedula),
+                    ],
+                  )),
             ],
           ),
         ),

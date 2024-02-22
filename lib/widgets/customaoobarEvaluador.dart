@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 
@@ -46,7 +48,7 @@ Widget _buildBottomNavItem2(IconData icon, int index, bool isSelected) {
     width: 60,
     height: 40,
     decoration: BoxDecoration(
-      borderRadius: BorderRadius.all(Radius.circular(100)),
+      borderRadius: const BorderRadius.all(Radius.circular(100)),
       color: isSelected ? Colors.white : Colors.transparent,
     ),
     child: IconButton(

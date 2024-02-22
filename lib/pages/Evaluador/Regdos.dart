@@ -43,14 +43,6 @@ class _RegistroUserdos extends State<RegistroUserdos> {
                         ),
                       ),
                       const SizedBox(height: 40),
-<<<<<<< HEAD
-                      inputLogin(
-                          'Nombre Completo ', size.width, TextInputType.name),
-                      const SizedBox(height: 15),
-                      inputLogin('Teléfono', size.width, TextInputType.phone),
-                      const SizedBox(height: 15),
-                      inputLogin('Parentezco', size.width, TextInputType.text),
-=======
                       inputLoginRe(
                         campo: 'Nombre completo',
                         tamano: size.width,
@@ -113,7 +105,6 @@ class _RegistroUserdos extends State<RegistroUserdos> {
                           return null;
                         },
                       ),
->>>>>>> 5d84e3a73635b23461fa8675ba2373a46d381e7e
                       const SizedBox(height: 15),
                     ],
                   ),
@@ -134,12 +125,7 @@ class _RegistroUserdos extends State<RegistroUserdos> {
                               children: [
                                 IconButton(
                                   onPressed: () {
-<<<<<<< HEAD
                                     Navigator.pop(context, '/registerUser');
-=======
-                                    Navigator.pushNamed(
-                                        context, '/registerUser');
->>>>>>> 5d84e3a73635b23461fa8675ba2373a46d381e7e
                                   },
                                   icon: const Icon(
                                     Icons.circle_outlined,

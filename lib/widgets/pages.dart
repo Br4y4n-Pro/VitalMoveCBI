@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 PageController pageController = PageController(initialPage: 0);
 
-Pages(context) {
+pages(context) {
   return Scaffold(
     body: PageView(
       pageSnapping: true,
@@ -18,28 +18,28 @@ Pages(context) {
 
 Widget _buildPage(String title, String information) {
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: 20),
-    margin: EdgeInsets.all(1),
-    decoration: BoxDecoration(
+    padding: const EdgeInsets.symmetric(horizontal: 20),
+    margin: const EdgeInsets.all(1),
+    decoration: const BoxDecoration(
       color: Color.fromARGB(255, 241, 242, 242),
       borderRadius: BorderRadius.all(Radius.circular(5)),
     ),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(height: 12),
+        const SizedBox(height: 12),
         Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
               fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
         ),
-        SizedBox(height: 12),
+        const SizedBox(height: 12),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
             information,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 15,
               color: Color.fromARGB(255, 48, 48, 48),
             ),

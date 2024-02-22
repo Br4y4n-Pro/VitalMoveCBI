@@ -32,9 +32,6 @@ export 'package:vitalmovecbi/pages/Evaluador/testCaminataFCR.dart';
 
 export 'package:vitalmovecbi/widgets/inputlogin2.dart';
 export 'package:vitalmovecbi/widgets/textperfil.dart';
-<<<<<<< HEAD
+
 export 'package:vitalmovecbi/widgets/colores.dart';
-=======
-export 'package:vitalmovecbi/widgets/colores.dart';
-export 'package:vitalmovecbi/widgets/inputRegistro.dart';
->>>>>>> 14da74b4ba4e006dfd64811fe6305b165e96340b
+export 'package:vitalmovecbi/widgets/inputregistro.dart';
