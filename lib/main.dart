@@ -12,7 +12,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'VitalMoveCBI',
+<<<<<<< Updated upstream
       initialRoute: '/',
+=======
+      theme: ThemeData(
+        textTheme: GoogleFonts.fredokaTextTheme(),
+      ),
+      initialRoute: '/evaluadorHome',
+>>>>>>> Stashed changes
       routes: {
         '/homeUsuario': (context) => const HomeUser(),
         '/contact': (context) => const PerfilVistaContact(),
