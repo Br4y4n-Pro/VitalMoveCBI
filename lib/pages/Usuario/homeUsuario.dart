@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 import 'package:vitalmovecbi/widgets/grafico.dart';
+import 'package:vitalmovecbi/widgets/pages.dart';
 
 class HomeUser extends StatefulWidget {
   const HomeUser({super.key});
@@ -12,7 +13,15 @@ class HomeUser extends StatefulWidget {
 }
 
 class _HomeUserState extends State<HomeUser> {
-  var position = 1;
+  late PageController _pageController; // Declarar el PageController
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController =
+        PageController(initialPage: 0); // Inicializar el PageController
+  }
+
   @override
   Widget build(BuildContext context) {
     //final size = MediaQuery.of(context).size;
@@ -131,6 +140,16 @@ class _HomeUserState extends State<HomeUser> {
                 ),
               ),
               const SizedBox(height: 20),
+              SizedBox(
+                height: 500,
+                child: PageView(
+                  controller: _pageController,
+                  children: [
+                    MyPagesWidget(),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
               Column(
                 children: [
                   Padding(
@@ -169,7 +188,6 @@ class _HomeUserState extends State<HomeUser> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 20),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           margin: const EdgeInsets.all(1),
