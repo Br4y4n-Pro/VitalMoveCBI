@@ -10,8 +10,6 @@ class PerfilVista extends StatefulWidget {
   State<PerfilVista> createState() => _PerfilVistaState();
 }
 
-int _paginaActual = 0;
-
 class _PerfilVistaState extends State<PerfilVista> {
   @override
   Widget build(BuildContext context) {

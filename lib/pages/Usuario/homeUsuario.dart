@@ -144,7 +144,7 @@ class _HomeUserState extends State<HomeUser> {
                 height: 500,
                 child: PageView(
                   controller: _pageController,
-                  children: [
+                  children: const [
                     MyPagesWidget(),
                   ],
                 ),

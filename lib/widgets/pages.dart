@@ -4,6 +4,7 @@ class MyPagesWidget extends StatefulWidget {
   const MyPagesWidget({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyPagesWidgetState createState() => _MyPagesWidgetState();
 }
 
@@ -33,7 +34,7 @@ class _MyPagesWidgetState extends State<MyPagesWidget> {
       padding: const EdgeInsets.all(12),
       margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 241, 242, 242),
+        color: const Color.fromARGB(255, 241, 242, 242),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -41,19 +42,19 @@ class _MyPagesWidgetState extends State<MyPagesWidget> {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
               color: Colors.black,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               information,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14,
                 color: Color.fromARGB(255, 48, 48, 48),
               ),

@@ -74,9 +74,3 @@ void _onItemTapped(int index, BuildContext context) {
     default:
   }
 }
-
-void main() {
-  runApp(MaterialApp(
-    home: Scaffold(),
-  ));
-}

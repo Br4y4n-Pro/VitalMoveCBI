@@ -13,7 +13,6 @@ class PerfilVistaContact extends StatefulWidget {
 }
 
 class _PerfilVistaContactState extends State<PerfilVistaContact> {
-  int _paginaActual = 0;
   final telefono = 3245243933.toString();
   @override
   Widget build(BuildContext context) {
