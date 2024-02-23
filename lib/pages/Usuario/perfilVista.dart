@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
+import 'package:vitalmovecbi/widgets/colores.dart';
 
 class PerfilVista extends StatefulWidget {
   const PerfilVista({super.key});
@@ -19,8 +20,15 @@ class _PerfilVistaState extends State<PerfilVista> {
         title: 'Material App',
         home: Scaffold(
             appBar: AppBar(
-                title: const Text('Datos Personales'),
-                backgroundColor: const Color(0xffADE8F4)),
+              iconTheme: const IconThemeData(color: Colores.quaternaryColor),  
+              title: const Text(
+                'Datos Personales',
+                style: TextStyle(
+                    color: Colores.quaternaryColor,
+                    fontWeight: FontWeight.w500),
+              ),
+              backgroundColor: Colores.primaryColor,
+            ),
             body: ListView(children: [
               const SizedBox(height: 20),
               Container(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vitalmovecbi/index.dart';
 import 'package:date_field/date_field.dart';
+import 'package:vitalmovecbi/widgets/colores.dart';
 
 class RegistroUsuario extends StatefulWidget {
   const RegistroUsuario({super.key});
@@ -51,9 +52,13 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightBlueAccent, // Color azul claro
-        centerTitle: true, // Centra el título del AppBar
-        title: const Text('Registro de Usuario'),
+        iconTheme: const IconThemeData(color: Colores.quaternaryColor),
+        title: const Text(
+          'Registro de Usuario',
+          style: TextStyle(
+              color: Colores.quaternaryColor, fontWeight: FontWeight.w500),
+        ),
+        backgroundColor: Colores.primaryColor,
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20),

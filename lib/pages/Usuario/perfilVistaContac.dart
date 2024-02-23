@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
+import 'package:vitalmovecbi/widgets/colores.dart';
 
 class PerfilVistaContact extends StatefulWidget {
   const PerfilVistaContact({super.key});
@@ -21,10 +22,14 @@ class _PerfilVistaContactState extends State<PerfilVistaContact> {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              title: const Center(child: Text("Datos Personales")),
-              backgroundColor: const Color(0xffADE8F4),
-              leading: IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.home_outlined)),
+              iconTheme: const IconThemeData(color: Colores.quaternaryColor),
+              title: const Text(
+                'Contacto',
+                style: TextStyle(
+                    color: Colores.quaternaryColor,
+                    fontWeight: FontWeight.w500),
+              ),
+              backgroundColor: Colores.primaryColor,
             ),
             body: Container(
               margin: EdgeInsets.symmetric(
