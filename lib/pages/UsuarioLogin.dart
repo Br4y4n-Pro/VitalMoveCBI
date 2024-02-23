@@ -1,13 +1,22 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:vitalmovecbi/widgets/InputText.dart';
+import 'package:vitalmovecbi/utils/datalogin.dart';
+import 'package:vitalmovecbi/utils/funcionlogin.dart';
 import 'package:vitalmovecbi/widgets/checkBoxLogin.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
+import 'package:vitalmovecbi/widgets/loginTextField.dart';
 import 'package:vitalmovecbi/widgets/navap.dart';
 
-class UsuarioLogin extends StatelessWidget {
+class UsuarioLogin extends StatefulWidget {
   const UsuarioLogin({super.key});
+
+  @override
+  State<UsuarioLogin> createState() => _UsuarioLoginState();
+}
+
+class _UsuarioLoginState extends State<UsuarioLogin> {
+  UserLogin userLogin = UserLogin();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +42,16 @@ class UsuarioLogin extends StatelessWidget {
               const SizedBox(
                 height: 3,
               ),
-              inputLogin("Ingrese Documento de Identidad", size.width,TextInputType.number),
+              InputLogin(
+                onChanged: (value) {
+                  setState(() {
+                    userLogin.dni = value;
+                  });
+                },
+                campo: "Ingrese Documento de Identidad",
+                tamano: size.width,
+                tipo: TextInputType.number,
+              ),
               const SizedBox(height: 19),
               const Text("Contraseña",
                   style: TextStyle(
@@ -43,8 +61,16 @@ class UsuarioLogin extends StatelessWidget {
               const SizedBox(
                 height: 3,
               ),
-              inputLogin("Ingrese tu contraseña", size.width,
-              TextInputType.visiblePassword),
+              InputLogin(
+                campo: "Ingrese tu contraseña",
+                tamano: size.width,
+                tipo: TextInputType.visiblePassword,
+                onChanged: (String value) {
+                  setState(() {
+                    userLogin.contrasena = value;
+                  });
+                },
+              ),
               const SizedBox(height: 1),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,9 +79,7 @@ class UsuarioLogin extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       CheckBoxInput(),
-                      SizedBox(
-                          width:
-                              0.1), 
+                      SizedBox(width: 0.1),
                       Text(
                         "¿Recordar Contraseña?",
                         style: TextStyle(fontSize: 12),
@@ -66,7 +90,7 @@ class UsuarioLogin extends StatelessWidget {
                     onPressed: () {},
                     child: const Text(
                       "Recuperar contraseña",
-                      style: TextStyle(fontSize: 10), 
+                      style: TextStyle(fontSize: 10),
                     ),
                   ),
                 ],
@@ -84,8 +108,17 @@ class UsuarioLogin extends StatelessWidget {
                             fontSize: 18, fontWeight: FontWeight.bold),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40))),
-                    onPressed: () {
-                      _mostrarDialogo(context);
+                    onPressed: () async {
+                      try {
+                        await enviarDatos(userLogin);
+                        print('Solicitud enviada exitosamente');
+                        Navigator.pushReplacementNamed(context, '/homeUsuario');
+                      } catch (error) {
+                        print('Error al enviar la solicitud: $error');
+                        // Manejar el error, si es necesario
+                      }
+                      // _mostrarDialogo(context);
+                      // Navegar a la siguiente pantalla
                     },
                     child: const Text(
                       'Acceder',
@@ -98,31 +131,30 @@ class UsuarioLogin extends StatelessWidget {
       ],
     ));
   }
-}
 
-void _mostrarDialogo(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('Confirmación'),
-        content: const Text('¿Deseas ir a la pantalla siguiente?'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(); // Cerrar el diálogo
-              Navigator.pushReplacementNamed(context, '/evaluadorHome');
-            },
-            child: const Text('Evaluador'),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/homeUsuario');
-            },
-            child: const Text('Usuario'),
-          ),
-        ],
-      );
-    },
-  );
+  // ignore: unused_element
+  void _mostrarDialogo(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirmación'),
+          content: const Text('¿Deseas ir a la pantalla siguiente?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Cerrar el diálogo
+                Navigator.pushReplacementNamed(context, '/evaluadorHome');
+              },
+              child: const Text('Evaluador'),
+            ),
+            TextButton(
+              onPressed: () async {},
+              child: const Text('Usuario'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
