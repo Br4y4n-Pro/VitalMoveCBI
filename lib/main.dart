@@ -1,10 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/index.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vitalmovecbi/pages/Evaluador/testBruceMod.dart';
 import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
 
-void main() => runApp(const MyApp());
+import 'Api/AllApi.dart';
+import 'provider/login/LoginFromProvider.dart';
+import 'provider/login/ProviderLogin.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  AllApi.configuteDio();
+
+  runApp(AppState());
+}
+
+class AppState extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //print('__________>ZZZZZ');
+    return MultiProvider(
+      providers: [
+        //--------- provider login --------------
+        ChangeNotifierProvider(lazy: false, create: (_) => LoginProvider()),
+
+        ChangeNotifierProvider(lazy: false, create: (_) => LoginFromProvider()),
+      ],
+      child: MyApp(),
+    );
+  }
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

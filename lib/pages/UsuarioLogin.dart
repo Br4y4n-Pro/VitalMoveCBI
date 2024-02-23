@@ -1,12 +1,15 @@
 // ignore_for_file: file_names, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 import 'package:vitalmovecbi/utils/datalogin.dart';
 import 'package:vitalmovecbi/utils/funcionlogin.dart';
 import 'package:vitalmovecbi/widgets/checkBoxLogin.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/loginTextField.dart';
 import 'package:vitalmovecbi/widgets/navap.dart';
+import 'package:provider/provider.dart';
+import '../provider/login/LoginFromProvider.dart';
 
 class UsuarioLogin extends StatefulWidget {
   const UsuarioLogin({super.key});
@@ -20,6 +23,9 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
 
   @override
   Widget build(BuildContext context) {
+    final fromProvider = Provider.of<LoginFromProvider>(context, listen: false);
+    final provider = Provider.of<LoginProvider>(context, listen: false);
+
     final size = MediaQuery.of(context).size;
     return Scaffold(
         body: ListView(
@@ -43,11 +49,7 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
                 height: 3,
               ),
               InputLogin(
-                onChanged: (value) {
-                  setState(() {
-                    userLogin.dni = value;
-                  });
-                },
+                onChanged: (value) => fromProvider.usuario = value,
                 campo: "Ingrese Documento de Identidad",
                 tamano: size.width,
                 tipo: TextInputType.number,
@@ -65,11 +67,7 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
                 campo: "Ingrese tu contraseña",
                 tamano: size.width,
                 tipo: TextInputType.visiblePassword,
-                onChanged: (String value) {
-                  setState(() {
-                    userLogin.contrasena = value;
-                  });
-                },
+                onChanged: (value) => fromProvider.password = value,
               ),
               const SizedBox(height: 1),
               Row(
@@ -110,9 +108,9 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
                             borderRadius: BorderRadius.circular(40))),
                     onPressed: () async {
                       try {
-                        await enviarDatos(userLogin);
-                        print('Solicitud enviada exitosamente');
-                        Navigator.pushReplacementNamed(context, '/homeUsuario');
+                        provider.login(fromProvider);
+                        // print('Solicitud enviada exitosamente');
+                        // Navigator.pushReplacementNamed(context, '/homeUsuario');
                       } catch (error) {
                         print('Error al enviar la solicitud: $error');
                         // Manejar el error, si es necesario
