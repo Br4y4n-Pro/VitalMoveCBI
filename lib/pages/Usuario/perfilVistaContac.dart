@@ -39,7 +39,7 @@ class _PerfilVistaContactState extends State<PerfilVistaContact> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 20),
                   const Center(
                     child: Text(
                       "Datos Persona de Emergencia",
@@ -51,7 +51,7 @@ class _PerfilVistaContactState extends State<PerfilVistaContact> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 60),
+                      const SizedBox(height: 40),
                       textSub("Nombre Completo"),
                       textContent("Kakaroto"),
                       const SizedBox(height: 15),
@@ -97,45 +97,7 @@ class _PerfilVistaContactState extends State<PerfilVistaContact> {
                           ],
                         )),
                   ),
-                  const SizedBox(height: 40),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/perfil');
-                          },
-                          icon: const Icon(
-                            Icons.keyboard_arrow_left,
-                            size: 40,
-                          )),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/perfil');
-                            },
-                            icon: const Icon(
-                              Icons.circle_outlined,
-                              size: 10,
-                            ),
-                          ),
-                          IconButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/contact');
-                              },
-                              icon: const Icon(
-                                Icons.circle_rounded,
-                                size: 10,
-                              )),
-                        ],
-                      ),
-                      const SizedBox(height: 40, width: 40),
-                    ],
-                  )
+                  const SizedBox(height: 60),
                 ],
               ),
             ),

@@ -36,7 +36,6 @@ Widget bottombar2(BuildContext context, int position) {
                 Icons.supervised_user_circle_sharp, 3, position == 3, context),
             _buildBottomNavItem(
                 Icons.group_add_outlined, 4, position == 4, context),
-            _buildBottomNavItem(Icons.person, 5, position == 5, context),
           ],
         ),
       ),
@@ -47,8 +46,8 @@ Widget bottombar2(BuildContext context, int position) {
 Widget _buildBottomNavItem(
     IconData icon, int index, bool isSelected, BuildContext context) {
   return Container(
-    width: 57,
-    height: 39,
+    width: 60,
+    height: 40,
     decoration: BoxDecoration(
       // ignore: prefer_const_constructors
       borderRadius: BorderRadius.all(Radius.circular(100)),
@@ -75,9 +74,6 @@ void _onItemTapped(int index, BuildContext context) {
       break;
     case 4:
       Navigator.pushNamed(context, '/registerUser');
-      break;
-    case 5:
-      Navigator.pushNamed(context, '/perfil');
       break;
     default:
   }

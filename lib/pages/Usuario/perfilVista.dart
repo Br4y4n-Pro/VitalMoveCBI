@@ -20,7 +20,7 @@ class _PerfilVistaState extends State<PerfilVista> {
         title: 'Material App',
         home: Scaffold(
             appBar: AppBar(
-              iconTheme: const IconThemeData(color: Colores.quaternaryColor),  
+              iconTheme: const IconThemeData(color: Colores.quaternaryColor),
               title: const Text(
                 'Datos Personales',
                 style: TextStyle(
@@ -120,7 +120,7 @@ class _PerfilVistaState extends State<PerfilVista> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(40))),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/estadisticas');
+                          Navigator.pushNamed(context, '/perfilInformativo');
                         },
                         child: const Text(
                           'Ver Estadisticas',
@@ -129,44 +129,6 @@ class _PerfilVistaState extends State<PerfilVista> {
                       ),
                     ),
                     const SizedBox(height: 40),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const SizedBox(height: 40, width: 40),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            IconButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, '/perfil');
-                                },
-                                icon: const Icon(
-                                  Icons.circle_rounded,
-                                  size: 10,
-                                )),
-                            IconButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/contact');
-                              },
-                              icon: const Icon(
-                                Icons.circle_outlined,
-                                size: 10,
-                              ),
-                            )
-                          ],
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/contact');
-                            },
-                            icon: const Icon(
-                              Icons.keyboard_arrow_right,
-                              size: 40,
-                            ))
-                      ],
-                    )
                   ],
                 ),
               ),
