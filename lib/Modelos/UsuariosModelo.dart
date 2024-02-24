@@ -50,18 +50,18 @@ class Usuario {
   });
 
   Usuario.fromJsonMap(Map<String, dynamic> datos) {
-    idUsuario = datos['id_usuario'];
-    dni = datos['dni'];
+    idUsuario = datos['id_usuario'].toString();
+    dni = datos['dni'].toString();
     apellidos = datos['apellidos'];
     genero = datos['genero'];
     direccion = datos['direccion'];
     dependencia = datos['dependencia'];
     fechaNacimiento = datos['fecha_nacimiento'];
-    talla = datos['talla'];
+    talla = datos['talla'].toString();
     rh = datos['rh'];
     nombreEmergencia = datos['nombre_emergencia'];
     parentesco = datos['parentesco'];
-    telefonoEmergencia = datos['telefono_emergencia'];
+    telefonoEmergencia = datos['telefono_emergencia'].toString();
     eps = datos['eps'];
     alergias = datos['alergias'];
     contrasena = datos['contrasena'];
