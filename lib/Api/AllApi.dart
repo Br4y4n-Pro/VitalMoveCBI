@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 class AllApi {
   //ferasApp.php
-  static String url = 'http://10.207.65.61:3050/';
+  static String url = 'http://192.168.21.127:3050/';
   // ignore: prefer_final_fields
   static Dio _dio = Dio();
 
@@ -26,10 +26,12 @@ class AllApi {
   }
 
   static Future httpPost(String path, Map<String, dynamic> data) async {
-    final fromData = FormData.fromMap(data);
+    print(data);
+    // final fromData = await FormData.fromMap(data);
+
     try {
-      final resp = await _dio.post(path, data: fromData);
-      //1
+      final resp = await _dio.post(path, data: data);
+      // print(resp.data);
       //print('object --- > ' + resp.data);
       return resp.data;
     } catch (e) {

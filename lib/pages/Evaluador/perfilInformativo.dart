@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
+import 'package:vitalmovecbi/widgets/colores.dart';
 
 import '../../widgets/grafico.dart';
 
@@ -18,18 +19,13 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Container(
-          alignment: Alignment.center,
-          child: const Text(
-            "Ultima Información",
-            style: TextStyle(
-              color: Color.fromRGBO(
-                  11, 35, 173, 1), // Cambia aquí el color del texto del nav
-            ),
-          ),
+        iconTheme: const IconThemeData(color: Colores.quaternaryColor),
+        title: const Text(
+          "Ultima Información",
+          style: TextStyle(
+              color: Colores.quaternaryColor, fontWeight: FontWeight.w500),
         ),
-        backgroundColor: const Color(0xFFADE8F4),
+        backgroundColor: Colores.primaryColor,
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -127,7 +123,9 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
                         fontSize: 18, fontWeight: FontWeight.bold),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40))),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/perfil');
+                },
                 child: const Text('Ver perfil completo')),
           ),
         ],
