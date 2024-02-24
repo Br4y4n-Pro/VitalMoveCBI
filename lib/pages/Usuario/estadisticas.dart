@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
+import 'package:vitalmovecbi/widgets/colores.dart';
 
 class Estadisticas extends StatefulWidget {
   const Estadisticas({super.key});
@@ -15,8 +16,13 @@ class _EstadisticasState extends State<Estadisticas> {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Estadisticas'),
-          backgroundColor: const Color(0xffADE8F4),
+          iconTheme: const IconThemeData(color: Colores.quaternaryColor),
+          title: const Text(
+            'Estadisticas',
+            style: TextStyle(
+                color: Colores.quaternaryColor, fontWeight: FontWeight.w500),
+          ),
+          backgroundColor: Colores.primaryColor,
         ),
         body: ListView(children: [
           const SizedBox(height: 40),

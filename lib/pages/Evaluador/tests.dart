@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/pages/Evaluador/homeEvaluador.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
-import 'package:vitalmovecbi/widgets/customappbar.dart';
+
+import 'package:vitalmovecbi/widgets/customaoobarEvaluador.dart';
 
 class Tests extends StatefulWidget {
   const Tests({super.key});
@@ -25,7 +26,7 @@ class _TestsState extends State<Tests> {
             backgroundColor: Colores.primaryColor,
           ),
           body: seleccionTests(context),
-          bottomNavigationBar: bottombar(context, 1)),
+         bottomNavigationBar: bottombar2(context, 2)),
     );
   }
 }
@@ -87,5 +88,6 @@ Widget seleccionTests(context) {
         ),
       ),
     ],
+    
   );
 }
