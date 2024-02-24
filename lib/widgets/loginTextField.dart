@@ -24,6 +24,7 @@ class _InputLoginState extends State<InputLogin> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      
         width: widget.tamano,
         decoration: BoxDecoration(
             color: const Color(0xffF5F5F5),

@@ -7,7 +7,8 @@ Future<void> enviarDatos(UserLogin userLogin) async {
   Dio dio = Dio();
 
   try {
-    String url = 'http://192.168.1.41:3050/login';
+    // ipconfig se usa en cmd para ver Dirección IPv4 el 3050 es el puerto que se puso en el backend
+    String url = 'http://10.207.65.61:3050/login';
     Map<String, dynamic> jsonData = userLogin.toJson();
     print(jsonData);
 
