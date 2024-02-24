@@ -37,7 +37,7 @@ Widget seleccionTests(context) {
 
   return ListView(
     children: [
-      const SizedBox(height: 80), // Espacio entre el nav y el texto
+       const SizedBox(height: 80), // Espacio entre el nav y el texto
       const Text(
         "Seleccione el test que se va a realizar:",
         textAlign: TextAlign.center,
@@ -45,47 +45,60 @@ Widget seleccionTests(context) {
           fontSize: 20, // Puedes ajustar el tamaño del texto aquí
         ),
       ),
-      const SizedBox(height: 20), // Espacio entre el texto y el primer cuadro
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 100.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/TB');
-              },
-              child: SizedBox(
-                width: 230, // Ajusta el ancho del cuadro aquí
-                child: blueSquare(
-                    text: "Test de Bruce modificado",
-                    imagePath: "img/Evaluador/bruce.svg",
-                    size: size),
-              ),
-            ),
-          ],
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-             GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/pageTestC');
-              },
-            child: SizedBox(
-              width: 230, // Ajusta el ancho del cuadro aquí
-              child: blueSquare(
-                  text: "Test de caminata 6 minutos",
-                  imagePath: "img/Evaluador/test.svg",
-                  size: size),
-            ),
-             ),
-          ],
-        ),
-      ),
+          const SizedBox(height: 50),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/pageTestC');
+            },
+            child: Container(
+                margin: EdgeInsets.symmetric(horizontal: size.width * .1),
+                height: 70,
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    image: DecorationImage(
+                      image: AssetImage("img/caminar.jpg"),
+                      fit: BoxFit.fitWidth,
+                    )),
+                child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      color: Colors.black.withOpacity(.5),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "Test de Caminata 6 min",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w600),
+                      ),
+                    ))),
+          ),
+          const SizedBox(height: 50),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/pageTestB');
+            },
+            child: Container(
+                margin: EdgeInsets.symmetric(horizontal: size.width * .1),
+                height: 70,
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    image: DecorationImage(
+                      image: AssetImage("img/bruce.jpg"),
+                      fit: BoxFit.fitWidth,
+                    )),
+                child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      color: Colors.black.withOpacity(.5),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        " Test de Bruce",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w600),
+                      ),
+                    ))),
+          ),
     ],
   );
 }

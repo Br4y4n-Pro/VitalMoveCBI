@@ -113,23 +113,23 @@ class _TestBruceMod extends State<TestBruceMod> {
                   ),
                 ],
               ),
-              ...personas.map((persona) => Column(
-                    children: [
-                      const SizedBox(height: 20),
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Usuario seleccionado',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      lista(persona.nombre, persona.cedula),
-                    ],
-                  )),
+              // personas.map((persona) => Column(
+              //       children: [
+              //         const SizedBox(height: 20),
+              //         const Align(
+              //           alignment: Alignment.centerLeft,
+              //           child: Text(
+              //             'Usuario seleccionado',
+              //             style: TextStyle(
+              //               fontSize: 16,
+              //               fontWeight: FontWeight.bold,
+              //             ),
+              //           ),
+              //         ),
+              //         const SizedBox(height: 20),
+              //         lista(persona.nombre, persona.cedula),
+              //       ],
+              //     )),
             ],
           ),
         ),

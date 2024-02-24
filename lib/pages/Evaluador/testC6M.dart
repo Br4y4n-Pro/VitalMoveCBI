@@ -86,13 +86,40 @@ class _TestC6M extends State<TestC6M> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/');
-                },
+                  _mostrarDialogo(context);
+                      },
                 child: const Text('Ver resultados'),
               ),
             ),
           ])),
     );
   }
+}
+void _mostrarDialogo(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Guardado exitosamente'),
+        content: const Text('Resultados Test De Caminata '),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Cerrar el diálogo
+              Navigator.pushNamed(context, '/');
+            },
+            child: const Text('Realizar Test De Bruce '),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Cerrar el diálogo
+              Navigator.pushNamed(context, '/Bruce');
+            },
+            child: const Text('Realizar Test De Caminata Nuevamente'),
+          ),
+        ],
+      );
+    },
+  );
 }
 

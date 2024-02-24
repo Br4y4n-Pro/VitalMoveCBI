@@ -65,6 +65,14 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
             const SizedBox(height: 30),
             inputLogin("Recomendaciones generales"),
             const SizedBox(height: 30),
+            const Text(
+                "Recomendaciones del dia",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                ),
+              ),
+            const SizedBox(height: 30),
             Card(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

@@ -73,8 +73,6 @@ class _Testbruce extends State<Testbruce> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/pageTestCaminataFCR');
-                      Navigator.pushNamed(context, '/pageTestUsuario');
                     },
                     child: const Text('Buscar'),
                   ),
@@ -87,13 +85,24 @@ class _Testbruce extends State<Testbruce> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Column(
-                    children: personas
-                        .map((persona) => Column(
-                              children: [
-                                lista(persona.nombre, persona.cedula),
-                                const SizedBox(height: 10),
-                              ],
+                   Column(
+  children: personas
+      .map((persona) => GestureDetector(
+            onTap: () {
+              if (persona.nombre == "Edison Cuaran") {
+                Navigator.pushNamed(context, '/pageTestBM');
+              } else if (persona.nombre == "Juan Perez") {
+                Navigator.pushNamed(context, '/ruta_juan');
+              } else if (persona.nombre == "Maria Gomez") {
+                Navigator.pushNamed(context, '/ruta_maria');
+              }
+            },
+            child: Column(
+              children: [
+                lista(persona.nombre, persona.cedula),
+                const SizedBox(height: 10),
+              ],
+            ),
                             ))
                         .toList(),
                   ),
