@@ -16,6 +16,7 @@ class Usuarios {
 
 class Usuario {
   String? idUsuario;
+  String? nombres;
   String? dni;
   String? apellidos;
   String? genero;
@@ -33,6 +34,7 @@ class Usuario {
 
   Usuario({
     this.idUsuario,
+    this.nombres,
     this.dni,
     this.apellidos,
     this.genero,
@@ -51,6 +53,7 @@ class Usuario {
 
   Usuario.fromJsonMap(Map<String, dynamic> datos) {
     idUsuario = datos['id_usuario'].toString();
+    nombres = datos['nombres'];
     dni = datos['dni'].toString();
     apellidos = datos['apellidos'];
     genero = datos['genero'];
