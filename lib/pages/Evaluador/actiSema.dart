@@ -29,9 +29,16 @@ class _RegistroUsertres extends State<RegistroUsertres> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colores.primaryColor, // Color azul claro
-        centerTitle: true, // Centra el título del AppBar
-        title: const Text('Registro de Actividad '),
+        centerTitle: true,
+        title: const Text(
+          'Registro de Actividad ',
+          style: TextStyle(
+            color: Colores.quaternaryColor,
+          ),
+        ),
+        backgroundColor: Colores.primaryColor,
+        elevation: 1,
+        iconTheme: const IconThemeData(color: Colores.quaternaryColor),
       ),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: size.width * 0.07),
