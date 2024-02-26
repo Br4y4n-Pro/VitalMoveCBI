@@ -37,7 +37,9 @@ class _HomeUserState extends State<HomeUser> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Spacer(),
+                     const Spacer(
+                      flex: 2,
+                    ),
                       Image.asset(
                         "img/Logo.png",
                         width: 150,

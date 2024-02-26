@@ -25,7 +25,9 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Spacer(),
+                    const Spacer(
+                      flex: 2,
+                    ),
                     Image.asset(
                       "img/Logo.png",
                       width: 150,
@@ -66,12 +68,12 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
             inputLogin("Recomendaciones generales"),
             const SizedBox(height: 30),
             const Text(
-                "Recomendaciones del dia",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                ),
+              "Recomendaciones del dia",
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
               ),
+            ),
             const SizedBox(height: 30),
             Card(
               child: Column(

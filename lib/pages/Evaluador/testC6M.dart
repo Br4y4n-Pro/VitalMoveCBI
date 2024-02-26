@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/index.dart';
+
 class TestC6M extends StatefulWidget {
   const TestC6M({super.key});
   @override
@@ -21,11 +22,12 @@ class _TestC6M extends State<TestC6M> {
         title: const Text(
           "Test Caminata (C6M)",
           style: TextStyle(
-            color: Color.fromRGBO(
-                11, 35, 173, 1), // Cambia aquí el color del texto del nav
+            color: Colores.quaternaryColor,
           ),
         ),
-        backgroundColor: const Color(0xFFADE8F4),
+        backgroundColor: Colores.primaryColor,
+        elevation: 1,
+        iconTheme: const IconThemeData(color: Colores.quaternaryColor),
       ),
       body: Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -87,7 +89,7 @@ class _TestC6M extends State<TestC6M> {
                 ),
                 onPressed: () {
                   _mostrarDialogo(context);
-                      },
+                },
                 child: const Text('Ver resultados'),
               ),
             ),
@@ -95,6 +97,7 @@ class _TestC6M extends State<TestC6M> {
     );
   }
 }
+
 void _mostrarDialogo(BuildContext context) {
   showDialog(
     context: context,
@@ -122,4 +125,3 @@ void _mostrarDialogo(BuildContext context) {
     },
   );
 }
-

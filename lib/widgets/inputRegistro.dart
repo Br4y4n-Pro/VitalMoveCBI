@@ -1,5 +1,3 @@
-
-
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
@@ -14,7 +12,7 @@ Widget inputLoginRe({
   return Column(
     children: [
       Container(
-        width: tamano,
+        height: 40,
         decoration: BoxDecoration(
           color: const Color(0xffF5F5F5),
           boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
@@ -37,10 +35,10 @@ Widget inputLoginRe({
             ),
           ),
           validator: validator,
-          controller: controller,// Aquí se proporciona la función de validación
+          controller:
+              controller, // Aquí se proporciona la función de validación
         ),
       ),
     ],
   );
 }
-

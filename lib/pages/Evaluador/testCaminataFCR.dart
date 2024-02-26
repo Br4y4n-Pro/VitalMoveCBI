@@ -1,8 +1,8 @@
-
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/index.dart';
+
 class TestCaminataFCR extends StatefulWidget {
   const TestCaminataFCR({super.key});
   @override
@@ -22,11 +22,12 @@ class _TestCaminataFCR extends State<TestCaminataFCR> {
         title: const Text(
           "Test Caminata FCR",
           style: TextStyle(
-            color: Color.fromRGBO(
-                11, 35, 173, 1), // Cambia aquí el color del texto del nav
+            color: Colores.quaternaryColor,
           ),
         ),
-        backgroundColor: const Color(0xFFADE8F4),
+        backgroundColor: Colores.primaryColor,
+        elevation: 1,
+        iconTheme: const IconThemeData(color: Colores.quaternaryColor),
       ),
       body: Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -70,7 +71,7 @@ class _TestCaminataFCR extends State<TestCaminataFCR> {
             inputLogin2("Ingrese FCR"),
             const SizedBox(height: 19),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 140),
+              margin: const EdgeInsets.symmetric(horizontal: 100),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(100, 50),
