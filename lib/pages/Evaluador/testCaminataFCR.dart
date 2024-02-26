@@ -70,7 +70,7 @@ class _TestCaminataFCR extends State<TestCaminataFCR> {
             inputLogin2("Ingrese FCR"),
             const SizedBox(height: 19),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 140),
+              margin: const EdgeInsets.symmetric(horizontal: 100),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(100, 50),

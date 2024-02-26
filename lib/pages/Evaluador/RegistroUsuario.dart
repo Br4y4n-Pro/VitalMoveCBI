@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:vitalmovecbi/index.dart';
 import 'package:date_field/date_field.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
+import 'package:vitalmovecbi/widgets/customappbar.dart';
 
 class RegistroUsuario extends StatefulWidget {
   const RegistroUsuario({super.key});
@@ -541,6 +542,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
           ),
         ),
       ),
+       bottomNavigationBar: bottombar(context, 1)
     );
   }
 
