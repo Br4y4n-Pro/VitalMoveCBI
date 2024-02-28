@@ -220,7 +220,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     campo: 'Documento de Identidad',
                     tamano: size.width,
                     tipo: TextInputType.number,
-                    validator: (value) {
+                    validator:  (value) {
                       if (value == null || value.isEmpty) {
                         return 'Por favor ingrese su documento de identidad';
                       }

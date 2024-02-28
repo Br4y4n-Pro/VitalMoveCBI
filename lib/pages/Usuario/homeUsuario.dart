@@ -22,9 +22,9 @@ class _HomeUserState extends State<HomeUser> {
   @override
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
-    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
-    final usuario = loginProvider.usuarios[0];
-    print(usuario.nombres);
+   // final loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    //final usuario = loginProvider.usuarios[0];
+  //  print(usuario.nombres);
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
@@ -73,18 +73,17 @@ class _HomeUserState extends State<HomeUser> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               children: [
                 const SizedBox(height: 20),
-                ListTile(
-                  title: Text(
-                    '${usuario.nombres} ${usuario.apellidos}',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Text('CC ${usuario.dni}'),
-                  leading: CircleAvatar(
-                      backgroundImage: AssetImage("img/Usuario/usu2.png")),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
+                // ListTile(
+                // //   title: //Text('${usuario.nombres} ${usuario.apellidos}',
+                // //    // style: TextStyle(fontWeight: FontWeight.bold),
+                // // //  ),
+                // //   subtitle: Text('CC ${usuario.dni}'),
+                // //   leading: CircleAvatar(
+                // //       backgroundImage: AssetImage("img/Usuario/usu2.png")),
+                // // ),
+                // const SizedBox(
+                //   height: 30,
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

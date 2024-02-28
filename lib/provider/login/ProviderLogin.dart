@@ -49,8 +49,8 @@ class LoginProvider extends ChangeNotifier {
                     const SizedBox(width: 10),
                     Text(
                       '${jsonResponse['mensaje']}',
-                      style:
-                          const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600, fontSize: 15),
                     ),
                   ],
                 ),

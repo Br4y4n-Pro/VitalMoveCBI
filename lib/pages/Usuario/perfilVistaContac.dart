@@ -14,7 +14,7 @@ class PerfilVistaContact extends StatefulWidget {
 }
 
 class _PerfilVistaContactState extends State<PerfilVistaContact> {
-  final telefono = 3245243933.toString();
+  final telefono = 3015384840.toString();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -59,7 +59,7 @@ class _PerfilVistaContactState extends State<PerfilVistaContact> {
                       textContent("Padre"),
                       const SizedBox(height: 15),
                       textSub("Telefono"),
-                      textContent("3245243934"),
+                      textContent("3015384840"),
                       const SizedBox(height: 15),
                     ],
                   ),

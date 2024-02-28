@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 class AllApi {
   //ferasApp.php
-  static String url = 'http://192.168.1.41:3050/';
+  static String url = 'http://192.168.163.127:3050/';
   // ignore: prefer_final_fields
   static Dio _dio = Dio();
 
