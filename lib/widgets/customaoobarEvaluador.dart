@@ -73,7 +73,7 @@ void _onItemTapped(int index, BuildContext context) {
       Navigator.pushNamed(context, '/buscarPersona');
       break;
     case 4:
-      Navigator.pushNamed(context, '/registerUser');
+      Navigator.pushNamed(context, '/pageviewUser');
       break;
     default:
   }

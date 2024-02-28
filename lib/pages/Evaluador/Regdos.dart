@@ -1,16 +1,17 @@
 // ignore_for_file: file_names, non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 import '../../widgets/InputRegistro.dart';
+import 'package:vitalmovecbi/widgets/colores.dart';
+
 
 class RegistroUserdos extends StatefulWidget {
-  const RegistroUserdos({super.key});
+  const RegistroUserdos({Key? key}) : super(key: key);
 
   @override
-  State<RegistroUserdos> createState() => _RegistroUserdos();
+  State<RegistroUserdos> createState() => _RegistroUserdosState();
 }
 
-class _RegistroUserdos extends State<RegistroUserdos> {
+class _RegistroUserdosState extends State<RegistroUserdos> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController telefono_emergencia = TextEditingController();
   TextEditingController nombre_emergencia = TextEditingController();
@@ -21,11 +22,7 @@ class _RegistroUserdos extends State<RegistroUserdos> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.lightBlueAccent, // Color azul claro
-        centerTitle: true, // Centra el título del AppBar
-        title: const Text('Registro de Usuario'),
-      ),
+    
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: size.width * 0.07),
         child: Form(
@@ -65,7 +62,7 @@ class _RegistroUserdos extends State<RegistroUserdos> {
 
                           return null;
                         },
-                        controller: nombre_emergencia.text,
+                        controller: nombre_emergencia, // Corregir aquí
                       ),
                       const SizedBox(height: 15),
                       inputLoginRe(
@@ -77,17 +74,15 @@ class _RegistroUserdos extends State<RegistroUserdos> {
                             return 'Por favor ingrese su Numero de telefono';
                           }
 
-                          // Expresión regular para validar que el valor contenga solo números y tenga exactamente 10 caracteres
                           final RegExp telefonoRegExp = RegExp(r'^[0-9]{10}$');
 
                           if (!telefonoRegExp.hasMatch(value)) {
                             return 'El número de teléfono debe contener exactamente 10 números';
                           }
 
-                          // Aquí puedes agregar otras validaciones según tus requisitos
                           return null;
                         },
-                        controller: telefono_emergencia.text,
+                        controller: telefono_emergencia, // Corregir aquí
                       ),
                       const SizedBox(height: 15),
                       inputLoginRe(
@@ -99,7 +94,6 @@ class _RegistroUserdos extends State<RegistroUserdos> {
                             return 'Por favor ingrese su parentezco';
                           }
 
-                          // Expresión regular para validar que el valor contenga solo texto y tenga longitud entre 5 y 20 caracteres
                           final RegExp parentezcoRegExp =
                               RegExp(r'^[a-zA-Z ]{5,20}$');
 
@@ -107,72 +101,11 @@ class _RegistroUserdos extends State<RegistroUserdos> {
                             return 'El parentezco debe contener solo letras y tener entre 5 y 20 caracteres';
                           }
 
-                          // Aquí puedes agregar otras validaciones según tus requisitos
                           return null;
                         },
-                        controller: parentesco.text,
+                        controller: parentesco, // Corregir aquí
                       ),
                       const SizedBox(height: 15),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: size.width * .8,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const SizedBox(height: 40, width: 56),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.pop(context, '/registerUser');
-                                  },
-                                  icon: const Icon(
-                                    Icons.circle_outlined,
-                                    size: 10,
-                                  ),
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, '/registerUser2');
-                                  },
-                                  icon: const Icon(
-                                    Icons.circle_rounded,
-                                    size: 10,
-                                  ),
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, '/registerUser3');
-                                  },
-                                  icon: const Icon(
-                                    Icons.circle_outlined,
-                                    size: 10,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/registerUser3');
-                              },
-                              icon: const Icon(
-                                Icons.keyboard_arrow_right,
-                                size: 40,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ],
                   ),
                 ],

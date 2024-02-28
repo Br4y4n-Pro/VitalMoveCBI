@@ -27,7 +27,7 @@ class AppState extends StatelessWidget {
 
         ChangeNotifierProvider(lazy: false, create: (_) => LoginFromProvider()),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     );
   }
 }
@@ -70,6 +70,7 @@ class MyApp extends StatelessWidget {
         '/pageTestC': (context) => const TestCaminata(),
         '/pageTestBM': (context) => const TestBruceMod(),
         '/TB': (context) => const BruceTest(),
+        '/pageviewUser': (context) => const Registro(),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
