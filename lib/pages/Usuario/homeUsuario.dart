@@ -1,8 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
+// import 'package:provider/provider.dart';
+// import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 import 'package:vitalmovecbi/widgets/grafico.dart';
 
@@ -22,9 +22,9 @@ class _HomeUserState extends State<HomeUser> {
   @override
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
-    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
-    final usuario = loginProvider.usuarios[0];
-    print(usuario.nombres);
+    // final loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    // final usuario = loginProvider.usuarios[0];
+    // print(usuario.nombres);
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
@@ -37,9 +37,9 @@ class _HomeUserState extends State<HomeUser> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                     const Spacer(
-                      flex: 2,
-                    ),
+                      const Spacer(
+                        flex: 2,
+                      ),
                       Image.asset(
                         "img/Logo.png",
                         width: 150,
@@ -76,11 +76,11 @@ class _HomeUserState extends State<HomeUser> {
               children: [
                 const SizedBox(height: 20),
                 ListTile(
-                  title: Text(
-                    '${usuario.nombres} ${usuario.apellidos}',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Text('CC ${usuario.dni}'),
+                  // title: Text(
+                  //   '${usuario.nombres} ${usuario.apellidos}',
+                  //   style: TextStyle(fontWeight: FontWeight.bold),
+                  // ),
+                  // subtitle:  Text('CC ${usuario.dni}'),
                   leading: CircleAvatar(
                       backgroundImage: AssetImage("img/Usuario/usu2.png")),
                 ),

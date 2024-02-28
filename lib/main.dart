@@ -27,7 +27,7 @@ class AppState extends StatelessWidget {
 
         ChangeNotifierProvider(lazy: false, create: (_) => LoginFromProvider()),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     );
   }
 }
@@ -43,11 +43,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.fredokaTextTheme(),
       ),
-<<<<<<< HEAD
-      initialRoute: '/evaluadorHome',
-=======
-      initialRoute:  '/registerUser',
->>>>>>> 129ec840728081e2eb368d3a18760e4beb992fd3
+      initialRoute: '/usuarioLogin',
       routes: {
         '/usuarioLogin': (context) => const UsuarioLogin(),
         '/registerUser3': (context) => const RegistroUsertres(),
@@ -74,7 +70,6 @@ class MyApp extends StatelessWidget {
         '/pageTestC': (context) => const TestCaminata(),
         '/pageTestBM': (context) => const TestBruceMod(),
         '/TB': (context) => const BruceTest(),
-       
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
