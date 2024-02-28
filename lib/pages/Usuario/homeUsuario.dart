@@ -1,8 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
-// import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
+import 'package:provider/provider.dart';
+import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 import 'package:vitalmovecbi/widgets/grafico.dart';
 
@@ -22,9 +22,9 @@ class _HomeUserState extends State<HomeUser> {
   @override
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
-    // final loginProvider = Provider.of<LoginProvider>(context, listen: false);
-    // final usuario = loginProvider.usuarios[0];
-    // print(usuario.nombres);
+    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    final usuario = loginProvider.usuarios[1];
+    print(usuario.nombres);
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
