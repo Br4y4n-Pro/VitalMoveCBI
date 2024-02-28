@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 Widget inputLoginRe({
-  required controller,
+  required TextEditingController controller,
   required String campo,
   required double tamano,
   required TextInputType tipo,
@@ -12,7 +12,7 @@ Widget inputLoginRe({
   return Column(
     children: [
       Container(
-        height: 40,
+        height: 38,
         decoration: BoxDecoration(
           color: const Color(0xffF5F5F5),
           boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],

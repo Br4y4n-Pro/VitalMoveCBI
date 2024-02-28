@@ -43,11 +43,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.fredokaTextTheme(),
       ),
-<<<<<<< HEAD
-      initialRoute: '/evaluadorHome',
-=======
-      initialRoute:  '/registerUser',
->>>>>>> 129ec840728081e2eb368d3a18760e4beb992fd3
+      initialRoute: '/pageViewUser',
       routes: {
         '/usuarioLogin': (context) => const UsuarioLogin(),
         '/registerUser3': (context) => const RegistroUsertres(),
@@ -74,7 +70,7 @@ class MyApp extends StatelessWidget {
         '/pageTestC': (context) => const TestCaminata(),
         '/pageTestBM': (context) => const TestBruceMod(),
         '/TB': (context) => const BruceTest(),
-       
+        '/pageViewUser': (context) => const Registro(),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(

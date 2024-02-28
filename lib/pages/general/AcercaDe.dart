@@ -28,7 +28,7 @@ class _AcercaDe extends State<AcercaDe> {
           child: ListView(children: const [
             SizedBox(height: 50),
             Text(
-              "VitalMove es una app movil para registrar y calcular el progreso de diferentes activades realizadas por una persona con el fin de ayudar a que la persona adopte mejores habitos para tener un vida mas saludable.",
+              "VitalMove es una app movil para registrar y calcular el progreso de diferentes activades realizadas por una persona con el fin de ayudarle a que adopte mejores habitos para tener un vida más saludable.",
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 20,

@@ -34,3 +34,4 @@ export 'package:vitalmovecbi/widgets/textperfil.dart';
 export 'package:vitalmovecbi/widgets/colores.dart';
 export 'package:vitalmovecbi/widgets/inputregistro.dart';
 export 'package:vitalmovecbi/widgets/pages.dart';
+export 'package:vitalmovecbi/pages/Evaluador/pageViewUser.dart';
