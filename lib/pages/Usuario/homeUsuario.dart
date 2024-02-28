@@ -22,9 +22,10 @@ class _HomeUserState extends State<HomeUser> {
   @override
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
-    //final loginProvider = Provider.of<LoginProvider>(context, listen: false);
-    // final usuario = loginProvider.usuarios[0];
-    //print(usuario.nombres);
+    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    final usuario = loginProvider.usuarios[1];
+    print(usuario.nombres);
+
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
@@ -84,6 +85,7 @@ class _HomeUserState extends State<HomeUser> {
                 //   leading: CircleAvatar(
                 //       backgroundImage: AssetImage("img/Usuario/usu2.png")),
                 // ),
+
                 const SizedBox(
                   height: 30,
                 ),
