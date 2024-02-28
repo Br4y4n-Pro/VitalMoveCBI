@@ -5,7 +5,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:vitalmovecbi/index.dart';
 import 'package:date_field/date_field.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
-import 'package:vitalmovecbi/widgets/customappbar.dart';
 
 class RegistroUsuario extends StatefulWidget {
   const RegistroUsuario({super.key});
@@ -52,19 +51,10 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colores.quaternaryColor),
-        title: const Text(
-          'Registro de Usuario',
-          style: TextStyle(
-              color: Colores.quaternaryColor, fontWeight: FontWeight.w500),
-        ),
-        backgroundColor: Colores.primaryColor,
-      ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.0),
         child: Container(
-          margin: EdgeInsets.symmetric(vertical: 20.0),
+          //margin: EdgeInsets.symmetric(vertical: 10.0),
           child: Form(
             key: _formKey,
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -77,8 +67,8 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                       children: [
                         if (imagenPath == null)
                           Container(
-                            height: 90,
-                            width: 90,
+                            height: 85,
+                            width: 85,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(150),
                             ),
@@ -90,8 +80,8 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                           )
                         else
                           Container(
-                            height: 90,
-                            width: 90,
+                            height: 85,
+                            width: 85,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(150),
                             ),
@@ -196,7 +186,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                         return null;
                       },
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 10),
                     inputLoginRe(
                       controller: apellidos,
                       campo: 'Apellido',
@@ -240,7 +230,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                         return null;
                       },
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 10),
                     Container(
                       decoration: BoxDecoration(
                         color: const Color(0xffF5F5F5),
@@ -290,7 +280,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                         },
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -371,7 +361,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 10),
                     inputLoginRe(
                       controller: direccion,
                       campo: 'Dirección',
@@ -393,7 +383,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                         return null;
                       },
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 10),
                     // Validación para el campo EPS
                     // Validación para el campo EPS con expresión regular
                     // Validación para el campo EPS como texto
@@ -419,7 +409,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                       },
                     ),
 
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 10),
 // Validación para el campo "Alergias" como texto
                     inputLoginRe(
                       controller: alergias,
@@ -448,7 +438,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                       },
                     ),
 
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 10),
 
                     // Validación para el campo "Grupo" como texto con longitud exacta de 8 caracteres
                     // Validación para el campo "Grupo" como texto con longitud exacta de 5 caracteres y que sean números del 1 al 10
@@ -477,65 +467,11 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     ),
                   ],
                 ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.center, // Centrar el Row
-                    children: [
-                      SizedBox(
-                        child: Row(
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, '/registerUser');
-                                  },
-                                  icon: const Icon(
-                                    Icons.circle_rounded,
-                                    size: 10,
-                                  ),
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, '/registerUser2');
-                                  },
-                                  icon: const Icon(
-                                    Icons.circle_outlined,
-                                    size: 10,
-                                  ),
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, '/registerUser3');
-                                  },
-                                  icon: const Icon(
-                                    Icons.circle_outlined,
-                                    size: 10,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
               ],
             ),
           ),
         ),
       ),
-       bottomNavigationBar: bottombar(context, 1)
     );
   }
 
