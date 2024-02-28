@@ -23,7 +23,7 @@ class _HomeUserState extends State<HomeUser> {
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
     final loginProvider = Provider.of<LoginProvider>(context, listen: false);
-    final usuario = loginProvider.usuarios[0];
+    final usuario = loginProvider.usuarios[1];
     print(usuario.nombres);
     return SafeArea(
       child: Scaffold(
@@ -37,9 +37,9 @@ class _HomeUserState extends State<HomeUser> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                     const Spacer(
-                      flex: 2,
-                    ),
+                      const Spacer(
+                        flex: 2,
+                      ),
                       Image.asset(
                         "img/Logo.png",
                         width: 150,
