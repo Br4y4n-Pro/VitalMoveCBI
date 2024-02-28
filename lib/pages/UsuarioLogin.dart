@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:vitalmovecbi/provider/login/LoginFromProvider.dart';
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 import 'package:vitalmovecbi/utils/datalogin.dart';
 import 'package:vitalmovecbi/widgets/checkBoxLogin.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/loginTextField.dart';
 import 'package:vitalmovecbi/widgets/navap.dart';
-import 'package:provider/provider.dart';
-import '../provider/login/LoginFromProvider.dart';
 
 class UsuarioLogin extends StatefulWidget {
-  const UsuarioLogin({Key? key}) : super(key: key);
+  const UsuarioLogin({super.key});
 
   @override
   State<UsuarioLogin> createState() => _UsuarioLoginState();
