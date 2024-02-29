@@ -75,7 +75,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                       ],
                     ),
                     const SizedBox(height: 15),
-                   
+
                     const SizedBox(height: 15),
                     Container(
                       decoration: BoxDecoration(
@@ -87,7 +87,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     ),
                     const SizedBox(height: 10),
                     inputLoginRe(
-                      controller: nombres,
                       campo: 'Nombre',
                       tamano: size.width,
                       tipo: TextInputType.name,
@@ -109,7 +108,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     ),
                     const SizedBox(height: 10),
                     inputLoginRe(
-                      controller: apellidos,
                       campo: 'Apellido',
                       tamano: size.width,
                       tipo: TextInputType.name,
@@ -131,7 +129,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     ),
                     const SizedBox(height: 10),
                     inputLoginRe(
-                      controller: dni,
                       campo: 'Documento de Identidad',
                       tamano: size.width,
                       tipo: TextInputType.number,
@@ -284,7 +281,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     ),
                     const SizedBox(height: 10),
                     inputLoginRe(
-                      controller: direccion,
                       campo: 'Dirección',
                       tamano: size.width,
                       tipo: TextInputType.text,
@@ -309,7 +305,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     // Validación para el campo EPS con expresión regular
                     // Validación para el campo EPS como texto
                     inputLoginRe(
-                      controller: eps,
                       campo: 'EPS',
                       tamano: size.width,
                       tipo: TextInputType.text,
@@ -333,7 +328,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     const SizedBox(height: 10),
 // Validación para el campo "Alergias" como texto
                     inputLoginRe(
-                      controller: alergias,
                       campo: 'Alergias',
                       tamano: size.width,
                       tipo: TextInputType.text,
@@ -365,7 +359,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     // Validación para el campo "Grupo" como texto con longitud exacta de 5 caracteres y que sean números del 1 al 10
                     // Validación para el campo "Grupo" que acepta solo los valores "Grupo 1" o "Grupo 2"
                     inputLoginRe(
-                      controller: grupo,
                       campo: 'Grupo',
                       tamano: size.width,
                       tipo: TextInputType.text,

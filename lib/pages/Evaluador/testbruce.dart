@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
-import 'package:vitalmovecbi/widgets/customappbar.dart';
+import 'package:vitalmovecbi/widgets/customaoobarEvaluador.dart';
 
 import '../../widgets/InputText.dart';
 
@@ -72,8 +72,7 @@ class _Testbruce extends State<Testbruce> {
                         borderRadius: BorderRadius.circular(40),
                       ),
                     ),
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     child: const Text('Buscar'),
                   ),
                   const SizedBox(height: 30),
@@ -85,24 +84,24 @@ class _Testbruce extends State<Testbruce> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                   Column(
-  children: personas
-      .map((persona) => GestureDetector(
-            onTap: () {
-              if (persona.nombre == "Edison Cuaran") {
-                Navigator.pushNamed(context, '/pageTestBM');
-              } else if (persona.nombre == "Juan Perez") {
-                Navigator.pushNamed(context, '/ruta_juan');
-              } else if (persona.nombre == "Maria Gomez") {
-                Navigator.pushNamed(context, '/ruta_maria');
-              }
-            },
-            child: Column(
-              children: [
-                lista(persona.nombre, persona.cedula),
-                const SizedBox(height: 10),
-              ],
-            ),
+                  Column(
+                    children: personas
+                        .map((persona) => GestureDetector(
+                              onTap: () {
+                                if (persona.nombre == "Edison Cuaran") {
+                                  Navigator.pushNamed(context, '/pageTestBM');
+                                } else if (persona.nombre == "Juan Perez") {
+                                  Navigator.pushNamed(context, '/ruta_juan');
+                                } else if (persona.nombre == "Maria Gomez") {
+                                  Navigator.pushNamed(context, '/ruta_maria');
+                                }
+                              },
+                              child: Column(
+                                children: [
+                                  lista(persona.nombre, persona.cedula),
+                                  const SizedBox(height: 10),
+                                ],
+                              ),
                             ))
                         .toList(),
                   ),
@@ -111,7 +110,7 @@ class _Testbruce extends State<Testbruce> {
             ],
           ),
         ),
-        bottomNavigationBar: bottombar(context, 1));
+        bottomNavigationBar: bottombar2(context, 2));
   }
 }
 
