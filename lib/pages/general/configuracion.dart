@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vitalmovecbi/index.dart';
 
 class Configuracion extends StatelessWidget {
   const Configuracion({super.key});
@@ -9,8 +10,10 @@ class Configuracion extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Configuración"),
-          backgroundColor: const Color(0xffADE8F4)),
+          iconTheme: const IconThemeData(color: Colores.quaternaryColor),
+          title: const Text("Configuración",
+              style: TextStyle(color: Colores.quaternaryColor)),
+          backgroundColor: Colores.primaryColor),
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: size.width * .1),
         width: size.width,

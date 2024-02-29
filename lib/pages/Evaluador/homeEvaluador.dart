@@ -25,9 +25,11 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
           centerTitle: true,
           actions: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(10.0),
               child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/configuracion');
+                  },
                   icon: Icon(
                     Icons.settings,
                     color: Colores.primaryColor,
