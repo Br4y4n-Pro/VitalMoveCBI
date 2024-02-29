@@ -61,7 +61,6 @@ class _RegistroUserdosState extends State<RegistroUserdos> {
 
                           return null;
                         },
-                        controller: nombre_emergencia, // Corregir aquí
                       ),
                       const SizedBox(height: 15),
                       inputLoginRe(
@@ -81,7 +80,6 @@ class _RegistroUserdosState extends State<RegistroUserdos> {
 
                           return null;
                         },
-                        controller: telefono_emergencia, // Corregir aquí
                       ),
                       const SizedBox(height: 15),
                       inputLoginRe(
@@ -102,7 +100,6 @@ class _RegistroUserdosState extends State<RegistroUserdos> {
 
                           return null;
                         },
-                        controller: parentesco, // Corregir aquí
                       ),
                       const SizedBox(height: 15),
                     ],

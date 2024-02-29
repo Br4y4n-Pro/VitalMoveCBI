@@ -21,7 +21,7 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
   @override
   Widget build(BuildContext context) {
     final fromProvider = Provider.of<LoginFromProvider>(context, listen: false);
-    // final provider = Provider.of<LoginProvider>(context, listen: false);
+    final provider = Provider.of<LoginProvider>(context, listen: false);
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -124,14 +124,7 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
                       ),
                       onPressed: () async {
                         try {
-                          final provider = Provider.of<LoginProvider>(
-                            context,
-                            listen: false,
-                          );
-                          final fromProvider = Provider.of<LoginFromProvider>(
-                            context,
-                            listen: false,
-                          );
+                     
                           provider.login(fromProvider, context);
                         } catch (error) {
                           print('Error al enviar la solicitud: $error');

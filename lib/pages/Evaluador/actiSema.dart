@@ -117,7 +117,6 @@ class _RegistroUsertres extends State<RegistroUsertres> {
 
                         return null;
                       },
-                      controller: talla,
                     ),
                     const SizedBox(height: 15),
                     inputLoginRe(
@@ -145,7 +144,6 @@ class _RegistroUsertres extends State<RegistroUsertres> {
 
                         return null;
                       },
-                      controller: peso,
                     ),
                     const SizedBox(height: 50),
                     Container(
