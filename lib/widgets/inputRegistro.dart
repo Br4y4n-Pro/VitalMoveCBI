@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 
 Widget inputLoginRe({
-  required TextEditingController controller,
   required String campo,
   required double tamano,
   required TextInputType tipo,
@@ -35,8 +34,7 @@ Widget inputLoginRe({
             ),
           ),
           validator: validator,
-          controller:
-              controller, // Aquí se proporciona la función de validación
+          // Aquí se proporciona la función de validación
         ),
       ),
     ],

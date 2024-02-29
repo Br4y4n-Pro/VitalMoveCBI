@@ -75,71 +75,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                       ],
                     ),
                     const SizedBox(height: 15),
-                    inputLoginRe(
-                      controller: nombres,
-                      campo: 'Nombre',
-                      tamano: size.width,
-                      tipo: TextInputType.name,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Por favor ingrese su nombre';
-                        }
-                        if (value.length < 2 || value.length > 10) {
-                          return 'El nombre debe tener entre 2 y 10 caracteres';
-                        }
-                        final RegExp regex = RegExp(
-                          r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$',
-                        );
-                        if (!regex.hasMatch(value)) {
-                          return 'El nombre no es válido';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 15),
-                    inputLoginRe(
-                      controller: apellidos,
-                      campo: 'Apellido',
-                      tamano: size.width,
-                      tipo: TextInputType.name,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Por favor ingrese su apellido';
-                        }
-                        if (value.length < 2 || value.length > 10) {
-                          return 'El apellido debe tener entre 2 y 10 caracteres';
-                        }
-                        final RegExp regex = RegExp(
-                          r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$',
-                        );
-                        if (!regex.hasMatch(value)) {
-                          return 'El apellido no es válido';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 15),
-                    inputLoginRe(
-                      controller: dni,
-                      campo: 'Documento de Identidad',
-                      tamano: size.width,
-                      tipo: TextInputType.number,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Por favor ingrese su documento de identidad';
-                        }
-                        if (value.length < 7 || value.length > 12) {
-                          return 'El documento de identidad debe tener entre 7 y 12 caracteres';
-                        }
-                        final RegExp regex = RegExp(
-                          r'^\d{7,12}$',
-                        );
-                        if (!regex.hasMatch(value)) {
-                          return 'El documento de identidad no es válido';
-                        }
-                        return null;
-                      },
-                    ),
+                   
                     const SizedBox(height: 15),
                     Container(
                       decoration: BoxDecoration(

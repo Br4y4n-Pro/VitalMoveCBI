@@ -23,8 +23,7 @@ class _HomeUserState extends State<HomeUser> {
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
     final loginProvider = Provider.of<LoginProvider>(context, listen: false);
-    final usuario = loginProvider.usuarios[1];
-    print(usuario.nombres);
+    final usuario = loginProvider.usuarios[0];
 
     return SafeArea(
       child: Scaffold(
@@ -85,7 +84,6 @@ class _HomeUserState extends State<HomeUser> {
                   leading: CircleAvatar(
                       backgroundImage: AssetImage("img/Usuario/usu2.png")),
                 ),
-
                 const SizedBox(
                   height: 30,
                 ),
@@ -169,7 +167,7 @@ class _HomeUserState extends State<HomeUser> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SizedBox(height: 12),
+                            const SizedBox(height: 12),
                             Text(
                               'Peso saludable',
                               style: TextStyle(

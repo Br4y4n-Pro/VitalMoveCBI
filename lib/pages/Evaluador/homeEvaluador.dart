@@ -1,7 +1,10 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:vitalmovecbi/index.dart';
 import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
+import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 import 'package:vitalmovecbi/widgets/customaoobarEvaluador.dart';
 
 class HomeEvaluador extends StatefulWidget {
@@ -14,54 +17,42 @@ class HomeEvaluador extends StatefulWidget {
 class _HomeEvaluadorState extends State<HomeEvaluador> {
   @override
   Widget build(BuildContext context) {
+    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    final usuario = loginProvider.usuarios[0];
+    print("imaggen en el homeEvaluador");
     return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.settings,
+                    color: Colores.primaryColor,
+                  )),
+            )
+          ],
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Spacer(
-                      flex: 2,
-                    ),
-                    Image.asset(
-                      "img/Logo.png",
-                      width: 150,
-                      height: 150,
-                      fit: BoxFit.contain,
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      icon: const Icon(
-                        Icons.settings,
-                        color: Color(0xff0096C7),
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, "/configuracion");
-                      },
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
+          title: Image.asset("img/Logo.png", fit: BoxFit.contain),
         ),
         body: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           children: [
             const SizedBox(height: 20),
-            const ListTile(
+            ListTile(
               title: Text(
-                "Brayan Alexis Cañas Londoño",
+                "${usuario.nombres} ${usuario.apellidos}",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              subtitle: Text("CC 1193238697"),
+              subtitle: Text("${usuario.dni}"),
               leading: CircleAvatar(
-                backgroundImage: AssetImage("img/Usuario/usu2.png"),
+                backgroundImage: usuario.imgperfil != null
+                    ? NetworkImage(usuario.imgperfil!, scale: 1.0)
+                    : const NetworkImage("img/Usuario/usu2.png")
+                        as ImageProvider,
               ),
             ),
             const SizedBox(height: 30),

@@ -15,16 +15,20 @@ class LoginProvider extends ChangeNotifier {
     print(data);
 
     AllApi.httpPost('login', data).then((rpta) {
+      print("ESperando");
       print(rpta.runtimeType);
 
       final Map<String, dynamic> jsonResponse = rpta;
-      print('login: $rpta');
       print(jsonResponse);
 
       if (jsonResponse['rp'] == 'si') {
         final Usuarios usuarios = Usuarios.fromlist([jsonResponse]);
         this.usuarios = usuarios.dato;
-        Navigator.pushReplacementNamed(context, '/homeUsuario');
+        if (jsonResponse['rol'] == 1) {
+          Navigator.pushReplacementNamed(context, '/evaluadorHome');
+        } else {
+          Navigator.pushReplacementNamed(context, '/homeUsuario');
+        }
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             behavior: SnackBarBehavior.floating,

@@ -75,36 +75,6 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
                   const SizedBox(
                     height: 3,
                   ),
-                  InputLogin(
-                    campo: "Ingrese tu contraseña",
-                    tamano: size.width,
-                    tipo: TextInputType.visiblePassword,
-                    onChanged: (value) => {fromProvider.password = value},
-                  ),
-                  const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            CheckBoxInput(),
-                            SizedBox(width: 0.1),
-                            Text(
-                              "¿Recordar Contraseña?",
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ]),
-                  const SizedBox(height: 19),
-                  const Text("Contraseña",
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black)),
-                  const SizedBox(
-                    height: 3,
-                  ),
                   Consumer<LoginFromProvider>(
                     builder: (context, fromProvider, child) => InputLogin(
                       campo: "Ingrese tu contraseña",
