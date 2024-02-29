@@ -1,11 +1,10 @@
 // ignore_for_file: file_names, non_constant_identifier_names
 import 'package:flutter/material.dart';
 import '../../widgets/InputRegistro.dart';
-import 'package:vitalmovecbi/widgets/colores.dart';
 
 
 class RegistroUserdos extends StatefulWidget {
-  const RegistroUserdos({Key? key}) : super(key: key);
+  const RegistroUserdos({super.key});
 
   @override
   State<RegistroUserdos> createState() => _RegistroUserdosState();

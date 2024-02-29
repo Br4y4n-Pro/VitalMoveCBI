@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vitalmovecbi/widgets/textperfil.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 

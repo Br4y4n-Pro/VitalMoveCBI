@@ -20,82 +20,8 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     final fromProvider = Provider.of<LoginFromProvider>(context, listen: false);
-    final provider = Provider.of<LoginProvider>(context, listen: false);
-    final size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-          body: ListView(
-        children: [
-          nav(context),
-          const SizedBox(
-            height: 30,
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Documento de Identidad",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black)),
-                const SizedBox(
-                  height: 3,
-                ),
-                InputLogin(
-                  onChanged: (value) => fromProvider.usuario = value,
-                  campo: "Ingrese Documento de Identidad",
-                  tamano: size.width,
-                  tipo: TextInputType.number,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor ingrese su documento de identidad';
-                    }
-                    if (value.length < 7 || value.length > 12) {
-                      return 'El documento de identidad debe tener entre 7 y 12 caracteres';
-                    }
-                    final RegExp regex = RegExp(
-                      r'^\d{7,12}$',
-                    );
-                    if (!regex.hasMatch(value)) {
-                      return 'El documento de identidad no es válido';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 19),
-                const Text("Contraseña",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black)),
-                const SizedBox(
-                  height: 3,
-                ),
-                InputLogin(
-                  campo: "Ingrese tu contraseña",
-                  tamano: size.width,
-                  tipo: TextInputType.visiblePassword,
-                  onChanged: (value) => {fromProvider.password = value},
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        CheckBoxInput(),
-                        SizedBox(width: 0.1),
-                        Text(
-                          "¿Recordar Contraseña?",
-                          style: TextStyle(fontSize: 12),
-                        ),
-                      ],
-=======
+    // final provider = Provider.of<LoginProvider>(context, listen: false);
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -119,15 +45,57 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
                   const SizedBox(
                     height: 3,
                   ),
-                  Consumer<LoginFromProvider>(
-                    builder: (context, fromProvider, child) => InputLogin(
-                      onChanged: (value) => fromProvider.usuario = value,
-                      campo: "Ingrese Documento de Identidad",
-                      tamano: size.width,
-                      tipo: TextInputType.number,
->>>>>>> 2b54708dd347dc42e54c445de70cb33f79e4f77b
-                    ),
+                  InputLogin(
+                    onChanged: (value) => fromProvider.usuario = value,
+                    campo: "Ingrese Documento de Identidad",
+                    tamano: size.width,
+                    tipo: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingrese su documento de identidad';
+                      }
+                      if (value.length < 7 || value.length > 12) {
+                        return 'El documento de identidad debe tener entre 7 y 12 caracteres';
+                      }
+                      final RegExp regex = RegExp(
+                        r'^\d{7,12}$',
+                      );
+                      if (!regex.hasMatch(value)) {
+                        return 'El documento de identidad no es válido';
+                      }
+                      return null;
+                    },
                   ),
+                  const SizedBox(height: 19),
+                  const Text("Contraseña",
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black)),
+                  const SizedBox(
+                    height: 3,
+                  ),
+                  InputLogin(
+                    campo: "Ingrese tu contraseña",
+                    tamano: size.width,
+                    tipo: TextInputType.visiblePassword,
+                    onChanged: (value) => {fromProvider.password = value},
+                  ),
+                  const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            CheckBoxInput(),
+                            SizedBox(width: 0.1),
+                            Text(
+                              "¿Recordar Contraseña?",
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ],
+                        ),
+                      ]),
                   const SizedBox(height: 19),
                   const Text("Contraseña",
                       style: TextStyle(

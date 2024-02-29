@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vitalmovecbi/index.dart';
 import 'package:date_field/date_field.dart';
-import 'package:vitalmovecbi/widgets/colores.dart';
 
 class RegistroUsuario extends StatefulWidget {
   const RegistroUsuario({super.key});
@@ -52,9 +51,9 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Container(
-          //margin: EdgeInsets.symmetric(vertical: 10.0),
+          margin: const EdgeInsets.symmetric(vertical: 10.0),
           child: Form(
             key: _formKey,
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -72,175 +71,83 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(150),
                             ),
-<<<<<<< HEAD
-                          ))
-                    ],
-                  ),
-                  const SizedBox(height: 15),
-                  inputLoginRe(
-                    controller: nombres,
-                    campo: 'Nombre',
-                    tamano: size.width,
-                    tipo: TextInputType.name,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Por favor ingrese su nombre';
-                      }
-                      if (value.length < 2 || value.length > 10) {
-                        return 'El nombre debe tener entre 2 y 10 caracteres';
-                      }
-                      final RegExp regex = RegExp(
-                        r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$',
-                      );
-                      if (!regex.hasMatch(value)) {
-                        return 'El nombre no es válido';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 15),
-                  inputLoginRe(
-                    controller: apellidos,
-                    campo: 'Apellido',
-                    tamano: size.width,
-                    tipo: TextInputType.name,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Por favor ingrese su apellido';
-                      }
-                      if (value.length < 2 || value.length > 10) {
-                        return 'El apellido debe tener entre 2 y 10 caracteres';
-                      }
-                      final RegExp regex = RegExp(
-                        r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$',
-                      );
-                      if (!regex.hasMatch(value)) {
-                        return 'El apellido no es válido';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 15),
-                  inputLoginRe(
-                    controller: dni,
-                    campo: 'Documento de Identidad',
-                    tamano: size.width,
-                    tipo: TextInputType.number,
-                    validator:  (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Por favor ingrese su documento de identidad';
-                      }
-                      if (value.length < 7 || value.length > 12) {
-                        return 'El documento de identidad debe tener entre 7 y 12 caracteres';
-                      }
-                      final RegExp regex = RegExp(
-                        r'^\d{7,12}$',
-                      );
-                      if (!regex.hasMatch(value)) {
-                        return 'El documento de identidad no es válido';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 15),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xffF5F5F5),
-                      boxShadow: [
-                        BoxShadow(color: Colors.grey.shade300, blurRadius: 3)
-=======
-                            child: const CircleAvatar(
-                              radius: 30,
-                              backgroundImage:
-                                  AssetImage("img/Usuario/usu2.png"),
-                            ),
                           )
-                        else
-                          Container(
-                            height: 85,
-                            width: 85,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(150),
-                            ),
-                            child: CircleAvatar(
-                              radius: 30,
-                              backgroundImage: imagenPath != null
-                                  ? FileImage(imagenPath!)
-                                  : null,
-                            ),
-                          ),
-                        Positioned(
-                            bottom: 1,
-                            right: size.width * .35,
-                            child: GestureDetector(
-                              onTap: () async {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: Column(
-                                        children: [
-                                          const Text(
-                                            "Selecciona una foto de perfil",
-                                            style: TextStyle(fontSize: 20),
-                                          ),
-                                          const SizedBox(height: 10),
-                                          Image.asset(
-                                            "img/General/galecam.png",
-                                            height: 60,
-                                          )
-                                        ],
-                                      ),
-                                      actionsAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      actions: <Widget>[
-                                        TextButton(
-                                          onPressed: () async {
-                                            Navigator.of(context).pop();
-                                            selectImage();
-                                          },
-                                          child: Column(
-                                            children: [
-                                              const Icon(
-                                                Icons.camera,
-                                                size: 50,
-                                                color: Colores.primaryColor,
-                                              ),
-                                              textContent("Camara"),
-                                            ],
-                                          ),
-                                        ),
-                                        TextButton(
-                                          onPressed: () async {
-                                            Navigator.of(context)
-                                                .pop(); // Cerrar el diálogo
-                                          },
-                                          child: Column(
-                                            children: [
-                                              const Icon(
-                                                Icons.photo,
-                                                size: 50,
-                                                color: Colores.primaryColor,
-                                              ),
-                                              textContent("Galeria"),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              },
-                              child: Container(
-                                width: 40,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                    color: Colores.primaryColor,
-                                    borderRadius: BorderRadius.circular(100)),
-                              ),
-                            ))
->>>>>>> 2b54708dd347dc42e54c445de70cb33f79e4f77b
                       ],
+                    ),
+                    const SizedBox(height: 15),
+                    inputLoginRe(
+                      controller: nombres,
+                      campo: 'Nombre',
+                      tamano: size.width,
+                      tipo: TextInputType.name,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Por favor ingrese su nombre';
+                        }
+                        if (value.length < 2 || value.length > 10) {
+                          return 'El nombre debe tener entre 2 y 10 caracteres';
+                        }
+                        final RegExp regex = RegExp(
+                          r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$',
+                        );
+                        if (!regex.hasMatch(value)) {
+                          return 'El nombre no es válido';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 15),
+                    inputLoginRe(
+                      controller: apellidos,
+                      campo: 'Apellido',
+                      tamano: size.width,
+                      tipo: TextInputType.name,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Por favor ingrese su apellido';
+                        }
+                        if (value.length < 2 || value.length > 10) {
+                          return 'El apellido debe tener entre 2 y 10 caracteres';
+                        }
+                        final RegExp regex = RegExp(
+                          r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$',
+                        );
+                        if (!regex.hasMatch(value)) {
+                          return 'El apellido no es válido';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 15),
+                    inputLoginRe(
+                      controller: dni,
+                      campo: 'Documento de Identidad',
+                      tamano: size.width,
+                      tipo: TextInputType.number,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Por favor ingrese su documento de identidad';
+                        }
+                        if (value.length < 7 || value.length > 12) {
+                          return 'El documento de identidad debe tener entre 7 y 12 caracteres';
+                        }
+                        final RegExp regex = RegExp(
+                          r'^\d{7,12}$',
+                        );
+                        if (!regex.hasMatch(value)) {
+                          return 'El documento de identidad no es válido';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 15),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: const Color(0xffF5F5F5),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.shade300, blurRadius: 3)
+                          ]),
                     ),
                     const SizedBox(height: 10),
                     inputLoginRe(
