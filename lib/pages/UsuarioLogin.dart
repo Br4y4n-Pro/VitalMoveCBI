@@ -45,27 +45,13 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
                   const SizedBox(
                     height: 3,
                   ),
-                  InputLogin(
-                    onChanged: (value) => fromProvider.usuario = value,
-                    campo: "Ingrese Documento de Identidad",
-                    tamano: size.width,
-                    tipo: TextInputType.number,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Por favor ingrese su documento de identidad';
-                      }
-                      if (value.length < 7 || value.length > 12) {
-                        return 'El documento de identidad debe tener entre 7 y 12 caracteres';
-                      }
-                      final RegExp regex = RegExp(
-                        r'^\d{7,12}$',
-                      );
-                      if (!regex.hasMatch(value)) {
-                        return 'El documento de identidad no es válido';
-                      }
-                      return null;
-                    },
-                  ),
+                  Consumer(
+                      builder: (context, value, child) => InputLogin(
+                            campo: "Ingrese Documento de Identidad",
+                            tamano: size.width,
+                            tipo: TextInputType.number,
+                            onChanged: (value) => fromProvider.usuario = value,
+                          )),
                   const SizedBox(height: 19),
                   const Text("Contraseña",
                       style: TextStyle(
@@ -124,7 +110,6 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
                       ),
                       onPressed: () async {
                         try {
-                     
                           provider.login(fromProvider, context);
                         } catch (error) {
                           print('Error al enviar la solicitud: $error');

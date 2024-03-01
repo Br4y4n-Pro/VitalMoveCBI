@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/index.dart';
 import 'package:date_field/date_field.dart';
 import 'package:vitalmovecbi/provider/registro/ProviderRegistro.dart';
+import 'package:vitalmovecbi/provider/registro/RegistroFromProvider.dart';
+import 'package:vitalmovecbi/widgets/loginTextField.dart';
 
 class RegistroUsuario extends StatefulWidget {
   const RegistroUsuario({super.key});
@@ -42,7 +44,9 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
 // Cargar y mostrar imagen en el formulario
   @override
   Widget build(BuildContext context) {
-//  final fromProvider = Provider.of<RegistroProvider>(context, listen: false);
+    final fromProvider =
+        Provider.of<RegistroFromProvider>(context, listen: false);
+    final provider = Provider.of<RegistroProvider>(context, listen: false);
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -99,7 +103,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                         ],
                       ),
                     )),
-
                 const SizedBox(height: 15),
                 Container(
                   decoration: BoxDecoration(
@@ -108,101 +111,113 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                         BoxShadow(color: Colors.grey.shade300, blurRadius: 3)
                       ]),
                 ),
+
                 const SizedBox(height: 10),
-                inputLoginRe(
-                  campo: 'Nombre',
-                  tamano: size.width,
-                  tipo: TextInputType.name,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor ingrese su nombre';
-                    }
-                    if (value.length < 2 || value.length > 10) {
-                      return 'El nombre debe tener entre 2 y 10 caracteres';
-                    }
-                    final RegExp regex = RegExp(
-                      r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$',
-                    );
-                    if (!regex.hasMatch(value)) {
-                      return 'El nombre no es válido';
-                    }
-                    return null;
-                  },
+                Consumer(
+                  builder: (context, value, child) => InputLogin(
+                    onChanged: (value) => fromProvider.nombres = value,
+                    campo: 'Nombre',
+                    tamano: size.width,
+                    tipo: TextInputType.name,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingrese su nombre';
+                      }
+                      if (value.length < 2 || value.length > 10) {
+                        return 'El nombre debe tener entre 2 y 10 caracteres';
+                      }
+                      final RegExp regex = RegExp(
+                        r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$',
+                      );
+                      if (!regex.hasMatch(value)) {
+                        return 'El nombre no es válido';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
                 const SizedBox(height: 10),
-                inputLoginRe(
-                  campo: 'Apellido',
-                  tamano: size.width,
-                  tipo: TextInputType.name,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor ingrese su apellido';
-                    }
-                    if (value.length < 2 || value.length > 10) {
-                      return 'El apellido debe tener entre 2 y 10 caracteres';
-                    }
-                    final RegExp regex = RegExp(
-                      r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$',
-                    );
-                    if (!regex.hasMatch(value)) {
-                      return 'El apellido no es válido';
-                    }
-                    return null;
-                  },
+                Consumer(
+                  builder: (context, value, child) => InputLogin(
+                    onChanged: (value) => fromProvider.apellidos = value,
+                    campo: 'Apellido',
+                    tamano: size.width,
+                    tipo: TextInputType.name,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingrese su apellido';
+                      }
+                      if (value.length < 2 || value.length > 10) {
+                        return 'El apellido debe tener entre 2 y 10 caracteres';
+                      }
+                      final RegExp regex = RegExp(
+                        r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$',
+                      );
+                      if (!regex.hasMatch(value)) {
+                        return 'El apellido no es válido';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
                 const SizedBox(height: 10),
-                inputLoginRe(
-                  campo: 'Documento de Identidad',
-                  tamano: size.width,
-                  tipo: TextInputType.number,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor ingrese su documento de identidad';
-                    }
-                    if (value.length < 7 || value.length > 12) {
-                      return 'El documento de identidad debe tener entre 7 y 12 caracteres';
-                    }
-                    final RegExp regex = RegExp(
-                      r'^\d{7,12}$',
-                    );
-                    if (!regex.hasMatch(value)) {
-                      return 'El documento de identidad no es válido';
-                    }
-                    return null;
-                  },
+                Consumer(
+                  builder: (context, value, child) => InputLogin(
+                    onChanged: (value) => fromProvider.dni = value,
+                    campo: 'Documento de Identidad',
+                    tamano: size.width,
+                    tipo: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingrese su documento de identidad';
+                      }
+                      if (value.length < 7 || value.length > 12) {
+                        return 'El documento de identidad debe tener entre 7 y 12 caracteres';
+                      }
+                      final RegExp regex = RegExp(
+                        r'^\d{7,12}$',
+                      );
+                      if (!regex.hasMatch(value)) {
+                        return 'El documento de identidad no es válido';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
                 const SizedBox(height: 10),
 
-                Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xffF5F5F5),
-                      boxShadow: [
-                        BoxShadow(color: Colors.grey.shade300, blurRadius: 3)
-                      ],
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: DateTimeFormField(
-                        mode: DateTimeFieldPickerMode
-                            .date, // Modo para seleccionar solo la fecha
-                        decoration: InputDecoration(
-                          hintStyle: TextStyle(
-                            color: Colors.grey.shade500,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 14,
+                Consumer(
+                  child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xffF5F5F5),
+                        boxShadow: [
+                          BoxShadow(color: Colors.grey.shade300, blurRadius: 3)
+                        ],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: DateTimeFormField(
+                          mode: DateTimeFieldPickerMode
+                              .date, // Solo permite seleccionar la fecha
+                          decoration: InputDecoration(
+                            hintStyle: TextStyle(
+                              color: Colors.grey.shade500,
+                              fontStyle: FontStyle.normal,
+                              fontSize: 14,
+                            ),
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 20),
+                            hintText: "Fecha de Nacimiento",
+                            border: const OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                            ),
                           ),
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 20),
-                          hintText: "Fecha de Nacimiento ",
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                          ),
-                        ),
-                        onChanged: (DateTime? value) {
-                          setState(() {
-                            selectedDate = value;
-                          });
-                        })),
-
+                          onChanged: (DateTime? value) {
+                            setState(() {
+                              selectedDate = value;
+                              fromProvider.fechaNacimiento = value;
+                            });
+                          })),
+                ),
                 const SizedBox(height: 15),
                 Container(
                   decoration: BoxDecoration(
@@ -289,7 +304,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                 ),
 
                 const SizedBox(height: 10),
-                inputLoginRe(
+                InputLogin(
                   campo: 'Dirección',
                   tamano: size.width,
                   tipo: TextInputType.text,
@@ -313,7 +328,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                 // Validación para el campo EPS
                 // Validación para el campo EPS con expresión regular
                 // Validación para el campo EPS como texto
-                inputLoginRe(
+                InputLogin(
                   campo: 'EPS',
                   tamano: size.width,
                   tipo: TextInputType.text,
@@ -336,7 +351,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
 
                 const SizedBox(height: 10),
                 // Validación para el campo "Alergias" como texto
-                inputLoginRe(
+                InputLogin(
                   campo: 'Alergias',
                   tamano: size.width,
                   tipo: TextInputType.text,
@@ -367,7 +382,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                 // Validación para el campo "Grupo" como texto con longitud exacta de 8 caracteres
                 // Validación para el campo "Grupo" como texto con longitud exacta de 5 caracteres y que sean números del 1 al 10
                 // Validación para el campo "Grupo" que acepta solo los valores "Grupo 1" o "Grupo 2"
-                inputLoginRe(
+                InputLogin(
                   campo: 'Grupo',
                   tamano: size.width,
                   tipo: TextInputType.text,

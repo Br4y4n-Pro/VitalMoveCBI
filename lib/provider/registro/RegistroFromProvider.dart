@@ -8,7 +8,7 @@ class RegistroFromProvider extends ChangeNotifier {
   String genero = '';
   String direccion = '';
   String dependencia = '';
-  String fechaNacimiento = '';
+  DateTime? fechaNacimiento ;
   String talla = '';
   String rh = '';
   String nombreEmergencia = '';
