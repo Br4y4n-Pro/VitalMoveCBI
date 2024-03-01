@@ -6,6 +6,8 @@ import 'package:vitalmovecbi/pages/Evaluador/testBruceMod.dart';
 import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
 import 'package:vitalmovecbi/provider/registro/ProviderRegistro.dart';
 import 'package:vitalmovecbi/provider/registro/RegistroFromProvider.dart';
+import 'package:vitalmovecbi/provider/testbruce/BruceFromProvider.dart';
+import 'package:vitalmovecbi/provider/testbruce/ProviderBruce.dart';
 
 import 'Api/AllApi.dart';
 import 'provider/login/LoginFromProvider.dart';
@@ -33,6 +35,8 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(lazy: false, create: (_) => RegistroProvider()),
         ChangeNotifierProvider(
             lazy: false, create: (_) => RegistroFromProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => BruceProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => BruceFromProvider()),
       ],
       child: const MyApp(),
     );
@@ -58,7 +62,7 @@ class MyApp extends StatelessWidget {
         '/registerUser': (context) => const RegistroUsuario(),
         '/homeUsuario': (context) => const HomeUser(),
         '/contact': (context) => const PerfilVistaContact(),
-        '/perfil': (context) => const PerfilVista(),
+        '/perfil': (context) => PerfilVista(),
         '/evaluadorHome': (context) => const HomeEvaluador(),
         '/estadisticas': (context) => const Estadisticas(),
         '/pageBruce': (context) => const PageBruces(),
