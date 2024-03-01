@@ -56,7 +56,11 @@ class MyApp extends StatelessWidget {
         '/registerUser': (context) => const RegistroUsuario(),
         '/homeUsuario': (context) => const HomeUser(),
         '/contact': (context) => const PerfilVistaContact(),
+<<<<<<< HEAD
         '/perfil': (context) =>  PerfilVista(),
+=======
+        '/perfil': (context) => PerfilVista(),
+>>>>>>> 588fd42291994429f93c3ca0ba5abe637f313478
         '/evaluadorHome': (context) => const HomeEvaluador(),
         '/estadisticas': (context) => const Estadisticas(),
         '/pageBruce': (context) => const PageBruces(),
