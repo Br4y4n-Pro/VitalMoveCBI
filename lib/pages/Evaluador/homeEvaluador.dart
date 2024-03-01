@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, avoid_print
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +30,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                   onPressed: () {
                     Navigator.pushNamed(context, '/configuracion');
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.settings,
                     color: Colores.primaryColor,
                   )),
@@ -47,7 +47,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
             ListTile(
               title: Text(
                 "${usuario.nombres} ${usuario.apellidos}",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               subtitle: Text("${usuario.dni}"),
               leading: CircleAvatar(

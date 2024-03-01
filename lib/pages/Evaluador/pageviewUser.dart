@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/pages/Evaluador/RegistroUsuario.dart';
 import 'package:vitalmovecbi/pages/Evaluador/Regdos.dart';
@@ -6,7 +8,7 @@ import 'package:vitalmovecbi/widgets/customaoobarEvaluador.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 
 class Registro extends StatefulWidget {
-  const Registro({Key? key}) : super(key: key);
+  const Registro({super.key});
 
   @override
   _RegistroState createState() => _RegistroState();
@@ -39,39 +41,37 @@ class _RegistroState extends State<Registro> {
             child: PageView(
               physics: const NeverScrollableScrollPhysics(),
               controller: controller,
-              children: [
+              children: const [
                 RegistroUsuario(),
                 RegistroUserdos(),
                 RegistroUsertres(),
               ],
             ),
           ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment
-                  .center, // Centra los elementos horizontalmente
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.keyboard_arrow_left),
-                  onPressed: () {
-                    controller.previousPage(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                ),
-                SizedBox(width: 100), // Agrega espacio entre los botones
-                IconButton(
-                  icon: const Icon(Icons.keyboard_arrow_right),
-                  onPressed: () {
-                    controller.nextPage(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                ),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment
+                .center, // Centra los elementos horizontalmente
+            children: [
+              IconButton(
+                icon: const Icon(Icons.keyboard_arrow_left),
+                onPressed: () {
+                  controller.previousPage(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+              const SizedBox(width: 100), // Agrega espacio entre los botones
+              IconButton(
+                icon: const Icon(Icons.keyboard_arrow_right),
+                onPressed: () {
+                  controller.nextPage(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+            ],
           ),
           bottombar2(context, 4),
         ],

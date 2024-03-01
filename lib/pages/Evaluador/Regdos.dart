@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import '../../widgets/InputRegistro.dart';
 
-
 class RegistroUserdos extends StatefulWidget {
   const RegistroUserdos({super.key});
 
@@ -21,7 +20,6 @@ class _RegistroUserdosState extends State<RegistroUserdos> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-    
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: size.width * 0.07),
         child: Form(
@@ -83,12 +81,12 @@ class _RegistroUserdosState extends State<RegistroUserdos> {
                       ),
                       const SizedBox(height: 15),
                       inputLoginRe(
-                        campo: 'Parentezco',
+                        campo: 'Parentesco',
                         tamano: size.width,
                         tipo: TextInputType.text,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Por favor ingrese su parentezco';
+                            return 'Por favor ingrese su parentesco';
                           }
 
                           final RegExp parentezcoRegExp =

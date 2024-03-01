@@ -1,9 +1,11 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 
 class PerfilVista extends StatefulWidget {
-  const PerfilVista({Key? key});
+   PerfilVista({Key? key});
 
   @override
   State<PerfilVista> createState() => _PerfilVistaState();
