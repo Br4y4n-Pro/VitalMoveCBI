@@ -15,12 +15,10 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   AllApi.configuteDio();
 
-  runApp(const AppState());
+  runApp(AppState());
 }
 
 class AppState extends StatelessWidget {
-  const AppState({super.key});
-
   @override
   Widget build(BuildContext context) {
     //print('__________>ZZZZZ');
