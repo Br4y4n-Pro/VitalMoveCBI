@@ -12,6 +12,7 @@ class LoginProvider extends ChangeNotifier {
       "dni": fromProvider.usuario,
       "contrasena": fromProvider.password
     };
+    
     print(data);
 
     AllApi.httpPost('login', data).then((rpta) {
