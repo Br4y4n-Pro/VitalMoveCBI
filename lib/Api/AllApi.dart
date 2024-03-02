@@ -3,7 +3,7 @@
 import 'package:dio/dio.dart';
 
 class AllApi {
-  static String url = 'http://192.168.56.1:3050/';
+  static String url = 'http://10.207.80.142:3050/';
 
   static final Dio _dio = Dio();
 

@@ -48,7 +48,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
     final fromProvider =
         Provider.of<RegistroFromProvider>(context, listen: false);
     final size = MediaQuery.of(context).size;
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -119,6 +118,9 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                     campo: 'Nombre',
                     tamano: size.width,
                     tipo: TextInputType.name,
+                    value: (fromProvider.nombres.isNotEmpty)
+                        ? fromProvider.nombres
+                        : '',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Por favor ingrese su nombre';
@@ -140,6 +142,9 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                 Consumer(
                   builder: (context, value, child) => InputLogin(
                     onChanged: (value) => fromProvider.apellidos = value,
+                    value: (fromProvider.nombres.isNotEmpty)
+                        ? fromProvider.apellidos
+                        : '',
                     campo: 'Apellido',
                     tamano: size.width,
                     tipo: TextInputType.name,

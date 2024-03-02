@@ -8,6 +8,7 @@ class InputLogin extends StatefulWidget {
   final TextInputType tipo;
   final ValueChanged<String>? onChanged;
   final FormFieldValidator<String>? validator;
+  final String value;
 
   const InputLogin({
     this.validator,
@@ -16,6 +17,7 @@ class InputLogin extends StatefulWidget {
     required this.tipo,
     this.onChanged,
     super.key,
+    this.value = '',
   });
 
   @override
@@ -32,6 +34,7 @@ class _InputLoginState extends State<InputLogin> {
             boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
             borderRadius: BorderRadius.circular(10)),
         child: TextFormField(
+          initialValue: widget.value,
           validator: widget.validator,
           onChanged: widget.onChanged,
           keyboardType: widget.tipo,
