@@ -43,9 +43,9 @@ class _RegistroState extends State<Registro> {
               physics: const NeverScrollableScrollPhysics(),
               controller: controller,
               children: [
-                RegistroUsuario(registroData: registroData),
-                RegistroUserdos(registroData: registroData),
-                RegistroUsertres(registroData: registroData),
+                RegistroUsuario(),
+                RegistroUserdos(),
+                RegistroUsertres(),
               ],
             ),
           ),

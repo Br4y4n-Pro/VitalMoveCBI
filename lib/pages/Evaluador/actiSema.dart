@@ -2,13 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
 import 'package:vitalmovecbi/provider/registro/ProviderRegistro.dart';
 import 'package:vitalmovecbi/provider/registro/RegistroFromProvider.dart';
 import 'package:vitalmovecbi/widgets/loginTextField.dart';
 
 class RegistroUsertres extends StatefulWidget {
-  const RegistroUsertres({super.key, required Usuario registroData});
+  const RegistroUsertres({super.key});
 
   @override
   State<RegistroUsertres> createState() => _RegistroUsertres();

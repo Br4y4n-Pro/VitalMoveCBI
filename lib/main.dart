@@ -51,9 +51,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/usuarioLogin',
       routes: {
         '/usuarioLogin': (context) => const UsuarioLogin(),
-        '/registerUser3': (context) => const RegistroUsertres(),
-        '/registerUser2': (context) => const RegistroUserdos(),
-        '/registerUser': (context) => const RegistroUsuario(),
+        '/registerUser3': (context) =>  const RegistroUsertres(),
+        '/registerUser2': (context) =>  const RegistroUserdos(),
+        '/registerUser': (context) =>  RegistroUsuario(),
         '/homeUsuario': (context) => const HomeUser(),
         '/contact': (context) => const PerfilVistaContact(),
         '/perfil': (context) =>  PerfilVista(),

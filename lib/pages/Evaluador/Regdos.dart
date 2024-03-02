@@ -1,12 +1,11 @@
 // ignore_for_file: file_names, non_constant_identifier_names
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
 import 'package:vitalmovecbi/provider/registro/RegistroFromProvider.dart';
 import 'package:vitalmovecbi/widgets/loginTextField.dart';
 
 class RegistroUserdos extends StatefulWidget {
-  const RegistroUserdos({super.key, required Usuario registroData});
+  const RegistroUserdos({super.key});
 
   @override
   State<RegistroUserdos> createState() => _RegistroUserdosState();
