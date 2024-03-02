@@ -14,7 +14,8 @@ class RegistroProvider extends ChangeNotifier {
   File? _imgperfil;
   File? get imgperfil => _imgperfil;
 
-  Future<void> seleccionarImagen(BuildContext context, ImageSource source ) async {
+  Future<void> seleccionarImagen(
+      BuildContext context, ImageSource source) async {
     final picker = ImagePicker();
     XFile? image = await picker.pickImage(source: source);
 

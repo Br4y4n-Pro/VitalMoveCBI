@@ -10,7 +10,9 @@ import 'package:vitalmovecbi/provider/registro/RegistroFromProvider.dart';
 import 'package:vitalmovecbi/widgets/loginTextField.dart';
 
 class RegistroUsuario extends StatefulWidget {
-  const RegistroUsuario({super.key});
+  RegistroUsuario({
+    super.key,
+  });
 
   @override
   State<RegistroUsuario> createState() => _RegistroUsuarioState();
@@ -24,7 +26,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
 
   DateTime? selectedDate;
   String dropdownValue = 'A+';
-  String? rhType;
   // List of items in our dropdown menu inputLoginRe
   String dropdownValuesrh = 'A+'; // Valor inicial
 
@@ -46,7 +47,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
   Widget build(BuildContext context) {
     final fromProvider =
         Provider.of<RegistroFromProvider>(context, listen: false);
-    final provider = Provider.of<RegistroProvider>(context, listen: false);
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -187,7 +187,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                 const SizedBox(height: 10),
 
                 Consumer(
-                  child: Container(
+                  builder: (context, value, child) => Container(
                       decoration: BoxDecoration(
                         color: const Color(0xffF5F5F5),
                         boxShadow: [
@@ -219,188 +219,189 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                           })),
                 ),
                 const SizedBox(height: 15),
-                Container(
-                  decoration: BoxDecoration(
+
+                Consumer(
+                  builder: (context, value, child) => Container(
+                    width: size.width * .5,
+                    padding: const EdgeInsets.symmetric(horizontal: 18),
+                    decoration: BoxDecoration(
                       color: const Color(0xffF5F5F5),
                       boxShadow: [
-                        BoxShadow(color: Colors.grey.shade300, blurRadius: 3)
-                      ]),
-                ),
-                const SizedBox(height: 10),
-
-                const SizedBox(height: 10),
-                Container(
-                  width: size.width * .5,
-                  padding: const EdgeInsets.symmetric(horizontal: 18),
-                  decoration: BoxDecoration(
-                    color: const Color(0xffF5F5F5),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.shade300,
-                        blurRadius: 3,
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: DropdownButton<String>(
-                    style: TextStyle(
-                      color: Colors.grey.shade500,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
+                        BoxShadow(
+                          color: Colors.grey.shade300,
+                          blurRadius: 3,
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    value: dropdownValues,
-                    icon: const Icon(Icons.keyboard_arrow_down),
-                    items: generoItems.map((String item) {
-                      return DropdownMenuItem<String>(
-                        value: item,
-                        child: Text(item),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownValues = newValue!;
-                      });
-                    },
-                    dropdownColor: Colors.white,
-                    underline: Container(),
+                    child: DropdownButton<String>(
+                      style: TextStyle(
+                        color: Colors.grey.shade500,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      value: dropdownValues,
+                      icon: const Icon(Icons.keyboard_arrow_down),
+                      items: generoItems.map((String item) {
+                        return DropdownMenuItem<String>(
+                          value: item,
+                          child: Text(item),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          fromProvider.genero = newValue!;
+                          dropdownValues = newValue;
+                        });
+                      },
+                      dropdownColor: Colors.white,
+                      underline: Container(),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 12),
-                Container(
-                  width: size.width * .5,
-                  padding: const EdgeInsets.symmetric(horizontal: 18),
-                  decoration: BoxDecoration(
-                    color: const Color(0xffF5F5F5),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.shade300,
-                        blurRadius: 3,
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: DropdownButton<String>(
-                    style: TextStyle(
-                      color: Colors.grey.shade500,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
+                Consumer(
+                  builder: (context, value, child) => Container(
+                    width: size.width * .5,
+                    padding: const EdgeInsets.symmetric(horizontal: 18),
+                    decoration: BoxDecoration(
+                      color: const Color(0xffF5F5F5),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.shade300,
+                          blurRadius: 3,
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    value: dropdownValuesrh,
-                    icon: const Icon(Icons.keyboard_arrow_down),
-                    items: itemsrh.map((String item) {
-                      return DropdownMenuItem<String>(
-                        value: item,
-                        child: Text(item),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        rhType = newValue!;
-                      });
-                    },
-                    dropdownColor: Colors.white,
-                    underline: Container(),
+                    child: DropdownButton<String>(
+                      style: TextStyle(
+                        color: Colors.grey.shade500,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      value: dropdownValuesrh,
+                      icon: const Icon(Icons.keyboard_arrow_down),
+                      items: itemsrh.map((String item) {
+                        return DropdownMenuItem<String>(
+                          value: item,
+                          child: Text(item),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownValuesrh = newValue!;
+                          fromProvider.rh = newValue;
+                        });
+                      },
+                      dropdownColor: Colors.white,
+                      underline: Container(),
+                    ),
                   ),
                 ),
 
                 const SizedBox(height: 10),
-                InputLogin(
-                  campo: 'Dirección',
-                  tamano: size.width,
-                  tipo: TextInputType.text,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor ingrese su dirección';
-                    }
-                    if (value.length < 2 || value.length > 50) {
-                      return 'La dirección debe tener entre 2 y 50 caracteres';
-                    }
-                    final RegExp regex = RegExp(
-                      r'^[a-zA-Z0-9\s.,#-]+$',
-                    );
-                    if (!regex.hasMatch(value)) {
-                      return 'La dirección no es válida';
-                    }
-                    return null;
-                  },
+                Consumer(
+                  builder: (context, value, child) => InputLogin(
+                    campo: 'Dirección',
+                    tamano: size.width,
+                    tipo: TextInputType.text,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingrese su dirección';
+                      }
+                      if (value.length < 2 || value.length > 50) {
+                        return 'La dirección debe tener entre 2 y 50 caracteres';
+                      }
+                      final RegExp regex = RegExp(
+                        r'^[a-zA-Z0-9\s.,#-]+$',
+                      );
+                      if (!regex.hasMatch(value)) {
+                        return 'La dirección no es válida';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
+
                 const SizedBox(height: 10),
-                // Validación para el campo EPS
-                // Validación para el campo EPS con expresión regular
-                // Validación para el campo EPS como texto
-                InputLogin(
-                  campo: 'EPS',
-                  tamano: size.width,
-                  tipo: TextInputType.text,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor ingrese su EPS';
-                    }
 
-                    // Expresión regular para validar texto y espacios entre 3 y 50 caracteres
-                    final RegExp epsRegExp = RegExp(r'^[a-zA-Z\s]{3,50}$');
+                Consumer(
+                  builder: (context, value, child) => InputLogin(
+                    campo: 'EPS',
+                    tamano: size.width,
+                    tipo: TextInputType.text,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingrese su EPS';
+                      }
 
-                    if (!epsRegExp.hasMatch(value)) {
-                      return 'Ingrese un valor válido para EPS (solo texto, entre 3 y 50 caracteres)';
-                    }
+                      // Expresión regular para validar texto y espacios entre 3 y 50 caracteres
+                      final RegExp epsRegExp = RegExp(r'^[a-zA-Z\s]{3,50}$');
 
-                    // Aquí puedes agregar otras validaciones según tus requisitos
-                    return null;
-                  },
+                      if (!epsRegExp.hasMatch(value)) {
+                        return 'Ingrese un valor válido para EPS (solo texto, entre 3 y 50 caracteres)';
+                      }
+
+                      // Aquí puedes agregar otras validaciones según tus requisitos
+                      return null;
+                    },
+                  ),
                 ),
 
                 const SizedBox(height: 10),
                 // Validación para el campo "Alergias" como texto
-                InputLogin(
-                  campo: 'Alergias',
-                  tamano: size.width,
-                  tipo: TextInputType.text,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor ingrese sus alergias';
-                    }
+                Consumer(
+                  builder: (context, value, child) => InputLogin(
+                    campo: 'Alergias',
+                    tamano: size.width,
+                    tipo: TextInputType.text,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingrese sus alergias';
+                      }
 
-                    // Expresión regular para validar texto y espacios
-                    final RegExp alergiasRegExp = RegExp(r'^[a-zA-Z\s]+$');
+                      // Expresión regular para validar texto y espacios
+                      final RegExp alergiasRegExp = RegExp(r'^[a-zA-Z\s]+$');
 
-                    if (!alergiasRegExp.hasMatch(value)) {
-                      return 'Ingrese un valor válido para alergias (solo texto)';
-                    }
+                      if (!alergiasRegExp.hasMatch(value)) {
+                        return 'Ingrese un valor válido para alergias (solo texto)';
+                      }
 
-                    // Verificación de longitud mínima y máxima
-                    if (value.length < 5 || value.length > 200) {
-                      return 'La longitud de las alergias debe estar entre 10 y 200 caracteres';
-                    }
+                      // Verificación de longitud mínima y máxima
+                      if (value.length < 5 || value.length > 200) {
+                        return 'La longitud de las alergias debe estar entre 10 y 200 caracteres';
+                      }
 
-                    // Aquí puedes agregar otras validaciones según tus requisitos
-                    return null;
-                  },
+                      // Aquí puedes agregar otras validaciones según tus requisitos
+                      return null;
+                    },
+                  ),
                 ),
 
                 const SizedBox(height: 10),
 
-                // Validación para el campo "Grupo" como texto con longitud exacta de 8 caracteres
-                // Validación para el campo "Grupo" como texto con longitud exacta de 5 caracteres y que sean números del 1 al 10
-                // Validación para el campo "Grupo" que acepta solo los valores "Grupo 1" o "Grupo 2"
-                InputLogin(
-                  campo: 'Grupo',
-                  tamano: size.width,
-                  tipo: TextInputType.text,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor ingrese su grupo';
-                    }
+                Consumer(
+                  builder: (context, value, child) => InputLogin(
+                    campo: 'Grupo',
+                    tamano: size.width,
+                    tipo: TextInputType.text,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingrese su grupo';
+                      }
 
-                    // Expresión regular para validar que el valor sea exactamente "Grupo 1" o "Grupo 2"
-                    final RegExp grupoRegExp = RegExp(r'^(Grupo 1|Grupo 2)$');
+                      // Expresión regular para validar que el valor sea exactamente "Grupo 1" o "Grupo 2"
+                      final RegExp grupoRegExp = RegExp(r'^(Grupo 1|Grupo 2)$');
 
-                    if (!grupoRegExp.hasMatch(value)) {
-                      return 'El grupo debe ser "Grupo 1" o "Grupo 2"';
-                    }
+                      if (!grupoRegExp.hasMatch(value)) {
+                        return 'El grupo debe ser "Grupo 1" o "Grupo 2"';
+                      }
 
-                    // Aquí puedes agregar otras validaciones según tus requisitos
-                    return null;
-                  },
+                      // Aquí puedes agregar otras validaciones según tus requisitos
+                      return null;
+                    },
+                  ),
                 ),
               ],
             ),
