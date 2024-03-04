@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/provider/registro/RegistroFromProvider.dart';
 
@@ -7,6 +10,7 @@ import '../../Modelos/UsuariosModelo.dart';
 
 class RegistroProvider extends ChangeNotifier {
   List<Usuario> registroUsuario = [];
+  bool ischeck = false;
 
   void limpiarDatos(RegistroFromProvider fromProvider) {
     fromProvider.dni = '';
@@ -55,6 +59,9 @@ class RegistroProvider extends ChangeNotifier {
         fromProvider.peso.isEmpty ||
         fromProvider.imgperfil!.path.isEmpty) {
       // Mostrar mensaje de error o realizar alguna acción apropiada
+      ischeck = false;
+      notifyListeners();
+
       return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           behavior: SnackBarBehavior.floating,
           backgroundColor: Colors.transparent,
@@ -92,6 +99,7 @@ class RegistroProvider extends ChangeNotifier {
               ),
             ),
           )));
+
       // print('${jsonResponse['mensaje']}');
     }
 
@@ -116,25 +124,29 @@ class RegistroProvider extends ChangeNotifier {
     });
 
 // Agrega la imagen como un archivo al FormData
-    if (fromProvider.imgperfil != null) {
-      formData.files.add(MapEntry(
-        "imgperfil",
-        await MultipartFile.fromFile(fromProvider.imgperfil!.path),
-      ));
+
+    if (!kIsWeb) {
+      if (fromProvider.imgperfil != null) {
+        formData.files.add(MapEntry(
+          "imgperfil",
+          await MultipartFile.fromFile(fromProvider.imgperfil!.path),
+        ));
+      }
     }
     print(formData);
 
-    
+    AllApi.httpPost('addUser', formData).then((dynamic rpta) {
+      ischeck = false;
 
-    AllApi.httpPost('addUser', formData)
-        .then((dynamic rpta) {
       print("ESperando");
       print(rpta.runtimeType);
 
       final Map<String, dynamic> jsonResponse = rpta;
       print(jsonResponse);
-
+      limpiarDatos(fromProvider);
       if (jsonResponse['rp'] == 'si') {
+                  ischeck = false;
+
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             behavior: SnackBarBehavior.floating,
             backgroundColor: Colors.transparent,

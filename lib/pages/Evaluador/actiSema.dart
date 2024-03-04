@@ -204,15 +204,20 @@ class _RegistroUsertres extends State<RegistroUsertres> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40))),
                     onPressed: () async {
-                      try {
-                        await provider.registro(fromProvider, context);
-      
-                        
-                      } catch (e) {
-                        print('Error al enviar la solicitud: $e');
-                      }
+                      setState(() {
+                        try {
+                          provider.ischeck = true;
+                          provider.registro(fromProvider, context);
+                        } catch (e) {
+                          print('Error al enviar la solicitud: $e');
+                        }
+                      });
                     },
-                    child: const Text('Registrar')),
+                    child: (!provider.ischeck)
+                        ? const Text('Registrar')
+                        : const CircularProgressIndicator(
+                            color: Colors.white,
+                          )),
               ),
             ],
           ),

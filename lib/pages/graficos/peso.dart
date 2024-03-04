@@ -6,7 +6,7 @@ import 'package:vitalmovecbi/widgets/customappbar.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
 
 class PagePeso extends StatefulWidget {
-  const PagePeso({Key? key}) : super(key: key);
+  const PagePeso({super.key});
 
   @override
   State<PagePeso> createState() => _PagePesoState();
@@ -14,7 +14,7 @@ class PagePeso extends StatefulWidget {
 
 class _PagePesoState extends State<PagePeso> {
   List<double> pesoData = [
-    25.5,
+    22.5,
     20.1,
     22.3,
     25.5,
@@ -67,14 +67,24 @@ class _PagePesoState extends State<PagePeso> {
                       showModalBottomSheet(
                         context: context,
                         builder: (BuildContext context) {
-                          return Card(
+                          return const Card(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                const Padding(
+                                Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Text(
                                     'Mi estado actual',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16),
+                                  ),
+                                ),
+
+                                const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Normal: 22.5',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16),
@@ -100,7 +110,7 @@ class _PagePesoState extends State<PagePeso> {
                         return HorizontalDetailsModel(
                           name: _getMonthName(index +
                               1), // Assuming index 0 corresponds to January
-                          color: Color.fromARGB(255, 6, 158, 223),
+                          color: const Color.fromARGB(255, 6, 158, 223),
                           size: peso, // Peso en kilogramos
                         );
                       }).toList(),
@@ -113,15 +123,24 @@ class _PagePesoState extends State<PagePeso> {
                 ],
               ),
             ),
-            SizedBox(height: 30),
-            Card(
+            const SizedBox(height: 30),
+            const Card(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
                       'Mi estado actual',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                  ),
+
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Normal: 22.5',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),

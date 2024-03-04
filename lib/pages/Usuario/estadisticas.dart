@@ -133,33 +133,6 @@ class _EstadisticasState extends State<Estadisticas> {
                       ),
                     ))),
           ),
-          const SizedBox(height: 20),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/pageCaminata');
-            },
-            child: Container(
-                margin: EdgeInsets.symmetric(horizontal: size.width * .1),
-                height: 70,
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    image: DecorationImage(
-                      image: AssetImage("img/nivel.jpg"),
-                      fit: BoxFit.fitWidth,
-                    )),
-                child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      color: Colors.black.withOpacity(.5),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "Nivel Vo2",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w600),
-                      ),
-                    ))),
-          ),
         ]),
         bottomNavigationBar: bottombar(context, 3));
   }
