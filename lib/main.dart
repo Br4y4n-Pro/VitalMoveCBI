@@ -17,10 +17,12 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   AllApi.configuteDio();
 
-  runApp(AppState());
+  runApp(const AppState());
 }
 
 class AppState extends StatelessWidget {
+  const AppState({super.key});
+
   @override
   Widget build(BuildContext context) {
     //print('__________>ZZZZZ');
@@ -52,15 +54,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.fredokaTextTheme(),
       ),
-      initialRoute: '/pagePeso',
+      initialRoute: '/usuarioLogin',
       routes: {
         '/usuarioLogin': (context) => const UsuarioLogin(),
         '/registerUser3': (context) => const RegistroUsertres(),
         '/registerUser2': (context) => const RegistroUserdos(),
+<<<<<<< HEAD
         '/registerUser': (context) => RegistroUsuario(),
+=======
+        '/registerUser': (context) => const RegistroUsuario(),
+>>>>>>> 2a33f1ad2ab724cc9160812551372187731d5e65
         '/homeUsuario': (context) => const HomeUser(),
         '/contact': (context) => const PerfilVistaContact(),
-        '/perfil': (context) => PerfilVista(),
+        '/perfil': (context) => const PerfilVista(),
         '/evaluadorHome': (context) => const HomeEvaluador(),
         '/estadisticas': (context) => const Estadisticas(),
         '/pageBruce': (context) => const PageBruces(),
