@@ -42,6 +42,7 @@ class _RegistroState extends State<Registro> {
             child: PageView(
               physics: const NeverScrollableScrollPhysics(),
               controller: controller,
+              children: const [
               onPageChanged: (index) {
                 setState(() {
                   _currentPageIndex = index;

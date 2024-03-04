@@ -6,17 +6,24 @@ import '../../Modelos/UsuariosModelo.dart';
 
 class LoginProvider extends ChangeNotifier {
   List<Usuario> usuarios = [];
+  bool ischeck = false;
 
   login(LoginFromProvider fromProvider, BuildContext context) {
     final data = {
       "dni": fromProvider.usuario,
       "contrasena": fromProvider.password
     };
-    
+
+    void limpiarDatos() {
+      fromProvider.password = '';
+      fromProvider.usuario = '';
+      notifyListeners();
+    }
+
     print(data);
 
     AllApi.httpPost('login', data).then((rpta) {
-      
+      ischeck = false;
       print("ESperando");
       print(rpta.runtimeType);
       final Map<String, dynamic> jsonResponse = rpta;
@@ -24,6 +31,7 @@ class LoginProvider extends ChangeNotifier {
 
       if (jsonResponse['rp'] == 'si') {
         final Usuarios usuarios = Usuarios.fromlist([jsonResponse]);
+
         this.usuarios = usuarios.dato;
         if (jsonResponse['rol'] == 1) {
           Navigator.pushReplacementNamed(context, '/evaluadorHome');
@@ -31,12 +39,13 @@ class LoginProvider extends ChangeNotifier {
           Navigator.pushReplacementNamed(context, '/homeUsuario');
         }
       } else {
+        ischeck = false;
+        notifyListeners();
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             behavior: SnackBarBehavior.floating,
             backgroundColor: Colors.transparent,
             elevation: 40,
             content: Container(
-              // padding: const EdgeInsets.all(8),
               height: 70,
               decoration: BoxDecoration(
                   color: Colors.red.shade600,
@@ -55,7 +64,7 @@ class LoginProvider extends ChangeNotifier {
                     Text(
                       '${jsonResponse['mensaje']}',
                       style: const TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 15),
+                          fontWeight: FontWeight.w600, fontSize: 14),
                     ),
                   ],
                 ),
@@ -63,7 +72,10 @@ class LoginProvider extends ChangeNotifier {
             )));
         // print('${jsonResponse['mensaje']}');
       }
+      notifyListeners();
     }).catchError((onError) {
+      ischeck = false;
+      notifyListeners();
       print(onError.toString());
     });
   }

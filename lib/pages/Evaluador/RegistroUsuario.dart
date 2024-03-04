@@ -10,7 +10,7 @@ import 'package:vitalmovecbi/provider/registro/RegistroFromProvider.dart';
 import 'package:vitalmovecbi/widgets/loginTextField.dart';
 
 class RegistroUsuario extends StatefulWidget {
-  RegistroUsuario({
+  const RegistroUsuario({
     super.key,
   });
 
@@ -100,15 +100,10 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(100)),
                                 child: _imgperfil != null
-                                    ? !kIsWeb
-                                        ? Image.file(
-                                            _imgperfil!,
-                                            fit: BoxFit.cover,
-                                          )
-                                        : Image.memory(
-                                            webImage,
-                                            fit: BoxFit.cover,
-                                          )
+                                    ? Image.file(
+                                        _imgperfil!,
+                                        fit: BoxFit.cover,
+                                      )
                                     : const Image(
                                         image:
                                             AssetImage("img/Usuario/usu2.png"),
@@ -118,82 +113,82 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                             ),
                           ),
                           Container(
+                            height: 45,
+                            width: 45,
                             decoration: const BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(100)),
                                 color: Colores.primaryColor),
-                            child: IconButton(
-                                onPressed: () {
-                                  print("Doy click");
-                                  showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          elevation: 500,
-                                          title: const Text(
-                                              'Selecciona una opción'),
-                                          content: Container(
-                                            width: 100,
-                                            height: 100,
-                                            decoration: const BoxDecoration(
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                    "img/General/galecam.png"),
-                                                fit: BoxFit
-                                                    .contain, // Añade un fit para ajustar la imagen dentro del contenedor
+                            child: kIsWeb
+                                ? Container()
+                                : IconButton(
+                                    onPressed: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              elevation: 500,
+                                              title: const Text(
+                                                  'Selecciona una opción'),
+                                              content: Container(
+                                                width: 100,
+                                                height: 100,
+                                                decoration: const BoxDecoration(
+                                                  image: DecorationImage(
+                                                    image: AssetImage(
+                                                        "img/General/galecam.png"),
+                                                    fit: BoxFit
+                                                        .contain, // Añade un fit para ajustar la imagen dentro del contenedor
+                                                  ),
+                                                ),
                                               ),
-                                            ),
-                                          ),
-                                          actions: <Widget>[
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    _pickImageCamera(
-                                                        fromProvider);
-                                                    Navigator.of(context).pop();
-                                                    print("-------");
-                                                    print(
-                                                        fromProvider.imgperfil);
-                                                  },
-                                                  child: const Column(
-                                                    children: [
-                                                      Icon(Icons.camera_alt),
-                                                      Text('Cámara'),
-                                                    ],
-                                                  ),
-                                                ),
-                                                GestureDetector(
-                                                  onTap: () async {
-                                                    _pickImageGallery(
-                                                        fromProvider);
-                                                    Navigator.of(context).pop();
-                                                    print("-------");
-
-                                                    print(
-                                                        fromProvider.imgperfil);
-                                                  },
-                                                  child: const Column(
-                                                    children: [
-                                                      Icon(Icons.photo),
-                                                      Text('Galería'),
-                                                    ],
-                                                  ),
-                                                ),
+                                              actions: <Widget>[
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceAround,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        _pickImageCamera(
+                                                            fromProvider);
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child: const Column(
+                                                        children: [
+                                                          Icon(
+                                                              Icons.camera_alt),
+                                                          Text('Cámara'),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    GestureDetector(
+                                                      onTap: () async {
+                                                        _pickImageGallery(
+                                                            fromProvider);
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child: const Column(
+                                                        children: [
+                                                          Icon(Icons.photo),
+                                                          Text('Galería'),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
                                               ],
-                                            )
-                                          ],
-                                        );
-                                      });
-                                },
-                                icon: const Icon(
-                                  Icons.camera_alt,
-                                  color: Colores.quaternaryColor,
-                                )),
+                                            );
+                                          });
+                                    },
+                                    icon: const Icon(
+                                      Icons.camera_alt,
+                                      color: Colores.quaternaryColor,
+                                    )),
                           )
                         ],
                       ),
@@ -545,21 +540,17 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
 
       setState(() {
         _imgperfil = File(returnedImage.path);
-        print("____");
-        print(_imgperfil);
         fromProvider.imgperfil = _imgperfil;
       });
     } else if (kIsWeb) {
       final returnedImage =
           await ImagePicker().pickImage(source: ImageSource.gallery);
       if (returnedImage == null) return;
+      _imgperfil = File(returnedImage.path);
       var f = await returnedImage.readAsBytes();
       setState(() {
         webImage = f;
-        _imgperfil = File('a');
-        print("____");
-        print(_imgperfil);
-        fromProvider.imgperfil = File(returnedImage.path);
+        fromProvider.imgperfil = null;
       });
     }
   }
@@ -572,31 +563,25 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
 
       setState(() {
         _imgperfil = File(returnedImage.path);
-        print("____");
-        print(_imgperfil);
         fromProvider.imgperfil = _imgperfil;
       });
     } else if (kIsWeb) {
       final returnedImage =
           await ImagePicker().pickImage(source: ImageSource.camera);
       if (returnedImage == null) return;
+      _imgperfil = File(returnedImage.path);
       var f = await returnedImage.readAsBytes();
       setState(() {
         webImage = f;
-        _imgperfil = File('a');
-        print("____");
-        print(_imgperfil);
-        fromProvider.imgperfil = File(returnedImage.path);
+        fromProvider.imgperfil = null;
       });
     }
   }
 }
-
 //     // Añade la lógica para agregar el archivo de imagen si está presente
 //     if (_imgperfil != null) {
 //       data["imgperfil"] = await MultipartFile.fromFile(_imgperfil!.path,
 //           filename: filename ?? "image.jpg");
 //     }
-
 
 
