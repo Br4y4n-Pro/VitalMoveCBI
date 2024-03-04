@@ -6,7 +6,7 @@ import 'package:vitalmovecbi/widgets/customappbar.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
 
 class PagePeso extends StatefulWidget {
-  const PagePeso({Key? key}) : super(key: key);
+  const PagePeso({super.key});
 
   @override
   State<PagePeso> createState() => _PagePesoState();
@@ -67,11 +67,11 @@ class _PagePesoState extends State<PagePeso> {
                       showModalBottomSheet(
                         context: context,
                         builder: (BuildContext context) {
-                          return Card(
+                          return const Card(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                const Padding(
+                                Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Text(
                                     'Mi estado actual',
@@ -80,7 +80,7 @@ class _PagePesoState extends State<PagePeso> {
                                         fontSize: 16),
                                   ),
                                 ),
-                                const Padding(
+                                Padding(
                                   padding: EdgeInsets.all(20.0),
                                   child: Text(
                                     "Felicidades, ¡has alcanzado un estado óptimo de salud! Según las estadísticas del mes, tu índice de masa corporal (IMC) se encuentra dentro del rango saludable, lo que indica que estás manteniendo un peso adecuado para tu altura. Mantener un peso saludable es fundamental para prevenir enfermedades crónicas y promover una vida plena y activa. ¡Sigue así y continúa con tus hábitos saludables para mantener tu bienestar a largo plazo!",
@@ -100,7 +100,7 @@ class _PagePesoState extends State<PagePeso> {
                         return HorizontalDetailsModel(
                           name: _getMonthName(index +
                               1), // Assuming index 0 corresponds to January
-                          color: Color.fromARGB(255, 6, 158, 223),
+                          color: const Color.fromARGB(255, 6, 158, 223),
                           size: peso, // Peso en kilogramos
                         );
                       }).toList(),
@@ -113,12 +113,12 @@ class _PagePesoState extends State<PagePeso> {
                 ],
               ),
             ),
-            SizedBox(height: 30),
-            Card(
+            const SizedBox(height: 30),
+            const Card(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
                       'Mi estado actual',
@@ -126,7 +126,7 @@ class _PagePesoState extends State<PagePeso> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(20.0),
                     child: Text(
                       "Felicidades, ¡has alcanzado un estado óptimo de salud! Según las estadísticas del mes, tu índice de masa corporal (IMC) se encuentra dentro del rango saludable, lo que indica que estás manteniendo un peso adecuado para tu altura. Mantener un peso saludable es fundamental para prevenir enfermedades crónicas y promover una vida plena y activa. ¡Sigue así y continúa con tus hábitos saludables para mantener tu bienestar a largo plazo!",

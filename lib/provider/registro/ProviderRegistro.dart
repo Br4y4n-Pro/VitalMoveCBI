@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/provider/registro/RegistroFromProvider.dart';
 
@@ -116,24 +119,24 @@ class RegistroProvider extends ChangeNotifier {
     });
 
 // Agrega la imagen como un archivo al FormData
-    if (fromProvider.imgperfil != null) {
-      formData.files.add(MapEntry(
-        "imgperfil",
-        await MultipartFile.fromFile(fromProvider.imgperfil!.path),
-      ));
+
+    if (!kIsWeb) {
+      if (fromProvider.imgperfil != null) {
+        formData.files.add(MapEntry(
+          "imgperfil",
+          await MultipartFile.fromFile(fromProvider.imgperfil!.path),
+        ));
+      }
     }
     print(formData);
 
-    
-
-    AllApi.httpPost('addUser', formData)
-        .then((dynamic rpta) {
+    AllApi.httpPost('addUser', formData).then((dynamic rpta) {
       print("ESperando");
       print(rpta.runtimeType);
 
       final Map<String, dynamic> jsonResponse = rpta;
       print(jsonResponse);
-
+      limpiarDatos(fromProvider);
       if (jsonResponse['rp'] == 'si') {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             behavior: SnackBarBehavior.floating,

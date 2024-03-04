@@ -40,7 +40,7 @@ class _RegistroState extends State<Registro> {
             child: PageView(
               physics: const NeverScrollableScrollPhysics(),
               controller: controller,
-              children: [
+              children: const [
                 RegistroUsuario(),
                 RegistroUserdos(),
                 RegistroUsertres(),

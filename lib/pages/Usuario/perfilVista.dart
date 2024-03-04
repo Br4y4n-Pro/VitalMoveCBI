@@ -5,7 +5,7 @@ import 'package:vitalmovecbi/widgets/customappbar.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 
 class PerfilVista extends StatefulWidget {
-   PerfilVista({Key? key});
+  const PerfilVista({super.key});
 
   @override
   State<PerfilVista> createState() => _PerfilVistaState();
@@ -53,7 +53,8 @@ class _PerfilVistaState extends State<PerfilVista> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 20),
-                  textField("Nombres y apellidos", "Brayan Alexis Cañas Londoño"),
+                  textField(
+                      "Nombres y apellidos", "Brayan Alexis Cañas Londoño"),
                   const SizedBox(height: 15),
                   textField("Documento de Identidad", "1193238697"),
                   const SizedBox(height: 15),

@@ -21,7 +21,7 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
   @override
   Widget build(BuildContext context) {
     final fromProvider = Provider.of<LoginFromProvider>(context, listen: false);
-    final provider = Provider.of<LoginProvider>(context, listen: false);
+    final provider = Provider.of<LoginProvider>(context);
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -98,28 +98,32 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
                     width: size.width,
                     margin: EdgeInsets.symmetric(horizontal: size.width * 0.1),
                     child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: Size(size.width * .4, size.height * .06),
-                        backgroundColor: Colores.primaryColor,
-                        padding: EdgeInsets.all(size.height * .002),
-                        textStyle: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40),
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size(size.width * .4, size.height * .06),
+                          backgroundColor: Colores.primaryColor,
+                          padding: EdgeInsets.all(size.height * .002),
+                          textStyle: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40),
+                          ),
                         ),
-                      ),
-                      onPressed: () async {
-                        try {
-                          provider.login(fromProvider, context);
-                        } catch (error) {
-                          print('Error al enviar la solicitud: $error');
-                        }
-                      },
-                      child: const Text(
-                        'Acceder',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
+                        onPressed: () async {
+                          setState(() {
+                            try {
+                              provider.ischeck = true;
+                              provider.login(fromProvider, context);
+                            } catch (error) {
+                              print('Error al enviar la solicitud: $error');
+                            }
+                          });
+                        },
+                        child: (!provider.ischeck)
+                            ? const Text(
+                                'Acceder',
+                                style: TextStyle(color: Colors.white),
+                              )
+                            : const CircularProgressIndicator()),
                   ),
                   SizedBox(height: size.width * .01),
                 ],
@@ -131,28 +135,3 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
     );
   }
 }
-//   void _mostrarDialogo(BuildContext context) {
-//     showDialog(
-//       context: context,
-//       builder: (BuildContext context) {
-//         return AlertDialog(
-//           title: const Text('Confirmación'),
-//           content: const Text('¿Deseas ir a la pantalla siguiente?'),
-//           actions: <Widget>[
-//             TextButton(
-//               onPressed: () {
-//                 Navigator.of(context).pop(); // Cerrar el diálogo
-//                 Navigator.pushReplacementNamed(context, '/evaluadorHome');
-//               },
-//               child: const Text('Evaluador'),
-//             ),
-//             TextButton(
-//               onPressed: () async {},
-//               child: const Text('Usuario'),
-//             ),
-//           ],
-//         );
-//       },
-//     );
-//   }
-// }
