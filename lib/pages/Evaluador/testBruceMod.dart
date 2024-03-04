@@ -1,11 +1,12 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/index.dart';
-import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
+import 'package:vitalmovecbi/provider/testbruce/BruceFromProvider.dart';
+import 'package:vitalmovecbi/provider/testbruce/ProviderBruce.dart';
+import 'package:vitalmovecbi/widgets/loginTextField.dart';
 
 class TestBruceMod extends StatefulWidget {
-  const TestBruceMod({super.key});
+  const TestBruceMod({Key? key}) : super(key: key);
 
   @override
   State<TestBruceMod> createState() => _TestBruceMod();
@@ -13,17 +14,30 @@ class TestBruceMod extends StatefulWidget {
 
 class _TestBruceMod extends State<TestBruceMod> {
   final _formKey = GlobalKey<FormState>();
+  DateTime? selectedDate;
+  String dropdownValue = 'Etapa';
+  String? rhType;
 
-  get personas => null;
+  String dropdownValuesrh = 'Seleccione etapa';
 
-  // List<Persona> personas = [
-  //   Persona("Edison Cuaran", "C.C 1556458585"),
-  // ];
+  var itemsetapa = [
+    'Seleccione etapa',
+    'Etapa 1',
+    'Etapa 2',
+    'Etapa 3',
+    'Etapa 4',
+    'Etapa 5',
+    'Etapa 6',
+    'Etapa 7',
+    'Etapa 8',
+    'Etapa 9',
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final size =
-        MediaQuery.of(context).size; // Definir 'size' aquí si es necesario
+    final fromProvider = Provider.of<BruceFromProvider>(context, listen: false);
+    final provider = Provider.of<BruceProvider>(context, listen: false);
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colores.primaryColor,
@@ -57,39 +71,51 @@ class _TestBruceMod extends State<TestBruceMod> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 30),
-                  inputLogin(
-                    'Etapa final',
-                    // size.width,
+                  const SizedBox(height: 50),
+                  Consumer(
+                    builder: (context, value, child) => InputLogin(
+                        onChanged: (value) => fromProvider.saturacion = value,
+                        campo: "Saturación",
+                        tamano: size.width,
+                        tipo: TextInputType.number),
                   ),
-                  const SizedBox(height: 15),
-                  inputLogin(
-                    'Porcentaje (%) elevacion final',
-                    // size.width,
-                  ),
-                  const SizedBox(height: 15),
-                  inputLogin(
-                    'Velocidad Final',
-                    // size.width,
-                  ),
-                  const SizedBox(height: 15),
-                  inputLogin(
-                    'Frecuencia Cardiaca Maxima',
-                    // size.width,
-                  ),
-                  const SizedBox(height: 15),
-                  inputLogin(
-                    'V02',
-                    // size.width,
-                  ),
-                  const SizedBox(height: 15),
-                  inputLogin(
-                    'Saturacion V02',
-                    // size.width,
+                  const SizedBox(height: 20),
+                  Container(
+                    width: size.width * .5,
+                    padding: const EdgeInsets.symmetric(horizontal: 18),
+                    decoration: BoxDecoration(
+                      color: const Color(0xffF5F5F5),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.shade300,
+                          blurRadius: 3,
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: DropdownButton<String>(
+                      value: dropdownValuesrh,
+                      icon: const Icon(Icons.keyboard_arrow_down),
+                      alignment: Alignment.bottomLeft,
+                      items: itemsetapa.map((String item) {
+                        return DropdownMenuItem<String>(
+                          value: item,
+                          child: Text(item),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownValuesrh = newValue!;
+                          rhType = newValue;
+                          fromProvider.etapa = newValue;
+                        });
+                      },
+                      dropdownColor: Colors.white,
+                      underline: Container(),
+                    ),
                   ),
                   const SizedBox(height: 50),
                   Container(
-                    // width: size.width,
                     margin: EdgeInsets.symmetric(horizontal: size.width * 0.1),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -105,31 +131,18 @@ class _TestBruceMod extends State<TestBruceMod> {
                           borderRadius: BorderRadius.circular(40),
                         ),
                       ),
-                      onPressed: () {
-                        _mostrarDialogo(context);
+                      onPressed: () async {
+                        try {
+                          provider.bruce(fromProvider, context);
+                        } catch (error) {
+                          print('Error al enviar la solicitud: $error');
+                        }
                       },
                       child: const Text('Guardar Registro'),
                     ),
                   ),
                 ],
               ),
-              // personas.map((persona) => Column(
-              //       children: [
-              //         const SizedBox(height: 20),
-              //         const Align(
-              //           alignment: Alignment.centerLeft,
-              //           child: Text(
-              //             'Usuario seleccionado',
-              //             style: TextStyle(
-              //               fontSize: 16,
-              //               fontWeight: FontWeight.bold,
-              //             ),
-              //           ),
-              //         ),
-              //         const SizedBox(height: 20),
-              //         lista(persona.nombre, persona.cedula),
-              //       ],
-              //     )),
             ],
           ),
         ),
@@ -138,30 +151,30 @@ class _TestBruceMod extends State<TestBruceMod> {
   }
 }
 
-void _mostrarDialogo(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('Guardado exitosamente'),
-        content: const Text('Resultados Test De Bruce '),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(); // Cerrar el diálogo
-              Navigator.pushNamed(context, '/');
-            },
-            child: const Text('Realizar Test De Caminata '),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(); // Cerrar el diálogo
-              Navigator.pushNamed(context, '/Bruce');
-            },
-            child: const Text('Realizar Test De Bruce Nuevamente'),
-          ),
-        ],
-      );
-    },
-  );
-}
+// void _mostrarDialogo(BuildContext context) {
+//   showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         title: const Text('Guardado exitosamente'),
+//         content: const Text('Resultados Test De Bruce '),
+//         actions: <Widget>[
+//           TextButton(
+//             onPressed: () {
+//               Navigator.of(context).pop();
+//               Navigator.pushNamed(context, '/');
+//             },
+//             child: const Text('Realizar Test De Caminata '),
+//           ),
+//           TextButton(
+//             onPressed: () {
+//               Navigator.of(context).pop();
+//               Navigator.pushNamed(context, '/Bruce');
+//             },
+//             child: const Text('Realizar Test De Bruce Nuevamente'),
+//           ),
+//         ],
+//       );
+//     },
+//   );
+// }

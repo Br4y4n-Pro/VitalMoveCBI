@@ -53,7 +53,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
   Widget build(BuildContext context) {
     final fromProvider =
         Provider.of<RegistroFromProvider>(context, listen: false);
-    final provider = Provider.of<RegistroProvider>(context, listen: false);
 
     final size = MediaQuery.of(context).size;
 
@@ -78,7 +77,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                   ),
                 ),
                 const SizedBox(height: 15),
-
                 Container(
                     height: 100,
                     width: 100,
