@@ -1,7 +1,6 @@
 // ignore_for_file: file_names, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
 import 'package:vitalmovecbi/pages/Evaluador/RegistroUsuario.dart';
 import 'package:vitalmovecbi/pages/Evaluador/Regdos.dart';
 import 'package:vitalmovecbi/pages/Evaluador/actiSema.dart';
@@ -17,7 +16,6 @@ class Registro extends StatefulWidget {
 
 class _RegistroState extends State<Registro> {
   final controller = PageController(initialPage: 0);
-  final registroData = Usuario();
   @override
   void dispose() {
     controller.dispose();

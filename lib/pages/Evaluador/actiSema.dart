@@ -16,12 +16,8 @@ class RegistroUsertres extends StatefulWidget {
 class _RegistroUsertres extends State<RegistroUsertres> {
   final _formKey = GlobalKey<FormState>();
 
-  var itemsAct = [
-    '0 = Sedentario',
-    '1 a 2 = bajo',
-    '3 a 7 = Moderado',
-  ];
-  String dropdownValuesAct = '0 = Sedentario';
+  var itemsAct = ['Selecciona una opcion', '0', '1', '2', '3', '5', '6', '7'];
+  String dropdownValuesAct = 'Selecciona una opcion';
   @override
   Widget build(BuildContext context) {
     final fromProvider =
@@ -41,7 +37,7 @@ class _RegistroUsertres extends State<RegistroUsertres> {
               const Text(
                 '¿Cuantos dias por semana realiza actividad fisica ?',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -67,9 +63,11 @@ class _RegistroUsertres extends State<RegistroUsertres> {
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
-                    value: dropdownValuesAct,
+                    value: (fromProvider.actividadsemana.isNotEmpty)
+                        ? fromProvider.actividadsemana
+                        : dropdownValuesAct,
                     icon: const Icon(Icons.keyboard_arrow_down),
-                    items: itemsAct.map((String item) {
+                    items: itemsAct.map((dynamic item) {
                       return DropdownMenuItem<String>(
                         value: item,
                         child: Text(item),
@@ -93,6 +91,8 @@ class _RegistroUsertres extends State<RegistroUsertres> {
                   campo: 'Talla (M)',
                   tamano: size.width,
                   tipo: const TextInputType.numberWithOptions(decimal: true),
+                  initValue:
+                      (fromProvider.talla.isNotEmpty) ? fromProvider.talla : '',
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor ingrese su talla';
@@ -125,6 +125,8 @@ class _RegistroUsertres extends State<RegistroUsertres> {
                   campo: 'Peso (Kg)',
                   tamano: size.width,
                   tipo: const TextInputType.numberWithOptions(decimal: true),
+                  initValue:
+                      (fromProvider.peso.isNotEmpty) ? fromProvider.peso : '',
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor ingrese su peso';
@@ -147,6 +149,46 @@ class _RegistroUsertres extends State<RegistroUsertres> {
                   },
                 ),
               ),
+              const SizedBox(height: 20),
+              const Text(
+                "¿Depende de ayuda para realizar actividad?",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Consumer(
+                builder: (context, value, child) => InputLogin(
+                  onChanged: (value) => fromProvider.dependencia = value,
+                  initValue: (fromProvider.dependencia.isNotEmpty)
+                      ? fromProvider.dependencia
+                      : '',
+                  campo: 'Ejemplo : No',
+                  tamano: size.width,
+                  tipo: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Responder Pregunta';
+                    }
+
+                    // Expresión regular para validar texto y espacios
+                    final RegExp alergiasRegExp = RegExp(r'^[a-zA-Z\s]+$');
+
+                    if (!alergiasRegExp.hasMatch(value)) {
+                      return 'Ingrese un valor válido para alergias (solo texto)';
+                    }
+
+                    // Verificación de longitud mínima y máxima
+                    if (value.length < 2 || value.length > 100) {
+                      return 'La longitud de las alergias debe estar entre 10 y 200 caracteres';
+                    }
+
+                    // Aquí puedes agregar otras validaciones según tus requisitos
+                    return null;
+                  },
+                ),
+              ),
               const SizedBox(height: 50),
               Container(
                 width: size.width,
@@ -161,8 +203,14 @@ class _RegistroUsertres extends State<RegistroUsertres> {
                             fontSize: 18, fontWeight: FontWeight.bold),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40))),
-                    onPressed: () {
-                      provider.registro(fromProvider, context);
+                    onPressed: () async {
+                      try {
+                        await provider.registro(fromProvider, context);
+      
+                        
+                      } catch (e) {
+                        print('Error al enviar la solicitud: $e');
+                      }
                     },
                     child: const Text('Registrar')),
               ),

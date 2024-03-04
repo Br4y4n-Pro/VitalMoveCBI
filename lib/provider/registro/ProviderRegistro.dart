@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:vitalmovecbi/provider/registro/RegistroFromProvider.dart';
 
 import '../../Api/AllApi.dart';
@@ -10,35 +7,102 @@ import '../../Modelos/UsuariosModelo.dart';
 
 class RegistroProvider extends ChangeNotifier {
   List<Usuario> registroUsuario = [];
-  String? filename = '';
-  File? _imgperfil;
-  File? get imgperfil => _imgperfil;
 
-  Future<void> seleccionarImagen(
-      BuildContext context, ImageSource source) async {
-    final picker = ImagePicker();
-    XFile? image = await picker.pickImage(source: source);
-
-    if (image == null) {
-      print('No se seleccionó ninguna imagen');
-
-      return;
-    } else {
-      filename = image.name;
-      _imgperfil = File(image.path);
-      notifyListeners();
-    }
+  void limpiarDatos(RegistroFromProvider fromProvider) {
+    fromProvider.dni = '';
+    fromProvider.nombres = '';
+    fromProvider.apellidos = '';
+    fromProvider.genero = '';
+    fromProvider.direccion = '';
+    fromProvider.dependencia = '';
+    fromProvider.fechaNacimiento;
+    fromProvider.talla = '';
+    fromProvider.rh = '';
+    fromProvider.nombreEmergencia = '';
+    fromProvider.parentesco = '';
+    fromProvider.telefonoEmergencia = '';
+    fromProvider.eps = '';
+    fromProvider.alergias = '';
+    fromProvider.contrasena = '';
+    fromProvider.actividadsemana = '';
+    fromProvider.nivelsemana = '';
+    fromProvider.imgperfil;
+    fromProvider.rol = '';
+    fromProvider.grupo = '';
+    fromProvider.peso = '';
+    notifyListeners(); // Notificar a los oyentes sobre el cambio
   }
 
   registro(RegistroFromProvider fromProvider, BuildContext context) async {
-    final data = FormData.fromMap({
+    // Verificar que los campos obligatorios no estén vacíos
+    if (fromProvider.dni.isEmpty ||
+        fromProvider.nombres.isEmpty ||
+        fromProvider.apellidos.isEmpty ||
+        fromProvider.genero.isEmpty ||
+        fromProvider.direccion.isEmpty ||
+        fromProvider.dependencia.isEmpty ||
+        fromProvider.fechaNacimiento == null ||
+        fromProvider.talla.isEmpty ||
+        fromProvider.rh.isEmpty ||
+        fromProvider.nombreEmergencia.isEmpty ||
+        fromProvider.parentesco.isEmpty ||
+        fromProvider.telefonoEmergencia.isEmpty ||
+        fromProvider.eps.isEmpty ||
+        fromProvider.alergias.isEmpty ||
+        fromProvider.contrasena.isEmpty ||
+        fromProvider.actividadsemana.isEmpty ||
+        fromProvider.grupo.isEmpty ||
+        fromProvider.peso.isEmpty ||
+        fromProvider.imgperfil!.path.isEmpty) {
+      // Mostrar mensaje de error o realizar alguna acción apropiada
+      return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          elevation: 40,
+          content: Container(
+            // padding: const EdgeInsets.all(8),
+            height: 70,
+            decoration: BoxDecoration(
+                color: Colors.red.shade600,
+                borderRadius: const BorderRadius.all(Radius.circular(20))),
+            child: const Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.info_outline_rounded,
+                    color: Colors.white,
+                    weight: 40,
+                    size: 30,
+                  ),
+                  SizedBox(width: 10),
+                  Wrap(
+                      alignment: WrapAlignment.center,
+                      direction:
+                          Axis.horizontal, // Ajusta la dirección del texto
+                      spacing: 8.0, // Espacio entre elementos envueltos
+                      children: [
+                        Text(
+                          'Faltan datos por llenar',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 15),
+                        ),
+                      ]),
+                ],
+              ),
+            ),
+          )));
+      // print('${jsonResponse['mensaje']}');
+    }
+
+    FormData formData = FormData.fromMap({
       "dni": fromProvider.dni,
       "nombres": fromProvider.nombres,
       "apellidos": fromProvider.apellidos,
       "genero": fromProvider.genero,
       "direccion": fromProvider.direccion,
       "dependencia": fromProvider.dependencia,
-      "fechanacimiento": fromProvider.fechaNacimiento,
+      "fechanacimiento": fromProvider.fechaNacimiento?.toIso8601String(),
       "talla": fromProvider.talla,
       "rh": fromProvider.rh,
       "nombreemergencia": fromProvider.nombreEmergencia,
@@ -48,16 +112,22 @@ class RegistroProvider extends ChangeNotifier {
       "alergias": fromProvider.alergias,
       "contrasena": fromProvider.contrasena,
       "actividadsemana": fromProvider.actividadsemana,
-      "nivelsemana": fromProvider.nivelsemana,
-      "imgperfil": _imgperfil != null
-          ? await MultipartFile.fromFile(_imgperfil!.path, filename: filename)
-          : null,
-      "rol": fromProvider.rol,
-      "grupo": fromProvider.grupo
+      "grupo": fromProvider.grupo,
     });
-    print(data);
 
-    AllApi.httpPost('addUser', data as Map<String, dynamic>).then((rpta) {
+// Agrega la imagen como un archivo al FormData
+    if (fromProvider.imgperfil != null) {
+      formData.files.add(MapEntry(
+        "imgperfil",
+        await MultipartFile.fromFile(fromProvider.imgperfil!.path),
+      ));
+    }
+    print(formData);
+
+    
+
+    AllApi.httpPost('addUser', formData)
+        .then((dynamic rpta) {
       print("ESperando");
       print(rpta.runtimeType);
 
@@ -65,14 +135,6 @@ class RegistroProvider extends ChangeNotifier {
       print(jsonResponse);
 
       if (jsonResponse['rp'] == 'si') {
-        final Usuarios usuarios = Usuarios.fromlist([jsonResponse]);
-        this.registroUsuario = usuarios.dato;
-        if (jsonResponse['rol'] == 1) {
-          Navigator.pushReplacementNamed(context, '/evaluadorHome');
-        } else {
-          Navigator.pushReplacementNamed(context, '/homeUsuario');
-        }
-      } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             behavior: SnackBarBehavior.floating,
             backgroundColor: Colors.transparent,
@@ -81,7 +143,7 @@ class RegistroProvider extends ChangeNotifier {
               // padding: const EdgeInsets.all(8),
               height: 70,
               decoration: BoxDecoration(
-                  color: Colors.red.shade600,
+                  color: Colors.green.shade600,
                   borderRadius: const BorderRadius.all(Radius.circular(20))),
               child: Center(
                 child: Row(
@@ -103,7 +165,7 @@ class RegistroProvider extends ChangeNotifier {
                 ),
               ),
             )));
-        // print('${jsonResponse['mensaje']}');
+        Navigator.pushReplacementNamed(context, '/evaluadorHome');
       }
     }).catchError((onError) {
       print(onError.toString());

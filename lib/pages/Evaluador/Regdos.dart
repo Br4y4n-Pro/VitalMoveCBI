@@ -49,6 +49,9 @@ class _RegistroUserdosState extends State<RegistroUserdos> {
                           campo: 'Nombre completo',
                           tamano: size.width,
                           tipo: TextInputType.name,
+                          initValue: (fromProvider.nombreEmergencia.isNotEmpty)
+                              ? fromProvider.nombreEmergencia
+                              : '',
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Por favor ingrese su nombre completo';
@@ -73,6 +76,10 @@ class _RegistroUserdosState extends State<RegistroUserdos> {
                           campo: 'Numero de Telefono',
                           tamano: size.width,
                           tipo: TextInputType.phone,
+                          initValue:
+                              (fromProvider.telefonoEmergencia.isNotEmpty)
+                                  ? fromProvider.telefonoEmergencia
+                                  : '',
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Por favor ingrese su Numero de telefono';
@@ -96,13 +103,16 @@ class _RegistroUserdosState extends State<RegistroUserdos> {
                           campo: 'Parentesco',
                           tamano: size.width,
                           tipo: TextInputType.text,
+                          initValue: (fromProvider.parentesco.isNotEmpty)
+                              ? fromProvider.parentesco
+                              : '',
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Por favor ingrese su parentesco';
                             }
 
                             final RegExp parentezcoRegExp =
-                                RegExp(r'^[a-zA-Z ]{5,20}$');
+                                RegExp(r'^[a-zA-Z ]{5,50}$');
 
                             if (!parentezcoRegExp.hasMatch(value)) {
                               return 'El parentezco debe contener solo letras y tener entre 5 y 20 caracteres';

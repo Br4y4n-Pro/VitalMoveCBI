@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, avoid_print
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -21,15 +22,15 @@ class RegistroUsuario extends StatefulWidget {
 class _RegistroUsuarioState extends State<RegistroUsuario> {
   //Controladores de los textfield de donde se envia la info
 
-  File? imagenPath;
   final _formKey = GlobalKey<FormState>();
-
+  Uint8List webImage = Uint8List(8);
   DateTime? selectedDate;
   String dropdownValue = 'A+';
-  // List of items in our dropdown menu inputLoginRe
-  String dropdownValuesrh = 'A+'; // Valor inicial
-
+  String dropdownValuesrh = 'Selecciona una opcion'; // Valor inicial
+  String? filename = '';
+  File? _imgperfil;
   var itemsrh = [
+    'Selecciona una opcion',
     'A+',
     'A-',
     'B+',
@@ -40,14 +41,22 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
     'O-',
   ];
 
-  String dropdownValues = 'Masculino'; // Valor inicial
-  var generoItems = ['Masculino', 'Femenino']; // Lista de géneros
+  String dropdownValues = 'Selecciona una opcion'; // Valor inicial
+  var generoItems = [
+    'Selecciona una opcion',
+    'Masculino',
+    'Femenino'
+  ]; // Lista de géneros
 // Cargar y mostrar imagen en el formulario
+
   @override
   Widget build(BuildContext context) {
     final fromProvider =
         Provider.of<RegistroFromProvider>(context, listen: false);
+    final provider = Provider.of<RegistroProvider>(context, listen: false);
+
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -80,9 +89,35 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                       child: Stack(
                         alignment: const Alignment(1, 1),
                         children: [
-                          const CircleAvatar(
-                            radius: 50,
-                            backgroundImage: AssetImage("img/Usuario/usu2.png"),
+                          Consumer(
+                            builder: (context, fromProvider, child) =>
+                                Container(
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(100)),
+                              ),
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(100)),
+                                child: _imgperfil != null
+                                    ? !kIsWeb
+                                        ? Image.file(
+                                            _imgperfil!,
+                                            fit: BoxFit.cover,
+                                          )
+                                        : Image.memory(
+                                            webImage,
+                                            fit: BoxFit.cover,
+                                          )
+                                    : const Image(
+                                        image:
+                                            AssetImage("img/Usuario/usu2.png"),
+                                        fit: BoxFit.cover,
+                                      ),
+                              ),
+                            ),
                           ),
                           Container(
                             decoration: const BoxDecoration(
@@ -92,7 +127,70 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                             child: IconButton(
                                 onPressed: () {
                                   print("Doy click");
-                                  _alertDialogo(context);
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          elevation: 500,
+                                          title: const Text(
+                                              'Selecciona una opción'),
+                                          content: Container(
+                                            width: 100,
+                                            height: 100,
+                                            decoration: const BoxDecoration(
+                                              image: DecorationImage(
+                                                image: AssetImage(
+                                                    "img/General/galecam.png"),
+                                                fit: BoxFit
+                                                    .contain, // Añade un fit para ajustar la imagen dentro del contenedor
+                                              ),
+                                            ),
+                                          ),
+                                          actions: <Widget>[
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    _pickImageCamera(
+                                                        fromProvider);
+                                                    Navigator.of(context).pop();
+                                                    print("-------");
+                                                    print(
+                                                        fromProvider.imgperfil);
+                                                  },
+                                                  child: const Column(
+                                                    children: [
+                                                      Icon(Icons.camera_alt),
+                                                      Text('Cámara'),
+                                                    ],
+                                                  ),
+                                                ),
+                                                GestureDetector(
+                                                  onTap: () async {
+                                                    _pickImageGallery(
+                                                        fromProvider);
+                                                    Navigator.of(context).pop();
+                                                    print("-------");
+
+                                                    print(
+                                                        fromProvider.imgperfil);
+                                                  },
+                                                  child: const Column(
+                                                    children: [
+                                                      Icon(Icons.photo),
+                                                      Text('Galería'),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        );
+                                      });
                                 },
                                 icon: const Icon(
                                   Icons.camera_alt,
@@ -115,18 +213,18 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                 Consumer(
                   builder: (context, value, child) => InputLogin(
                     onChanged: (value) => fromProvider.nombres = value,
-                    campo: 'Nombre',
+                    campo: 'Nombres',
                     tamano: size.width,
                     tipo: TextInputType.name,
-                    value: (fromProvider.nombres.isNotEmpty)
+                    initValue: (fromProvider.nombres.isNotEmpty)
                         ? fromProvider.nombres
                         : '',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Por favor ingrese su nombre';
                       }
-                      if (value.length < 2 || value.length > 10) {
-                        return 'El nombre debe tener entre 2 y 10 caracteres';
+                      if (value.length < 2 || value.length > 50) {
+                        return 'El nombre debe tener entre 2 y 50 caracteres';
                       }
                       final RegExp regex = RegExp(
                         r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$',
@@ -142,18 +240,18 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                 Consumer(
                   builder: (context, value, child) => InputLogin(
                     onChanged: (value) => fromProvider.apellidos = value,
-                    value: (fromProvider.nombres.isNotEmpty)
+                    initValue: (fromProvider.apellidos.isNotEmpty)
                         ? fromProvider.apellidos
                         : '',
-                    campo: 'Apellido',
+                    campo: 'Apellidos',
                     tamano: size.width,
                     tipo: TextInputType.name,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Por favor ingrese su apellido';
                       }
-                      if (value.length < 2 || value.length > 10) {
-                        return 'El apellido debe tener entre 2 y 10 caracteres';
+                      if (value.length < 2 || value.length > 50) {
+                        return 'El apellido debe tener entre 2 y 50 caracteres';
                       }
                       final RegExp regex = RegExp(
                         r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$',
@@ -168,10 +266,15 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                 const SizedBox(height: 10),
                 Consumer(
                   builder: (context, value, child) => InputLogin(
-                    onChanged: (value) => fromProvider.dni = value,
+                    onChanged: (value) {
+                      fromProvider.dni = value;
+                      fromProvider.contrasena = value;
+                    },
                     campo: 'Documento de Identidad',
                     tamano: size.width,
                     tipo: TextInputType.number,
+                    initValue:
+                        (fromProvider.dni.isNotEmpty) ? fromProvider.dni : '',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Por favor ingrese su documento de identidad';
@@ -201,6 +304,9 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: DateTimeFormField(
+                          initialValue: (fromProvider.fechaNacimiento == null)
+                              ? fromProvider.fechaNacimiento
+                              : null,
                           mode: DateTimeFieldPickerMode
                               .date, // Solo permite seleccionar la fecha
                           decoration: InputDecoration(
@@ -245,7 +351,9 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ),
-                      value: dropdownValues,
+                      value: (fromProvider.genero.isNotEmpty)
+                          ? fromProvider.genero
+                          : dropdownValues,
                       icon: const Icon(Icons.keyboard_arrow_down),
                       items: generoItems.map((String item) {
                         return DropdownMenuItem<String>(
@@ -253,12 +361,10 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                           child: Text(item),
                         );
                       }).toList(),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          fromProvider.genero = newValue!;
-                          dropdownValues = newValue;
-                        });
-                      },
+                      onChanged: (value) => setState(() {
+                        fromProvider.genero = value!;
+                        dropdownValues = value;
+                      }),
                       dropdownColor: Colors.white,
                       underline: Container(),
                     ),
@@ -285,7 +391,9 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ),
-                      value: dropdownValuesrh,
+                      value: (fromProvider.rh.isNotEmpty)
+                          ? fromProvider.rh
+                          : dropdownValuesrh,
                       icon: const Icon(Icons.keyboard_arrow_down),
                       items: itemsrh.map((String item) {
                         return DropdownMenuItem<String>(
@@ -308,9 +416,13 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                 const SizedBox(height: 10),
                 Consumer(
                   builder: (context, value, child) => InputLogin(
+                    onChanged: (value) => fromProvider.direccion = value,
                     campo: 'Dirección',
                     tamano: size.width,
                     tipo: TextInputType.text,
+                    initValue: (fromProvider.direccion.isNotEmpty)
+                        ? fromProvider.direccion
+                        : '',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Por favor ingrese su dirección';
@@ -333,9 +445,12 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
 
                 Consumer(
                   builder: (context, value, child) => InputLogin(
+                    onChanged: (value) => fromProvider.eps = value,
                     campo: 'EPS',
                     tamano: size.width,
                     tipo: TextInputType.text,
+                    initValue:
+                        (fromProvider.eps.isNotEmpty) ? fromProvider.eps : '',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Por favor ingrese su EPS';
@@ -358,6 +473,10 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                 // Validación para el campo "Alergias" como texto
                 Consumer(
                   builder: (context, value, child) => InputLogin(
+                    onChanged: (value) => fromProvider.alergias = value,
+                    initValue: (fromProvider.alergias.isNotEmpty)
+                        ? fromProvider.alergias
+                        : '',
                     campo: 'Alergias',
                     tamano: size.width,
                     tipo: TextInputType.text,
@@ -388,22 +507,26 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
 
                 Consumer(
                   builder: (context, value, child) => InputLogin(
+                    onChanged: (value) => fromProvider.grupo = value,
                     campo: 'Grupo',
                     tamano: size.width,
                     tipo: TextInputType.text,
+                    initValue: (fromProvider.grupo.isNotEmpty)
+                        ? fromProvider.grupo
+                        : '',
                     validator: (value) {
+                      final RegExp regex = RegExp(
+                        r'^[a-zA-Z0-9\s.,#-]+$',
+                      );
                       if (value == null || value.isEmpty) {
-                        return 'Por favor ingrese su grupo';
+                        return 'Por favor ingrese el Grupo';
                       }
-
-                      // Expresión regular para validar que el valor sea exactamente "Grupo 1" o "Grupo 2"
-                      final RegExp grupoRegExp = RegExp(r'^(Grupo 1|Grupo 2)$');
-
-                      if (!grupoRegExp.hasMatch(value)) {
-                        return 'El grupo debe ser "Grupo 1" o "Grupo 2"';
+                      if (value.length < 2 || value.length > 50) {
+                        return 'El nombre del grupo debe tener entre 2 y 50 caracteres';
                       }
-
-                      // Aquí puedes agregar otras validaciones según tus requisitos
+                      if (!regex.hasMatch(value)) {
+                        return 'El nombre del no es válido';
+                      }
                       return null;
                     },
                   ),
@@ -416,56 +539,66 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
     );
   }
 
-  AlertDialog _alertDialogo(BuildContext context) {
-    final registroProvider =
-        Provider.of<RegistroProvider>(context, listen: false);
+  Future _pickImageGallery(RegistroFromProvider fromProvider) async {
+    if (!kIsWeb) {
+      final returnedImage =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (returnedImage == null) return;
 
-    return AlertDialog(
-      title: const Text('Selecciona una opción'),
-      content: Container(
-        width: 100,
-        height: 100,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("img/General/galecam.png"),
-            fit: BoxFit
-                .cover, // Añade un fit para ajustar la imagen dentro del contenedor
-          ),
-        ),
-      ),
-      actions: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).pop(); // Cerrar el diálogo
-                registroProvider.seleccionarImagen(context, ImageSource.camera);
-              },
-              child: const Column(
-                children: [
-                  Icon(Icons.camera_alt),
-                  Text('Cámara'),
-                ],
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).pop(); // Cerrar el diálogo
-                registroProvider.seleccionarImagen(
-                    context, ImageSource.gallery);
-              },
-              child: const Column(
-                children: [
-                  Icon(Icons.photo),
-                  Text('Galería'),
-                ],
-              ),
-            ),
-          ],
-        )
-      ],
-    );
+      setState(() {
+        _imgperfil = File(returnedImage.path);
+        print("____");
+        print(_imgperfil);
+        fromProvider.imgperfil = _imgperfil;
+      });
+    } else if (kIsWeb) {
+      final returnedImage =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (returnedImage == null) return;
+      var f = await returnedImage.readAsBytes();
+      setState(() {
+        webImage = f;
+        _imgperfil = File('a');
+        print("____");
+        print(_imgperfil);
+        fromProvider.imgperfil = File(returnedImage.path);
+      });
+    }
+  }
+
+  Future _pickImageCamera(RegistroFromProvider fromProvider) async {
+    if (!kIsWeb) {
+      final returnedImage =
+          await ImagePicker().pickImage(source: ImageSource.camera);
+      if (returnedImage == null) return;
+
+      setState(() {
+        _imgperfil = File(returnedImage.path);
+        print("____");
+        print(_imgperfil);
+        fromProvider.imgperfil = _imgperfil;
+      });
+    } else if (kIsWeb) {
+      final returnedImage =
+          await ImagePicker().pickImage(source: ImageSource.camera);
+      if (returnedImage == null) return;
+      var f = await returnedImage.readAsBytes();
+      setState(() {
+        webImage = f;
+        _imgperfil = File('a');
+        print("____");
+        print(_imgperfil);
+        fromProvider.imgperfil = File(returnedImage.path);
+      });
+    }
   }
 }
+
+//     // Añade la lógica para agregar el archivo de imagen si está presente
+//     if (_imgperfil != null) {
+//       data["imgperfil"] = await MultipartFile.fromFile(_imgperfil!.path,
+//           filename: filename ?? "image.jpg");
+//     }
+
+
+
