@@ -16,9 +16,9 @@ class LoginProvider extends ChangeNotifier {
     print(data);
 
     AllApi.httpPost('login', data).then((rpta) {
+      
       print("ESperando");
       print(rpta.runtimeType);
-
       final Map<String, dynamic> jsonResponse = rpta;
       print(jsonResponse);
 
