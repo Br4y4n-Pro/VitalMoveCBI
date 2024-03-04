@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.fredokaTextTheme(),
       ),
-      initialRoute: '/usuarioLogin',
+      initialRoute: '/pagePeso',
       routes: {
         '/usuarioLogin': (context) => const UsuarioLogin(),
         '/registerUser3': (context) =>  const RegistroUsertres(),
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
         '/registerUser': (context) =>  RegistroUsuario(),
         '/homeUsuario': (context) => const HomeUser(),
         '/contact': (context) => const PerfilVistaContact(),
-        '/perfil': (context) =>  PerfilVista(),
+        '/perfil': (context) => PerfilVista(),
         '/evaluadorHome': (context) => const HomeEvaluador(),
         '/estadisticas': (context) => const Estadisticas(),
         '/pageBruce': (context) => const PageBruces(),
