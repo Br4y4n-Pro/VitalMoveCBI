@@ -10,6 +10,7 @@ import '../../Modelos/UsuariosModelo.dart';
 
 class RegistroProvider extends ChangeNotifier {
   List<Usuario> registroUsuario = [];
+  bool ischeck = false;
 
   void limpiarDatos(RegistroFromProvider fromProvider) {
     fromProvider.dni = '';
@@ -58,6 +59,9 @@ class RegistroProvider extends ChangeNotifier {
         fromProvider.peso.isEmpty ||
         fromProvider.imgperfil!.path.isEmpty) {
       // Mostrar mensaje de error o realizar alguna acción apropiada
+      ischeck = false;
+      notifyListeners();
+
       return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           behavior: SnackBarBehavior.floating,
           backgroundColor: Colors.transparent,
@@ -95,6 +99,7 @@ class RegistroProvider extends ChangeNotifier {
               ),
             ),
           )));
+
       // print('${jsonResponse['mensaje']}');
     }
 
@@ -131,6 +136,8 @@ class RegistroProvider extends ChangeNotifier {
     print(formData);
 
     AllApi.httpPost('addUser', formData).then((dynamic rpta) {
+      ischeck = false;
+
       print("ESperando");
       print(rpta.runtimeType);
 
@@ -138,6 +145,8 @@ class RegistroProvider extends ChangeNotifier {
       print(jsonResponse);
       limpiarDatos(fromProvider);
       if (jsonResponse['rp'] == 'si') {
+                  ischeck = false;
+
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             behavior: SnackBarBehavior.floating,
             backgroundColor: Colors.transparent,

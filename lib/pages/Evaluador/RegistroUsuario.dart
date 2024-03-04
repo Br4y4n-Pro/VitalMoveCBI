@@ -113,8 +113,8 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                             ),
                           ),
                           Container(
-                            height: 100,
-                            width: 100,
+                            height: 45,
+                            width: 45,
                             decoration: const BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(100)),
