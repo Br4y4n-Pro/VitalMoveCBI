@@ -1,10 +1,9 @@
-
 // ignore_for_file: file_names, avoid_print
 
 import 'package:dio/dio.dart';
 
 class AllApi {
-  static String url = 'http://10.207.80.142:3050/';
+  static String url = 'https://backend-vitalmove.onrender.com/';
 
   static final Dio _dio = Dio();
 
@@ -27,7 +26,7 @@ class AllApi {
     }
   }
 
-  static Future httpPost(String path, Map<String, dynamic> data) async {
+  static Future httpPost(String path, data) async {
     print(data);
     // final fromData = await FormData.fromMap(data);
 

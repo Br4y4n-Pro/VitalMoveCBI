@@ -16,7 +16,6 @@ class Registro extends StatefulWidget {
 
 class _RegistroState extends State<Registro> {
   final controller = PageController(initialPage: 0);
-
   @override
   void dispose() {
     controller.dispose();
@@ -41,7 +40,7 @@ class _RegistroState extends State<Registro> {
             child: PageView(
               physics: const NeverScrollableScrollPhysics(),
               controller: controller,
-              children: const [
+              children: [
                 RegistroUsuario(),
                 RegistroUserdos(),
                 RegistroUsertres(),
