@@ -14,7 +14,7 @@ class PagePeso extends StatefulWidget {
 
 class _PagePesoState extends State<PagePeso> {
   List<double> pesoData = [
-    25.5,
+    22.5,
     20.1,
     22.3,
     25.5,
@@ -80,7 +80,17 @@ class _PagePesoState extends State<PagePeso> {
                                         fontSize: 16),
                                   ),
                                 ),
-                                Padding(
+
+                                const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Normal: 22.5',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16),
+                                  ),
+                                ),
+                                const Padding(
                                   padding: EdgeInsets.all(20.0),
                                   child: Text(
                                     "Felicidades, ¡has alcanzado un estado óptimo de salud! Según las estadísticas del mes, tu índice de masa corporal (IMC) se encuentra dentro del rango saludable, lo que indica que estás manteniendo un peso adecuado para tu altura. Mantener un peso saludable es fundamental para prevenir enfermedades crónicas y promover una vida plena y activa. ¡Sigue así y continúa con tus hábitos saludables para mantener tu bienestar a largo plazo!",
@@ -126,7 +136,16 @@ class _PagePesoState extends State<PagePeso> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                   ),
-                  Padding(
+
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Normal: 22.5',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                  ),
+                  const Padding(
                     padding: EdgeInsets.all(20.0),
                     child: Text(
                       "Felicidades, ¡has alcanzado un estado óptimo de salud! Según las estadísticas del mes, tu índice de masa corporal (IMC) se encuentra dentro del rango saludable, lo que indica que estás manteniendo un peso adecuado para tu altura. Mantener un peso saludable es fundamental para prevenir enfermedades crónicas y promover una vida plena y activa. ¡Sigue así y continúa con tus hábitos saludables para mantener tu bienestar a largo plazo!",

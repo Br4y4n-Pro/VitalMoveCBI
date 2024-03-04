@@ -1,5 +1,3 @@
-// ignore_for_file: file_names, library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/pages/Evaluador/RegistroUsuario.dart';
 import 'package:vitalmovecbi/pages/Evaluador/Regdos.dart';
@@ -8,7 +6,7 @@ import 'package:vitalmovecbi/widgets/customaoobarEvaluador.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 
 class Registro extends StatefulWidget {
-  const Registro({super.key});
+  const Registro({Key? key});
 
   @override
   _RegistroState createState() => _RegistroState();
@@ -16,6 +14,8 @@ class Registro extends StatefulWidget {
 
 class _RegistroState extends State<Registro> {
   final controller = PageController(initialPage: 0);
+  int _currentPageIndex = 0;
+
   @override
   void dispose() {
     controller.dispose();
@@ -30,7 +30,9 @@ class _RegistroState extends State<Registro> {
         title: const Text(
           'Registro de Usuario',
           style: TextStyle(
-              color: Colores.quaternaryColor, fontWeight: FontWeight.w500),
+            color: Colores.quaternaryColor,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         backgroundColor: Colores.primaryColor,
       ),
@@ -41,6 +43,12 @@ class _RegistroState extends State<Registro> {
               physics: const NeverScrollableScrollPhysics(),
               controller: controller,
               children: const [
+              onPageChanged: (index) {
+                setState(() {
+                  _currentPageIndex = index;
+                });
+              },
+              children: [
                 RegistroUsuario(),
                 RegistroUserdos(),
                 RegistroUsertres(),
@@ -48,28 +56,50 @@ class _RegistroState extends State<Registro> {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment
-                .center, // Centra los elementos horizontalmente
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              IconButton(
-                icon: const Icon(Icons.keyboard_arrow_left),
-                onPressed: () {
-                  controller.previousPage(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                  );
-                },
-              ),
-              const SizedBox(width: 100), // Agrega espacio entre los botones
-              IconButton(
-                icon: const Icon(Icons.keyboard_arrow_right),
-                onPressed: () {
-                  controller.nextPage(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                  );
-                },
-              ),
+              if (_currentPageIndex > 0)
+                Container(
+                  decoration: BoxDecoration(
+                    color: _currentPageIndex == 0 ? Colors.white : null,
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      controller.previousPage(
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeInOut,
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary:
+                          Colores.primaryColor, // Cambia el color del botón
+                    ),
+                    child: const Text('Anterior',
+                        style: TextStyle(
+                          color: Colores.quaternaryColor,
+                          fontWeight: FontWeight.w500,
+                        )), // Cambia el color del texto
+                  ),
+                ),
+              const SizedBox(width: 16),
+              if (_currentPageIndex <
+                  2) // Mostrar el botón "Siguiente" solo si no estás en la última página
+                ElevatedButton(
+                  onPressed: () {
+                    controller.nextPage(
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colores.primaryColor, // Cambia el color del botón
+                  ),
+                  child: const Text('Siguiente',
+                      style: TextStyle(
+                        color: Colores.quaternaryColor,
+                        fontWeight: FontWeight.w500,
+                      )), // Cambia el color del texto
+                ),
             ],
           ),
           bottombar2(context, 4),
