@@ -123,7 +123,9 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
                                 'Acceder',
                                 style: TextStyle(color: Colors.white),
                               )
-                            : const CircularProgressIndicator()),
+                            : const CircularProgressIndicator(
+                                color: Colors.white,
+                              )),
                   ),
                   SizedBox(height: size.width * .01),
                 ],

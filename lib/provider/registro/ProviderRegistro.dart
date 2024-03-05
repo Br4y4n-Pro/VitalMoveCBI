@@ -143,9 +143,9 @@ class RegistroProvider extends ChangeNotifier {
 
       final Map<String, dynamic> jsonResponse = rpta;
       print(jsonResponse);
-      limpiarDatos(fromProvider);
       if (jsonResponse['rp'] == 'si') {
-                  ischeck = false;
+        limpiarDatos(fromProvider);
+        ischeck = false;
 
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             behavior: SnackBarBehavior.floating,
@@ -178,6 +178,37 @@ class RegistroProvider extends ChangeNotifier {
               ),
             )));
         Navigator.pushReplacementNamed(context, '/evaluadorHome');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            behavior: SnackBarBehavior.floating,
+            backgroundColor: Colors.transparent,
+            elevation: 40,
+            content: Container(
+              // padding: const EdgeInsets.all(8),
+              height: 70,
+              decoration: BoxDecoration(
+                  color: Colors.red.shade600,
+                  borderRadius: const BorderRadius.all(Radius.circular(20))),
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.info_outline_rounded,
+                      color: Colors.white,
+                      weight: 40,
+                      size: 30,
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      '${jsonResponse['mensaje']}',
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600, fontSize: 12),
+                    ),
+                  ],
+                ),
+              ),
+            )));
       }
     }).catchError((onError) {
       print(onError.toString());

@@ -226,31 +226,3 @@ class _RegistroUsertres extends State<RegistroUsertres> {
     );
   }
 }
-
-// void _mostrarDialogo(BuildContext context) {
-//   showDialog(
-//     context: context,
-//     builder: (BuildContext context) {
-//       return AlertDialog(
-//         title: const Text('Usuario Registrado Exitosamente '),
-//         content: const Text(''),
-//         actions: <Widget>[
-//           TextButton(
-//             onPressed: () {
-//               Navigator.of(context).pop(); // Cerrar el diálogo
-//               Navigator.pushNamed(context, '/');
-//             },
-//             child: const Text('Evaluador'),
-//           ),
-//           TextButton(
-//             onPressed: () {
-//               Navigator.of(context).pop(); // Cerrar el diálogo
-//               Navigator.pushNamed(context, '/');
-//             },
-//             child: const Text(''),
-//           ),
-//         ],
-//       );
-//     },
-//   );
-// }
