@@ -35,9 +35,9 @@ class LoginProvider extends ChangeNotifier {
         this.usuarios = usuarios.dato;
         if (jsonResponse['rol'] == 1) {
           limpiarDatos(fromProvider);
-          Navigator.pushReplacementNamed(context, '/evaluadorHome');
+          Navigator.pushReplacementNamed(context, '/pageviewsEvaluador');
         } else {
-          Navigator.pushReplacementNamed(context, '/homeUsuario');
+          Navigator.pushReplacementNamed(context, '/pageViewHome');
         }
       } else {
         ischeck = false;
@@ -70,7 +70,9 @@ class LoginProvider extends ChangeNotifier {
                   ],
                 ),
               ),
-            )));
+            )
+            )
+            );
         // print('${jsonResponse['mensaje']}');
       }
       notifyListeners();

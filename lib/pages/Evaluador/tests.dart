@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 // import 'package:vitalmovecbi/pages/Evaluador/homeEvaluador.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 
-import 'package:vitalmovecbi/widgets/customaoobarEvaluador.dart';
-
 class Tests extends StatefulWidget {
   const Tests({super.key});
 
@@ -16,17 +14,17 @@ class _TestsState extends State<Tests> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            iconTheme: const IconThemeData(color: Colores.quaternaryColor),
-            title: const Text(
-              "Tests",
-              style: TextStyle(
-                  color: Colores.quaternaryColor, fontWeight: FontWeight.w500),
-            ),
-            backgroundColor: Colores.primaryColor,
+        appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colores.quaternaryColor),
+          title: const Text(
+            "Tests",
+            style: TextStyle(
+                color: Colores.quaternaryColor, fontWeight: FontWeight.w500),
           ),
-          body: seleccionTests(context),
-          bottomNavigationBar: bottombar2(context, 2)),
+          backgroundColor: Colores.primaryColor,
+        ),
+        body: seleccionTests(context),
+      ),
     );
   }
 }

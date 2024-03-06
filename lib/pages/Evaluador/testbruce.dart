@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
-import 'package:vitalmovecbi/widgets/customaoobarEvaluador.dart';
+
 
 import '../../widgets/InputText.dart';
 
@@ -110,7 +110,7 @@ class _Testbruce extends State<Testbruce> {
             ],
           ),
         ),
-        bottomNavigationBar: bottombar2(context, 2));
+      );
   }
 }
 
