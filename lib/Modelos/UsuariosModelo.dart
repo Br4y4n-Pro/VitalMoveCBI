@@ -65,7 +65,7 @@ class Usuario {
   Usuario.fromJsonMap(Map<String, dynamic> datos) {
     idUsuario = datos['idusuario'].toString();
     nombres = datos['nombres'];
-    dni = datos['dni'].toString();
+    dni = datos['dni'];
     apellidos = datos['apellidos'];
     genero = datos['genero'];
     direccion = datos['direccion'];
@@ -80,10 +80,10 @@ class Usuario {
     alergias = datos['alergias'];
     contrasena = datos['contrasena'];
     imgperfil = datos['imgperfil'];
-    rol = datos[rol].toString();
-    grupo = datos[grupo];
-    peso = datos[peso];
-    actividadsemana = datos[actividadsemana];
-    nivelSemana = datos[nivelSemana];
+    rol = datos['rol'].toString(); // Corregido
+    grupo = datos['grupo']; // Corregido
+    peso = datos['peso'].toString(); // Corregido
+    actividadsemana = datos['actividadsemana'].toString(); // Corregido
+    nivelSemana = datos['nivelSemana']; // Corregido
   }
 }

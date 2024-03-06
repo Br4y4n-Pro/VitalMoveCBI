@@ -17,11 +17,16 @@ class BuscarPersona extends StatefulWidget {
 
 class _BuscarPersonaState extends State<BuscarPersona> {
   @override
+  void initState() {
+    super.initState();
+    final usuarioProvider = Provider.of<UsuarioProvider>(context, listen: false);
+    usuarioProvider.allUser(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<UsuarioProvider>(context);
     final size = MediaQuery.of(context).size;
-    final usu = provider.allUser(context);
-    print(usu);
+
     return Scaffold(
         appBar: AppBar(
           iconTheme: const IconThemeData(color: Colores.quaternaryColor),
@@ -32,8 +37,7 @@ class _BuscarPersonaState extends State<BuscarPersona> {
           ),
           backgroundColor: Colores.primaryColor,
         ),
-        body: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+        body: Column(
           children: [
             const SizedBox(height: 60),
             inputLogin("Cedula  ò Nombre ", size.width, TextInputType.name),
@@ -63,13 +67,27 @@ class _BuscarPersonaState extends State<BuscarPersona> {
               ),
             ),
             const SizedBox(height: 40),
-            const Center(
-              child: Text("No hay ningún usuario",
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18)),
-            )
+            Consumer<UsuarioProvider>(
+              builder: (context, provider, child) {
+                if (provider.usuarios.isEmpty) {
+                  return const Center(child: Text("Cargando usuarios..."));
+                }
+                return Expanded( // Asegura que ListView.builder tenga un límite en su altura.
+                  child: ListView.builder(
+                    itemCount: provider.usuarios.length,
+                    itemBuilder: (context, index) {
+                      Usuario usuario = provider.usuarios[index];
+                      return ListTile(
+                        title: Text(usuario.nombres.toString()),
+                        subtitle: Text(usuario.dni.toString()),
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
           ],
         ),
         bottomNavigationBar: bottombar2(context, 3));
   }
 }
-
