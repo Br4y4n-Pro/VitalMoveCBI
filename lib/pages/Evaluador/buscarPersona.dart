@@ -1,6 +1,9 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
+import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
 import 'package:vitalmovecbi/widgets/InputText.dart';
 import 'package:vitalmovecbi/widgets/customaoobarEvaluador.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
@@ -15,7 +18,10 @@ class BuscarPersona extends StatefulWidget {
 class _BuscarPersonaState extends State<BuscarPersona> {
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<UsuarioProvider>(context);
     final size = MediaQuery.of(context).size;
+    final usu = provider.allUser(context);
+    print(usu);
     return Scaffold(
         appBar: AppBar(
           iconTheme: const IconThemeData(color: Colores.quaternaryColor),
@@ -66,3 +72,4 @@ class _BuscarPersonaState extends State<BuscarPersona> {
         bottomNavigationBar: bottombar2(context, 3));
   }
 }
+

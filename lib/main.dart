@@ -8,6 +8,8 @@ import 'package:vitalmovecbi/provider/registro/ProviderRegistro.dart';
 import 'package:vitalmovecbi/provider/registro/RegistroFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/BruceFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/ProviderBruce.dart';
+import 'package:vitalmovecbi/provider/usuarios/UsuarioFromProvider.dart';
+import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
 
 import 'Api/AllApi.dart';
 import 'provider/login/LoginFromProvider.dart';
@@ -33,6 +35,10 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(lazy: false, create: (_) => LoginFromProvider()),
 
         ChangeNotifierProvider(lazy: false, create: (_) => RegistroProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => UsuarioProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => UsuarioFromProvider()),
+
         ChangeNotifierProvider(
             lazy: false, create: (_) => RegistroFromProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => BruceProvider()),

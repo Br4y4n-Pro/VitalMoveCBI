@@ -14,7 +14,7 @@ class LoginProvider extends ChangeNotifier {
       "contrasena": fromProvider.password
     };
 
-    void limpiarDatos() {
+    void limpiarDatos(LoginFromProvider fromProvider) {
       fromProvider.password = '';
       fromProvider.usuario = '';
       notifyListeners();
@@ -34,6 +34,7 @@ class LoginProvider extends ChangeNotifier {
 
         this.usuarios = usuarios.dato;
         if (jsonResponse['rol'] == 1) {
+          limpiarDatos(fromProvider);
           Navigator.pushReplacementNamed(context, '/evaluadorHome');
         } else {
           Navigator.pushReplacementNamed(context, '/homeUsuario');
