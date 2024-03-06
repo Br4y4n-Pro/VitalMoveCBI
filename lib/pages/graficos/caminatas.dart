@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:unique_simple_bar_chart/data_models.dart';
 import 'package:unique_simple_bar_chart/simple_bar_chart.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
-import 'package:vitalmovecbi/widgets/customappbar.dart';
+//import 'package:vitalmovecbi/widgets/customappbar.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
 
 class PageCaminata extends StatefulWidget {
@@ -151,7 +151,7 @@ class _PageCaminataState extends State<PageCaminata> {
             ),
           ],
         ),
-        bottomNavigationBar: bottombar(context, 3),
+        //bottomNavigationBar: bottombar(context, 3),
       ),
     );
   }

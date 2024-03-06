@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/index.dart';
 import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
-import 'package:vitalmovecbi/widgets/customaoobarEvaluador.dart';
 
 class HomeEvaluador extends StatefulWidget {
   const HomeEvaluador({Key? key}) : super(key: key);
@@ -120,7 +119,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
           ),
         ],
       ),
-      bottomNavigationBar: bottombar2(context, 1),
+    
     );
   }
 }

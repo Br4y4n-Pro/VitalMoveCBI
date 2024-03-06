@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/pages/Evaluador/RegistroUsuario.dart';
 import 'package:vitalmovecbi/pages/Evaluador/Regdos.dart';
 import 'package:vitalmovecbi/pages/Evaluador/actiSema.dart';
-import 'package:vitalmovecbi/widgets/customaoobarEvaluador.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 
 class Registro extends StatefulWidget {
@@ -101,7 +100,7 @@ class _RegistroState extends State<Registro> {
                 ),
             ],
           ),
-          bottombar2(context, 4),
+     
         ],
       ),
     );

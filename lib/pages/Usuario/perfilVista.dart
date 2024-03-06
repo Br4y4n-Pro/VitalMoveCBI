@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:vitalmovecbi/widgets/customappbar.dart';
+//import 'package:vitalmovecbi/widgets/customappbar.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 
 class PerfilVista extends StatefulWidget {
@@ -107,7 +107,7 @@ class _PerfilVistaState extends State<PerfilVista> {
             ),
           ],
         ),
-        bottomNavigationBar: bottombar(context, 4),
+        //bottomNavigationBar: bottombar(context, 4),
       ),
     );
   }
