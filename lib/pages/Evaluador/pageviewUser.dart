@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/pages/Evaluador/RegistroUsuario.dart';
 import 'package:vitalmovecbi/pages/Evaluador/Regdos.dart';
 import 'package:vitalmovecbi/pages/Evaluador/actiSema.dart';
-import 'package:vitalmovecbi/widgets/customaoobarEvaluador.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 
 class Registro extends StatefulWidget {
@@ -91,7 +90,10 @@ class _RegistroState extends State<Registro> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
+<<<<<<< HEAD
                     
+=======
+>>>>>>> 4929072240871fd2f7018d4424934000b90f0c2f
                     backgroundColor:
                         Colores.primaryColor, // Cambia el color del botón
                   ),
@@ -103,7 +105,7 @@ class _RegistroState extends State<Registro> {
                 ),
             ],
           ),
-          bottombar2(context, 4),
+     
         ],
       ),
     );

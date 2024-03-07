@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/pages/Evaluador/testbruce.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
-import 'package:vitalmovecbi/widgets/customaoobarEvaluador.dart';
+
 
 class Persona {
   final String nombre;
@@ -113,7 +113,7 @@ class _TestCaminata extends State<TestCaminata> {
             ],
           ),
         ),
-        bottomNavigationBar: bottombar2(context, 2));
+      );
   }
 }
 

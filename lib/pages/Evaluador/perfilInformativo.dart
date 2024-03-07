@@ -1,14 +1,16 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 
 import '../../widgets/grafico.dart';
 
 class PerfilInformativo extends StatefulWidget {
-  const PerfilInformativo({super.key});
+  final Usuario usuario;
 
+  const PerfilInformativo({super.key, required this.usuario});
   @override
   State<PerfilInformativo> createState() => _PerfilInformativoState();
 }
@@ -37,8 +39,8 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
             children: [
               Column(
                 children: [
-                  textSub("Brayan Alexis Cañas Londoño"),
-                  textContent("1193238697"),
+                  textSub('${widget.usuario.nombres}'),
+                  textContent("${widget.usuario.dni}"),
                 ],
               ),
               Container(
@@ -47,10 +49,12 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(150),
                 ),
-                child: const CircleAvatar(
-                  radius: 30,
-                  backgroundImage: AssetImage("images/itachi.jpg"),
-                ),
+                child: CircleAvatar(
+                    radius: 30,
+                    backgroundImage: (widget.usuario.imgperfil != null)
+                        ? NetworkImage(widget.usuario.imgperfil.toString())
+                        : const AssetImage("img/Usuario/usu2.png")
+                            as ImageProvider<Object>),
               ),
             ],
           ),
