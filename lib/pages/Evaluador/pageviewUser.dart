@@ -70,7 +70,7 @@ class _RegistroState extends State<Registro> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      primary:
+                      backgroundColor:
                           Colores.primaryColor, // Cambia el color del botón
                     ),
                     child: const Text('Anterior',
@@ -91,7 +91,9 @@ class _RegistroState extends State<Registro> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colores.primaryColor, // Cambia el color del botón
+                    
+                    backgroundColor:
+                        Colores.primaryColor, // Cambia el color del botón
                   ),
                   child: const Text('Siguiente',
                       style: TextStyle(

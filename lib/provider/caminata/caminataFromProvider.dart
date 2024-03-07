@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 class CaminataFromProvider extends ChangeNotifier {
   GlobalKey<FormState> fromkey =  GlobalKey<FormState>();
 
-  int? idcaminata;
+  
   int? idusuario;
   DateTime? fecha;
   double? fcr;

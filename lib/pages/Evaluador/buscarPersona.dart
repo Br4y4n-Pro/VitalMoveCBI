@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+// ignore: unused_import
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
 import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
 import 'package:vitalmovecbi/widgets/InputText.dart';

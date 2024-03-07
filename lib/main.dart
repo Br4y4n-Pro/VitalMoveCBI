@@ -4,10 +4,14 @@ import 'package:vitalmovecbi/index.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vitalmovecbi/pages/Evaluador/testBruceMod.dart';
 import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
+import 'package:vitalmovecbi/provider/caminata/ProviderCaminata.dart';
+import 'package:vitalmovecbi/provider/caminata/CaminataFromProvider.dart';
+
 import 'package:vitalmovecbi/provider/registro/ProviderRegistro.dart';
 import 'package:vitalmovecbi/provider/registro/RegistroFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/BruceFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/ProviderBruce.dart';
+
 import 'package:vitalmovecbi/provider/usuarios/UsuarioFromProvider.dart';
 import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
 
@@ -43,6 +47,10 @@ class AppState extends StatelessWidget {
             lazy: false, create: (_) => RegistroFromProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => BruceProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => BruceFromProvider()),
+
+        ChangeNotifierProvider(lazy: false, create: (_) => ProviderCaminata()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => CaminataFromProvider()),
       ],
       child: const MyApp(),
     );
