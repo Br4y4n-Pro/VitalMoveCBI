@@ -6,7 +6,7 @@ import 'package:vitalmovecbi/provider/testbruce/ProviderBruce.dart';
 import 'package:vitalmovecbi/widgets/loginTextField.dart';
 
 class TestBruceMod extends StatefulWidget {
-  const TestBruceMod({Key? key}) : super(key: key);
+  const TestBruceMod({super.key});
 
   @override
   State<TestBruceMod> createState() => _TestBruceMod();
