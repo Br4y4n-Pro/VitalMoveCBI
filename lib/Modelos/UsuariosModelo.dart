@@ -70,12 +70,12 @@ class Usuario {
     genero = datos['genero'];
     direccion = datos['direccion'];
     dependencia = datos['dependencia'];
-    fechaNacimiento = datos['fecha_nacimiento'];
+    fechaNacimiento = datos['fechanacimiento'];
     talla = datos['talla'].toString();
     rh = datos['rh'];
-    nombreEmergencia = datos['nombre_emergencia'];
+    nombreEmergencia = datos['nombreemergencia'];
     parentesco = datos['parentesco'];
-    telefonoEmergencia = datos['telefono_emergencia'].toString();
+    telefonoEmergencia = datos['telefonoemergencia'].toString();
     eps = datos['eps'];
     alergias = datos['alergias'];
     contrasena = datos['contrasena'];
