@@ -69,7 +69,7 @@ class _RegistroState extends State<Registro> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      primary:
+                      backgroundColor:
                           Colores.primaryColor, // Cambia el color del botón
                     ),
                     child: const Text('Anterior',
@@ -90,6 +90,10 @@ class _RegistroState extends State<Registro> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
+<<<<<<< HEAD
+                    
+=======
+>>>>>>> 4929072240871fd2f7018d4424934000b90f0c2f
                     backgroundColor:
                         Colores.primaryColor, // Cambia el color del botón
                   ),

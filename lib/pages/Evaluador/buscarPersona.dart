@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+// ignore: unused_import
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
 import 'package:vitalmovecbi/pages/Evaluador/PerfilInformativo.dart';
 import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
-import 'package:vitalmovecbi/widgets/InputText.dart';
 
 import 'package:vitalmovecbi/widgets/colores.dart';
 
@@ -25,6 +25,7 @@ class _BuscarPersonaState extends State<BuscarPersona> {
     usuarioProvider.allUser(context);
   }
 
+  final controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -44,23 +45,31 @@ class _BuscarPersonaState extends State<BuscarPersona> {
         child: Column(
           children: [
             const SizedBox(height: 60),
-            inputLogin("Cedula  ò Nombre ", size.width, TextInputType.name),
-            const SizedBox(height: 60),
             Container(
-              width: size.width,
-              margin: EdgeInsets.symmetric(horizontal: size.width * 0.1),
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(0, 150, 199, 1),
-                      foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                      padding: EdgeInsets.all(size.height * .002),
-                      textStyle: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40))),
-                  onPressed: () {},
-                  child: const Text('Buscar')),
-            ),
+                width: size.width,
+                decoration: BoxDecoration(
+                    color: const Color(0xffF5F5F5),
+                    boxShadow: [
+                      BoxShadow(color: Colors.grey.shade300, blurRadius: 3)
+                    ],
+                    borderRadius: BorderRadius.circular(10)),
+                child: TextField(
+                  controller: controller,
+                  onChanged: (value) => {},
+                  keyboardType: TextInputType.name,
+                  cursorColor: const Color.fromARGB(33, 15, 15, 15),
+                  decoration: InputDecoration(
+                      hintStyle: TextStyle(
+                          color: Colors.grey.shade500,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 14),
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 20),
+                      hintText: "Ingresa el nombre o la cedula",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide.none)),
+                )),
             const SizedBox(height: 50),
             Container(
               height: 1,
@@ -73,7 +82,10 @@ class _BuscarPersonaState extends State<BuscarPersona> {
             Consumer<UsuarioProvider>(
               builder: (context, provider, child) {
                 if (provider.usuarios.isEmpty) {
-                  return const Center(child: Text("Cargando usuarios..."));
+                  return const Center(
+                      child: CircularProgressIndicator(
+                    color: Colores.primaryColor,
+                  ));
                 }
                 return Expanded(
                   // Asegura que ListView.builder tenga un límite en su altura.
@@ -81,6 +93,7 @@ class _BuscarPersonaState extends State<BuscarPersona> {
                     itemCount: provider.usuarios.length,
                     itemBuilder: (context, index) {
                       Usuario usuario = provider.usuarios[index];
+                      // late String
                       return GestureDetector(
                         onTap: () {
                           Navigator.push(
