@@ -1,34 +1,19 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/index.dart';
-import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
 import 'package:vitalmovecbi/provider/caminata/ProviderCaminata.dart';
-
 import 'package:vitalmovecbi/provider/caminata/caminataFromProvider.dart';
 import 'package:vitalmovecbi/widgets/loginTextField.dart';
 
-class TestCaminataFCR extends StatefulWidget {
-  const TestCaminataFCR({super.key});
-
-  @override
-  State<TestCaminataFCR> createState() => _TestCaminataFCR();
-}
-
-class _TestCaminataFCR extends State<TestCaminataFCR> {
-  // ignore: unused_field
-  final _formKey = GlobalKey<FormState>();
-
-  // List<Persona> personas = [
-  //   Persona("Edison Cuaran", "C.C 1556458585"),
+class TestCaminataFCR extends StatelessWidget {
+  const TestCaminataFCR({Key? key});
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final fromProvider =
         Provider.of<CaminataFromProvider>(context, listen: false);
     final provider = Provider.of<ProviderCaminata>(context, listen: false);
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -45,7 +30,7 @@ class _TestCaminataFCR extends State<TestCaminataFCR> {
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
-          children: [
+          children: <Widget>[
             const SizedBox(height: 50),
             const Text(
               "Usuario seleccionado:",
@@ -53,25 +38,6 @@ class _TestCaminataFCR extends State<TestCaminataFCR> {
               style: TextStyle(
                 fontSize: 20,
               ),
-            ),
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 0.1),
-                SizedBox(height: 20),
-                // Column(
-                //   children: personas
-                //       .map(
-                //         (persona) => Column(
-                //           children: [
-                //             lista(persona.nombre, persona.cedula),
-                //             const SizedBox(height: 10),
-                //           ],
-                //         ),
-                //       )
-                //       .toList(),
-                // ),
-              ],
             ),
             const SizedBox(height: 80),
             const Text(
@@ -85,38 +51,40 @@ class _TestCaminataFCR extends State<TestCaminataFCR> {
             ),
             const SizedBox(height: 3),
             const SizedBox(height: 19),
-            inputLogin(""),
             Consumer(
               builder: (context, value, child) => InputLogin(
-                  onChanged: (value) => fromProvider.fcr = value as double?,
-                  campo: "Ingrese FCR",
-                  tamano: size.width,
-                  tipo: TextInputType.number),
+                onChanged: (value) => fromProvider.fcr = value,
+                campo: "Ingrese FCR",
+                tamano: size.width,
+                tipo: TextInputType.number,
+              ),
             ),
             const SizedBox(height: 19),
             Consumer(
               builder: (context, value, child) => InputLogin(
-                  onChanged: (value) => fromProvider.fcm = value as double?,
-                  campo: "Ingrese FCM",
-                  tamano: size.width,
-                  tipo: TextInputType.number),
+                onChanged: (value) => fromProvider.fcm = value,
+                campo: "Ingrese FCM",
+                tamano: size.width,
+                tipo: TextInputType.number,
+              ),
             ),
             const SizedBox(height: 19),
             Consumer(
               builder: (context, value, child) => InputLogin(
-                  onChanged: (value) => fromProvider.tiempo = value as double?,
-                  campo: "Ingrese TIEMPO",
-                  tamano: size.width,
-                  tipo: TextInputType.number),
+                onChanged: (value) => fromProvider.tiempo = value,
+                campo: "Ingrese TIEMPO",
+                tamano: size.width,
+                tipo: TextInputType.number,
+              ),
             ),
             const SizedBox(height: 19),
             Consumer(
               builder: (context, value, child) => InputLogin(
-                  onChanged: (value) =>
-                      fromProvider.distancia = value as double?,
-                  campo: "Ingrese DISTANCIA",
-                  tamano: size.width,
-                  tipo: TextInputType.number),
+                onChanged: (value) => fromProvider.distancia = value,
+                campo: "Ingrese DISTANCIA",
+                tamano: size.width,
+                tipo: TextInputType.number,
+              ),
             ),
             const SizedBox(height: 19),
             Container(
@@ -138,6 +106,7 @@ class _TestCaminataFCR extends State<TestCaminataFCR> {
                   try {
                     provider.caminata(fromProvider, context);
                   } catch (error) {
+                    // ignore: avoid_print
                     print('Error al enviar la solicitud: $error');
                   }
                 },

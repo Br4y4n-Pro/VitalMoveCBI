@@ -6,7 +6,6 @@ import 'package:vitalmovecbi/Api/AllApi.dart';
 import 'package:vitalmovecbi/provider/caminata/caminataFromProvider.dart';
 
 class ProviderCaminata extends ChangeNotifier {
-  
   caminata(CaminataFromProvider fromProvider, BuildContext context) {
     final data = {
       "fcr": fromProvider.fcr,

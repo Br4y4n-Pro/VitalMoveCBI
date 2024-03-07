@@ -42,15 +42,14 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(lazy: false, create: (_) => UsuarioProvider()),
         ChangeNotifierProvider(
             lazy: false, create: (_) => UsuarioFromProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => ProviderCaminata()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => CaminataFromProvider()),
 
         ChangeNotifierProvider(
             lazy: false, create: (_) => RegistroFromProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => BruceProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => BruceFromProvider()),
-
-        ChangeNotifierProvider(lazy: false, create: (_) => ProviderCaminata()),
-        ChangeNotifierProvider(
-            lazy: false, create: (_) => CaminataFromProvider()),
       ],
       child: const MyApp(),
     );
