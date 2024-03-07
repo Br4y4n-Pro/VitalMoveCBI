@@ -9,7 +9,6 @@ class InputLogin extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final FormFieldValidator<String>? validator;
   final String initValue;
-
   const InputLogin({
     this.validator,
     required this.campo,
