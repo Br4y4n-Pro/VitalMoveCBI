@@ -1,7 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-//import 'package:vitalmovecbi/widgets/customappbar.dart';
+import 'package:provider/provider.dart';
+import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 
 class PerfilVista extends StatefulWidget {
@@ -15,6 +16,9 @@ class _PerfilVistaState extends State<PerfilVista> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    final usuario = loginProvider.usuarios[0];
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
@@ -53,30 +57,31 @@ class _PerfilVistaState extends State<PerfilVista> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 20),
+                  textField("Nombres y apellidos",
+                      "${usuario.nombres} ${usuario.apellidos}"),
+                  const SizedBox(height: 15),
+                  textField("Documento de Identidad", "${usuario.dni}"),
+                  const SizedBox(height: 15),
                   textField(
-                      "Nombres y apellidos", "Brayan Alexis Cañas Londoño"),
+                      "Fecha de Nacimiento", "${usuario.fechaNacimiento}"),
                   const SizedBox(height: 15),
-                  textField("Documento de Identidad", "1193238697"),
+                  textField("Género", "${usuario.genero}"),
                   const SizedBox(height: 15),
-                  textField("Fecha de Nacimiento", "19/09/99"),
+                  textField("Tipo de Sangre", "${usuario.rh}"),
                   const SizedBox(height: 15),
-                  textField("Género", "M"),
+                  textField("Dirección", "${usuario.direccion}"),
                   const SizedBox(height: 15),
-                  textField("Tipo de Sangre", "O+"),
+                  textField("EPS(Entidad de salud)", "${usuario.eps}"),
                   const SizedBox(height: 15),
-                  textField("Dirección", "Calle 23a # 28 - 18"),
+                  textField("Alergias", "${usuario.alergias}"),
                   const SizedBox(height: 15),
-                  textField("EPS(Entidad de salud)", "Salud Total"),
+                  textField("IMC", "${usuario.actividadsemana}"),
                   const SizedBox(height: 15),
-                  textField("Alergias", "Ninguna"),
+                  textField("Grupo", "${usuario.grupo}"),
                   const SizedBox(height: 15),
-                  textField("IMC", "19.35 Normal"),
+                  textField("Peso (KG)", "${usuario.peso}"),
                   const SizedBox(height: 15),
-                  textField("Grupo", "1"),
-                  const SizedBox(height: 15),
-                  textField("Peso (KG)", "60 Kg"),
-                  const SizedBox(height: 15),
-                  textField("Talla (Metros)", "1.77 Metros"),
+                  textField("Talla (Metros)", "${usuario.talla}"),
                   const SizedBox(height: 25),
                   Center(
                     child: ElevatedButton(
@@ -107,7 +112,6 @@ class _PerfilVistaState extends State<PerfilVista> {
             ),
           ],
         ),
-        //bottomNavigationBar: bottombar(context, 4),
       ),
     );
   }

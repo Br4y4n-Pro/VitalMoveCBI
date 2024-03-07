@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:unique_simple_bar_chart/data_models.dart';
 import 'package:unique_simple_bar_chart/simple_bar_chart.dart';
+import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 //import 'package:vitalmovecbi/widgets/customappbar.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
@@ -32,6 +34,8 @@ class _PagePesoState extends State<PagePeso> {
 
   @override
   Widget build(BuildContext context) {
+    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    final usuario = loginProvider.usuarios[0];
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -50,6 +54,31 @@ class _PagePesoState extends State<PagePeso> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        children: [
+                          textSub('${usuario.nombres} ${usuario.apellidos}'),
+                          textContent("${usuario.dni}"),
+                        ],
+                      ),
+                      Container(
+                        height: 70,
+                        width: 70,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(150),
+                        ),
+                        child: CircleAvatar(
+                            radius: 30,
+                            backgroundImage: (usuario.imgperfil != null)
+                                ? NetworkImage(usuario.imgperfil.toString())
+                                : const AssetImage("img/Usuario/usu2.png")
+                                    as ImageProvider<Object>),
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 20),
                   Container(
                     child: Column(
@@ -80,7 +109,6 @@ class _PagePesoState extends State<PagePeso> {
                                         fontSize: 16),
                                   ),
                                 ),
-
                                 const Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Text(
@@ -136,7 +164,6 @@ class _PagePesoState extends State<PagePeso> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                   ),
-
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(

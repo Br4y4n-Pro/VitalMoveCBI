@@ -51,6 +51,8 @@ class _PageHomeState extends State<PageHome> {
           ));
         },
         child: PageView(
+          physics:
+              NeverScrollableScrollPhysics(), // Deshabilitar desplazamiento horizontal
           pageSnapping: true,
           controller: pageController,
           children: [

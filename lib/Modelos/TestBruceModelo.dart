@@ -37,14 +37,14 @@ class BruceTest {
       this.saturacionvodos,});
 
   BruceTest.fromJsonMap(Map<String, dynamic> datos) {
-    idetapa = datos['id_etapa'].toString();
+    idetapa = datos['idetapa'].toString();
     elefinal = datos['elefinal'];
     velocidadfinal = datos['velocidadfinal'].toString();
     numeroetapa = datos['numeroetapa'];
     fcr = datos['fcr'];
     fcm = datos['fcm'];
     vodos = datos['vodos'];
-    idtestbruce = datos['id_testbruce'];
+    idtestbruce = datos['idtestbruce'];
     saturacionvodos = datos['saturacionvodos'].toString();
   }
 }

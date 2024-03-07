@@ -3,7 +3,7 @@ import 'package:vitalmovecbi/pages/Evaluador/homeEvaluador.dart';
 import 'package:vitalmovecbi/pages/Evaluador/tests.dart';
 import 'package:vitalmovecbi/pages/Evaluador/BuscarPersona.dart';
 import 'package:vitalmovecbi/pages/Evaluador/pageViewUser.dart';
-import 'package:vitalmovecbi/widgets/customappbar.dart';
+import 'package:vitalmovecbi/widgets/customaoobarEvaluador.dart';
 
 class PageViewEvaluador extends StatefulWidget {
   const PageViewEvaluador({super.key});
@@ -51,6 +51,8 @@ class _PageViewEvaluadorState extends State<PageViewEvaluador> {
           ));
         },
         child: PageView(
+          physics:
+              NeverScrollableScrollPhysics(), // Deshabilitar desplazamiento horizontal
           pageSnapping: true,
           controller: pageController,
           children: [
@@ -66,7 +68,7 @@ class _PageViewEvaluadorState extends State<PageViewEvaluador> {
           },
         ),
       ),
-      bottomNavigationBar: bottombar(
+      bottomNavigationBar: bottombar2(
         currentIndex: _currentPageIndex,
         onTap: (int index) {
           setState(() {

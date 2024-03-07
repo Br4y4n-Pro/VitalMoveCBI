@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
 import 'package:url_launcher/url_launcher.dart';
 //import 'package:vitalmovecbi/widgets/customappbar.dart';
@@ -14,10 +16,15 @@ class PerfilVistaContact extends StatefulWidget {
 }
 
 class _PerfilVistaContactState extends State<PerfilVistaContact> {
-  final telefono = 3015384840.toString();
+  final telefono = "";
+
+  static get usuario => null;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    final usuario = loginProvider.usuarios[0];
 
     return SafeArea(
         child: Scaffold(
@@ -50,13 +57,13 @@ class _PerfilVistaContactState extends State<PerfilVistaContact> {
               children: [
                 const SizedBox(height: 40),
                 textSub("Nombre Completo"),
-                textContent("Kakaroto"),
+                textContent("${usuario.nombreEmergencia}"),
                 const SizedBox(height: 15),
                 textSub("Parentesco"),
-                textContent("Padre"),
+                textContent("${usuario.parentesco}"),
                 const SizedBox(height: 15),
-                textSub("Telefono"),
-                textContent("3015384840"),
+                textSub("Teléfono"),
+                textContent("${usuario.telefonoEmergencia}"),
                 const SizedBox(height: 15),
               ],
             ),

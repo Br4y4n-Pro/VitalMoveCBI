@@ -31,12 +31,12 @@ Widget bottombar2({
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-           _buildBottomNavItem(Icons.home, 0, currentIndex == 0, onTap),
-           _buildBottomNavItem(
+            _buildBottomNavItem(Icons.home, 0, currentIndex == 0, onTap),
+            _buildBottomNavItem(
                 Icons.directions_run_sharp, 1, currentIndex == 1, onTap),
-           _buildBottomNavItem(
-                Icons.supervised_user_circle_sharp, 2, currentIndex == 2, onTap),
-           _buildBottomNavItem(
+            _buildBottomNavItem(Icons.supervised_user_circle_sharp, 2,
+                currentIndex == 2, onTap),
+            _buildBottomNavItem(
                 Icons.group_add_outlined, 3, currentIndex == 3, onTap),
           ],
         ),
