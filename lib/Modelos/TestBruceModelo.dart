@@ -25,16 +25,17 @@ class BruceTest {
   String? idtestbruce;
   String? saturacionvodos;
 
-  BruceTest(
-      {this.idetapa,
-      this.elefinal,
-      this.velocidadfinal,
-      this.numeroetapa,
-      this.fcr,
-      this.fcm,
-      this.vodos,
-      this.idtestbruce,
-      this.saturacionvodos,});
+  BruceTest({
+    this.idetapa,
+    this.elefinal,
+    this.velocidadfinal,
+    this.numeroetapa,
+    this.fcr,
+    this.fcm,
+    this.vodos,
+    this.idtestbruce,
+    this.saturacionvodos,
+  });
 
   BruceTest.fromJsonMap(Map<String, dynamic> datos) {
     idetapa = datos['idetapa'].toString();
