@@ -5,14 +5,14 @@ import 'package:vitalmovecbi/pages/Evaluador/BuscarPersona.dart';
 import 'package:vitalmovecbi/pages/Evaluador/pageViewUser.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 
-class Evaluador extends StatefulWidget {
-  const Evaluador({super.key});
+class PageViewEvaluador extends StatefulWidget {
+  const PageViewEvaluador({super.key});
 
   @override
-  _EvaluadorState createState() => _EvaluadorState();
+  _PageViewEvaluadorState createState() => _PageViewEvaluadorState();
 }
 
-class _EvaluadorState extends State<Evaluador> {
+class _PageViewEvaluadorState extends State<PageViewEvaluador> {
   final PageController pageController = PageController(initialPage: 0);
   int _currentPageIndex = 0;
 

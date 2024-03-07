@@ -54,6 +54,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    dynamic usuario;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'VitalMoveCBI',
@@ -76,7 +77,7 @@ class MyApp extends StatelessWidget {
         '/pageVOdos': (context) => const ConsumoVo(),
         '/pageIMC': (context) => const PageIMC(),
         '/pagePeso': (context) => const PagePeso(),
-        '/perfilInformativo': (context) => const PerfilInformativo(),
+        '/perfilInformativo': (context) => PerfilInformativo(usuario: usuario),
         '/buscarPersona': (context) => const BuscarPersona(),
         '/configuracion': (context) => const Configuracion(),
         '/pageTestB': (context) => const Testbruce(),
@@ -89,7 +90,7 @@ class MyApp extends StatelessWidget {
         '/TB': (context) => const BruceTest(),
         '/pageviewUser': (context) => const Registro(),
         '/pageViewHome': (context) => const PageHome(),
-         '/pageviewsEvaluador': (context) => const PageHome(),
+        '/pageviewsEvaluador': (context) => const PageViewEvaluador(),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
