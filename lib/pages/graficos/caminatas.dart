@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:unique_simple_bar_chart/data_models.dart';
 import 'package:unique_simple_bar_chart/simple_bar_chart.dart';
+import 'package:vitalmovecbi/provider/caminata/gets/providerGetCaminata.dart';
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 //import 'package:vitalmovecbi/widgets/customappbar.dart';
@@ -9,12 +10,19 @@ import 'package:vitalmovecbi/widgets/textperfil.dart';
 
 class PageCaminata extends StatefulWidget {
   const PageCaminata({Key? key}) : super(key: key);
-
   @override
   State<PageCaminata> createState() => _PageCaminataState();
 }
 
 class _PageCaminataState extends State<PageCaminata> {
+@override
+void initState() {
+  super.initState();
+   final caminata =
+        Provider.of<CaminataGetProvider>(context, listen: false);
+    caminata.caminataOfUser(context);
+  
+}
   List<double> caminataData = [
     5.5,
     3.1,

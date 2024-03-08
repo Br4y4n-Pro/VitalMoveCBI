@@ -55,7 +55,7 @@ class _TestBruceMod extends State<TestBruceMod> {
         iconTheme: const IconThemeData(color: Colores.quaternaryColor),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: size.width * 0.07),
+        margin: EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
           padding: const EdgeInsets.all(10.0),
           children: <Widget>[

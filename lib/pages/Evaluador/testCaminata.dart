@@ -139,7 +139,7 @@ class _TestCaminata extends State<TestCaminata> {
                           margin: const EdgeInsets.only(bottom: 10),
                           height: 70,
                           width: double.infinity,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Colores.quaternaryColor,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))),

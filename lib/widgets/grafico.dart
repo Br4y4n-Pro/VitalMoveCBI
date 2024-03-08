@@ -2,12 +2,11 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 Widget grafico(context) {
-  final size = MediaQuery.of(context).size;
 
   return Center(
     child: Container(
       height: 150,
-      margin: EdgeInsets.symmetric(horizontal: size.width * .1),
+      margin: EdgeInsets.symmetric(horizontal: 20),
       child: LineChart(
         LineChartData(
           minX: 0,

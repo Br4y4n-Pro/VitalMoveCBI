@@ -20,7 +20,6 @@ class _PerfilVistaContactState extends State<PerfilVistaContact> {
 
   static get usuario => null;
 
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -59,16 +58,12 @@ class _PerfilVistaContactState extends State<PerfilVistaContact> {
                 const SizedBox(height: 40),
                 textSub("Nombre Completo"),
                 textContent("${usuario.nombreEmergencia}"),
-                Text("${usuario.nombreEmergencia}"),
-
                 const SizedBox(height: 15),
                 textSub("Parentesco"),
                 textContent("${usuario.parentesco}"),
                 const SizedBox(height: 15),
                 textSub("Teléfono"),
                 textContent("${usuario.telefonoEmergencia}"),
-                textSub("Telefono"),
-                textContent(usuario.telefonoEmergencia.toString()),
                 const SizedBox(height: 15),
               ],
             ),

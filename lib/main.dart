@@ -7,6 +7,7 @@ import 'package:vitalmovecbi/pages/Evaluador/testBruceMod.dart';
 import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
 import 'package:vitalmovecbi/provider/caminata/ProviderCaminata.dart';
 import 'package:vitalmovecbi/provider/caminata/caminataFromProvider.dart';
+import 'package:vitalmovecbi/provider/caminata/gets/providerGetCaminata.dart';
 import 'package:vitalmovecbi/provider/login/LoginFromProvider.dart';
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 import 'package:vitalmovecbi/provider/registro/ProviderRegistro.dart';
@@ -47,6 +48,9 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(lazy: false, create: (_) => ProviderCaminata()),
         ChangeNotifierProvider(
             lazy: false, create: (_) => CaminataFromProvider()),
+
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => CaminataGetProvider()),
       ],
       child: const MyApp(),
     );
@@ -90,7 +94,7 @@ class MyApp extends StatelessWidget {
         '/pageTestC6M': (context) => const TestC6M(),
         '/pageAcercaDe': (context) => const AcercaDe(),
         '/pageTestC': (context) => const TestCaminata(),
-        '/pageTestBM': (context) =>  TestBruceMod(usuario: usuario),
+        '/pageTestBM': (context) => TestBruceMod(usuario: usuario),
         '/TB': (context) => const BruceTest(),
         '/pageviewUser': (context) => const Registro(),
         '/pageViewHome': (context) => const PageHome(),

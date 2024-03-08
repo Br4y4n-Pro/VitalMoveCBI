@@ -12,7 +12,7 @@ class Estadisticas extends StatefulWidget {
 class _EstadisticasState extends State<Estadisticas> {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
@@ -31,7 +31,7 @@ class _EstadisticasState extends State<Estadisticas> {
             Navigator.pushNamed(context, '/pageCaminata');
           },
           child: Container(
-              margin: EdgeInsets.symmetric(horizontal: size.width * .1),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               height: 70,
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -58,7 +58,7 @@ class _EstadisticasState extends State<Estadisticas> {
             Navigator.pushNamed(context, '/pageBruce');
           },
           child: Container(
-              margin: EdgeInsets.symmetric(horizontal: size.width * .1),
+              margin: EdgeInsets.symmetric(horizontal: 20),
               height: 70,
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -85,7 +85,7 @@ class _EstadisticasState extends State<Estadisticas> {
             Navigator.pushNamed(context, '/pagePeso');
           },
           child: Container(
-              margin: EdgeInsets.symmetric(horizontal: size.width * .1),
+              margin: EdgeInsets.symmetric(horizontal: 20),
               height: 70,
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -112,7 +112,7 @@ class _EstadisticasState extends State<Estadisticas> {
             Navigator.pushNamed(context, '/pageVOdos');
           },
           child: Container(
-              margin: EdgeInsets.symmetric(horizontal: size.width * .1),
+              margin: EdgeInsets.symmetric(horizontal: 20),
               height: 70,
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
