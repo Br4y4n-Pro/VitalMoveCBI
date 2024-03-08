@@ -6,7 +6,6 @@ import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
 import 'package:vitalmovecbi/index.dart';
 import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
 
-
 class TestCaminata extends StatefulWidget {
   const TestCaminata({super.key});
 
@@ -15,11 +14,49 @@ class TestCaminata extends StatefulWidget {
 }
 
 class _TestCaminata extends State<TestCaminata> {
+  final TextEditingController controller = TextEditingController();
+  List<Usuario> usuariosFiltrados = [];
+
+  @override
+  void initState() {
+    super.initState();
+    // Inicializa el controlador del TextField
+    controller.addListener(_filtrarUsuarios);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _filtrarUsuarios(); // Llama a _filtrarUsuarios() después de construir el widget para llenar la lista inicialmente.
+    });
+  }
+
+  @override
+  void dispose() {
+    // Limpia el controlador cuando el widget se desmonte
+    controller.dispose();
+    super.dispose();
+  }
+
+  void _filtrarUsuarios() {
+    final texto = controller.text.toLowerCase();
+    final provider = Provider.of<UsuarioProvider>(context, listen: false);
+
+    setState(() {
+      if (texto.isEmpty) {
+        // Si no hay texto, muestra todos los usuarios
+        usuariosFiltrados = provider.usuarios;
+      } else {
+        // Filtra los usuarios basándose en el texto ingresado
+        usuariosFiltrados = provider.usuarios.where((usuario) {
+          final nombreCompleto =
+              '${usuario.nombres} ${usuario.apellidos}'.toLowerCase();
+          final dni = usuario.dni?.toLowerCase() ?? '';
+          return nombreCompleto.contains(texto) || dni.contains(texto);
+        }).toList();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    TextEditingController controller = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
@@ -49,7 +86,6 @@ class _TestCaminata extends State<TestCaminata> {
                     borderRadius: BorderRadius.circular(10)),
                 child: TextField(
                   controller: controller,
-                  onChanged: (value) => {},
                   keyboardType: TextInputType.name,
                   cursorColor: const Color.fromARGB(33, 15, 15, 15),
                   decoration: InputDecoration(
@@ -83,9 +119,14 @@ class _TestCaminata extends State<TestCaminata> {
                 }
                 return Expanded(
                   child: ListView.builder(
-                    itemCount: provider.usuarios.length,
+                    itemCount: usuariosFiltrados.length,
                     itemBuilder: (context, index) {
-                      Usuario usuario = provider.usuarios[index];
+                      if (usuariosFiltrados.isNotEmpty) {
+                        print('No esta vacio');
+                      } else {
+                        print('Esta vacio');
+                      }
+                      final usuario = usuariosFiltrados[index];
                       return GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(

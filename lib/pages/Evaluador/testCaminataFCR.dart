@@ -7,9 +7,8 @@ import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/loginTextField.dart';
 
 class TestCaminataFCR extends StatefulWidget {
-  final Usuario usuario;
-
-  const TestCaminataFCR({super.key, required this.usuario});
+  final Usuario? usuario;
+  const TestCaminataFCR({super.key, this.usuario});
   @override
   State<TestCaminataFCR> createState() => _TestCaminataFCRState();
 }
@@ -21,9 +20,13 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
     final fromProvider =
         Provider.of<CaminataFromProvider>(context, listen: false);
     // final provider = Provider.of<ProviderCaminata>(context, listen: false);
-    final usuario = ModalRoute.of(context)?.settings.arguments as Usuario;
-    print("------------");
-    print(usuario.toString());
+    final usuario = ModalRoute.of(context)?.settings.arguments as Usuario?;
+    if (usuario != null) {
+      print("------------");
+      print(usuario.toString());
+    } else {
+      // Manejar el caso en que usuario sea null
+    }
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colores.quaternaryColor),
@@ -37,8 +40,7 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         children: [
-          Text('${usuario.nombres}'),
-          const SizedBox(height: 50),
+          const SizedBox(height: 30),
           const Text(
             "Usuario seleccionado:",
             textAlign: TextAlign.start,
@@ -46,7 +48,28 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
               fontSize: 20,
             ),
           ),
-          const SizedBox(height: 80),
+          const SizedBox(height: 10),
+          Container(
+            margin: const EdgeInsets.only(bottom: 10),
+            height: 70,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                color: Colores.quaternaryColor,
+                borderRadius: BorderRadius.all(Radius.circular(20))),
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundImage: (usuario?.imgperfil != null)
+                    ? NetworkImage(usuario!.imgperfil.toString())
+                    : AssetImage('img/Usuario/usu2.png')
+                        as ImageProvider<Object>?,
+              ),
+              title: Text('${usuario?.nombres} ${usuario?.apellidos}'),
+              subtitle: Text('${usuario?.dni}'),
+              trailing:
+                  IconButton(onPressed: () {}, icon: Icon(Icons.open_with)),
+            ),
+          ),
+          const SizedBox(height: 30),
           const Text(
             "Ingrese su frecuencia cardiaca en reposo (FCR):",
             textAlign: TextAlign.center,
@@ -56,7 +79,6 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
               color: Colors.black,
             ),
           ),
-          const SizedBox(height: 3),
           const SizedBox(height: 19),
           Consumer(
             builder: (context, value, child) => InputLogin(

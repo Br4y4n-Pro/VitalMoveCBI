@@ -90,7 +90,7 @@ class MyApp extends StatelessWidget {
         '/pageTestC6M': (context) => const TestC6M(),
         '/pageAcercaDe': (context) => const AcercaDe(),
         '/pageTestC': (context) => const TestCaminata(),
-        '/pageTestBM': (context) => const TestBruceMod(),
+        '/pageTestBM': (context) =>  TestBruceMod(usuario: usuario),
         '/TB': (context) => const BruceTest(),
         '/pageviewUser': (context) => const Registro(),
         '/pageViewHome': (context) => const PageHome(),

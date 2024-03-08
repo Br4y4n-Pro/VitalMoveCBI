@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/pages/Evaluador/homeEvaluador.dart';
 import 'package:vitalmovecbi/pages/Evaluador/tests.dart';
 import 'package:vitalmovecbi/pages/Evaluador/BuscarPersona.dart';
 import 'package:vitalmovecbi/pages/Evaluador/pageViewUser.dart';
+import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
 import 'package:vitalmovecbi/widgets/customaoobarEvaluador.dart';
 
 class PageViewEvaluador extends StatefulWidget {
@@ -13,6 +15,14 @@ class PageViewEvaluador extends StatefulWidget {
 }
 
 class _PageViewEvaluadorState extends State<PageViewEvaluador> {
+  @override
+  void initState() {
+    super.initState();
+    final usuarioProvider =
+        Provider.of<UsuarioProvider>(context, listen: false);
+    usuarioProvider.allUser(context);
+  }
+
   final PageController pageController = PageController(initialPage: 0);
   int _currentPageIndex = 0;
 

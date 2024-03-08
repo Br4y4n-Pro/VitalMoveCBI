@@ -44,7 +44,8 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
   var generoItems = [
     'Selecciona una opcion',
     'Masculino',
-    'Femenino'
+    'Femenino',
+    'Prefiere no decirlo'
   ]; // Lista de géneros
 // Cargar y mostrar imagen en el formulario
 

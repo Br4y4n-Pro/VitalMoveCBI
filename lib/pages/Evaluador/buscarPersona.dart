@@ -1,8 +1,5 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-// ignore: unused_import
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
 import 'package:vitalmovecbi/pages/Evaluador/PerfilInformativo.dart';
 import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
@@ -10,22 +7,53 @@ import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 
 class BuscarPersona extends StatefulWidget {
-  const BuscarPersona({Key? key});
+  const BuscarPersona({Key? key}) : super(key: key);
 
   @override
   State<BuscarPersona> createState() => _BuscarPersonaState();
 }
 
 class _BuscarPersonaState extends State<BuscarPersona> {
+  final TextEditingController controller = TextEditingController();
+  List<Usuario> usuariosFiltrados = [];
+
   @override
   void initState() {
     super.initState();
-    final usuarioProvider =
-        Provider.of<UsuarioProvider>(context, listen: false);
-    usuarioProvider.allUser(context);
+    // Inicializa el controlador del TextField
+    controller.addListener(_filtrarUsuarios);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _filtrarUsuarios(); // Llama a _filtrarUsuarios() después de construir el widget para llenar la lista inicialmente.
+    });
   }
 
-  final controller = TextEditingController();
+  @override
+  void dispose() {
+    // Limpia el controlador cuando el widget se desmonte
+    controller.dispose();
+    super.dispose();
+  }
+
+  void _filtrarUsuarios() {
+    final texto = controller.text.toLowerCase();
+    final provider = Provider.of<UsuarioProvider>(context, listen: false);
+
+    setState(() {
+      if (texto.isEmpty) {
+        // Si no hay texto, muestra todos los usuarios
+        usuariosFiltrados = provider.usuarios;
+      } else {
+        // Filtra los usuarios basándose en el texto ingresado
+        usuariosFiltrados = provider.usuarios.where((usuario) {
+          final nombreCompleto =
+              '${usuario.nombres} ${usuario.apellidos}'.toLowerCase();
+          final dni = usuario.dni?.toLowerCase() ?? '';
+          return nombreCompleto.contains(texto) || dni.contains(texto);
+        }).toList();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -55,7 +83,6 @@ class _BuscarPersonaState extends State<BuscarPersona> {
                     borderRadius: BorderRadius.circular(10)),
                 child: TextField(
                   controller: controller,
-                  onChanged: (value) => {},
                   keyboardType: TextInputType.name,
                   cursorColor: const Color.fromARGB(33, 15, 15, 15),
                   decoration: InputDecoration(
@@ -71,70 +98,41 @@ class _BuscarPersonaState extends State<BuscarPersona> {
                           borderSide: BorderSide.none)),
                 )),
             const SizedBox(height: 50),
-            Container(
-              height: 1,
-              width: size.width,
-              decoration: const BoxDecoration(
-                color: Color.fromRGBO(0, 150, 199, 1),
-              ),
-            ),
-            const SizedBox(height: 40),
-            Consumer<UsuarioProvider>(
-              builder: (context, provider, child) {
-                if (provider.usuarios.isEmpty) {
-                  return const Center(
-                      child: CircularProgressIndicator(
-                    color: Colores.primaryColor,
-                  ));
-                }
-                return Expanded(
-                  // Asegura que ListView.builder tenga un límite en su altura.
-                  child: ListView.builder(
-                    itemCount: provider.usuarios.length,
-                    itemBuilder: (context, index) {
-                      Usuario usuario = provider.usuarios[index];
-                      // late String
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  PerfilInformativo(usuario: usuario),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.only(
-                              bottom:
-                                  10), // Añade un margen solo en la parte inferior de cada Container
-                          height: 70,
-                          width: double
-                              .infinity, // Hace que el Container se expanda al máximo ancho posible
-                          decoration: BoxDecoration(
-                              color: Colores.quaternaryColor,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20))),
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              // Puedes poner la imagen que prefieras aquí
-                              backgroundImage: (usuario.imgperfil != null)
-                                  ? NetworkImage(usuario.imgperfil.toString())
-                                  : AssetImage('img/Usuario/usu2.png')
-                                      as ImageProvider<Object>?,
-                            ),
-                            title:
-                                Text('${usuario.nombres} ${usuario.apellidos}'),
-                            subtitle: Text('${usuario.dni}'),
-                            trailing: IconButton(
-                                onPressed: () {}, icon: Icon(Icons.open_with)),
-                          ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: usuariosFiltrados.length,
+                itemBuilder: (context, index) {
+                  final usuario = usuariosFiltrados[index];
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              PerfilInformativo(usuario: usuario),
                         ),
                       );
                     },
-                  ),
-                );
-              },
+                    child: Container(
+                      margin: const EdgeInsets.only(bottom: 10),
+                      height: 70,
+                      decoration: BoxDecoration(
+                          color: Colores.quaternaryColor,
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          backgroundImage: (usuario.imgperfil != null)
+                              ? NetworkImage(usuario.imgperfil.toString())
+                              : AssetImage('img/Usuario/usu2.png')
+                                  as ImageProvider<Object>?,
+                        ),
+                        title: Text('${usuario.nombres} ${usuario.apellidos}'),
+                        subtitle: Text('${usuario.dni}'),
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),
