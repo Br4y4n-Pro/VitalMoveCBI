@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -63,48 +64,56 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     dynamic usuario;
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'VitalMoveCBI',
-      theme: ThemeData(
-        textTheme: GoogleFonts.fredokaTextTheme(),
-      ),
-      initialRoute: '/usuarioLogin',
-      routes: {
-        '/usuarioLogin': (context) => const UsuarioLogin(),
-        '/registerUser3': (context) => const RegistroUsertres(),
-        '/registerUser2': (context) => const RegistroUserdos(),
-        '/registerUser': (context) => const RegistroUsuario(),
-        '/homeUsuario': (context) => const HomeUser(),
-        '/contact': (context) => const PerfilVistaContact(),
-        '/perfil': (context) => const PerfilVista(),
-        '/evaluadorHome': (context) => const HomeEvaluador(),
-        '/estadisticas': (context) => const Estadisticas(),
-        '/pageBruce': (context) => const PageBruces(),
-        '/pageCaminata': (context) => const PageCaminata(),
-        '/pageVOdos': (context) => const ConsumoVo(),
-        '/pageIMC': (context) => const PageIMC(),
-        '/pagePeso': (context) => const PagePeso(),
-        '/perfilInformativo': (context) => PerfilInformativo(usuario: usuario),
-        '/buscarPersona': (context) => const BuscarPersona(),
-        '/configuracion': (context) => const Configuracion(),
-        '/pageTestB': (context) => const Testbruce(),
-        '/pageTests': (context) => const Tests(),
-        '/pageTestCaminataFCR': (context) => TestCaminataFCR(usuario: usuario),
-        '/pageTestC6M': (context) => const TestC6M(),
-        '/pageAcercaDe': (context) => const AcercaDe(),
-        '/pageTestC': (context) => const TestCaminata(),
-        '/pageTestBM': (context) => TestBruceMod(usuario: usuario),
-        '/TB': (context) => const BruceTest(),
-        '/pageviewUser': (context) => const Registro(),
-        '/pageViewHome': (context) => const PageHome(),
-        '/pageviewsEvaluador': (context) => const PageViewEvaluador(),
-      },
-      onGenerateRoute: (settings) {
-        return MaterialPageRoute(
-          builder: (context) => const UsuarioLogin(),
-        );
-      },
-    );
+    return AdaptiveTheme(
+        light: ThemeData.light(useMaterial3: true),
+        dark: ThemeData.dark(useMaterial3: true),
+        initial: AdaptiveThemeMode.light,
+        builder: (theme, darktheme) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'VitalMoveCBI',
+            theme: ThemeData(
+              textTheme: GoogleFonts.fredokaTextTheme(),
+            ),
+            initialRoute: '/usuarioLogin',
+            routes: {
+              '/usuarioLogin': (context) => const UsuarioLogin(),
+              '/registerUser3': (context) => const RegistroUsertres(),
+              '/registerUser2': (context) => const RegistroUserdos(),
+              '/registerUser': (context) => const RegistroUsuario(),
+              '/homeUsuario': (context) => const HomeUser(),
+              '/contact': (context) => const PerfilVistaContact(),
+              '/perfil': (context) => const PerfilVista(),
+              '/evaluadorHome': (context) => const HomeEvaluador(),
+              '/estadisticas': (context) => const Estadisticas(),
+              '/pageBruce': (context) => const PageBruces(),
+              '/pageCaminata': (context) => const PageCaminata(),
+              '/pageVOdos': (context) => const ConsumoVo(),
+              '/pageIMC': (context) => const PageIMC(),
+              '/pagePeso': (context) => const PagePeso(),
+              '/perfilInformativo': (context) =>
+                  PerfilInformativo(usuario: usuario),
+              '/buscarPersona': (context) => const BuscarPersona(),
+              '/configuracion': (context) => const Configuracion(),
+              '/pageTestB': (context) => const Testbruce(),
+              '/pageTests': (context) => const Tests(),
+              '/pageTestCaminataFCR': (context) =>
+                  TestCaminataFCR(usuario: usuario),
+              '/pageTestC6M': (context) => const TestC6M(),
+              '/pageAcercaDe': (context) => const AcercaDe(),
+              '/pageTestC': (context) => const TestCaminata(),
+              '/pageTestBM': (context) => TestBruceMod(usuario: usuario),
+              '/TB': (context) => const BruceTest(),
+              '/pageviewUser': (context) => const Registro(),
+              '/pageViewHome': (context) => const PageHome(),
+              '/pageviewsEvaluador': (context) => const PageViewEvaluador(),
+            },
+            onGenerateRoute: (settings) {
+              return MaterialPageRoute(
+                builder: (context) => const UsuarioLogin(),
+              );
+            },
+          );
+        });
   }
 }
