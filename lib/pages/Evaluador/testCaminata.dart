@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
 import 'package:vitalmovecbi/index.dart';
+import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
 import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
 
 class TestCaminata extends StatefulWidget {
@@ -57,6 +58,7 @@ class _TestCaminata extends State<TestCaminata> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final darkModeProvider = Provider.of<DarkModeProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -99,6 +101,7 @@ class _TestCaminata extends State<TestCaminata> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide.none)),
+                           style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
                 )),
             const SizedBox(height: 50),
             Container(
@@ -139,8 +142,10 @@ class _TestCaminata extends State<TestCaminata> {
                           margin: const EdgeInsets.only(bottom: 10),
                           height: 70,
                           width: double.infinity,
-                          decoration: const BoxDecoration(
-                              color: Colores.quaternaryColor,
+                          decoration: BoxDecoration(
+                              color: (darkModeProvider.isDarkModeEnabled)
+                                  ? Colores.primaryColor
+                                  : Colores.quaternaryColor,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))),
                           child: ListTile(
@@ -174,7 +179,8 @@ Widget inputLogin(String campo) {
   return Container(
     width: 350,
     decoration: BoxDecoration(
-      color: const Color.fromARGB(255, 240, 240, 240),
+      color: 
+      const Color.fromARGB(255, 240, 240, 240),
       boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
       borderRadius: BorderRadius.circular(10),
     ),
@@ -193,6 +199,7 @@ Widget inputLogin(String campo) {
           borderSide: BorderSide.none,
         ),
       ),
+      style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
     ),
   );
 }

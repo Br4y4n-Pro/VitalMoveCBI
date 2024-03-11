@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
 import 'package:vitalmovecbi/index.dart';
+import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/BruceFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/ProviderBruce.dart';
 import 'package:vitalmovecbi/widgets/loginTextField.dart';
@@ -37,6 +38,7 @@ class _TestBruceMod extends State<TestBruceMod> {
 
   @override
   Widget build(BuildContext context) {
+     final darkModeProvider = Provider.of<DarkModeProvider>(context);
     final fromProvider = Provider.of<BruceFromProvider>(context, listen: false);
     final provider = Provider.of<BruceProvider>(context, listen: false);
     final usuario = ModalRoute.of(context)?.settings.arguments as Usuario?;
@@ -72,7 +74,9 @@ class _TestBruceMod extends State<TestBruceMod> {
               height: 70,
               width: double.infinity,
               decoration: BoxDecoration(
-                  color: Colores.quaternaryColor,
+                   color: (darkModeProvider.isDarkModeEnabled)
+                                  ? Colores.primaryColor
+                                  : Colores.quaternaryColor,
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: ListTile(
                 leading: CircleAvatar(

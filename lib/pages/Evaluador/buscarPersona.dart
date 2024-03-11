@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
 import 'package:vitalmovecbi/pages/Evaluador/PerfilInformativo.dart';
+import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
 import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
 
 import 'package:vitalmovecbi/widgets/colores.dart';
@@ -57,7 +58,7 @@ class _BuscarPersonaState extends State<BuscarPersona> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+     final darkModeProvider = Provider.of<DarkModeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colores.quaternaryColor),
@@ -96,6 +97,7 @@ class _BuscarPersonaState extends State<BuscarPersona> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide.none)),
+                           style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
                 )),
             const SizedBox(height: 50),
             Expanded(
@@ -117,7 +119,9 @@ class _BuscarPersonaState extends State<BuscarPersona> {
                       margin: const EdgeInsets.only(bottom: 10),
                       height: 70,
                       decoration: BoxDecoration(
-                          color: Colores.quaternaryColor,
+                         color: (darkModeProvider.isDarkModeEnabled)
+                                  ? Colores.primaryColor
+                                  : Colores.quaternaryColor,
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                       child: ListTile(
                         leading: CircleAvatar(

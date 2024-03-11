@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
 // import 'package:vitalmovecbi/provider/caminata/ProviderCaminata.dart';
 import 'package:vitalmovecbi/provider/caminata/caminataFromProvider.dart';
+import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/loginTextField.dart';
 
@@ -16,6 +17,7 @@ class TestCaminataFCR extends StatefulWidget {
 class _TestCaminataFCRState extends State<TestCaminataFCR> {
   @override
   Widget build(BuildContext context) {
+     final darkModeProvider = Provider.of<DarkModeProvider>(context);
     final size = MediaQuery.of(context).size;
     final fromProvider =
         Provider.of<CaminataFromProvider>(context, listen: false);
@@ -54,7 +56,9 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
             height: 70,
             width: double.infinity,
             decoration: BoxDecoration(
-                color: Colores.quaternaryColor,
+               color: (darkModeProvider.isDarkModeEnabled)
+                                  ? Colores.primaryColor
+                                  : Colores.quaternaryColor,
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             child: ListTile(
               leading: CircleAvatar(
@@ -76,7 +80,6 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
-              color: Colors.black,
             ),
           ),
           const SizedBox(height: 19),

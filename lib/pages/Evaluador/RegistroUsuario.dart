@@ -227,6 +227,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                       }
                       return null;
                     },
+                   
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -334,7 +335,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                         BoxShadow(
                           color: Colors.grey.shade300,
                           blurRadius: 3,
-                        )
+                     ),
                       ],
                       borderRadius: BorderRadius.circular(10),
                     ),
