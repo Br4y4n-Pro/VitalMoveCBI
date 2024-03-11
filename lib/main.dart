@@ -1,4 +1,3 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +16,8 @@ import 'package:vitalmovecbi/provider/testbruce/BruceFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/ProviderBruce.dart';
 import 'package:vitalmovecbi/provider/usuarios/UsuarioFromProvider.dart';
 import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
+import 'package:vitalmovecbi/pages/general/configuracion.dart';
+import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
 
 import 'services/localStorage.dart';
 
@@ -28,11 +29,10 @@ void main() async {
 }
 
 class AppState extends StatelessWidget {
-  const AppState({super.key});
+  const AppState({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    //print('__________>ZZZZZ');
     return MultiProvider(
       providers: [
         //--------- provider login --------------
@@ -40,20 +40,17 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(lazy: false, create: (_) => LoginFromProvider()),
 
         ChangeNotifierProvider(lazy: false, create: (_) => UsuarioProvider()),
-        ChangeNotifierProvider(
-            lazy: false, create: (_) => UsuarioFromProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => UsuarioFromProvider()),
 
         ChangeNotifierProvider(lazy: false, create: (_) => RegistroProvider()),
-        ChangeNotifierProvider(
-            lazy: false, create: (_) => RegistroFromProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => RegistroFromProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => BruceProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => BruceFromProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => ProviderCaminata()),
-        ChangeNotifierProvider(
-            lazy: false, create: (_) => CaminataFromProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => CaminataFromProvider()),
 
-        ChangeNotifierProvider(
-            lazy: false, create: (_) => CaminataGetProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => CaminataGetProvider()),
+       ChangeNotifierProvider(create: (_) => DarkModeProvider()),
       ],
       child: const MyApp(),
     );
@@ -61,25 +58,20 @@ class AppState extends StatelessWidget {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
+    final darkModeProvider = Provider.of<DarkModeProvider>(context); 
+
     dynamic usuario;
-    return AdaptiveTheme(
-        light: ThemeData.light(useMaterial3: true),
-        dark: ThemeData.dark(useMaterial3: true),
-        initial: AdaptiveThemeMode.light,
-        builder: (theme, darktheme) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'VitalMoveCBI',
-            theme: ThemeData(
-              textTheme: GoogleFonts.fredokaTextTheme(),
-            ),
-            initialRoute: '/usuarioLogin',
-            routes: {
-              '/usuarioLogin': (context) => const UsuarioLogin(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'VitalMoveCBI',
+      theme: darkModeProvider.isDarkModeEnabled ? ThemeData.dark() : ThemeData.light(), // Utiliza el estado del modo oscuro
+      initialRoute: '/usuarioLogin',
+      routes: {
+         '/usuarioLogin': (context) => const UsuarioLogin(),
               '/registerUser3': (context) => const RegistroUsertres(),
               '/registerUser2': (context) => const RegistroUserdos(),
               '/registerUser': (context) => const RegistroUsuario(),
@@ -93,14 +85,12 @@ class MyApp extends StatelessWidget {
               '/pageVOdos': (context) => const ConsumoVo(),
               '/pageIMC': (context) => const PageIMC(),
               '/pagePeso': (context) => const PagePeso(),
-              '/perfilInformativo': (context) =>
-                  PerfilInformativo(usuario: usuario),
+              '/perfilInformativo': (context) => PerfilInformativo(usuario: usuario),
               '/buscarPersona': (context) => const BuscarPersona(),
               '/configuracion': (context) => const Configuracion(),
               '/pageTestB': (context) => const Testbruce(),
               '/pageTests': (context) => const Tests(),
-              '/pageTestCaminataFCR': (context) =>
-                  TestCaminataFCR(usuario: usuario),
+              '/pageTestCaminataFCR': (context) => TestCaminataFCR(usuario: usuario),
               '/pageTestC6M': (context) => const TestC6M(),
               '/pageAcercaDe': (context) => const AcercaDe(),
               '/pageTestC': (context) => const TestCaminata(),
@@ -109,13 +99,12 @@ class MyApp extends StatelessWidget {
               '/pageviewUser': (context) => const Registro(),
               '/pageViewHome': (context) => const PageHome(),
               '/pageviewsEvaluador': (context) => const PageViewEvaluador(),
-            },
-            onGenerateRoute: (settings) {
-              return MaterialPageRoute(
-                builder: (context) => const UsuarioLogin(),
-              );
-            },
-          );
-        });
+      },
+      onGenerateRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (context) => const UsuarioLogin(),
+        );
+      },
+    );
   }
 }

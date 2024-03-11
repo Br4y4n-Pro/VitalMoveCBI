@@ -37,7 +37,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
           )
         ],
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
+       
         title: Image.asset("img/Logo.png", fit: BoxFit.contain),
       ),
       body: ListView(

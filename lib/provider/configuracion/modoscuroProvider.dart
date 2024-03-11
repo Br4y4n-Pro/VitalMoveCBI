@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:vitalmovecbi/index.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/cupertino.dart';
 
-class ChangeTheme with ChangeNotifier {
-  bool _isdarktheme = false;
+class DarkModeProvider extends ChangeNotifier {
+  bool _isDarkModeEnabled = false;
 
-  get isdarktheme => _isdarktheme;
+  bool get isDarkModeEnabled => _isDarkModeEnabled;
 
-  set isdraktheme(bool _) {
-    _isdarktheme = _;
+  void toggleDarkMode(bool newValue) {
+    _isDarkModeEnabled = newValue;
     notifyListeners();
   }
 }
