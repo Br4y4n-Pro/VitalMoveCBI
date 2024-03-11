@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:unique_simple_bar_chart/data_models.dart';
+import 'package:unique_simple_bar_chart/simple_bar_chart.dart';
+import 'package:vitalmovecbi/provider/caminata/gets/providerGetCaminata.dart';
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 //import 'package:vitalmovecbi/widgets/customappbar.dart';
-import 'package:vitalmovecbi/widgets/grafico.dart';
 
 class HomeUser extends StatefulWidget {
   const HomeUser({super.key});
@@ -17,14 +19,16 @@ class _HomeUserState extends State<HomeUser> {
   @override
   void initState() {
     super.initState();
+    WidgetsFlutterBinding.ensureInitialized();
   }
 
   @override
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
     final loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    final providerCaminata = Provider.of<CaminataGetProvider>(context);
     final usuario = loginProvider.usuarios[0];
-
+    final caminatas = providerCaminata.caminatas;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -141,7 +145,28 @@ class _HomeUserState extends State<HomeUser> {
                 ),
               ),
               const SizedBox(height: 20),
-              grafico(context),
+              SimpleBarChart(
+                listOfHorizontalBarData: caminatas.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  print('Este es el index $index');
+                  double distancia = double.parse(caminatas[index]
+                      .consumovo2
+                      .toString()); // Cambio de nombre a 'distancia'
+                  print('numero en el index $index $distancia');
+
+                  print('Este es el index $index , luego');
+
+                  return HorizontalDetailsModel(
+                    name: caminatas[index].fecha!.substring(0, 7).toString(),
+                    color: Color.fromARGB(255, 6, 158, 223),
+                    size: distancia, // Cambio del nombre de la variable
+                  );
+                }).toList(),
+                verticalInterval:
+                    10, // Cambiando el intervalo vertical para representar la distancia en kilómetros
+                horizontalBarPadding: 1.5,
+                // verticalTextMapper: (value) => '$value km', // Cambio del texto en el eje vertical
+              ),
               const SizedBox(height: 40),
               const Text(
                 "Recomendaciones del dia",

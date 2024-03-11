@@ -3,6 +3,7 @@ import 'package:vitalmovecbi/provider/login/LoginFromProvider.dart';
 
 import '../../Api/AllApi.dart';
 import '../../Modelos/UsuariosModelo.dart';
+import '../../services/localStorage.dart';
 
 class LoginProvider extends ChangeNotifier {
   List<Usuario> usuarios = [];
@@ -33,6 +34,7 @@ class LoginProvider extends ChangeNotifier {
         final Usuarios usuarios = Usuarios.fromlist([jsonResponse]);
 
         this.usuarios = usuarios.dato;
+        LocalStorage.prefs.setString('id', usuarios.dato[0].idUsuario!);
         if (jsonResponse['rol'] == 1) {
           limpiarDatos(fromProvider);
           Navigator.pushReplacementNamed(context, '/pageviewsEvaluador');
@@ -70,9 +72,7 @@ class LoginProvider extends ChangeNotifier {
                   ],
                 ),
               ),
-            )
-            )
-            );
+            )));
         // print('${jsonResponse['mensaje']}');
       }
       notifyListeners();

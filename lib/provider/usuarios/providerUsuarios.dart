@@ -22,7 +22,7 @@ class UsuarioProvider extends ChangeNotifier {
       }
     }).catchError((error) {
       // Considera manejar el error de alguna manera
-      print("Error al obtener usuarios: $error");
+      print("providerUsuarios.dart: Error al obtener usuarios: $error");
     });
   }
 }

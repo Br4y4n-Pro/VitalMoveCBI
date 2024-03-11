@@ -1,8 +1,8 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/index.dart';
-import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
+// import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
 
 class Configuracion extends StatelessWidget {
   const Configuracion({super.key});

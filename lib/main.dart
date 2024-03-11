@@ -18,10 +18,12 @@ import 'package:vitalmovecbi/provider/testbruce/ProviderBruce.dart';
 import 'package:vitalmovecbi/provider/usuarios/UsuarioFromProvider.dart';
 import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
 
-void main() {
+import 'services/localStorage.dart';
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AllApi.configuteDio();
-
+  await LocalStorage.configurePrefs();
   runApp(const AppState());
 }
 

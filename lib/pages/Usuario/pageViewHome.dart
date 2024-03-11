@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/pages/Usuario/homeusuario.dart';
 import 'package:vitalmovecbi/pages/Usuario/perfilVistaContac.dart';
 import 'package:vitalmovecbi/pages/Usuario/estadisticas.dart';
 import 'package:vitalmovecbi/pages/Usuario/perfilVista.dart';
+import 'package:vitalmovecbi/provider/caminata/gets/providerGetCaminata.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 
 class PageHome extends StatefulWidget {
@@ -15,6 +17,14 @@ class PageHome extends StatefulWidget {
 class _PageHomeState extends State<PageHome> {
   final PageController pageController = PageController(initialPage: 0);
   int _currentPageIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    WidgetsFlutterBinding.ensureInitialized();
+    final caminataProviderGet =
+        Provider.of<CaminataGetProvider>(context, listen: false)
+            .caminataOfUser(context);
+  }
 
   @override
   Widget build(BuildContext context) {

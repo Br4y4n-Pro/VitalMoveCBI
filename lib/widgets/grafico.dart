@@ -1,7 +1,10 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:vitalmovecbi/provider/caminata/gets/providerGetCaminata.dart';
 
-Widget grafico(context) {
+Widget grafico(context, CaminataGetProvider providerCaminata) {
+  // final provider = Provider.of<CaminataGetProvider>(context, listen: false);
+  // print(provider.caminatas.length);
 
   return Center(
     child: Container(

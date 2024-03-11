@@ -113,7 +113,7 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
           const SizedBox(height: 50),
           const Text('Mes en que realizo test'),
           const SizedBox(height: 10),
-          grafico(context),
+          // grafico(context ),
           Expanded(
             child: Column(children: [
               const SizedBox(height: 40),

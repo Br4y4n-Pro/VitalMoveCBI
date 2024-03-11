@@ -16,17 +16,16 @@ class Caminatas {
 
 class Caminata {
   int? idusuario;
-  DateTime? fecha;
-  double? fcr;
-  double? tiempo;
-  double? distancia;
-  double? consumovo2;
+  String? fecha;
+  String? fcr;
+  String? tiempo;
+  String? distancia;
+  String? consumovo2;
   String? barevodos;
-  double? fcm;
+  String? fcm;
 
   Caminata(
-      {
-      this.barevodos,
+      {this.barevodos,
       this.consumovo2,
       this.distancia,
       this.fcm,

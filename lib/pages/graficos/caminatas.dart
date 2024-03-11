@@ -18,9 +18,9 @@ class _PageCaminataState extends State<PageCaminata> {
 @override
 void initState() {
   super.initState();
-   final caminata =
-        Provider.of<CaminataGetProvider>(context, listen: false);
-    caminata.caminataOfUser(context);
+  //  final caminata =
+  //       Provider.of<CaminataGetProvider>(context, listen: false);
+  //   caminata.caminataOfUser(context);
   
 }
   List<double> caminataData = [
