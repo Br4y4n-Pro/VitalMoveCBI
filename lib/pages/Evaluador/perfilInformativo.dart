@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 
-import '../../widgets/grafico.dart';
 
 class PerfilInformativo extends StatefulWidget {
   final Usuario usuario;

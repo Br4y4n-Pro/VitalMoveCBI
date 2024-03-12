@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-// import 'package:provider/provider.dart';
-import 'package:vitalmovecbi/index.dart';
-// import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
-=======
 import 'package:vitalmovecbi/index.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
->>>>>>> fc67b04f437aaf45b2a84c2034022013a4e8f146
 
 class Configuracion extends StatefulWidget {
   const Configuracion({Key? key}) : super(key: key);
