@@ -7,6 +7,8 @@ import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
 import 'package:vitalmovecbi/provider/caminata/ProviderCaminata.dart';
 import 'package:vitalmovecbi/provider/caminata/caminataFromProvider.dart';
 import 'package:vitalmovecbi/provider/caminata/gets/providerGetCaminata.dart';
+import 'package:vitalmovecbi/provider/configuracion/publicaciones/publicacionesFromProvider.dart';
+import 'package:vitalmovecbi/provider/configuracion/publicaciones/publicacionesProvider.dart';
 import 'package:vitalmovecbi/provider/datosGenerales/fechaTestsProvider.dart';
 import 'package:vitalmovecbi/provider/datosGenerales/historialUser.dart';
 import 'package:vitalmovecbi/provider/datosGenerales/notasDiariasProvider.dart';
@@ -56,6 +58,11 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(
             lazy: false, create: (_) => NotasDiariasProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => HistorialProvider()),
+<<<<<<< HEAD
+=======
+        ChangeNotifierProvider(lazy: false, create: (_) => PublicacionFromProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => PublicacionesProvider()),
+>>>>>>> 9fe12d7c31ea89a409653b6af9200bb7cdac6cc7
 
         ChangeNotifierProvider(
             lazy: false, create: (_) => CaminataGetProvider()),
@@ -92,7 +99,11 @@ class MyApp extends StatelessWidget {
         '/evaluadorHome': (context) => const HomeEvaluador(),
         '/estadisticas': (context) => const Estadisticas(),
         '/pageBruce': (context) => const PageBruces(),
-        '/pageCaminata': (context) => const PageCaminata(),
+<<<<<<< HEAD
+       // '/pageCaminata': (context) => const PageCaminata(),
+=======
+        // '/pageCaminata': (context) => const PageCaminata(),
+>>>>>>> 0c3a562784a15c2e0cf6c07117e0bc5c320fdd3d
         '/pageVOdos': (context) => const ConsumoVo(),
         '/pageIMC': (context) => const PageIMC(),
         '/pagePeso': (context) => const PagePeso(),

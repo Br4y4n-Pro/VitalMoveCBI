@@ -3,9 +3,20 @@
 import 'package:dio/dio.dart';
 
 class AllApi {
+<<<<<<< HEAD
   static String url = 'http://10.207.80.142:3050/';
   // static String url = 'http://192.168.16.28:3050/';
+=======
+  // static String url = 'http://10.207.80.142:3050/';
+<<<<<<< HEAD
+ // static String url = 'http://192.168.16.28:3050/';
+   static String url = 'https://backend-vitalmove.onrender.com/';
+=======
+  // static String url = 'http://192.168.16.28:3050/';
+  static String url = 'http://  192.168.204.115:3050/';
+>>>>>>> 9fe12d7c31ea89a409653b6af9200bb7cdac6cc7
   // static String url = 'https://backend-vitalmove.onrender.com/';
+>>>>>>> 0c3a562784a15c2e0cf6c07117e0bc5c320fdd3d
 
   static final Dio _dio = Dio();
 

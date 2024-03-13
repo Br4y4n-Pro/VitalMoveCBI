@@ -1,37 +1,54 @@
-// ignore_for_file: file_names
-
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/Api/AllApi.dart';
-// import 'package:vitalmovecbi/Modelos/CaminataModelo.dart';
-import 'package:vitalmovecbi/provider/caminata/caminataFromProvider.dart';
-import 'package:vitalmovecbi/services/localStorage.dart';
+import 'package:vitalmovecbi/Modelos/Publicaciones.dart';
+import 'package:vitalmovecbi/provider/configuracion/publicaciones/publicacionesFromProvider.dart';
+import 'package:vitalmovecbi/provider/login/LoginFromProvider.dart';
 
-class ProviderCaminata extends ChangeNotifier {
-  caminata(CaminataFromProvider fromProvider, BuildContext context) {
-    final id = LocalStorage.prefs.getString('idselecionado');
+class PublicacionesProvider extends ChangeNotifier {
+  List<Publicacion> usuarios = [];
+  bool ischeck = false;
 
-    final data = {
-      "idusuario": id,
-      "fcr": fromProvider.fcr,
-      "fcm": fromProvider.fcm,
-      "tiempo": fromProvider.tiempo,
-      "distancia": fromProvider.distancia
-    };
-    print(data);
+  publicacionesPr(PublicacionFromProvider fromProvider, BuildContext context) async {
+    FormData formData = FormData.fromMap({
+      "dni": fromProvider.recomendaciones
+    });
 
-    AllApi.httpPost('crearCaminata', data).then((rpta) {
-      print("Esperando");
+    if (!kIsWeb) {
+      if (fromProvider.imagen != null) {
+        formData.files.add(MapEntry(
+          "imgperfil",
+          await MultipartFile.fromFile(fromProvider.imagen!.path),
+        ));
+      }
+    }
+
+    void limpiarDatos(PublicacionFromProvider fromProvider) {
+      fromProvider.imagen;
+      fromProvider.recomendaciones = '';
+      notifyListeners();
+    }
+
+
+    AllApi.httpPost('publicaciones', formData).then((dynamic rpta) {
+      ischeck = false;
+
+      print("ESperando");
       print(rpta.runtimeType);
 
       final Map<String, dynamic> jsonResponse = rpta;
-      if (jsonResponse["rp"] == "si") {
-        Navigator.pop(context);
-        notifyListeners();
+      print(jsonResponse);
+      if (jsonResponse['rp'] == 'si') {
+        limpiarDatos(fromProvider);
+        ischeck = false;
+
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             behavior: SnackBarBehavior.floating,
             backgroundColor: Colors.transparent,
             elevation: 40,
             content: Container(
+              // padding: const EdgeInsets.all(8),
               height: 70,
               decoration: BoxDecoration(
                   color: Colors.green.shade600,
@@ -50,20 +67,20 @@ class ProviderCaminata extends ChangeNotifier {
                     Text(
                       '${jsonResponse['mensaje']}',
                       style: const TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 14),
+                          fontWeight: FontWeight.w600, fontSize: 15),
                     ),
                   ],
                 ),
               ),
             )));
+        Navigator.pushReplacementNamed(context, '/evaluadorHome');
       } else {
-        // ischeck = false;
-        notifyListeners();
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             behavior: SnackBarBehavior.floating,
             backgroundColor: Colors.transparent,
             elevation: 40,
             content: Container(
+              // padding: const EdgeInsets.all(8),
               height: 70,
               decoration: BoxDecoration(
                   color: Colors.red.shade600,
@@ -80,17 +97,17 @@ class ProviderCaminata extends ChangeNotifier {
                     ),
                     const SizedBox(width: 10),
                     Text(
-                      '${jsonResponse['mensaje ']}',
+                      '${jsonResponse['mensaje']}',
                       style: const TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 14),
+                          fontWeight: FontWeight.w600, fontSize: 12),
                     ),
                   ],
                 ),
               ),
             )));
-        // print('${jsonResponse['mensaje']}');
       }
-      print(jsonResponse);
+    }).catchError((onError) {
+      print(onError.toString());
     });
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
-// import 'package:vitalmovecbi/provider/caminata/ProviderCaminata.dart';
+import 'package:vitalmovecbi/provider/caminata/ProviderCaminata.dart';
 import 'package:vitalmovecbi/provider/caminata/caminataFromProvider.dart';
 import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
@@ -9,19 +9,63 @@ import 'package:vitalmovecbi/widgets/loginTextField.dart';
 
 class TestCaminataFCR extends StatefulWidget {
   final Usuario? usuario;
-  const TestCaminataFCR({super.key, this.usuario});
+  const TestCaminataFCR({Key? key, this.usuario}) : super(key: key);
   @override
   State<TestCaminataFCR> createState() => _TestCaminataFCRState();
 }
 
 class _TestCaminataFCRState extends State<TestCaminataFCR> {
+  final TextEditingController _recomendacionController =
+      TextEditingController();
+
+  void _mostrarModal(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Agregar Recomendación"),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                TextField(
+                  controller: _recomendacionController,
+                  decoration: const InputDecoration(
+                    labelText: 'Recomendación',
+                    hintText: 'Ingrese su recomendación aquí',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancelar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                String recomendacion = _recomendacionController.text;
+                print('Recomendación agregada: $recomendacion');
+                Navigator.of(context).pop();
+              },
+              child: const Text('Guardar'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-     final darkModeProvider = Provider.of<DarkModeProvider>(context);
+    final darkModeProvider = Provider.of<DarkModeProvider>(context);
     final size = MediaQuery.of(context).size;
     final fromProvider =
         Provider.of<CaminataFromProvider>(context, listen: false);
-    // final provider = Provider.of<ProviderCaminata>(context, listen: false);
+    final provider = Provider.of<ProviderCaminata>(context, listen: false);
+
     final usuario = ModalRoute.of(context)?.settings.arguments as Usuario?;
     if (usuario != null) {
       print("------------");
@@ -56,26 +100,26 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
             height: 70,
             width: double.infinity,
             decoration: BoxDecoration(
-               color: (darkModeProvider.isDarkModeEnabled)
-                                  ? Colores.primaryColor
-                                  : Colores.quaternaryColor,
+                color: (darkModeProvider.isDarkModeEnabled)
+                    ? Colores.primaryColor
+                    : Colores.quaternaryColor,
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             child: ListTile(
               leading: CircleAvatar(
                 backgroundImage: (usuario?.imgperfil != null)
                     ? NetworkImage(usuario!.imgperfil.toString())
-                    : AssetImage('img/Usuario/usu2.png')
+                    : const AssetImage('img/Usuario/usu2.png')
                         as ImageProvider<Object>?,
               ),
               title: Text('${usuario?.nombres} ${usuario?.apellidos}'),
               subtitle: Text('${usuario?.dni}'),
               trailing:
-                  IconButton(onPressed: () {}, icon: Icon(Icons.open_with)),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.open_with)),
             ),
           ),
           const SizedBox(height: 30),
           const Text(
-            "Ingrese su frecuencia cardiaca en reposo (FCR):",
+            "Ingresa Los datos a evaluar ",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 15,
@@ -118,6 +162,27 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
               tipo: TextInputType.number,
             ),
           ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              GestureDetector(
+                onTap: () => _mostrarModal(context),
+                child: const Row(
+                  children: [
+                    Text(
+                      'Añadir Recomendacion',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Icon(Icons.add),
+                  ],
+                ),
+              ),
+            ],
+          ),
           const SizedBox(height: 19),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 100),
@@ -136,7 +201,7 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
               ),
               onPressed: () {
                 try {
-                  // provider.caminata(fromProvider, context);
+                  provider.caminata(fromProvider, context);
                 } catch (error) {
                   // ignore: avoid_print
                   print('Error al enviar la solicitud: $error');
