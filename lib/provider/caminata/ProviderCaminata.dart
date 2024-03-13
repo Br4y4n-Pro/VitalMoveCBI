@@ -4,10 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/Api/AllApi.dart';
 // import 'package:vitalmovecbi/Modelos/CaminataModelo.dart';
 import 'package:vitalmovecbi/provider/caminata/caminataFromProvider.dart';
+import 'package:vitalmovecbi/services/localStorage.dart';
 
 class ProviderCaminata extends ChangeNotifier {
   caminata(CaminataFromProvider fromProvider, BuildContext context) {
+    final id = LocalStorage.prefs.getString('idselecionado');
+
     final data = {
+      "idusuario": id,
       "fcr": fromProvider.fcr,
       "fcm": fromProvider.fcm,
       "tiempo": fromProvider.tiempo,
@@ -21,7 +25,7 @@ class ProviderCaminata extends ChangeNotifier {
 
       final Map<String, dynamic> jsonResponse = rpta;
       if (jsonResponse["rp"] == "si") {
-        Navigator.pushReplacementNamed(context, "/evaluadorHome");
+        Navigator.pop(context);
         notifyListeners();
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             behavior: SnackBarBehavior.floating,
@@ -76,7 +80,7 @@ class ProviderCaminata extends ChangeNotifier {
                     ),
                     const SizedBox(width: 10),
                     Text(
-                      '${jsonResponse['mensaje']}',
+                      '${jsonResponse['mensaje ']}',
                       style: const TextStyle(
                           fontWeight: FontWeight.w600, fontSize: 14),
                     ),

@@ -19,7 +19,7 @@ class BruceProvider extends ChangeNotifier {
 
       final Map<String, dynamic> jsonResponse = rpta;
       if (jsonResponse["rp"] == "si") {
-        Navigator.pushReplacementNamed(context, "/pageviewsEvaluador");
+        Navigator.pop(context);
         notifyListeners();
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             behavior: SnackBarBehavior.floating,
