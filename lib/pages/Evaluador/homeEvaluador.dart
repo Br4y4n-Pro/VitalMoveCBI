@@ -1,9 +1,12 @@
-// ignore_for_file: file_names, avoid_print
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/index.dart';
-import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
+import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
+import 'package:vitalmovecbi/provider/configuracion/publicaciones/publicacionesFromProvider.dart';
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 
 class HomeEvaluador extends StatefulWidget {
@@ -13,12 +16,19 @@ class HomeEvaluador extends StatefulWidget {
   State<HomeEvaluador> createState() => _HomeEvaluadorState();
 }
 
+File? _imgperfil;
+Uint8List webImage = Uint8List(8);
+
 class _HomeEvaluadorState extends State<HomeEvaluador> {
+  TextEditingController _recomendacionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    final fromProvider =
+        Provider.of<PublicacionFromProvider>(context, listen: false);
+
+    final darkModeProvider = Provider.of<DarkModeProvider>(context);
     final usuario = loginProvider.usuarios[0];
-    print("imaggen en el homeEvaluador");
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -37,7 +47,6 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
           )
         ],
         automaticallyImplyLeading: false,
-       
         title: Image.asset("img/Logo.png", fit: BoxFit.contain),
       ),
       body: ListView(
@@ -58,7 +67,25 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
             ),
           ),
           const SizedBox(height: 30),
-          inputLogin("Recomendaciones generales"),
+          ElevatedButton(
+            onPressed: () {
+              _mostrarModal(fromProvider);
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text("Escribe tu recomendacion",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: (darkModeProvider.isDarkModeEnabled)
+                          ? Colors.white
+                          : Colors.black,
+                    )),
+                SizedBox(width: 5),
+                Icon(Icons.edit),
+              ],
+            ),
+          ),
           const SizedBox(height: 30),
           const Text(
             "Recomendaciones del dia",
@@ -76,9 +103,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     IconButton(
-                      onPressed: () {
-                        
-                      },
+                      onPressed: () {},
                       icon: Icon(Icons.close),
                     ),
                   ],
@@ -110,7 +135,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                 const SizedBox(height: 10),
                 Text(
                   "Fecha de publicación: 04/03/2024",
-                textAlign: TextAlign.start,
+                  textAlign: TextAlign.start,
                   style: TextStyle(fontSize: 12, color: Colors.grey),
                 ),
                 const SizedBox(height: 10),
@@ -119,42 +144,108 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
           ),
         ],
       ),
-    
     );
   }
-}
 
-Widget blueSquare({
-  required String text,
-  required String imagePath,
-  required Size size,
-}) {
-  return Container(
-    decoration: BoxDecoration(
-      color: const Color(0xFFADE8F4),
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-          child: SvgPicture.asset(
-            imagePath,
-            width: 90,
-            height: 60,
-          ),
-        ),
-        Center(
-          child: Text(
-            text,
-            style: const TextStyle(
-              color: Color.fromRGBO(11, 35, 173, 1),
-              fontSize: 16,
+  Future _pickImageGallery(PublicacionFromProvider fromProvider) async {
+    if (!kIsWeb) {
+      final returnedImage =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (returnedImage == null) return;
+
+      setState(() {
+        _imgperfil = File(returnedImage.path);
+        fromProvider.imagen = _imgperfil;
+      });
+    } else if (kIsWeb) {
+      final returnedImage =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (returnedImage == null) return;
+      _imgperfil = File(returnedImage.path);
+      var f = await returnedImage.readAsBytes();
+      setState(() {
+        webImage = f;
+        fromProvider.imagen = null;
+      });
+    }
+  }
+
+  void _mostrarModal(PublicacionFromProvider fromProvider) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Ingrese su recomendación"),
+          content: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.15,
+            child: Consumer(
+              builder: (context, value, child) => TextField(
+                onChanged: (value) => fromProvider.recomendaciones,
+                controller: _recomendacionController,
+                maxLines: null,
+                expands: true,
+                decoration: InputDecoration(
+                  hintText: "Escriba su recomendación aquí",
+                ),
+              ),
             ),
           ),
-        ),
-      ],
-    ),
-  );
+          actions: [
+            GestureDetector(
+              onTap: () async {
+                _pickImageGallery(fromProvider);
+                Navigator.of(context).pop();
+              },
+              child: const Column(
+                children: [
+                  Icon(Icons.photo_library),
+                  Text('Galería'),
+                ],
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                _recomendacionController.clear();
+                Navigator.of(context).pop();
+              },
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "Cancelar",
+                    //style: TextStyle(color: Color.fromRGBO(196, 12, 12, 1)),
+                  ),
+                  Icon(Icons.cancel, color: Color.fromRGBO(196, 12, 12, 1)),
+                ],
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                _recomendacionController.clear();
+                Navigator.of(context).pop();
+                _mostrarNotificacion();
+              },
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text("Publicar"),
+                  //style: TextStyle(color: Color.fromRGBO(0, 212, 46, 1))),
+                  Icon(Icons.check, color: Color.fromRGBO(0, 212, 46, 1)),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _mostrarNotificacion() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Publicación exitosa'),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
 }

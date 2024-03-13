@@ -1,12 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 
-class LoginFromProvider extends ChangeNotifier {
+class PublicacionFromProvider extends ChangeNotifier {
   GlobalKey<FormState> fromkey =  GlobalKey<FormState>();
 
-  String usuario = '';
-  String password = '';
-
-  get imgPublicacion => null;
+  File? imagen;
+  String? fecha;
+  String idpublicacion = '';
+  String recomendaciones = '';
+  
 
   validateFrom() {
     if (fromkey.currentState!.validate()) {
