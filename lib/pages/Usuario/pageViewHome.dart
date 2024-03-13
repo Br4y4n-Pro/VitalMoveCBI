@@ -1,10 +1,13 @@
+// ignore_for_file: library_private_types_in_public_api, unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/pages/Usuario/homeusuario.dart';
 import 'package:vitalmovecbi/pages/Usuario/perfilVistaContac.dart';
 import 'package:vitalmovecbi/pages/Usuario/estadisticas.dart';
 import 'package:vitalmovecbi/pages/Usuario/perfilVista.dart';
-import 'package:vitalmovecbi/provider/caminata/gets/providerGetCaminata.dart';
+import 'package:vitalmovecbi/provider/datosGenerales/fechaTestsProvider.dart';
+import 'package:vitalmovecbi/provider/datosGenerales/notasDiariasProvider.dart';
 import 'package:vitalmovecbi/widgets/customappbar.dart';
 
 class PageHome extends StatefulWidget {
@@ -21,9 +24,13 @@ class _PageHomeState extends State<PageHome> {
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
-    final caminataProviderGet =
-        Provider.of<CaminataGetProvider>(context, listen: false)
-            .caminataOfUser(context);
+    final fechaTestProvider =
+        Provider.of<FechaTestProvider>(context, listen: false)
+            .fechasOnePerson(context);
+    final notasProvider =
+        Provider.of<NotasDiariasProvider>(context, listen: false)
+            .notadiaria(context);
+
   }
 
   @override
@@ -62,10 +69,10 @@ class _PageHomeState extends State<PageHome> {
         },
         child: PageView(
           physics:
-              NeverScrollableScrollPhysics(), // Deshabilitar desplazamiento horizontal
+              const NeverScrollableScrollPhysics(), // Deshabilitar desplazamiento horizontal
           pageSnapping: true,
           controller: pageController,
-          children: [
+          children: const [
             HomeUser(),
             PerfilVistaContact(),
             Estadisticas(),
@@ -90,3 +97,4 @@ class _PageHomeState extends State<PageHome> {
     );
   }
 }
+// 

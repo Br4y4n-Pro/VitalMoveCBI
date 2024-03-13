@@ -26,8 +26,7 @@ class _PerfilVistaContactState extends State<PerfilVistaContact> {
     final loginProvider = Provider.of<LoginProvider>(context, listen: false);
     final usuario = loginProvider.usuarios[0];
 
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colores.quaternaryColor),
         title: const Text(
@@ -104,6 +103,6 @@ class _PerfilVistaContactState extends State<PerfilVistaContact> {
           ],
         ),
       ),
-    ));
+    );
   }
 }

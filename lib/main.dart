@@ -7,6 +7,9 @@ import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
 import 'package:vitalmovecbi/provider/caminata/ProviderCaminata.dart';
 import 'package:vitalmovecbi/provider/caminata/caminataFromProvider.dart';
 import 'package:vitalmovecbi/provider/caminata/gets/providerGetCaminata.dart';
+import 'package:vitalmovecbi/provider/datosGenerales/fechaTestsProvider.dart';
+import 'package:vitalmovecbi/provider/datosGenerales/historialUser.dart';
+import 'package:vitalmovecbi/provider/datosGenerales/notasDiariasProvider.dart';
 import 'package:vitalmovecbi/provider/login/LoginFromProvider.dart';
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 import 'package:vitalmovecbi/provider/registro/ProviderRegistro.dart';
@@ -15,7 +18,6 @@ import 'package:vitalmovecbi/provider/testbruce/BruceFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/ProviderBruce.dart';
 import 'package:vitalmovecbi/provider/usuarios/UsuarioFromProvider.dart';
 import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
-import 'package:vitalmovecbi/pages/general/configuracion.dart';
 import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
 
 import 'services/localStorage.dart';
@@ -28,7 +30,7 @@ void main() async {
 }
 
 class AppState extends StatelessWidget {
-  const AppState({Key? key}) : super(key: key);
+  const AppState({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,17 +41,28 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(lazy: false, create: (_) => LoginFromProvider()),
 
         ChangeNotifierProvider(lazy: false, create: (_) => UsuarioProvider()),
-        ChangeNotifierProvider(lazy: false, create: (_) => UsuarioFromProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => UsuarioFromProvider()),
 
         ChangeNotifierProvider(lazy: false, create: (_) => RegistroProvider()),
-        ChangeNotifierProvider(lazy: false, create: (_) => RegistroFromProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => RegistroFromProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => BruceProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => BruceFromProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => ProviderCaminata()),
-        ChangeNotifierProvider(lazy: false, create: (_) => CaminataFromProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => CaminataFromProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => FechaTestProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => NotasDiariasProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => HistorialProvider()),
 
-        ChangeNotifierProvider(lazy: false, create: (_) => CaminataGetProvider()),
-       ChangeNotifierProvider(create: (_) => DarkModeProvider()),
+
+
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => CaminataGetProvider()),
+        ChangeNotifierProvider(create: (_) => DarkModeProvider()),
+        
+
       ],
       child: const MyApp(),
     );
@@ -57,47 +70,49 @@ class AppState extends StatelessWidget {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
-   Widget build(BuildContext context) {
-    final darkModeProvider = Provider.of<DarkModeProvider>(context); 
+  Widget build(BuildContext context) {
+    final darkModeProvider = Provider.of<DarkModeProvider>(context);
 
     dynamic usuario;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'VitalMoveCBI',
-      theme: darkModeProvider.isDarkModeEnabled ? ThemeData.dark() : ThemeData.light(), // Utiliza el estado del modo oscuro
+      theme: darkModeProvider.isDarkModeEnabled
+          ? ThemeData.dark()
+          : ThemeData.light(), // Utiliza el estado del modo oscuro
       initialRoute: '/usuarioLogin',
       routes: {
-         '/usuarioLogin': (context) => const UsuarioLogin(),
-              '/registerUser3': (context) => const RegistroUsertres(),
-              '/registerUser2': (context) => const RegistroUserdos(),
-              '/registerUser': (context) => const RegistroUsuario(),
-              '/homeUsuario': (context) => const HomeUser(),
-              '/contact': (context) => const PerfilVistaContact(),
-              '/perfil': (context) => const PerfilVista(),
-              '/evaluadorHome': (context) => const HomeEvaluador(),
-              '/estadisticas': (context) => const Estadisticas(),
-              '/pageBruce': (context) => const PageBruces(),
-              '/pageCaminata': (context) => const PageCaminata(),
-              '/pageVOdos': (context) => const ConsumoVo(),
-              '/pageIMC': (context) => const PageIMC(),
-              '/pagePeso': (context) => const PagePeso(),
-              '/perfilInformativo': (context) => PerfilInformativo(usuario: usuario),
-              '/buscarPersona': (context) => const BuscarPersona(),
-              '/configuracion': (context) => const Configuracion(),
-              '/pageTestB': (context) => const Testbruce(),
-              '/pageTests': (context) => const Tests(),
-              '/pageTestCaminataFCR': (context) => TestCaminataFCR(usuario: usuario),
-              '/pageTestC6M': (context) => const TestC6M(),
-              '/pageAcercaDe': (context) => const AcercaDe(),
-              '/pageTestC': (context) => const TestCaminata(),
-              '/pageTestBM': (context) => TestBruceMod(usuario: usuario),
-              '/TB': (context) => const BruceTest(),
-              '/pageviewUser': (context) => const Registro(),
-              '/pageViewHome': (context) => const PageHome(),
-              '/pageviewsEvaluador': (context) => const PageViewEvaluador(),
+        '/usuarioLogin': (context) => const UsuarioLogin(),
+        '/registerUser3': (context) => const RegistroUsertres(),
+        '/registerUser2': (context) => const RegistroUserdos(),
+        '/registerUser': (context) => const RegistroUsuario(),
+        '/homeUsuario': (context) => const HomeUser(),
+        '/contact': (context) => const PerfilVistaContact(),
+        '/perfil': (context) => const PerfilVista(),
+        '/evaluadorHome': (context) => const HomeEvaluador(),
+        '/estadisticas': (context) => const Estadisticas(),
+        '/pageBruce': (context) => const PageBruces(),
+        '/pageCaminata': (context) => const PageCaminata(),
+        '/pageVOdos': (context) => const ConsumoVo(),
+        '/pageIMC': (context) => const PageIMC(),
+        '/pagePeso': (context) => const PagePeso(),
+        '/perfilInformativo': (context) => PerfilInformativo(usuario: usuario),
+        '/buscarPersona': (context) => const BuscarPersona(),
+        '/configuracion': (context) => const Configuracion(),
+        '/pageTestB': (context) => const Testbruce(),
+        '/pageTests': (context) => const Tests(),
+        '/pageTestCaminataFCR': (context) => TestCaminataFCR(usuario: usuario),
+        '/pageTestC6M': (context) => const TestC6M(),
+        '/pageAcercaDe': (context) => const AcercaDe(),
+        '/pageTestC': (context) => const TestCaminata(),
+        '/pageTestBM': (context) => TestBruceMod(usuario: usuario),
+        '/TB': (context) => const BruceTest(),
+        '/pageviewUser': (context) => const Registro(),
+        '/pageViewHome': (context) => const PageHome(),
+        '/pageviewsEvaluador': (context) => const PageViewEvaluador(),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(

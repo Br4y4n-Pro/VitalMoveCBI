@@ -9,7 +9,7 @@ class InputLogin extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final FormFieldValidator<String>? validator;
   final String initValue;
-  const InputLogin( {
+  const InputLogin({
     this.validator,
     required this.campo,
     required this.tamano,
@@ -48,7 +48,7 @@ class _InputLoginState extends State<InputLogin> {
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none)),
-                    style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
+          style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
         ));
   }
 }

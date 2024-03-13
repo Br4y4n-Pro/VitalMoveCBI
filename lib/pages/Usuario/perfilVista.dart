@@ -2,8 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:vitalmovecbi/Modelos/historialModelo.dart';
+import 'package:vitalmovecbi/provider/datosGenerales/historialUser.dart';
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
+import 'package:intl/intl.dart';
 
 class PerfilVista extends StatefulWidget {
   const PerfilVista({super.key});
@@ -18,6 +21,17 @@ class _PerfilVistaState extends State<PerfilVista> {
     final size = MediaQuery.of(context).size;
     final loginProvider = Provider.of<LoginProvider>(context, listen: false);
     final usuario = loginProvider.usuarios[0];
+    final providerHistorial = Provider.of<HistorialProvider>(context);
+    final ultimoHistorial = providerHistorial.historiales.isNotEmpty
+        ? providerHistorial.historiales[0]
+        : Historial(); // Reemplaza Historial() con el tipo de dato correcto
+    String formatearFecha(String fecha) {
+      DateTime dateTime = DateTime.parse(fecha);
+      String fechaFormateada = DateFormat('yyyy-MM-dd').format(dateTime);
+      return fechaFormateada;
+    }
+
+    String fechaFormateada = formatearFecha(usuario.fechaNacimiento.toString());
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -43,9 +57,28 @@ class _PerfilVistaState extends State<PerfilVista> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(150),
               ),
-              child: const CircleAvatar(
+              child: CircleAvatar(
                 radius: 30,
-                backgroundImage: AssetImage("images/itachi.jpg"),
+                backgroundColor: Colors.transparent,
+                child: providerHistorial.historiales.isNotEmpty
+                    ? Center(
+                        child: ClipOval(
+                          child: Image.network(
+                            usuario.imgperfil ?? "img/Usuario/usu2.png",
+                            fit: BoxFit.cover,
+                            width: 100,
+                            height: 100,
+                          ),
+                        ),
+                      )
+                    : ClipOval(
+                        child: Image.asset(
+                          "img/Usuario/usu2.png",
+                          fit: BoxFit.cover,
+                          width: 90,
+                          height: 90,
+                        ),
+                      ),
               ),
             ),
             Container(
@@ -62,8 +95,7 @@ class _PerfilVistaState extends State<PerfilVista> {
                   const SizedBox(height: 15),
                   textField("Documento de Identidad", "${usuario.dni}"),
                   const SizedBox(height: 15),
-                  textField(
-                      "Fecha de Nacimiento", "${usuario.fechaNacimiento}"),
+                  textField("Fecha de Nacimiento", fechaFormateada),
                   const SizedBox(height: 15),
                   textField("Género", "${usuario.genero}"),
                   const SizedBox(height: 15),
@@ -75,38 +107,15 @@ class _PerfilVistaState extends State<PerfilVista> {
                   const SizedBox(height: 15),
                   textField("Alergias", "${usuario.alergias}"),
                   const SizedBox(height: 15),
-                  textField("IMC", "${usuario.actividadsemana}"),
+                  textField("IMC",
+                      '${double.parse(ultimoHistorial.imc ?? '0').toStringAsFixed(2)}   ${ultimoHistorial.imcdescripcion}'),
                   const SizedBox(height: 15),
                   textField("Grupo", "${usuario.grupo}"),
                   const SizedBox(height: 15),
-                  textField("Peso (KG)", "${usuario.peso}"),
+                  textField("Peso (KG)", ultimoHistorial.peso ?? '0'),
                   const SizedBox(height: 15),
                   textField("Talla (Metros)", "${usuario.talla}"),
                   const SizedBox(height: 25),
-                  Center(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: Size(size.width * .5, size.height * .05),
-                        backgroundColor: const Color.fromRGBO(0, 150, 199, 1),
-                        foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                        textStyle: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/perfilInformativo');
-                      },
-                      child: const Text(
-                        'Ver Estadisticas',
-                        style: TextStyle(fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 40),
                 ],
               ),
             ),
