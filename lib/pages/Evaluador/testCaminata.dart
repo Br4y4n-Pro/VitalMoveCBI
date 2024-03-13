@@ -101,7 +101,7 @@ class _TestCaminata extends State<TestCaminata> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide.none)),
-                           style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
+                  style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
                 )),
             const SizedBox(height: 50),
             Container(
@@ -179,8 +179,7 @@ Widget inputLogin(String campo) {
   return Container(
     width: 350,
     decoration: BoxDecoration(
-      color: 
-      const Color.fromARGB(255, 240, 240, 240),
+      color: const Color.fromARGB(255, 240, 240, 240),
       boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3)],
       borderRadius: BorderRadius.circular(10),
     ),

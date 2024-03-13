@@ -53,16 +53,13 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(
             lazy: false, create: (_) => CaminataFromProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => FechaTestProvider()),
-        ChangeNotifierProvider(lazy: false, create: (_) => NotasDiariasProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => NotasDiariasProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => HistorialProvider()),
-
-
 
         ChangeNotifierProvider(
             lazy: false, create: (_) => CaminataGetProvider()),
         ChangeNotifierProvider(create: (_) => DarkModeProvider()),
-        
-
       ],
       child: const MyApp(),
     );
