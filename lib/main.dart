@@ -55,18 +55,15 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(
             lazy: false, create: (_) => CaminataFromProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => FechaTestProvider()),
-        ChangeNotifierProvider(lazy: false, create: (_) => NotasDiariasProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => NotasDiariasProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => HistorialProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => PublicacionFromProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => PublicacionesProvider()),
 
-
-
         ChangeNotifierProvider(
             lazy: false, create: (_) => CaminataGetProvider()),
         ChangeNotifierProvider(create: (_) => DarkModeProvider()),
-        
-
       ],
       child: const MyApp(),
     );
@@ -99,7 +96,11 @@ class MyApp extends StatelessWidget {
         '/evaluadorHome': (context) => const HomeEvaluador(),
         '/estadisticas': (context) => const Estadisticas(),
         '/pageBruce': (context) => const PageBruces(),
+<<<<<<< HEAD
        // '/pageCaminata': (context) => const PageCaminata(),
+=======
+        // '/pageCaminata': (context) => const PageCaminata(),
+>>>>>>> 0c3a562784a15c2e0cf6c07117e0bc5c320fdd3d
         '/pageVOdos': (context) => const ConsumoVo(),
         '/pageIMC': (context) => const PageIMC(),
         '/pagePeso': (context) => const PagePeso(),

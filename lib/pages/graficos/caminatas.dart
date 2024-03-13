@@ -50,7 +50,11 @@
 
 
 // final size = MediaQuery.of(context).size;
+<<<<<<< HEAD
 //     for (int i = 0; i <ultimo5fechas.length; i++) {
+=======
+//     for (int i = 0; i < ultimo5fechas.length; i++) {
+>>>>>>> 0c3a562784a15c2e0cf6c07117e0bc5c320fdd3d
 //       final barGroupData = BarChartGroupData(
 //         x: i,
 //         barRods: [

@@ -5,12 +5,14 @@ import 'package:vitalmovecbi/index.dart';
 import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/BruceFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/ProviderBruce.dart';
+import 'package:vitalmovecbi/services/localStorage.dart';
 import 'package:vitalmovecbi/widgets/loginTextField.dart';
 
 class TestBruceMod extends StatefulWidget {
   final Usuario? usuario;
 
-  const TestBruceMod({super.key, this.usuario});
+  // ignore: use_super_parameters
+  const TestBruceMod({Key? key, this.usuario}) : super(key: key);
 
   @override
   State<TestBruceMod> createState() => _TestBruceMod();
@@ -22,6 +24,8 @@ class _TestBruceMod extends State<TestBruceMod> {
   String? rhType;
 
   String dropdownValuesrh = 'Seleccione etapa';
+  final TextEditingController _recomendacionController =
+      TextEditingController();
 
   var itemsetapa = [
     'Seleccione etapa',
@@ -38,10 +42,12 @@ class _TestBruceMod extends State<TestBruceMod> {
 
   @override
   Widget build(BuildContext context) {
-     final darkModeProvider = Provider.of<DarkModeProvider>(context);
+    final darkModeProvider = Provider.of<DarkModeProvider>(context);
     final fromProvider = Provider.of<BruceFromProvider>(context, listen: false);
     final provider = Provider.of<BruceProvider>(context, listen: false);
     final usuario = ModalRoute.of(context)?.settings.arguments as Usuario?;
+    
+    LocalStorage.prefs.setString('idselecionado', usuario!.idUsuario.toString());
 
     final size = MediaQuery.of(context).size;
     return Scaffold(
@@ -57,7 +63,7 @@ class _TestBruceMod extends State<TestBruceMod> {
         iconTheme: const IconThemeData(color: Colores.quaternaryColor),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
           padding: const EdgeInsets.all(10.0),
           children: <Widget>[
@@ -74,21 +80,21 @@ class _TestBruceMod extends State<TestBruceMod> {
               height: 70,
               width: double.infinity,
               decoration: BoxDecoration(
-                   color: (darkModeProvider.isDarkModeEnabled)
-                                  ? Colores.primaryColor
-                                  : Colores.quaternaryColor,
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
+                  color: (darkModeProvider.isDarkModeEnabled)
+                      ? Colores.primaryColor
+                      : Colores.quaternaryColor,
+                  borderRadius: const BorderRadius.all(Radius.circular(20))),
               child: ListTile(
                 leading: CircleAvatar(
                   backgroundImage: (usuario?.imgperfil != null)
                       ? NetworkImage(usuario!.imgperfil.toString())
-                      : AssetImage('img/Usuario/usu2.png')
+                      : const AssetImage('img/Usuario/usu2.png')
                           as ImageProvider<Object>?,
                 ),
                 title: Text('${usuario?.nombres} ${usuario?.apellidos}'),
                 subtitle: Text('${usuario?.dni}'),
-                trailing:
-                    IconButton(onPressed: () {}, icon: Icon(Icons.open_with)),
+                trailing: IconButton(
+                    onPressed: () {}, icon: const Icon(Icons.open_with)),
               ),
             ),
             const SizedBox(height: 30),
@@ -145,6 +151,27 @@ class _TestBruceMod extends State<TestBruceMod> {
                 underline: Container(),
               ),
             ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GestureDetector(
+                  onTap: _mostrarModal,
+                  child: const Row(
+                    children: [
+                      Text(
+                        'Añadir Recomendacion',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Icon(Icons.add),
+                    ],
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 50),
             Container(
               margin: EdgeInsets.symmetric(horizontal: size.width * 0.1),
@@ -175,6 +202,46 @@ class _TestBruceMod extends State<TestBruceMod> {
           ],
         ),
       ),
+    );
+  }
+
+  void _mostrarModal() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Agregar Recomendación"),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                TextField(
+                  controller: _recomendacionController,
+                  decoration: const InputDecoration(
+                    labelText: 'Recomendación',
+                    hintText: 'Ingrese su recomendación aquí',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancelar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                String recomendacion = _recomendacionController.text;
+                print('Recomendación agregada: $recomendacion');
+                Navigator.of(context).pop();
+              },
+              child: const Text('Guardar'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
