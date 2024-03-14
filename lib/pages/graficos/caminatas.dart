@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, prefer_const_constructors
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +15,8 @@ class PageCaminata extends StatefulWidget {
 }
 
 class _PageCaminataState extends State<PageCaminata> {
+  int? _selectedIndex;
+
   @override
   void initState() {
     super.initState();
@@ -25,11 +29,13 @@ class _PageCaminataState extends State<PageCaminata> {
 
   @override
   Widget build(BuildContext context) {
+    print(_selectedIndex);
     final caminata = Provider.of<CaminataGetProvider>(context);
     final listCaminatas = caminata.caminatas;
     final longitud = listCaminatas.length;
     List<Caminata> ultimo5caminatas =
         listCaminatas.sublist((longitud - 5).clamp(0, longitud));
+
 // showModalBottomSheet  <----------Usar para mostrar abajo el modal too guapo
     List<BarChartGroupData> listCaminataBar = [];
 
@@ -61,37 +67,58 @@ class _PageCaminataState extends State<PageCaminata> {
         fontSize: 14,
       );
       String text;
+      int? numero;
 
       switch (value.toInt()) {
         case 0:
           text = ultimo5caminatas[0].fecha!.substring(0, 7);
+          numero = 0;
           break;
         case 1:
           text = ultimo5caminatas[1].fecha!.substring(0, 7);
+          numero = 1;
+
           break;
         case 2:
           text = ultimo5caminatas[2].fecha!.substring(0, 7);
+          numero = 2;
+
           break;
         case 3:
           text = ultimo5caminatas[3].fecha!.substring(0, 7);
+          numero = 3;
+
           break;
         case 4:
           text = ultimo5caminatas[4].fecha!.substring(0, 7);
+          numero = 4;
+
           break;
         case 5:
           text = ultimo5caminatas[5].fecha!.substring(0, 7);
+          numero = 5;
+
           break;
         case 6:
           text = ultimo5caminatas[6].fecha!.substring(0, 7);
+          numero = 6;
+
           break;
         default:
           text = '';
           break;
       }
-      return SideTitleWidget(
-        axisSide: meta.axisSide,
-        space: 4,
-        child: Text(text, style: style),
+      return GestureDetector(
+        onTap: () {
+          setState(() {
+            _selectedIndex = numero;
+          });
+        },
+        child: SideTitleWidget(
+          axisSide: meta.axisSide,
+          space: 4,
+          child: Text(text, style: style),
+        ),
       );
     }
 
@@ -203,30 +230,49 @@ class _PageCaminataState extends State<PageCaminata> {
             ),
           ),
           const SizedBox(height: 30),
-          const Card(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Mi estado actual',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Card(
+              elevation: 5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Mi estado actual',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    '5.5 kilometros',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      '5.5 kilometros',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Text(
-                      "Felicidades, ¡has alcanzado un estado óptimo en tu rendimiento durante la caminata! Según las estadísticas del mes, tu capacidad cardiovascular está en un nivel excelente, lo que indica una salud cardiovascular sólida y una eficiencia destacada al caminar. Este logro es fundamental para mantener una vida activa y prevenir enfermedades relacionadas con el corazón. ¡Sigue así y continúa con tus hábitos saludables para mantener tu bienestar cardiovascular a largo plazo!"),
-                ),
-              ],
+                  _selectedIndex != null
+                      ? Container(
+                          padding: EdgeInsets.all(20),
+                          child: Column(
+                            children: [
+                              Text(
+                                  "Fecha: ${ultimo5caminatas[_selectedIndex!].fecha}"),
+                              Text(
+                                  "FCM: ${ultimo5caminatas[_selectedIndex!].fcm}"),
+                              // Agrega aquí más información que quieras mostrar
+                            ],
+                          ),
+                        )
+                      : Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text(
+                              "Selecciona una fecha para ver los detalles"),
+                        ),
+                ],
+              ),
             ),
           ),
         ],
