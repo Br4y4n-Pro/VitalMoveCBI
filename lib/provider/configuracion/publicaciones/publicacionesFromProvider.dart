@@ -11,6 +11,7 @@ class PublicacionFromProvider extends ChangeNotifier {
   String? fecha;
   String idpublicacion = '';
   String recomendaciones = '';
+  String titulo = '';
   
 
   validateFrom() {
