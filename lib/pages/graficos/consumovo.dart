@@ -8,7 +8,7 @@ import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
 
 class ConsumoVo extends StatefulWidget {
-  const ConsumoVo({Key? key}) : super(key: key);
+  const ConsumoVo({super.key});
 
   @override
   State<ConsumoVo> createState() => _ConsumoVoState();
@@ -82,14 +82,12 @@ class _ConsumoVoState extends State<ConsumoVo> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  Container(
-                    child: Column(
-                      children: [
-                        textSub(
-                            "Mi record de Enero a Diciembre"), // Función que devuelve un widget de texto con estilo
-                        // Función que devuelve un widget de texto con estilo
-                      ],
-                    ),
+                  Column(
+                    children: [
+                      textSub(
+                          "Mi record de Enero a Diciembre"), // Función que devuelve un widget de texto con estilo
+                      // Función que devuelve un widget de texto con estilo
+                    ],
                   ),
                   const SizedBox(height: 40),
                   GestureDetector(
@@ -98,11 +96,11 @@ class _ConsumoVoState extends State<ConsumoVo> {
                       showModalBottomSheet(
                         context: context,
                         builder: (BuildContext context) {
-                          return Card(
+                          return const Card(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                const Padding(
+                                Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Text(
                                     'Mi estado actual',
@@ -112,7 +110,7 @@ class _ConsumoVoState extends State<ConsumoVo> {
                                     ),
                                   ),
                                 ),
-                                const Padding(
+                                Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Text(
                                     'Normal:41.5',
@@ -122,7 +120,7 @@ class _ConsumoVoState extends State<ConsumoVo> {
                                     ),
                                   ),
                                 ),
-                                const Padding(
+                                Padding(
                                   padding: EdgeInsets.all(20.0),
                                   child: Text(
                                       "Felicidades, ¡has alcanzado un estado óptimo en tu consumo de oxígeno (VO2)! Según las estadísticas del mes, tu capacidad cardiovascular está en un nivel excelente, lo que indica una salud cardiovascular sólida y una excelente eficiencia en el uso de oxígeno durante el ejercicio. Esto es fundamental para mantener una vida activa y prevenir enfermedades relacionadas con el corazón. ¡Sigue así y continúa con tus hábitos saludables para mantener tu bienestar cardiovascular a largo plazo!"),
@@ -140,7 +138,7 @@ class _ConsumoVoState extends State<ConsumoVo> {
                         final peso = entry.value;
                         return HorizontalDetailsModel(
                           name: _getMonthName(index + 1), // Mes
-                          color: Color.fromARGB(255, 6, 158, 223),
+                          color: const Color.fromARGB(255, 6, 158, 223),
                           size: peso, // Valor de ConsumoVO2
                         );
                       }).toList(),
@@ -151,11 +149,11 @@ class _ConsumoVoState extends State<ConsumoVo> {
                 ],
               ),
             ),
-            SizedBox(height: 30),
-            Card(
+            const SizedBox(height: 30),
+            const Card(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
+                children: [
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
@@ -166,7 +164,7 @@ class _ConsumoVoState extends State<ConsumoVo> {
                       ),
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
                       'Normal:41.5',

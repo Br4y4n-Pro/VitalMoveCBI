@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -10,7 +12,7 @@ import 'package:vitalmovecbi/provider/configuracion/publicaciones/publicacionesF
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 
 class HomeEvaluador extends StatefulWidget {
-  const HomeEvaluador({Key? key}) : super(key: key);
+  const HomeEvaluador({super.key});
 
   @override
   State<HomeEvaluador> createState() => _HomeEvaluadorState();
@@ -20,7 +22,7 @@ File? _imgperfil;
 Uint8List webImage = Uint8List(8);
 
 class _HomeEvaluadorState extends State<HomeEvaluador> {
-  TextEditingController _recomendacionController = TextEditingController();
+  final TextEditingController _recomendacionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<LoginProvider>(context, listen: false);
@@ -81,8 +83,8 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                           ? Colors.white
                           : Colors.black,
                     )),
-                SizedBox(width: 5),
-                Icon(Icons.edit),
+                const SizedBox(width: 5),
+                const Icon(Icons.edit),
               ],
             ),
           ),
@@ -104,7 +106,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                   children: [
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.close),
+                      icon: const Icon(Icons.close),
                     ),
                   ],
                 ),
@@ -133,7 +135,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Text(
+                const Text(
                   "Fecha de publicación: 04/03/2024",
                   textAlign: TextAlign.start,
                   style: TextStyle(fontSize: 12, color: Colors.grey),
@@ -175,7 +177,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Ingrese su recomendación"),
+          title: const Text("Ingrese su recomendación"),
           content: SizedBox(
             height: MediaQuery.of(context).size.height * 0.15,
             child: Consumer(
@@ -184,7 +186,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                 controller: _recomendacionController,
                 maxLines: null,
                 expands: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: "Escriba su recomendación aquí",
                 ),
               ),
@@ -208,7 +210,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                 _recomendacionController.clear();
                 Navigator.of(context).pop();
               },
-              child: Row(
+              child: const Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
@@ -225,7 +227,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                 Navigator.of(context).pop();
                 _mostrarNotificacion();
               },
-              child: Row(
+              child: const Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text("Publicar"),
@@ -242,7 +244,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
 
   void _mostrarNotificacion() {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Publicación exitosa'),
         duration: Duration(seconds: 2),
       ),

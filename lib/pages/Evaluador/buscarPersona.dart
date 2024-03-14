@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
@@ -8,7 +10,7 @@ import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 
 class BuscarPersona extends StatefulWidget {
-  const BuscarPersona({Key? key}) : super(key: key);
+  const BuscarPersona({super.key});
 
   @override
   State<BuscarPersona> createState() => _BuscarPersonaState();
@@ -97,7 +99,7 @@ class _BuscarPersonaState extends State<BuscarPersona> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide.none)),
-                           style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
+                           style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                 )),
             const SizedBox(height: 50),
             Expanded(
@@ -122,12 +124,12 @@ class _BuscarPersonaState extends State<BuscarPersona> {
                          color: (darkModeProvider.isDarkModeEnabled)
                                   ? Colores.primaryColor
                                   : Colores.quaternaryColor,
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                          borderRadius: const BorderRadius.all(Radius.circular(20))),
                       child: ListTile(
                         leading: CircleAvatar(
                           backgroundImage: (usuario.imgperfil != null)
                               ? NetworkImage(usuario.imgperfil.toString())
-                              : AssetImage('img/Usuario/usu2.png')
+                              : const AssetImage('img/Usuario/usu2.png')
                                   as ImageProvider<Object>?,
                         ),
                         title: Text('${usuario.nombres} ${usuario.apellidos}'),

@@ -18,8 +18,6 @@ class PerfilVistaContact extends StatefulWidget {
 class _PerfilVistaContactState extends State<PerfilVistaContact> {
   final telefono = "";
 
-  static get usuario => null;
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;

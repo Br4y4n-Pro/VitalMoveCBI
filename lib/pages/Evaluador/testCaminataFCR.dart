@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
@@ -9,7 +11,7 @@ import 'package:vitalmovecbi/widgets/loginTextField.dart';
 
 class TestCaminataFCR extends StatefulWidget {
   final Usuario? usuario;
-  const TestCaminataFCR({Key? key, this.usuario}) : super(key: key);
+  const TestCaminataFCR({super.key, this.usuario});
   @override
   State<TestCaminataFCR> createState() => _TestCaminataFCRState();
 }
@@ -103,7 +105,7 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
                 color: (darkModeProvider.isDarkModeEnabled)
                     ? Colores.primaryColor
                     : Colores.quaternaryColor,
-                borderRadius: BorderRadius.all(Radius.circular(20))),
+                borderRadius: const BorderRadius.all(Radius.circular(20))),
             child: ListTile(
               leading: CircleAvatar(
                 backgroundImage: (usuario?.imgperfil != null)
@@ -203,7 +205,6 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
                 try {
                   provider.caminata(fromProvider, context);
                 } catch (error) {
-                  // ignore: avoid_print
                   print('Error al enviar la solicitud: $error');
                 }
               },

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 
@@ -51,7 +53,7 @@ Widget _buildBottomNavItem(
     width: 60,
     height: 40,
     decoration: BoxDecoration(
-      borderRadius: BorderRadius.all(Radius.circular(100)),
+      borderRadius: const BorderRadius.all(Radius.circular(100)),
       color: isSelected ? Colors.white : Colors.transparent,
     ),
     child: IconButton(
@@ -62,20 +64,3 @@ Widget _buildBottomNavItem(
   );
 }
 
-void _onItemTapped(int index, BuildContext context) {
-  switch (index) {
-    case 1:
-      Navigator.pushNamed(context, '/evaluadorHome');
-      break;
-    case 2:
-      Navigator.pushNamed(context, '/pageTests');
-      break;
-    case 3:
-      Navigator.pushNamed(context, '/buscarPersona');
-      break;
-    case 4:
-      Navigator.pushNamed(context, '/pageviewUser');
-      break;
-    default:
-  }
-}

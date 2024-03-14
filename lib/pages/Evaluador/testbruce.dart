@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
@@ -105,7 +107,7 @@ class _Testbruce extends State<Testbruce> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide.none)),
-                           style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
+                           style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                 )),
             const SizedBox(height: 50),
             Container(
@@ -151,19 +153,19 @@ class _Testbruce extends State<Testbruce> {
                                   ? Colores.primaryColor
                                   : Colores.quaternaryColor,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20))),
+                                  const BorderRadius.all(Radius.circular(20))),
                           child: ListTile(
                             leading: CircleAvatar(
                               backgroundImage: (usuario.imgperfil != null)
                                   ? NetworkImage(usuario.imgperfil.toString())
-                                  : AssetImage('img/Usuario/usu2.png')
+                                  : const AssetImage('img/Usuario/usu2.png')
                                       as ImageProvider<Object>?,
                             ),
                             title:
                                 Text('${usuario.nombres} ${usuario.apellidos}'),
                             subtitle: Text('${usuario.dni}'),
                             trailing: IconButton(
-                                onPressed: () {}, icon: Icon(Icons.open_with)),
+                                onPressed: () {}, icon: const Icon(Icons.open_with)),
                           ),
                         ),
                       );

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, use_key_in_widget_constructors, library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/pages/Evaluador/RegistroUsuario.dart';
 import 'package:vitalmovecbi/pages/Evaluador/Regdos.dart';
@@ -46,7 +48,7 @@ class _RegistroState extends State<Registro> {
                   _currentPageIndex = index;
                 });
               },
-              children: [
+              children: const [
                 RegistroUsuario(),
                 RegistroUserdos(),
                 RegistroUsertres(),

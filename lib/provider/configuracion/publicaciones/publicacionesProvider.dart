@@ -1,10 +1,11 @@
+// ignore_for_file: file_names, avoid_print
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/Api/AllApi.dart';
 import 'package:vitalmovecbi/Modelos/Publicaciones.dart';
 import 'package:vitalmovecbi/provider/configuracion/publicaciones/publicacionesFromProvider.dart';
-import 'package:vitalmovecbi/provider/login/LoginFromProvider.dart';
 
 class PublicacionesProvider extends ChangeNotifier {
   List<Publicacion> usuarios = [];

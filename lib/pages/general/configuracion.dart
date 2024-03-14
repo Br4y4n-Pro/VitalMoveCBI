@@ -1,10 +1,12 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/index.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
 
 class Configuracion extends StatefulWidget {
-  const Configuracion({Key? key}) : super(key: key);
+  const Configuracion({super.key});
 
   @override
   _ConfiguracionState createState() => _ConfiguracionState();
@@ -38,7 +40,7 @@ class _ConfiguracionState extends State<Configuracion> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Row(
+                        const Row(
                           children: [
                             Text(
                               "Modo Oscuro",
@@ -57,8 +59,8 @@ class _ConfiguracionState extends State<Configuracion> {
                     );
                   },
                 ),
-                SizedBox(height: 10),
-                Row(
+                const SizedBox(height: 10),
+                const Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -72,8 +74,8 @@ class _ConfiguracionState extends State<Configuracion> {
                     )
                   ],
                 ),
-                SizedBox(height: 20),
-                Row(
+                const SizedBox(height: 20),
+                const Row(
                   children: [
                     Text(
                       "Acerca de",
@@ -82,7 +84,7 @@ class _ConfiguracionState extends State<Configuracion> {
                     Icon(Icons.info_outline)
                   ],
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
               ],
             ),
             Center(

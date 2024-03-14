@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/pages/Evaluador/homeEvaluador.dart';
@@ -62,10 +64,10 @@ class _PageViewEvaluadorState extends State<PageViewEvaluador> {
         },
         child: PageView(
           physics:
-              NeverScrollableScrollPhysics(), // Deshabilitar desplazamiento horizontal
+              const NeverScrollableScrollPhysics(), // Deshabilitar desplazamiento horizontal
           pageSnapping: true,
           controller: pageController,
-          children: [
+          children: const [
             HomeEvaluador(),
             Tests(),
             BuscarPersona(),

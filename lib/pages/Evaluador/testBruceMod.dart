@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
@@ -86,13 +88,13 @@ class _TestBruceMod extends State<TestBruceMod> {
                   borderRadius: const BorderRadius.all(Radius.circular(20))),
               child: ListTile(
                 leading: CircleAvatar(
-                  backgroundImage: (usuario?.imgperfil != null)
-                      ? NetworkImage(usuario!.imgperfil.toString())
+                  backgroundImage: (usuario.imgperfil != null)
+                      ? NetworkImage(usuario.imgperfil.toString())
                       : const AssetImage('img/Usuario/usu2.png')
                           as ImageProvider<Object>?,
                 ),
-                title: Text('${usuario?.nombres} ${usuario?.apellidos}'),
-                subtitle: Text('${usuario?.dni}'),
+                title: Text('${usuario.nombres} ${usuario.apellidos}'),
+                subtitle: Text('${usuario.dni}'),
                 trailing: IconButton(
                     onPressed: () {}, icon: const Icon(Icons.open_with)),
               ),

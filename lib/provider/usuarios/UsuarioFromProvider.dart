@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, avoid_print
+
 import 'package:flutter/cupertino.dart';
 
 class UsuarioFromProvider extends ChangeNotifier {

@@ -9,7 +9,7 @@ Widget grafico(context, CaminataGetProvider providerCaminata) {
   return Center(
     child: Container(
       height: 150,
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       child: LineChart(
         LineChartData(
           minX: 0,

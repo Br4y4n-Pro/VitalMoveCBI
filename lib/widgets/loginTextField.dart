@@ -48,7 +48,7 @@ class _InputLoginState extends State<InputLogin> {
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none)),
-          style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
+          style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
         ));
   }
 }

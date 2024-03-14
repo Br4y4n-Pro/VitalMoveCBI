@@ -80,14 +80,12 @@ class _PageBrucesState extends State<PageBruces> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  Container(
-                    child: Column(
-                      children: [
-                        textSub(
-                            "Mi record de Enero a Diciembre"), // Función que devuelve un widget de texto con estilo
-                        // Función que devuelve un widget de texto con estilo
-                      ],
-                    ),
+                  Column(
+                    children: [
+                      textSub(
+                          "Mi record de Enero a Diciembre"), // Función que devuelve un widget de texto con estilo
+                      // Función que devuelve un widget de texto con estilo
+                    ],
                   ),
                   const SizedBox(height: 40),
                   GestureDetector(
@@ -96,11 +94,11 @@ class _PageBrucesState extends State<PageBruces> {
                       showModalBottomSheet(
                         context: context,
                         builder: (BuildContext context) {
-                          return Card(
+                          return const Card(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                const Padding(
+                                Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Text(
                                     'Mi estado actual',
@@ -109,7 +107,7 @@ class _PageBrucesState extends State<PageBruces> {
                                         fontSize: 16),
                                   ),
                                 ),
-                                const Padding(
+                                Padding(
                                   padding: EdgeInsets.all(20.0),
                                   child: Text(
                                       "Felicidades,¡has demostrado un rendimiento excepcional en el Test de Bruce! Tus resultados reflejan una excelente capacidad cardiovascular y una gran resistencia física. Este logro es testimonio de tu dedicación al entrenamiento y tu compromiso con un estilo de vida saludable. Sigue así, ¡tu determinación es inspiradora! Que este éxito te motive a seguir desafiándote y alcanzando nuevas metas en tu camino hacia la salud y el bienestar."),
@@ -128,7 +126,7 @@ class _PageBrucesState extends State<PageBruces> {
                         return HorizontalDetailsModel(
                           name: _getMonthName(index +
                               1), // Assuming index 0 corresponds to January
-                          color: Color.fromARGB(255, 6, 158, 223),
+                          color: const Color.fromARGB(255, 6, 158, 223),
                           size: peso, // Peso en kilogramos
                         );
                       }).toList(),
@@ -141,12 +139,12 @@ class _PageBrucesState extends State<PageBruces> {
                 ],
               ),
             ),
-            SizedBox(height: 30),
-            Card(
+            const SizedBox(height: 30),
+            const Card(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
                       'Mi estado actual',
@@ -154,7 +152,7 @@ class _PageBrucesState extends State<PageBruces> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
                       '19.5 Met',
@@ -162,7 +160,7 @@ class _PageBrucesState extends State<PageBruces> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(20.0),
                     child: Text(
                       "Felicidades,¡has demostrado un rendimiento excepcional en el Test de Bruce! Tus resultados reflejan una excelente capacidad cardiovascular y una gran resistencia física. Este logro es testimonio de tu dedicación al entrenamiento y tu compromiso con un estilo de vida saludable. Sigue así, ¡tu determinación es inspiradora! Que este éxito te motive a seguir desafiándote y alcanzando nuevas metas en tu camino hacia la salud y el bienestar.",

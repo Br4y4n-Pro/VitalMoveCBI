@@ -11,7 +11,6 @@ import 'package:vitalmovecbi/provider/datosGenerales/fechaTestsProvider.dart';
 import 'package:vitalmovecbi/provider/datosGenerales/historialUser.dart';
 import 'package:vitalmovecbi/provider/datosGenerales/notasDiariasProvider.dart';
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
-import 'package:vitalmovecbi/widgets/barchart.dart';
 
 class HomeUser extends StatefulWidget {
   const HomeUser({super.key});
@@ -239,7 +238,7 @@ class _HomeUserState extends State<HomeUser> {
                                           color: Colors.white,
                                           fontWeight: FontWeight.w500),
                                     )
-                                  : Center(child: const Text('No hay data'))
+                                  : const Center(child: Text('No hay data'))
                               : const CircularProgressIndicator(),
                         ))
                   ],
