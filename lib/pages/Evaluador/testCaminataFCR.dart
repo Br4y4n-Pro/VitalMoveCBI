@@ -6,6 +6,9 @@ import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
 import 'package:vitalmovecbi/provider/caminata/ProviderCaminata.dart';
 import 'package:vitalmovecbi/provider/caminata/caminataFromProvider.dart';
 import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
+import 'package:vitalmovecbi/provider/recoemdaciontest/ProviderRecomendacion.dart';
+import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
+import 'package:vitalmovecbi/services/localStorage.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/loginTextField.dart';
 
@@ -17,10 +20,10 @@ class TestCaminataFCR extends StatefulWidget {
 }
 
 class _TestCaminataFCRState extends State<TestCaminataFCR> {
-  final TextEditingController _recomendacionController =
-      TextEditingController();
-
-  void _mostrarModal(BuildContext context) {
+  void _mostrarModal(
+      BuildContext context,
+      ProviderRecomendacion providerRecomendacion,
+      RecomendacionFromProvider fromProviderRecomendacion) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -29,11 +32,17 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                TextField(
-                  controller: _recomendacionController,
-                  decoration: const InputDecoration(
-                    labelText: 'Recomendación',
-                    hintText: 'Ingrese su recomendación aquí',
+                Consumer(
+                  builder: (context, value, child) => TextFormField(
+                    initialValue: (fromProviderRecomendacion.descripcion != '')
+                        ? fromProviderRecomendacion.descripcion
+                        : '',
+                    onChanged: (value) =>
+                        fromProviderRecomendacion.descripcion = value,
+                    decoration: const InputDecoration(
+                      labelText: 'Recomendación',
+                      hintText: 'Ingrese su recomendación aquí',
+                    ),
                   ),
                 ),
               ],
@@ -43,13 +52,15 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
+                setState(() {
+                  fromProviderRecomendacion.descripcion = '';
+                });
               },
               child: const Text('Cancelar'),
             ),
             ElevatedButton(
               onPressed: () {
-                String recomendacion = _recomendacionController.text;
-                print('Recomendación agregada: $recomendacion');
+                print('Recomendación agregada:');
                 Navigator.of(context).pop();
               },
               child: const Text('Guardar'),
@@ -68,8 +79,14 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
         Provider.of<CaminataFromProvider>(context, listen: false);
     final provider = Provider.of<ProviderCaminata>(context, listen: false);
 
+    final providerRecomendacion =
+        Provider.of<ProviderRecomendacion>(context, listen: false);
+    final fromProviderRecomendacion =
+        Provider.of<RecomendacionFromProvider>(context, listen: false);
+
     final usuario = ModalRoute.of(context)?.settings.arguments as Usuario?;
     if (usuario != null) {
+      LocalStorage.prefs.setString('idselecionado', usuario.idUsuario!);
       print("------------");
       print(usuario.toString());
     } else {
@@ -115,8 +132,8 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
               ),
               title: Text('${usuario?.nombres} ${usuario?.apellidos}'),
               subtitle: Text('${usuario?.dni}'),
-              trailing:
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.open_with)),
+              trailing: IconButton(
+                  onPressed: () {}, icon: const Icon(Icons.open_with)),
             ),
           ),
           const SizedBox(height: 30),
@@ -169,7 +186,8 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               GestureDetector(
-                onTap: () => _mostrarModal(context),
+                onTap: () => _mostrarModal(
+                    context, providerRecomendacion, fromProviderRecomendacion),
                 child: const Row(
                   children: [
                     Text(
@@ -203,7 +221,8 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
               ),
               onPressed: () {
                 try {
-                  provider.caminata(fromProvider, context);
+                  provider.caminata(
+                      fromProvider, fromProviderRecomendacion, context);
                 } catch (error) {
                   print('Error al enviar la solicitud: $error');
                 }

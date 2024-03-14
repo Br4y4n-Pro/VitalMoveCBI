@@ -14,6 +14,8 @@ import 'package:vitalmovecbi/provider/datosGenerales/historialUser.dart';
 import 'package:vitalmovecbi/provider/datosGenerales/notasDiariasProvider.dart';
 import 'package:vitalmovecbi/provider/login/LoginFromProvider.dart';
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
+import 'package:vitalmovecbi/provider/recoemdaciontest/ProviderRecomendacion.dart';
+import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
 import 'package:vitalmovecbi/provider/registro/ProviderRegistro.dart';
 import 'package:vitalmovecbi/provider/registro/RegistroFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/BruceFromProvider.dart';
@@ -58,8 +60,14 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(
             lazy: false, create: (_) => NotasDiariasProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => HistorialProvider()),
-        ChangeNotifierProvider(lazy: false, create: (_) => PublicacionFromProvider()),
-        ChangeNotifierProvider(lazy: false, create: (_) => PublicacionesProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => PublicacionFromProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => PublicacionesProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => ProviderRecomendacion()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => RecomendacionFromProvider()),
 
         ChangeNotifierProvider(
             lazy: false, create: (_) => CaminataGetProvider()),
