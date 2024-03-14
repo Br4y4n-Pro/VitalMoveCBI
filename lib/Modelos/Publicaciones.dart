@@ -19,6 +19,7 @@ class Publicacion {
   String? idpublicacion;
   String? imagen;
   String? recomendaciones;
+  String? titulo;
 
   Publicacion(
       {this.fecha, this.idpublicacion, this.imagen, this.recomendaciones});
@@ -28,5 +29,6 @@ class Publicacion {
     idpublicacion = datos['idpublicacion'];
     imagen = datos['imagen'];
     recomendaciones = datos['recomendaciones'];
+    titulo = datos['titulo'];
   }
 }

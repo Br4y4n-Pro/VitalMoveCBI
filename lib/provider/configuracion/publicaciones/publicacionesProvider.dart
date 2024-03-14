@@ -28,6 +28,7 @@ class PublicacionesProvider extends ChangeNotifier {
     void limpiarDatos(PublicacionFromProvider fromProvider) {
       fromProvider.imagen;
       fromProvider.recomendaciones = '';
+      fromProvider.titulo = '';
       notifyListeners();
     }
 

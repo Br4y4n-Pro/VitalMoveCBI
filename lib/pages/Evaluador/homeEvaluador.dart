@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/index.dart';
 import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
 import 'package:vitalmovecbi/provider/configuracion/publicaciones/publicacionesFromProvider.dart';
+import 'package:vitalmovecbi/provider/configuracion/publicaciones/publicacionesProvider.dart';
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 
 class HomeEvaluador extends StatefulWidget {
@@ -22,12 +23,13 @@ File? _imgperfil;
 Uint8List webImage = Uint8List(8);
 
 class _HomeEvaluadorState extends State<HomeEvaluador> {
-  final TextEditingController _recomendacionController = TextEditingController();
+  final TextEditingController _recomendacionController =
+      TextEditingController();
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<LoginProvider>(context, listen: false);
-    final fromProvider =
-        Provider.of<PublicacionFromProvider>(context, listen: false);
+    final fromProvider = Provider.of<PublicacionFromProvider>(context);
+    final provider = Provider.of<PublicacionesProvider>(context);
 
     final darkModeProvider = Provider.of<DarkModeProvider>(context);
     final usuario = loginProvider.usuarios[0];
@@ -71,7 +73,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
           const SizedBox(height: 30),
           ElevatedButton(
             onPressed: () {
-              _mostrarModal(fromProvider);
+              _mostrarModal(fromProvider, provider);
             },
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -172,31 +174,78 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
     }
   }
 
-  void _mostrarModal(PublicacionFromProvider fromProvider) {
+  Future<void> _mostrarModal(PublicacionFromProvider fromProvider,
+      PublicacionesProvider provider) async {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Ingrese su recomendación"),
           content: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.15,
-            child: Consumer(
-              builder: (context, value, child) => TextField(
-                onChanged: (value) => fromProvider.recomendaciones,
-                controller: _recomendacionController,
-                maxLines: null,
-                expands: true,
-                decoration: const InputDecoration(
-                  hintText: "Escriba su recomendación aquí",
+            height: MediaQuery.of(context).size.height * 0.30,
+            child: Column(
+              children: [
+                Container(
+                  height: 50,
+                  child: Consumer(
+                    builder: (context, value, child) => TextFormField(
+                      initialValue: (fromProvider.titulo.isNotEmpty)
+                          ? fromProvider.titulo
+                          : '',
+                      maxLines: null,
+                      onChanged: (value) => fromProvider.titulo = value,
+                      expands: true,
+                      decoration: const InputDecoration(
+                        hintText: "Escriba el titulo aquí",
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+                const SizedBox(height: 5),
+                Container(
+                  height: 100,
+                  child: Consumer(
+                    builder: (context, value, child) => TextFormField(
+                      initialValue: (fromProvider.recomendaciones.isNotEmpty)
+                          ? fromProvider.recomendaciones
+                          : '',
+                      maxLines: null,
+                      onChanged: (value) =>
+                          fromProvider.recomendaciones = value,
+                      expands: true,
+                      decoration: const InputDecoration(
+                        hintText: "Escriba su recomendación aquí",
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Consumer(
+                  builder: (context, fromProvider, child) => Container(
+                    width: 100,
+                    height: 100,
+                    child: ClipRRect(
+                      child: _imgperfil != null
+                          ? kIsWeb
+                              ? Image.memory(webImage)
+                              : Image.file(
+                                  _imgperfil!,
+                                  fit: BoxFit.cover,
+                                )
+                          : const Image(
+                              image: AssetImage("img/Usuario/usu2.png"),
+                              fit: BoxFit.cover,
+                            ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           actions: [
             GestureDetector(
               onTap: () async {
                 _pickImageGallery(fromProvider);
-                Navigator.of(context).pop();
               },
               child: const Column(
                 children: [
@@ -207,7 +256,12 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
             ),
             TextButton(
               onPressed: () {
-                _recomendacionController.clear();
+                setState(() {
+                  fromProvider.titulo = '';
+                  fromProvider.recomendaciones = '';
+                  _imgperfil = null;
+                  fromProvider.imagen = _imgperfil;
+                });
                 Navigator.of(context).pop();
               },
               child: const Row(
@@ -215,7 +269,6 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                 children: [
                   Text(
                     "Cancelar",
-                    //style: TextStyle(color: Color.fromRGBO(196, 12, 12, 1)),
                   ),
                   Icon(Icons.cancel, color: Color.fromRGBO(196, 12, 12, 1)),
                 ],
@@ -223,7 +276,8 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
             ),
             TextButton(
               onPressed: () {
-                _recomendacionController.clear();
+                fromProvider.titulo = '';
+                fromProvider.recomendaciones = '';
                 Navigator.of(context).pop();
                 _mostrarNotificacion();
               },
@@ -231,7 +285,6 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text("Publicar"),
-                  //style: TextStyle(color: Color.fromRGBO(0, 212, 46, 1))),
                   Icon(Icons.check, color: Color.fromRGBO(0, 212, 46, 1)),
                 ],
               ),
