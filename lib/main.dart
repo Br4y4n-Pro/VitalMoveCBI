@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_file.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Api/AllApi.dart';
 import 'package:vitalmovecbi/index.dart';
@@ -28,7 +29,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AllApi.configuteDio();
   await LocalStorage.configurePrefs();
-  runApp(const AppState());
+
+ initializeDateFormatting('de_DE', null).then(formatDates);
+runApp( AppState()));
 }
 
 class AppState extends StatelessWidget {
@@ -58,8 +61,10 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(
             lazy: false, create: (_) => NotasDiariasProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => HistorialProvider()),
-        ChangeNotifierProvider(lazy: false, create: (_) => PublicacionFromProvider()),
-        ChangeNotifierProvider(lazy: false, create: (_) => PublicacionesProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => PublicacionFromProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => PublicacionesProvider()),
 
         ChangeNotifierProvider(
             lazy: false, create: (_) => CaminataGetProvider()),

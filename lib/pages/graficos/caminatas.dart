@@ -2,6 +2,7 @@
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/CaminataModelo.dart';
 import 'package:vitalmovecbi/provider/caminata/gets/providerGetCaminata.dart';
@@ -259,7 +260,7 @@ class _PageCaminataState extends State<PageCaminata> {
                           child: Column(
                             children: [
                               Text(
-                                  "Fecha: ${ultimo5caminatas[_selectedIndex!].fecha}"),
+                                  "Fecha: ${DateFormat('dd/MMMM/yyyy', 'es').format((DateTime.parse(ultimo5caminatas[_selectedIndex!].fecha!.substring(0, 10).toString())))}"),
                               Text(
                                   "FCM: ${ultimo5caminatas[_selectedIndex!].fcm}"),
                               // Agrega aquí más información que quieras mostrar
