@@ -182,7 +182,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
         return AlertDialog(
           title: const Text("Ingrese su recomendación"),
           content: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.40,
+            height: MediaQuery.of(context).size.height * 0.30,
             child: Column(
               children: [
                 SizedBox(

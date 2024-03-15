@@ -80,6 +80,40 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
                   )
                 ],
               ),
+            Column(
+  children: [
+ const SizedBox(height: 23),
+    GestureDetector(
+      onTap: () {
+      },
+      
+      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size(size.width * .2, size.height * .01),
+                          backgroundColor: Colores.primaryColor,
+                          padding: EdgeInsets.all(size.height * .002),
+                          textStyle: const TextStyle(
+                              fontSize: 13, fontWeight: FontWeight.bold),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40),
+                          ),
+                        ),
+                        onPressed: () async {
+
+                        },
+        child: const Center(
+          child: Text(
+            "Actualizar Peso",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+      ),
+    ),
+  ],
+),
               Column(
                 children: [
                   const Text(" Ultima medicion IMC"),
