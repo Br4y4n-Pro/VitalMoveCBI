@@ -2,12 +2,12 @@
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/CaminataModelo.dart';
 import 'package:vitalmovecbi/provider/caminata/gets/providerGetCaminata.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
+import 'package:particles_fly/particles_fly.dart';
 
 class PageCaminata extends StatefulWidget {
   const PageCaminata({super.key});
@@ -40,7 +40,7 @@ class _PageCaminataState extends State<PageCaminata> {
 // showModalBottomSheet  <----------Usar para mostrar abajo el modal too guapo
     List<BarChartGroupData> listCaminataBar = [];
 
-    // final size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     for (int i = 0; i < ultimo5caminatas.length; i++) {
       final barGroupData = BarChartGroupData(x: i, barRods: [
         BarChartRodData(
@@ -233,37 +233,161 @@ class _PageCaminataState extends State<PageCaminata> {
           const SizedBox(height: 30),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Card(
-              elevation: 5,
+            child: Container(
+              height: size.width * .8,
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromARGB(255, 80, 79, 79).withOpacity(.3),
+                      offset: Offset(6, 6),
+                      blurRadius: 10,
+                      spreadRadius: 1,
+                    ),
+                  ],
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: Colors.transparent,
+                  image: DecorationImage(
+                      opacity: .9,
+                      fit: BoxFit.cover,
+                      image: AssetImage('img/General/fondoCaminata.png'))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Mi estado actual',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      '5.5 kilometros',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                  ),
+                  SizedBox(height: 20),
                   _selectedIndex != null
                       ? Container(
-                          padding: EdgeInsets.all(20),
+                          padding: EdgeInsets.all(15),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                  "Fecha: ${DateFormat('dd/MMMM/yyyy', 'es').format((DateTime.parse(ultimo5caminatas[_selectedIndex!].fecha!.substring(0, 10).toString())))}"),
-                              Text(
-                                  "FCM: ${ultimo5caminatas[_selectedIndex!].fcm}"),
-                              // Agrega aquí más información que quieras mostrar
+                              Center(
+                                child: Text(
+                                  'Estadistica de ${ultimo5caminatas[_selectedIndex!].fecha!.substring(0, 10)}',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 22),
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.date_range, color: Colors.black),
+                                  Text("  Fecha: ",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold)),
+                                  Text(
+                                      ultimo5caminatas[_selectedIndex!]
+                                          .fecha!
+                                          .substring(0, 10),
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w400)),
+                                ],
+                              ),
+                              const SizedBox(height: 5),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.monitor_heart,
+                                      color: Colors.black),
+                                  Text("  Frecuencia Cardiaca Maxima: ",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold)),
+                                  Text(
+                                      '${ultimo5caminatas[_selectedIndex!].fcm}',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w400)),
+                                ],
+                              ),
+                              const SizedBox(height: 5),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.bar_chart, color: Colors.black),
+                                  Text("  Baremacion: ",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold)),
+                                  Text(
+                                      '${ultimo5caminatas[_selectedIndex!].barevodos}',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w400)),
+                                ],
+                              ),
+                              const SizedBox(height: 5),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.monitor_heart_outlined,
+                                      color: Colors.black),
+                                  Text("  Frecuencia Cardiaca en Reposo: ",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold)),
+                                  Text(
+                                      '${ultimo5caminatas[_selectedIndex!].fcr}',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w400)),
+                                ],
+                              ),
+                              const SizedBox(height: 5),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.directions_run,
+                                      color: Colors.black),
+                                  Text("  Distancia: ",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold)),
+                                  Text(
+                                      '${ultimo5caminatas[_selectedIndex!].distancia}',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w400)),
+                                ],
+                              ),
+                              const SizedBox(height: 5),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.timelapse_sharp,
+                                      color: Colors.black),
+                                  Text("  Tiempo: ",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold)),
+                                  Text(
+                                      '${ultimo5caminatas[_selectedIndex!].tiempo}',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w400)),
+                                ],
+                              ),
+                              const SizedBox(height: 5),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.air_sharp, color: Colors.black),
+                                  Text("  Consumo VO2: ",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold)),
+                                  Text(
+                                      '${ultimo5caminatas[_selectedIndex!].consumovo2}',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w400)),
+                                ],
+                              ),
                             ],
                           ),
                         )

@@ -23,8 +23,8 @@ File? _imgperfil;
 Uint8List webImage = Uint8List(8);
 
 class _HomeEvaluadorState extends State<HomeEvaluador> {
-  final TextEditingController _recomendacionController =
-      TextEditingController();
+  // final TextEditingController _recomendacionController =
+  //     TextEditingController();
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<LoginProvider>(context, listen: false);
@@ -182,10 +182,10 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
         return AlertDialog(
           title: const Text("Ingrese su recomendación"),
           content: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.30,
+            height: MediaQuery.of(context).size.height * 0.40,
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   height: 50,
                   child: Consumer(
                     builder: (context, value, child) => TextFormField(
@@ -202,7 +202,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                   ),
                 ),
                 const SizedBox(height: 5),
-                Container(
+                SizedBox(
                   height: 100,
                   child: Consumer(
                     builder: (context, value, child) => TextFormField(
@@ -219,9 +219,9 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Consumer(
-                  builder: (context, fromProvider, child) => Container(
+                  builder: (context, fromProvider, child) => SizedBox(
                     width: 100,
                     height: 100,
                     child: ClipRRect(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/date_symbol_data_file.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Api/AllApi.dart';
 import 'package:vitalmovecbi/index.dart';
@@ -30,8 +29,7 @@ void main() async {
   AllApi.configuteDio();
   await LocalStorage.configurePrefs();
 
- initializeDateFormatting('de_DE', null).then(formatDates);
-runApp( AppState()));
+runApp( const AppState());
 }
 
 class AppState extends StatelessWidget {
