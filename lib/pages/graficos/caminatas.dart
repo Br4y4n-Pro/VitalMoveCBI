@@ -7,7 +7,6 @@ import 'package:vitalmovecbi/Modelos/CaminataModelo.dart';
 import 'package:vitalmovecbi/provider/caminata/gets/providerGetCaminata.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
-import 'package:particles_fly/particles_fly.dart';
 
 class PageCaminata extends StatefulWidget {
   const PageCaminata({super.key});
@@ -17,16 +16,16 @@ class PageCaminata extends StatefulWidget {
 
 class _PageCaminataState extends State<PageCaminata> {
   int? _selectedIndex;
+  int? _selectedIndexFullFechas;
+  String valueSelect = '';
+  bool mostrarUltimo5 = true;
 
   @override
-  void initState() {
+  initState() {
     super.initState();
     final caminata = Provider.of<CaminataGetProvider>(context, listen: false);
     caminata.caminataOfUser(context);
   }
-
-  String mensajeEstado =
-      "Felicidades, ¡has alcanzado un estado óptimo en tu rendimiento durante la caminata! Según las estadísticas del mes, tu capacidad cardiovascular está en un nivel excelente, lo que indica una salud cardiovascular sólida y una eficiencia destacada al caminar. Este logro es fundamental para mantener una vida activa y prevenir enfermedades relacionadas con el corazón. ¡Sigue así y continúa con tus hábitos saludables para mantener tu bienestar cardiovascular a largo plazo!";
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +35,7 @@ class _PageCaminataState extends State<PageCaminata> {
     final longitud = listCaminatas.length;
     List<Caminata> ultimo5caminatas =
         listCaminatas.sublist((longitud - 5).clamp(0, longitud));
-
-// showModalBottomSheet  <----------Usar para mostrar abajo el modal too guapo
+    // showModalBottomSheet  <----------Usar para mostrar abajo el modal too guapo
     List<BarChartGroupData> listCaminataBar = [];
 
     final size = MediaQuery.of(context).size;
@@ -109,10 +107,21 @@ class _PageCaminataState extends State<PageCaminata> {
           text = '';
           break;
       }
+
+      try {
+        if (value.toInt() >= 0 && value.toInt() < ultimo5caminatas.length) {
+          text = ultimo5caminatas[value.toInt()].fecha!.substring(0, 7);
+          numero = value.toInt();
+        }
+      } catch (e) {
+        print('Error: $e');
+      }
       return GestureDetector(
         onTap: () {
           setState(() {
             _selectedIndex = numero;
+            _selectedIndexFullFechas = null;
+            mostrarUltimo5 = true; // Cambiar a mostrar el otro listado
           });
         },
         child: SideTitleWidget(
@@ -133,18 +142,18 @@ class _PageCaminataState extends State<PageCaminata> {
         ),
         backgroundColor: Colores.primaryColor,
       ),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Column(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: ListView(
+          children: [
+            Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const SizedBox(height: 20),
                 Column(
                   children: [
                     textSub(
-                        "Mi record de Enero a Diciembre"), // Función que devuelve un widget de texto con estilo
+                        "Historico de caminatas realizadas"), // Función que devuelve un widget de texto con estilo
                     // Función que devuelve un widget de texto con estilo
                   ],
                 ),
@@ -229,11 +238,40 @@ class _PageCaminataState extends State<PageCaminata> {
                 ),
               ],
             ),
-          ),
-          const SizedBox(height: 30),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Container(
+            const SizedBox(height: 30),
+            ElevatedButton(
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return ListView.builder(
+                      itemCount: listCaminatas.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListTile(
+                          title: Text(
+                              listCaminatas[index].fecha!.substring(0, 10)),
+                          onTap: () {
+                            setState(() {
+                              _selectedIndexFullFechas = index;
+                              print(_selectedIndexFullFechas);
+                              print(index);
+                              _selectedIndex = null;
+                              mostrarUltimo5 =
+                                  false; // Cambiar a mostrar el otro listado
+                            });
+                            Navigator.pop(
+                                context); // Cierra el BottomSheet al seleccionar una fecha
+                          },
+                        );
+                      },
+                    );
+                  },
+                );
+              },
+              child: Text('Seleccionar Fecha'),
+            ),
+            SizedBox(height: 20),
+            Container(
               height: size.width * .8,
               decoration: BoxDecoration(
                   boxShadow: [
@@ -254,8 +292,7 @@ class _PageCaminataState extends State<PageCaminata> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(height: 20),
-                  _selectedIndex != null
+                  _selectedIndex != null && mostrarUltimo5
                       ? Container(
                           padding: EdgeInsets.all(15),
                           child: Column(
@@ -366,7 +403,7 @@ class _PageCaminataState extends State<PageCaminata> {
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold)),
                                   Text(
-                                      '${ultimo5caminatas[_selectedIndex!].tiempo}',
+                                      ultimo5caminatas[_selectedIndex!].tiempo!,
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w400)),
@@ -391,16 +428,166 @@ class _PageCaminataState extends State<PageCaminata> {
                             ],
                           ),
                         )
-                      : Container(
-                          padding: EdgeInsets.all(20),
-                          child: Text(
-                              "Selecciona una fecha para ver los detalles"),
-                        ),
+                      : _selectedIndexFullFechas != null && !mostrarUltimo5
+                          ? Container(
+                              padding: EdgeInsets.all(15),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Center(
+                                    child: Text(
+                                      'Estadistica de ${listCaminatas[_selectedIndexFullFechas!].fecha!.substring(0, 10)}',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 22),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.date_range,
+                                          color: Colors.black),
+                                      Text("  Fecha: ",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold)),
+                                      Text(
+                                          listCaminatas[
+                                                  _selectedIndexFullFechas!]
+                                              .fecha!
+                                              .substring(0, 10),
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w400)),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.monitor_heart,
+                                          color: Colors.black),
+                                      Text("  Frecuencia Cardiaca Maxima: ",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold)),
+                                      Text(
+                                          '${listCaminatas[_selectedIndexFullFechas!].fcm}',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w400)),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.bar_chart,
+                                          color: Colors.black),
+                                      Text("  Baremacion: ",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold)),
+                                      Text(
+                                          '${listCaminatas[_selectedIndexFullFechas!].barevodos}',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w400)),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.monitor_heart_outlined,
+                                          color: Colors.black),
+                                      Text("  Frecuencia Cardiaca en Reposo: ",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold)),
+                                      Text(
+                                          '${listCaminatas[_selectedIndexFullFechas!].fcr}',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w400)),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.directions_run,
+                                          color: Colors.black),
+                                      Text("  Distancia: ",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold)),
+                                      Text(
+                                          '${listCaminatas[_selectedIndexFullFechas!].distancia}',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w400)),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.timelapse_sharp,
+                                          color: Colors.black),
+                                      Text("  Tiempo: ",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold)),
+                                      Text(
+                                          listCaminatas[
+                                                  _selectedIndexFullFechas!]
+                                              .tiempo!,
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w400)),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.air_sharp,
+                                          color: Colors.black),
+                                      Text("  Consumo VO2: ",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold)),
+                                      Text(
+                                          '${listCaminatas[_selectedIndexFullFechas!].consumovo2}',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w400)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            )
+                          : Container(
+                              padding: EdgeInsets.all(20),
+                              child: Text(
+                                  "Selecciona una fecha para ver los detalles"),
+                            ),
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
