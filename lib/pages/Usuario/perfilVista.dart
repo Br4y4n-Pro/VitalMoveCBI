@@ -1,5 +1,4 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/historialModelo.dart';
@@ -16,6 +15,8 @@ class PerfilVista extends StatefulWidget {
 }
 
 class _PerfilVistaState extends State<PerfilVista> {
+  bool _editingEnabled = false;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -47,6 +48,17 @@ class _PerfilVistaState extends State<PerfilVista> {
             ),
           ),
           backgroundColor: Colores.primaryColor,
+          actions: [
+            if (usuario.rol == '1')
+              IconButton(
+                icon: const Icon(Icons.edit),
+                onPressed: () {
+                  setState(() {
+                    _editingEnabled = !_editingEnabled;
+                  });
+                },
+              ),
+          ],
         ),
         body: ListView(
           children: [
@@ -90,31 +102,57 @@ class _PerfilVistaState extends State<PerfilVista> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 20),
-                  textField("Nombres y apellidos",
+                  _editingEnabled
+                      ? textFieldEditable("Nombres y apellidos",
+                      "${usuario.nombres} ${usuario.apellidos}")
+                      : textField("Nombres y apellidos",
                       "${usuario.nombres} ${usuario.apellidos}"),
                   const SizedBox(height: 15),
-                  textField("Documento de Identidad", "${usuario.dni}"),
+                  _editingEnabled
+                      ? textFieldEditable("Documento de Identidad", "${usuario.dni}")
+                      : textField("Documento de Identidad", "${usuario.dni}"),
                   const SizedBox(height: 15),
-                  textField("Fecha de Nacimiento", fechaFormateada),
+                  _editingEnabled
+                      ? textFieldEditable("Fecha de Nacimiento", fechaFormateada)
+                      : textField("Fecha de Nacimiento", fechaFormateada),
                   const SizedBox(height: 15),
-                  textField("Género", "${usuario.genero}"),
+                  _editingEnabled
+                      ? textFieldEditable("Género", "${usuario.genero}")
+                      : textField("Género", "${usuario.genero}"),
                   const SizedBox(height: 15),
-                  textField("Tipo de Sangre", "${usuario.rh}"),
+                  _editingEnabled
+                      ? textFieldEditable("Tipo de Sangre", "${usuario.rh}")
+                      : textField("Tipo de Sangre", "${usuario.rh}"),
                   const SizedBox(height: 15),
-                  textField("Dirección", "${usuario.direccion}"),
+                  _editingEnabled
+                      ? textFieldEditable("Dirección", "${usuario.direccion}")
+                      : textField("Dirección", "${usuario.direccion}"),
                   const SizedBox(height: 15),
-                  textField("EPS(Entidad de salud)", "${usuario.eps}"),
+                  _editingEnabled
+                      ? textFieldEditable("EPS(Entidad de salud)", "${usuario.eps}")
+                      : textField("EPS(Entidad de salud)", "${usuario.eps}"),
                   const SizedBox(height: 15),
-                  textField("Alergias", "${usuario.alergias}"),
+                  _editingEnabled
+                      ? textFieldEditable("Alergias", "${usuario.alergias}")
+                      : textField("Alergias", "${usuario.alergias}"),
                   const SizedBox(height: 15),
-                  textField("IMC",
+                  _editingEnabled
+                      ? textFieldEditable("IMC",
+                      '${double.parse(ultimoHistorial.imc ?? '0').toStringAsFixed(2)}   ${ultimoHistorial.imcdescripcion}')
+                      : textField("IMC",
                       '${double.parse(ultimoHistorial.imc ?? '0').toStringAsFixed(2)}   ${ultimoHistorial.imcdescripcion}'),
+                      const SizedBox(height: 15),
+                  _editingEnabled
+                      ? textFieldEditable("Grupo", "${usuario.grupo}")
+                      : textField("Grupo", "${usuario.grupo}"),
                   const SizedBox(height: 15),
-                  textField("Grupo", "${usuario.grupo}"),
+                  _editingEnabled
+                      ? textFieldEditable("Peso (KG)", ultimoHistorial.peso ?? '0')
+                      : textField("Peso (KG)", ultimoHistorial.peso ?? '0'),
                   const SizedBox(height: 15),
-                  textField("Peso (KG)", ultimoHistorial.peso ?? '0'),
-                  const SizedBox(height: 15),
-                  textField("Talla (Metros)", "${usuario.talla}"),
+                  _editingEnabled
+                      ? textFieldEditable("Talla (Metros)", "${usuario.talla}")
+                      : textField("Talla (Metros)", "${usuario.talla}"),
                   const SizedBox(height: 25),
                 ],
               ),
@@ -129,6 +167,16 @@ class _PerfilVistaState extends State<PerfilVista> {
     return TextFormField(
       initialValue: initialValue,
       readOnly: true,
+      decoration: InputDecoration(
+        labelText: labelText,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+      ),
+    );
+  }
+
+  Widget textFieldEditable(String labelText, String initialValue) {
+    return TextFormField(
+      initialValue: initialValue,
       decoration: InputDecoration(
         labelText: labelText,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),

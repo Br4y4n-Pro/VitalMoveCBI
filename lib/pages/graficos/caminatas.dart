@@ -7,7 +7,6 @@ import 'package:vitalmovecbi/Modelos/CaminataModelo.dart';
 import 'package:vitalmovecbi/provider/caminata/gets/providerGetCaminata.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
-import 'package:particles_fly/particles_fly.dart';
 
 class PageCaminata extends StatefulWidget {
   const PageCaminata({super.key});
