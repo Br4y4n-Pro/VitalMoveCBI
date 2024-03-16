@@ -38,7 +38,7 @@ class Caminata {
     idusuario = datos['idusuario'];
     fecha = datos['fecha'];
     fcr = datos['fcr'];
-    tiempo = datos['fecha'];
+    tiempo = datos['tiempo'];
     distancia = datos['distancia'];
     fcm = datos['fcm'];
     consumovo2 = datos['consumovo2'];
