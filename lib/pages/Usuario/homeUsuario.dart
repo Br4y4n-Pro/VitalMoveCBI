@@ -81,7 +81,8 @@ class _HomeUserState extends State<HomeUser> {
           ),
         ],
         showingTooltipIndicators: [
-          0
+          0,
+          1
         ], // Indicar que hay dos barras para mostrar tooltips
       );
 
