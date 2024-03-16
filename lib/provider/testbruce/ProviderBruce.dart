@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/BruceFromProvider.dart';
 import '../../Api/AllApi.dart';
 import '../../Modelos/TestBruceModelo.dart';
@@ -8,10 +9,14 @@ import '../../Modelos/TestBruceModelo.dart';
 class BruceProvider extends ChangeNotifier {
   List<BruceTest> brucetests = [];
 
-  bruce(BruceFromProvider fromProvider, BuildContext context) {
+  bruce(
+      BruceFromProvider fromProvider,
+      RecomendacionFromProvider fromProviderRecomendacion,
+      BuildContext context) {
     final data = {
       "etapas": fromProvider.etapa,
-      "saturacionvodos": fromProvider.saturacion
+      "saturacionvodos": fromProvider.saturacion,
+      "descripcion": fromProviderRecomendacion.descripcion
     };
     print(data);
 

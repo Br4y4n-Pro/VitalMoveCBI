@@ -15,6 +15,8 @@ import 'package:vitalmovecbi/provider/datosGenerales/historialUser.dart';
 import 'package:vitalmovecbi/provider/datosGenerales/notasDiariasProvider.dart';
 import 'package:vitalmovecbi/provider/login/LoginFromProvider.dart';
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
+import 'package:vitalmovecbi/provider/recoemdaciontest/ProviderRecomendacion.dart';
+import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
 // import 'package:vitalmovecbi/provider/recoemdaciontest/ProviderRecomendacion.dart';
 // import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
 import 'package:vitalmovecbi/provider/registro/ProviderRegistro.dart';
@@ -70,6 +72,10 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(
             lazy: false, create: (_) => CaminataGetProvider()),
         ChangeNotifierProvider(create: (_) => DarkModeProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => RecomendacionFromProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => ProviderRecomendacion()),
       ],
       child: const MyApp(),
     );
