@@ -23,8 +23,8 @@ File? _imgperfil;
 Uint8List webImage = Uint8List(8);
 
 class _HomeEvaluadorState extends State<HomeEvaluador> {
-  final TextEditingController _recomendacionController =
-      TextEditingController();
+  // final TextEditingController _recomendacionController =
+      // TextEditingController();
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<LoginProvider>(context, listen: false);

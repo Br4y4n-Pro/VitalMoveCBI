@@ -42,6 +42,7 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
                     decoration: const InputDecoration(
                       labelText: 'Recomendación',
                       hintText: 'Ingrese su recomendación aquí',
+                      // sdsds
                     ),
                   ),
                 ),

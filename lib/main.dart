@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:intl/date_symbol_data_file.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Api/AllApi.dart';
 import 'package:vitalmovecbi/index.dart';
@@ -14,8 +15,8 @@ import 'package:vitalmovecbi/provider/datosGenerales/historialUser.dart';
 import 'package:vitalmovecbi/provider/datosGenerales/notasDiariasProvider.dart';
 import 'package:vitalmovecbi/provider/login/LoginFromProvider.dart';
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
-import 'package:vitalmovecbi/provider/recoemdaciontest/ProviderRecomendacion.dart';
-import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
+// import 'package:vitalmovecbi/provider/recoemdaciontest/ProviderRecomendacion.dart';
+// import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
 import 'package:vitalmovecbi/provider/registro/ProviderRegistro.dart';
 import 'package:vitalmovecbi/provider/registro/RegistroFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/BruceFromProvider.dart';
@@ -30,7 +31,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AllApi.configuteDio();
   await LocalStorage.configurePrefs();
-  runApp(const AppState());
+
+//  initializeDateFormatting('de_DE', null).then(formatDates);
+// runApp( const AppState(),;
 }
 
 class AppState extends StatelessWidget {
@@ -60,14 +63,8 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(
             lazy: false, create: (_) => NotasDiariasProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => HistorialProvider()),
-        ChangeNotifierProvider(
-            lazy: false, create: (_) => PublicacionFromProvider()),
-        ChangeNotifierProvider(
-            lazy: false, create: (_) => PublicacionesProvider()),
-        ChangeNotifierProvider(
-            lazy: false, create: (_) => ProviderRecomendacion()),
-        ChangeNotifierProvider(
-            lazy: false, create: (_) => RecomendacionFromProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => PublicacionFromProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => PublicacionesProvider()),
 
         ChangeNotifierProvider(
             lazy: false, create: (_) => CaminataGetProvider()),
