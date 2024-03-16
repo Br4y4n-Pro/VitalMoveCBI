@@ -13,7 +13,7 @@ class ProviderRecomendacion extends ChangeNotifier {
 
     print(data);
 
-    AllApi.httpPost('crearRecomendacion', data).then((rpta) {
+    AllApi.httpPost('crearCaminata', data).then((rpta) {
       print("Esperando");
       print(rpta.runtimeType);
 
