@@ -2,28 +2,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/Api/AllApi.dart';
-import 'package:vitalmovecbi/provider/caminata/caminataFromProvider.dart';
 import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
 import 'package:vitalmovecbi/services/localStorage.dart';
 
-class ProviderCaminata extends ChangeNotifier {
-  caminata(
-      CaminataFromProvider fromProvider,
-      RecomendacionFromProvider fromProviderRecomendacion,
-      BuildContext context) {
-    final id = LocalStorage.prefs.getString('idselecionado');
+class ProviderRecomendacion extends ChangeNotifier {
+  // ignore: non_constant_identifier_names
+  recomendacion(RecomendacionFromProvider fromProvider, BuildContext context) {
 
-    final data = {
-      "idusuario": id,
-      "fcr": fromProvider.fcr,
-      "fcm": fromProvider.fcm,
-      "tiempo": fromProvider.tiempo,
-      "distancia": fromProvider.distancia,
-      "descripcion": fromProviderRecomendacion.descripcion
-    };
+    final data = {};
+
     print(data);
 
-    AllApi.httpPost('crearCaminata', data).then((rpta) {
+    AllApi.httpPost('crearRecomendacion', data).then((rpta) {
       print("Esperando");
       print(rpta.runtimeType);
 

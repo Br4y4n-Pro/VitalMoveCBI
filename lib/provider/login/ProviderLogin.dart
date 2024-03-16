@@ -38,6 +38,7 @@ class LoginProvider extends ChangeNotifier {
         this.usuarios = usuarios.dato;
         
         LocalStorage.prefs.setString('id', usuarios.dato[0].idUsuario!);
+        
         if (jsonResponse['rol'] == 1) {
           limpiarDatos(fromProvider);
           Navigator.pushReplacementNamed(context, '/pageviewsEvaluador');

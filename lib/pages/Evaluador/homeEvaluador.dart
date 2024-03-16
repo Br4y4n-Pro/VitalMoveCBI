@@ -24,7 +24,11 @@ Uint8List webImage = Uint8List(8);
 
 class _HomeEvaluadorState extends State<HomeEvaluador> {
   // final TextEditingController _recomendacionController =
+<<<<<<< HEAD
+      // TextEditingController();
+=======
   //     TextEditingController();
+>>>>>>> e61259dc069426be2552caf564e31235f020210e
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<LoginProvider>(context, listen: false);
