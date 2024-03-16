@@ -1,19 +1,18 @@
-// ignore_for_file: file_names, avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
-import 'package:vitalmovecbi/index.dart';
 import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
+import 'package:vitalmovecbi/provider/recoemdaciontest/ProviderRecomendacion.dart';
+import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/BruceFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/ProviderBruce.dart';
 import 'package:vitalmovecbi/services/localStorage.dart';
+import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/loginTextField.dart';
 
 class TestBruceMod extends StatefulWidget {
   final Usuario? usuario;
 
-  // ignore: use_super_parameters
   const TestBruceMod({Key? key, this.usuario}) : super(key: key);
 
   @override
@@ -26,8 +25,6 @@ class _TestBruceMod extends State<TestBruceMod> {
   String? rhType;
 
   String dropdownValuesrh = 'Seleccione etapa';
-  final TextEditingController _recomendacionController =
-      TextEditingController();
 
   var itemsetapa = [
     'Seleccione etapa',
@@ -42,14 +39,74 @@ class _TestBruceMod extends State<TestBruceMod> {
     'Etapa 9',
   ];
 
+  void _mostrarModal(
+    BuildContext context,
+    ProviderRecomendacion providerRecomendacion,
+    RecomendacionFromProvider fromProviderRecomendacion,
+  ) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Agregar Recomendación"),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Consumer(
+                  builder: (context, value, child) => TextFormField(
+                    initialValue: (fromProviderRecomendacion.descripcion != '')
+                        ? fromProviderRecomendacion.descripcion
+                        : '',
+                    onChanged: (value) =>
+                        fromProviderRecomendacion.descripcion = value,
+                    decoration: const InputDecoration(
+                      labelText: 'Recomendación',
+                      hintText: 'Ingrese su recomendación aquí',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                setState(() {
+                  fromProviderRecomendacion.descripcion = '';
+                });
+              },
+              child: const Text('Cancelar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Aquí puedes agregar la lógica para guardar la recomendación
+                print('Recomendación agregada:');
+                Navigator.of(context).pop();
+              },
+              child: const Text('Guardar'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final darkModeProvider = Provider.of<DarkModeProvider>(context);
     final fromProvider = Provider.of<BruceFromProvider>(context, listen: false);
     final provider = Provider.of<BruceProvider>(context, listen: false);
     final usuario = ModalRoute.of(context)?.settings.arguments as Usuario?;
-    
-    LocalStorage.prefs.setString('idselecionado', usuario!.idUsuario.toString());
+    final providerRecomendacion =
+        Provider.of<ProviderRecomendacion>(context, listen: false);
+    final fromProviderRecomendacion =
+        Provider.of<RecomendacionFromProvider>(context, listen: false);
+
+    LocalStorage.prefs
+        .setString('idselecionado', usuario!.idUsuario.toString());
+        
+    LocalStorage.prefs.setString('idselecionado', usuario.idUsuario!);
 
     final size = MediaQuery.of(context).size;
     return Scaffold(
@@ -158,7 +215,8 @@ class _TestBruceMod extends State<TestBruceMod> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 GestureDetector(
-                  onTap: _mostrarModal,
+                  onTap: () => _mostrarModal(context, providerRecomendacion,
+                      fromProviderRecomendacion),
                   child: const Row(
                     children: [
                       Text(
@@ -193,7 +251,8 @@ class _TestBruceMod extends State<TestBruceMod> {
                 ),
                 onPressed: () async {
                   try {
-                    provider.bruce(fromProvider, context);
+                    provider.bruce(
+                        fromProvider, fromProviderRecomendacion, context);
                   } catch (error) {
                     print('Error al enviar la solicitud: $error');
                   }
@@ -204,46 +263,6 @@ class _TestBruceMod extends State<TestBruceMod> {
           ],
         ),
       ),
-    );
-  }
-
-  void _mostrarModal() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Agregar Recomendación"),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                TextField(
-                  controller: _recomendacionController,
-                  decoration: const InputDecoration(
-                    labelText: 'Recomendación',
-                    hintText: 'Ingrese su recomendación aquí',
-                  ),
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancelar'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                String recomendacion = _recomendacionController.text;
-                print('Recomendación agregada: $recomendacion');
-                Navigator.of(context).pop();
-              },
-              child: const Text('Guardar'),
-            ),
-          ],
-        );
-      },
     );
   }
 }
