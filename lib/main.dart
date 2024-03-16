@@ -32,7 +32,7 @@ void main() async {
   AllApi.configuteDio();
   await LocalStorage.configurePrefs();
 
-runApp( const AppState());
+  runApp(const AppState());
 }
 
 class AppState extends StatelessWidget {
@@ -62,8 +62,10 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(
             lazy: false, create: (_) => NotasDiariasProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => HistorialProvider()),
-        ChangeNotifierProvider(lazy: false, create: (_) => PublicacionFromProvider()),
-        ChangeNotifierProvider(lazy: false, create: (_) => PublicacionesProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => PublicacionFromProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => PublicacionesProvider()),
 
         ChangeNotifierProvider(
             lazy: false, create: (_) => CaminataGetProvider()),
