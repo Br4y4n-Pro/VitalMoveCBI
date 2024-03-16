@@ -21,6 +21,7 @@ import 'package:vitalmovecbi/provider/registro/ProviderRegistro.dart';
 import 'package:vitalmovecbi/provider/registro/RegistroFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/BruceFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/ProviderBruce.dart';
+import 'package:vitalmovecbi/provider/testbruce/gets/providerGetBruce.dart';
 import 'package:vitalmovecbi/provider/usuarios/UsuarioFromProvider.dart';
 import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
 import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
@@ -32,7 +33,7 @@ void main() async {
   AllApi.configuteDio();
   await LocalStorage.configurePrefs();
 
-runApp( const AppState());
+  runApp(const AppState());
 }
 
 class AppState extends StatelessWidget {
@@ -62,8 +63,11 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(
             lazy: false, create: (_) => NotasDiariasProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => HistorialProvider()),
-        ChangeNotifierProvider(lazy: false, create: (_) => PublicacionFromProvider()),
-        ChangeNotifierProvider(lazy: false, create: (_) => PublicacionesProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => PublicacionFromProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => PublicacionesProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => BruceGetProvider()),
 
         ChangeNotifierProvider(
             lazy: false, create: (_) => CaminataGetProvider()),
