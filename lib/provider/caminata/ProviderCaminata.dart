@@ -2,12 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/Api/AllApi.dart';
-// import 'package:vitalmovecbi/Modelos/CaminataModelo.dart';
 import 'package:vitalmovecbi/provider/caminata/caminataFromProvider.dart';
+import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
 import 'package:vitalmovecbi/services/localStorage.dart';
 
 class ProviderCaminata extends ChangeNotifier {
-  caminata(CaminataFromProvider fromProvider, BuildContext context) {
+  caminata(
+      CaminataFromProvider fromProvider,
+      RecomendacionFromProvider fromProviderRecomendacion,
+      BuildContext context) {
     final id = LocalStorage.prefs.getString('idselecionado');
 
     final data = {
@@ -15,7 +18,8 @@ class ProviderCaminata extends ChangeNotifier {
       "fcr": fromProvider.fcr,
       "fcm": fromProvider.fcm,
       "tiempo": fromProvider.tiempo,
-      "distancia": fromProvider.distancia
+      "distancia": fromProvider.distancia,
+      "descripcion": fromProviderRecomendacion.descripcion
     };
     print(data);
 

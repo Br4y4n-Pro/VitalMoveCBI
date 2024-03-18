@@ -5,8 +5,13 @@ import 'package:dio/dio.dart';
 class AllApi {
   // static String url = 'http://10.207.80.142:3050/';
   // static String url = 'http://192.168.16.28:3050/';
-  // static String url = 'http://10.207.80.142:3050/';
-   static String url = 'https://backend-vitalmove.onrender.com/';
+<<<<<<< HEAD
+  static String url = 'http://10.207.80.142:3050/';
+  //  static String url = 'https://backend-vitalmove.onrender.com/';
+=======
+  static String url = 'http://10.207.80.78:302/';
+  // static String url = 'https://backend-vitalmove.onrender.com/';
+>>>>>>> 75b71727dec91afb51cad2380a2e4d72a4056a77
 
   static final Dio _dio = Dio();
 

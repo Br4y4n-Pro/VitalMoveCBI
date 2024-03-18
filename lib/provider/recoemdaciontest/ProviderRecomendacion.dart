@@ -1,27 +1,19 @@
 // ignore_for_file: file_names, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:vitalmovecbi/Api/AllApi.dart';
 import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
-import 'package:vitalmovecbi/provider/testbruce/BruceFromProvider.dart';
-import '../../Api/AllApi.dart';
-import '../../Modelos/TestBruceModelo.dart';
+// import 'package:vitalmovecbi/services/localStorage.dart';
 
-class BruceProvider extends ChangeNotifier {
-  List<BruceTest> brucetests = [];
+class ProviderRecomendacion extends ChangeNotifier {
+  // ignore: non_constant_identifier_names
+  recomendacion(RecomendacionFromProvider fromProvider, BuildContext context) {
+    final data = {};
 
-  bruce(
-      BruceFromProvider fromProvider,
-      RecomendacionFromProvider fromProviderRecomendacion,
-      BuildContext context) {
-    final data = {
-      "etapas": fromProvider.etapa,
-      "saturacionvodos": fromProvider.saturacion,
-      "descripcion": fromProviderRecomendacion.descripcion
-    };
     print(data);
 
-    AllApi.httpPost('crearTestBruce', data).then((rpta) {
-      print("ESperando");
+    AllApi.httpPost('crearCaminata', data).then((rpta) {
+      print("Esperando");
       print(rpta.runtimeType);
 
       final Map<String, dynamic> jsonResponse = rpta;
@@ -81,7 +73,7 @@ class BruceProvider extends ChangeNotifier {
                     ),
                     const SizedBox(width: 10),
                     Text(
-                      '${jsonResponse['mensaje']}',
+                      '${jsonResponse['mensaje ']}',
                       style: const TextStyle(
                           fontWeight: FontWeight.w600, fontSize: 14),
                     ),

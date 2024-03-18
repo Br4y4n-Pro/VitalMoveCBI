@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Api/AllApi.dart';
 import 'package:vitalmovecbi/index.dart';
@@ -14,10 +15,15 @@ import 'package:vitalmovecbi/provider/datosGenerales/historialUser.dart';
 import 'package:vitalmovecbi/provider/datosGenerales/notasDiariasProvider.dart';
 import 'package:vitalmovecbi/provider/login/LoginFromProvider.dart';
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
+import 'package:vitalmovecbi/provider/recoemdaciontest/ProviderRecomendacion.dart';
+import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
+// import 'package:vitalmovecbi/provider/recoemdaciontest/ProviderRecomendacion.dart';
+// import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
 import 'package:vitalmovecbi/provider/registro/ProviderRegistro.dart';
 import 'package:vitalmovecbi/provider/registro/RegistroFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/BruceFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/ProviderBruce.dart';
+import 'package:vitalmovecbi/provider/testbruce/gets/providerGetBruce.dart';
 import 'package:vitalmovecbi/provider/usuarios/UsuarioFromProvider.dart';
 import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
 import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
@@ -29,7 +35,7 @@ void main() async {
   AllApi.configuteDio();
   await LocalStorage.configurePrefs();
 
-runApp( const AppState());
+  runApp(const AppState());
 }
 
 class AppState extends StatelessWidget {
@@ -63,10 +69,18 @@ class AppState extends StatelessWidget {
             lazy: false, create: (_) => PublicacionFromProvider()),
         ChangeNotifierProvider(
             lazy: false, create: (_) => PublicacionesProvider()),
+<<<<<<< HEAD
+        ChangeNotifierProvider(lazy: false, create: (_) => BruceGetProvider()),
+=======
+>>>>>>> 75b71727dec91afb51cad2380a2e4d72a4056a77
 
         ChangeNotifierProvider(
             lazy: false, create: (_) => CaminataGetProvider()),
         ChangeNotifierProvider(create: (_) => DarkModeProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => RecomendacionFromProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => ProviderRecomendacion()),
       ],
       child: const MyApp(),
     );
@@ -126,3 +140,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// holad

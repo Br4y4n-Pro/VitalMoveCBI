@@ -1,51 +1,42 @@
-// ignore_for_file: file_names
-
-class BruceTests {
-  List<BruceTest> dato = [];
-  BruceTests();
-
-  BruceTests.fromlist(List<dynamic> datos) {
-    if (datos.isEmpty) return;
-
-    for (var item in datos) {
-      final detalle = BruceTest.fromJsonMap(item);
-      dato.add(detalle);
-    }
-  }
-}
-
 class BruceTest {
-  String? idetapa;
-  String? elefinal;
-  String? velocidadfinal;
-  String? numeroetapa;
-  String? fcr;
-  String? fcm;
-  String? vodos;
-  String? idtestbruce;
-  String? saturacionvodos;
+  dynamic fecha;
+  dynamic elefinal;
+  dynamic velocidadfinal;
+  int? numeroetapa; // Cambiado a int
+  dynamic fcr;
+  dynamic fcm;
+  double? vodos; // Cambiado a double
+  dynamic tiempo;
+  dynamic saturacionvodos;
+  int? idusuario;
 
   BruceTest({
-    this.idetapa,
+    this.fecha,
     this.elefinal,
     this.velocidadfinal,
     this.numeroetapa,
     this.fcr,
     this.fcm,
     this.vodos,
-    this.idtestbruce,
+    this.tiempo,
     this.saturacionvodos,
+    this.idusuario,
   });
 
   BruceTest.fromJsonMap(Map<String, dynamic> datos) {
-    idetapa = datos['idetapa'].toString();
-    elefinal = datos['elefinal'];
+    fecha = datos['fecha'].toString();
+    elefinal = datos['elefinal'].toString();
     velocidadfinal = datos['velocidadfinal'].toString();
-    numeroetapa = datos['numeroetapa'];
-    fcr = datos['fcr'];
-    fcm = datos['fcm'];
-    vodos = datos['vodos'];
-    idtestbruce = datos['idtestbruce'];
-    saturacionvodos = datos['saturacionvodos'].toString();
+    numeroetapa = datos['numeroetapa']; // Convertir a String
+    fcr = datos['fcr'] != null ? datos['fcr'].toString() : null;
+    fcm = datos['fcm'] != null ? datos['fcm'].toString() : null;
+    vodos = datos['vodos'] != null
+        ? double.tryParse(datos['vodos'].toString())
+        : null;
+    tiempo = datos['tiempo'].toString();
+    saturacionvodos = datos['saturacionvodos'] != null
+        ? datos['saturacionvodos'].toString()
+        : null;
+    idusuario = datos['idusuario'];
   }
 }
