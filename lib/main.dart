@@ -15,8 +15,9 @@ import 'package:vitalmovecbi/provider/datosGenerales/historialUser.dart';
 import 'package:vitalmovecbi/provider/datosGenerales/notasDiariasProvider.dart';
 import 'package:vitalmovecbi/provider/login/LoginFromProvider.dart';
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
-import 'package:vitalmovecbi/provider/recoemdaciontest/ProviderRecomendacion.dart';
-import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
+import 'package:vitalmovecbi/provider/recomendacionTests/ProviderRecomendacion.dart';
+import 'package:vitalmovecbi/provider/recomendacionTests/gets/recomendacionOneUser.dart';
+import 'package:vitalmovecbi/provider/recomendacionTests/recomendacionFromProvider.dart';
 // import 'package:vitalmovecbi/provider/recoemdaciontest/ProviderRecomendacion.dart';
 // import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
 import 'package:vitalmovecbi/provider/registro/ProviderRegistro.dart';
@@ -69,10 +70,7 @@ class AppState extends StatelessWidget {
             lazy: false, create: (_) => PublicacionFromProvider()),
         ChangeNotifierProvider(
             lazy: false, create: (_) => PublicacionesProvider()),
-<<<<<<< HEAD
         ChangeNotifierProvider(lazy: false, create: (_) => BruceGetProvider()),
-=======
->>>>>>> 75b71727dec91afb51cad2380a2e4d72a4056a77
 
         ChangeNotifierProvider(
             lazy: false, create: (_) => CaminataGetProvider()),
@@ -81,6 +79,8 @@ class AppState extends StatelessWidget {
             lazy: false, create: (_) => RecomendacionFromProvider()),
         ChangeNotifierProvider(
             lazy: false, create: (_) => ProviderRecomendacion()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => RecomendacionGetProvider()),
       ],
       child: const MyApp(),
     );
@@ -123,7 +123,6 @@ class MyApp extends StatelessWidget {
         '/pageTestB': (context) => const Testbruce(),
         '/pageTests': (context) => const Tests(),
         '/pageTestCaminataFCR': (context) => TestCaminataFCR(usuario: usuario),
-        '/pageTestC6M': (context) => const TestC6M(),
         '/pageAcercaDe': (context) => const AcercaDe(),
         '/pageTestC': (context) => const TestCaminata(),
         '/pageTestBM': (context) => TestBruceMod(usuario: usuario),

@@ -282,8 +282,7 @@ class _HomeUserState extends State<HomeUser> {
                                 final String text =
                                     value == 0 ? '0' : '${value.toInt()}';
                                 return Text(text,
-                                    style: const TextStyle(
-                                        color: Colors.black, fontSize: 10));
+                                    style: const TextStyle(fontSize: 10));
                               },
                               reservedSize: 28,
                               interval:
@@ -305,8 +304,10 @@ class _HomeUserState extends State<HomeUser> {
                         borderData: FlBorderData(
                           show: true,
                           border: const Border(
-                            bottom: BorderSide(color: Colors.black, width: 1),
-                            left: BorderSide(color: Colors.black, width: 1),
+                            bottom: BorderSide(
+                                color: Colores.primaryColor, width: 1),
+                            left: BorderSide(
+                                color: Colores.primaryColor, width: 1),
                           ),
                         ),
                         barTouchData: BarTouchData(
@@ -324,7 +325,6 @@ class _HomeUserState extends State<HomeUser> {
                               return BarTooltipItem(
                                 rod.toY.round().toString(),
                                 const TextStyle(
-                                  color: Colores.tertiaryColor,
                                   fontWeight: FontWeight.bold,
                                 ),
                               );
@@ -419,7 +419,6 @@ class _HomeUserState extends State<HomeUser> {
                             '${nota[0].descripcion}',
                             style: const TextStyle(
                               fontSize: 18,
-                              color: Colors.black,
                             ),
                           )
                         : const Center(child: CircularProgressIndicator()),

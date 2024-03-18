@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
 import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
-import 'package:vitalmovecbi/provider/recoemdaciontest/ProviderRecomendacion.dart';
-import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
+import 'package:vitalmovecbi/provider/recomendacionTests/ProviderRecomendacion.dart';
+import 'package:vitalmovecbi/provider/recomendacionTests/recomendacionFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/BruceFromProvider.dart';
 import 'package:vitalmovecbi/provider/testbruce/ProviderBruce.dart';
 import 'package:vitalmovecbi/services/localStorage.dart';
@@ -43,9 +43,12 @@ class _TestBruceMod extends State<TestBruceMod> {
     BuildContext context,
     ProviderRecomendacion providerRecomendacion,
     RecomendacionFromProvider fromProviderRecomendacion,
+    BruceProvider provider,
   ) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Evita que se cierre al tocar fuera del modal
+
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Agregar Recomendación"),
@@ -72,9 +75,7 @@ class _TestBruceMod extends State<TestBruceMod> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                setState(() {
-                  fromProviderRecomendacion.descripcion = '';
-                });
+                setState(() {});
               },
               child: const Text('Cancelar'),
             ),
@@ -103,10 +104,11 @@ class _TestBruceMod extends State<TestBruceMod> {
     final fromProviderRecomendacion =
         Provider.of<RecomendacionFromProvider>(context, listen: false);
 
-    LocalStorage.prefs
-        .setString('idselecionado', usuario!.idUsuario.toString());
-        
-    LocalStorage.prefs.setString('idselecionado', usuario.idUsuario!);
+    if (usuario != null) {
+      LocalStorage.prefs.setString('idselecionado', usuario.idUsuario!);
+    } else {
+      // Manejar el caso en que usuario sea null
+    }
 
     final size = MediaQuery.of(context).size;
     return Scaffold(
@@ -145,7 +147,7 @@ class _TestBruceMod extends State<TestBruceMod> {
                   borderRadius: const BorderRadius.all(Radius.circular(20))),
               child: ListTile(
                 leading: CircleAvatar(
-                  backgroundImage: (usuario.imgperfil != null)
+                  backgroundImage: (usuario!.imgperfil != null)
                       ? NetworkImage(usuario.imgperfil.toString())
                       : const AssetImage('img/Usuario/usu2.png')
                           as ImageProvider<Object>?,
@@ -216,7 +218,7 @@ class _TestBruceMod extends State<TestBruceMod> {
               children: [
                 GestureDetector(
                   onTap: () => _mostrarModal(context, providerRecomendacion,
-                      fromProviderRecomendacion),
+                      fromProviderRecomendacion, provider),
                   child: const Row(
                     children: [
                       Text(

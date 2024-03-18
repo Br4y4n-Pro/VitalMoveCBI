@@ -245,6 +245,7 @@ class _PageCaminataState extends State<PageCaminata> {
                   context: context,
                   builder: (BuildContext context) {
                     return ListView.builder(
+                      padding: EdgeInsets.all(10),
                       itemCount: listCaminatas.length,
                       itemBuilder: (BuildContext context, int index) {
                         return ListTile(

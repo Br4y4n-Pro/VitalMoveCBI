@@ -4,7 +4,9 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/TestBruceModelo.dart';
+import 'package:vitalmovecbi/provider/recomendacionTests/gets/recomendacionOneUser.dart';
 import 'package:vitalmovecbi/provider/testbruce/gets/providerGetBruce.dart';
+import 'package:vitalmovecbi/services/localStorage.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
 
@@ -29,10 +31,12 @@ class _PageBrucesState extends State<PageBruces> {
 
   @override
   Widget build(BuildContext context) {
-    print(_selectedIndex);
     final bruce = Provider.of<BruceGetProvider>(context);
+    final recomendacionProvider =
+        Provider.of<RecomendacionGetProvider>(context);
     final listBruces = bruce.bruces;
     final longitud = listBruces.length;
+    print('{la longitud es de $longitud}');
     List<BruceTest> ultimo5Bruces =
         listBruces.sublist((longitud - 5).clamp(0, longitud));
     // showModalBottomSheet  <----------Usar para mostrar abajo el modal too guapo
@@ -45,8 +49,9 @@ class _PageBrucesState extends State<PageBruces> {
           width: 20,
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-          toY: double.parse(
-              ultimo5Bruces[i].fcm ?? '0'), // Modified to handle null
+          toY: double.parse(ultimo5Bruces[i]
+              .numeroetapa
+              .toString()), // Modified to handle null
           gradient: const LinearGradient(
             colors: [Colores.primaryColor, Colores.secondaryColor],
             begin: Alignment.bottomCenter,
@@ -123,6 +128,17 @@ class _PageBrucesState extends State<PageBruces> {
             _selectedIndex = numero;
             _selectedIndexFullFechas = null;
             mostrarUltimo5 = true; // Cambiar a mostrar el otro listado
+            // No es necesario verificar si _selectedIndex es nulo después de asignarlo
+            if (_selectedIndex != null) {
+              final idEtapa = ultimo5Bruces[_selectedIndex!.toInt()].idetapa;
+
+              // Asegurar que idEtapa no sea nulo antes de asignarlo
+              if (idEtapa != null) {
+                LocalStorage.prefs.setString('idTest', idEtapa as String);
+              }
+            }
+            // Manejar el caso en que usuario sea null de forma segura
+            recomendacionProvider.recomendacionOneUser(context);
           });
         },
         child: SideTitleWidget(
@@ -246,6 +262,7 @@ class _PageBrucesState extends State<PageBruces> {
                   context: context,
                   builder: (BuildContext context) {
                     return ListView.builder(
+                      padding: EdgeInsets.all(10),
                       itemCount: listBruces.length,
                       itemBuilder: (BuildContext context, int index) {
                         return ListTile(
@@ -253,10 +270,13 @@ class _PageBrucesState extends State<PageBruces> {
                               Text(listBruces[index].fecha!.substring(0, 10)),
                           onTap: () {
                             setState(() {
+                              print('el index es $index');
                               _selectedIndexFullFechas = index;
                               print(_selectedIndexFullFechas);
+                              print(
+                                  'Se selecciono full fechas $_selectedIndexFullFechas');
                               print(index);
-                              _selectedIndex = null;
+                              // _selectedIndex = null;
                               mostrarUltimo5 =
                                   false; // Cambiar a mostrar el otro listado
                             });
@@ -312,7 +332,7 @@ class _PageBrucesState extends State<PageBruces> {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.date_range, color: Colors.black),
+                                  Icon(Icons.date_range),
                                   Text("  Fecha: ",
                                       style: TextStyle(
                                           fontSize: 20,
@@ -329,15 +349,13 @@ class _PageBrucesState extends State<PageBruces> {
                               const SizedBox(height: 5),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.monitor_heart,
-                                      color: Colors.black),
+                                children: const [
+                                  Icon(Icons.monitor_heart),
                                   Text("  Frecuencia Cardiaca Maxima: ",
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold)),
-                                  Text(
-                                      ultimo5Bruces[_selectedIndex!].fcm ?? 'N/A',
+                                  Text('N/A',
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w400)),
@@ -353,7 +371,8 @@ class _PageBrucesState extends State<PageBruces> {
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold)),
                                   Text(
-                                      '${ultimo5Bruces[_selectedIndex!].elefinal}',
+                                      ultimo5Bruces[_selectedIndex!].elefinal ??
+                                          'N/A',
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w400)),
@@ -362,15 +381,15 @@ class _PageBrucesState extends State<PageBruces> {
                               const SizedBox(height: 5),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.monitor_heart_outlined,
-                                      color: Colors.black),
+                                children: const [
+                                  Icon(Icons.monitor_heart_outlined),
                                   Text("  Frecuencia Cardiaca en Reposo: ",
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold)),
                                   Text(
-                                      ultimo5Bruces[_selectedIndex!].fcr ?? 'N/A',
+                                      // ultimo5Bruces[_selectedIndex!].fcr ??
+                                      'N/A',
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w400)),
@@ -387,7 +406,9 @@ class _PageBrucesState extends State<PageBruces> {
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold)),
                                   Text(
-                                      '${ultimo5Bruces[_selectedIndex!].numeroetapa}',
+                                      ultimo5Bruces[_selectedIndex!]
+                                          .numeroetapa
+                                          .toString(),
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w400)),
@@ -422,7 +443,9 @@ class _PageBrucesState extends State<PageBruces> {
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold)),
                                   Text(
-                                      '${ultimo5Bruces[_selectedIndex!].vodos}',
+                                      ultimo5Bruces[_selectedIndex!]
+                                          .vodos
+                                          .toString(),
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w400)),
@@ -441,7 +464,7 @@ class _PageBrucesState extends State<PageBruces> {
                                 children: [
                                   Center(
                                     child: Text(
-                                      'Estadistica de ${listBruces[_selectedIndex!].fecha!.substring(0, 10)}',
+                                      'Estadistica de ${listBruces[_selectedIndexFullFechas!].fecha!.substring(0, 10)}',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 22),
@@ -459,7 +482,7 @@ class _PageBrucesState extends State<PageBruces> {
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
                                       Text(
-                                          listBruces[_selectedIndex!]
+                                          listBruces[_selectedIndexFullFechas!]
                                               .fecha!
                                               .substring(0, 10),
                                           style: TextStyle(
@@ -471,7 +494,7 @@ class _PageBrucesState extends State<PageBruces> {
                                   Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
-                                    children: [
+                                    children: const [
                                       Icon(Icons.monitor_heart,
                                           color: Colors.black),
                                       Text("  Frecuencia Cardiaca Maxima: ",
@@ -479,7 +502,9 @@ class _PageBrucesState extends State<PageBruces> {
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
                                       Text(
-                                          listBruces[_selectedIndex!].fcm ?? 'N/A',
+                                          // listBruces[_selectedIndexFullFechas!]
+                                          //         .fcm ??
+                                          'N/A',
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.w400)),
@@ -497,7 +522,9 @@ class _PageBrucesState extends State<PageBruces> {
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
                                       Text(
-                                          '${listBruces[_selectedIndex!].elefinal}',
+                                          listBruces[_selectedIndexFullFechas!]
+                                              .elefinal
+                                              .toString(),
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.w400)),
@@ -507,7 +534,7 @@ class _PageBrucesState extends State<PageBruces> {
                                   Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
-                                    children: [
+                                    children: const [
                                       Icon(Icons.monitor_heart_outlined,
                                           color: Colors.black),
                                       Text("  Frecuencia Cardiaca en Reposo: ",
@@ -515,7 +542,10 @@ class _PageBrucesState extends State<PageBruces> {
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
                                       Text(
-                                          listBruces[_selectedIndex!].fcr ?? 'N/A',
+                                          // listBruces[_selectedIndexFullFechas!]
+                                          //     .fcr
+                                          //     .toString()
+                                          'N/A',
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.w400)),
@@ -533,7 +563,9 @@ class _PageBrucesState extends State<PageBruces> {
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
                                       Text(
-                                          '${listBruces[_selectedIndex!].numeroetapa}',
+                                          listBruces[_selectedIndexFullFechas!]
+                                              .numeroetapa
+                                              .toString(),
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.w400)),
@@ -551,7 +583,7 @@ class _PageBrucesState extends State<PageBruces> {
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
                                       Text(
-                                          listBruces[_selectedIndex!]
+                                          listBruces[_selectedIndexFullFechas!]
                                                   .saturacionvodos ??
                                               'N/A',
                                           style: TextStyle(
@@ -571,7 +603,9 @@ class _PageBrucesState extends State<PageBruces> {
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
                                       Text(
-                                          '${listBruces[_selectedIndex!].vodos}',
+                                          listBruces[_selectedIndexFullFechas!]
+                                              .vodos
+                                              .toString(),
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.w400)),
@@ -588,6 +622,13 @@ class _PageBrucesState extends State<PageBruces> {
                 ],
               ),
             ),
+            SizedBox(height: 20),
+            Container(
+                child: recomendacionProvider.recomendaciones.isEmpty
+                    ? textSub('Aqui iria una recomendación')
+                    : Text(
+                        recomendacionProvider.recomendaciones.toString(),
+                      ))
           ],
         ),
       ),

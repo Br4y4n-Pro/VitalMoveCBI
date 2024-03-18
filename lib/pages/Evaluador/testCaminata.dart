@@ -124,11 +124,6 @@ class _TestCaminata extends State<TestCaminata> {
                   child: ListView.builder(
                     itemCount: usuariosFiltrados.length,
                     itemBuilder: (context, index) {
-                      if (usuariosFiltrados.isNotEmpty) {
-                        print('No esta vacio');
-                      } else {
-                        print('Esta vacio');
-                      }
                       final usuario = usuariosFiltrados[index];
                       return GestureDetector(
                         onTap: () {

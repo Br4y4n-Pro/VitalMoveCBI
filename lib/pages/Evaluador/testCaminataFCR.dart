@@ -6,8 +6,8 @@ import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
 import 'package:vitalmovecbi/provider/caminata/ProviderCaminata.dart';
 import 'package:vitalmovecbi/provider/caminata/caminataFromProvider.dart';
 import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
-import 'package:vitalmovecbi/provider/recoemdaciontest/ProviderRecomendacion.dart';
-import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
+import 'package:vitalmovecbi/provider/recomendacionTests/ProviderRecomendacion.dart';
+import 'package:vitalmovecbi/provider/recomendacionTests/recomendacionFromProvider.dart';
 
 import 'package:vitalmovecbi/services/localStorage.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
@@ -24,8 +24,12 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
   void _mostrarModal(
       BuildContext context,
       ProviderRecomendacion providerRecomendacion,
-      RecomendacionFromProvider fromProviderRecomendacion) {
+      RecomendacionFromProvider fromProviderRecomendacion,
+      ProviderCaminata provider,
+      CaminataFromProvider fromProvider) {
     showDialog(
+      barrierDismissible: false, // Evita que se cierre al tocar fuera del modal
+
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -55,7 +59,8 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
               onPressed: () {
                 Navigator.of(context).pop();
                 setState(() {
-                  fromProviderRecomendacion.descripcion = '';
+                  provider.limpiarDatos(
+                      fromProviderRecomendacion, fromProvider);
                 });
               },
               child: const Text('Cancelar'),
@@ -188,8 +193,8 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               GestureDetector(
-                onTap: () => _mostrarModal(
-                    context, providerRecomendacion, fromProviderRecomendacion),
+                onTap: () => _mostrarModal(context, providerRecomendacion,
+                    fromProviderRecomendacion, provider, fromProvider),
                 child: const Row(
                   children: [
                     Text(

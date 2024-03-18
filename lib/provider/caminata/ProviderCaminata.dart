@@ -3,10 +3,20 @@
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/Api/AllApi.dart';
 import 'package:vitalmovecbi/provider/caminata/caminataFromProvider.dart';
-import 'package:vitalmovecbi/provider/recoemdaciontest/recomendacionFromProvider.dart';
+import 'package:vitalmovecbi/provider/recomendacionTests/recomendacionFromProvider.dart';
 import 'package:vitalmovecbi/services/localStorage.dart';
 
 class ProviderCaminata extends ChangeNotifier {
+  limpiarDatos(RecomendacionFromProvider fromProviderRecomendacion,
+      CaminataFromProvider fromProvider) {
+    fromProvider.tiempo = '';
+    fromProvider.distancia = '';
+    fromProvider.fcm = '';
+    fromProvider.fcr = '';
+    fromProviderRecomendacion.descripcion = '';
+    notifyListeners(); // Notificar a los oyentes sobre el cambio
+  }
+
   caminata(
       CaminataFromProvider fromProvider,
       RecomendacionFromProvider fromProviderRecomendacion,
@@ -29,6 +39,7 @@ class ProviderCaminata extends ChangeNotifier {
 
       final Map<String, dynamic> jsonResponse = rpta;
       if (jsonResponse["rp"] == "si") {
+        limpiarDatos(fromProviderRecomendacion, fromProvider);
         Navigator.pop(context);
         notifyListeners();
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
