@@ -27,7 +27,7 @@ class _RegistroState extends State<Registro> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colores.quaternaryColor),
+         automaticallyImplyLeading: false,
         title: const Text(
           'Registro de Usuario',
           style: TextStyle(
