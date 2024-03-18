@@ -182,7 +182,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
         return AlertDialog(
           title: const Text("Ingrese su recomendación"),
           content: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.30,
+            height: MediaQuery.of(context).size.height * 0.45,
             child: Column(
               children: [
                 SizedBox(
@@ -243,53 +243,60 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
             ),
           ),
           actions: [
-            GestureDetector(
-              onTap: () async {
-                _pickImageGallery(fromProvider);
-              },
-              child: const Column(
-                children: [
-                  Icon(Icons.photo_library),
-                  Text('Galería'),
-                ],
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  fromProvider.titulo = '';
-                  fromProvider.recomendaciones = '';
-                  _imgperfil = null;
-                  fromProvider.imagen = _imgperfil;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    "Cancelar",
-                  ),
-                  Icon(Icons.cancel, color: Color.fromRGBO(196, 12, 12, 1)),
-                ],
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                fromProvider.titulo = '';
-                fromProvider.recomendaciones = '';
-                Navigator.of(context).pop();
-                _mostrarNotificacion();
-              },
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text("Publicar"),
-                  Icon(Icons.check, color: Color.fromRGBO(0, 212, 46, 1)),
-                ],
-              ),
+  Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      GestureDetector(
+        onTap: () async {
+          _pickImageGallery(fromProvider);
+        },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.photo_library),
+            Text('Galería'),
+          ],
+        ),
+      ),
+        const SizedBox(width: 10),
+      TextButton(
+        onPressed: () {
+          setState(() {
+            fromProvider.titulo = '';
+            fromProvider.recomendaciones = '';
+            _imgperfil = null;
+            fromProvider.imagen = _imgperfil;
+          });
+          Navigator.of(context).pop();
+        },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.cancel, color: Color.fromRGBO(196, 12, 12, 1)),
+            Text(
+              "Cancelar",
             ),
           ],
+        ),
+      ),
+      TextButton(
+        onPressed: () {
+          fromProvider.titulo = '';
+          fromProvider.recomendaciones = '';
+          Navigator.of(context).pop();
+          _mostrarNotificacion();
+        },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.check, color: Color.fromRGBO(0, 212, 46, 1)),
+            Text("Publicar"),
+          ],
+        ),
+      ),
+    ],
+  ),
+],
         );
       },
     );

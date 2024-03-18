@@ -1,5 +1,4 @@
-// ignore_for_file: file_names, avoid_print
-
+import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/provider/login/LoginFromProvider.dart';
@@ -11,7 +10,7 @@ import 'package:vitalmovecbi/widgets/loginTextField.dart';
 import 'package:vitalmovecbi/widgets/navap.dart';
 
 class UsuarioLogin extends StatefulWidget {
-  const UsuarioLogin({super.key});
+  const UsuarioLogin({Key? key});
 
   @override
   State<UsuarioLogin> createState() => _UsuarioLoginState();
@@ -19,6 +18,7 @@ class UsuarioLogin extends StatefulWidget {
 
 class _UsuarioLoginState extends State<UsuarioLogin> {
   UserLogin userLogin = UserLogin();
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -63,13 +63,46 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
                   const SizedBox(
                     height: 3,
                   ),
-                  Consumer<LoginFromProvider>(
-                    builder: (context, fromProvider, child) => InputLogin(
-                      campo: "Ingrese tu contraseña",
-                      tamano: size.width,
-                      tipo: TextInputType.visiblePassword,
-                      onChanged: (value) => fromProvider.password = value,
-                    ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: const Color(0xffF5F5F5),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.grey.shade300, blurRadius: 3)
+                              ],
+                              borderRadius: BorderRadius.circular(10)),
+                          child: TextFormField(
+                            cursorColor: const Color.fromARGB(33, 15, 15, 15),
+                            obscureText: _obscureText,
+                            onChanged: (value) => fromProvider.password = value,
+                            decoration: InputDecoration(
+                              hintStyle: TextStyle(
+                                  color: Colors.grey.shade500,
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 14),
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 16.0, vertical: 16.0),
+                              hintText: 'Ingresa tu contraseña',
+                              border: InputBorder.none,
+                              focusColor: Colors.transparent,
+                              suffixIcon: IconButton(
+                                icon: Icon(_obscureText
+                                    ? Icons.visibility_off
+                                    : Icons.visibility),
+                                onPressed: () {
+                                  setState(() {
+                                    _obscureText = !_obscureText;
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 1),
                   Row(

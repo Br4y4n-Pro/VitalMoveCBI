@@ -63,7 +63,7 @@ class _BuscarPersonaState extends State<BuscarPersona> {
      final darkModeProvider = Provider.of<DarkModeProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colores.quaternaryColor),
+       automaticallyImplyLeading: false,
         title: const Text(
           "Buscar Persona",
           style: TextStyle(
