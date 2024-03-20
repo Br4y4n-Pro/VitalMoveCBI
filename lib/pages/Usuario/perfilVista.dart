@@ -34,131 +34,127 @@ class _PerfilVistaState extends State<PerfilVista> {
 
     String fechaFormateada = formatearFecha(usuario.fechaNacimiento.toString());
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colores.quaternaryColor),
-          title: const Text(
-            'Datos Personales',
-            style: TextStyle(
-              color: Colores.quaternaryColor,
-              fontWeight: FontWeight.w500,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colores.quaternaryColor),
+        title: const Text(
+          'Datos Personales',
+          style: TextStyle(
+            color: Colores.quaternaryColor,
+            fontWeight: FontWeight.w500,
           ),
-          backgroundColor: Colores.primaryColor,
-          actions: [
-            if (usuario.rol == '1')
-              IconButton(
-                icon: const Icon(Icons.edit),
-                onPressed: () {
-                  setState(() {
-                    _editingEnabled = !_editingEnabled;
-                  });
-                },
-              ),
-          ],
         ),
-        body: ListView(
-          children: [
-            const SizedBox(height: 20),
-            Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(150),
-              ),
-              child: CircleAvatar(
-                radius: 30,
-                backgroundColor: Colors.transparent,
-                child: providerHistorial.historiales.isNotEmpty
-                    ? Center(
-                        child: ClipOval(
-                          child: Image.network(
-                            usuario.imgperfil ?? "img/Usuario/usu2.png",
-                            fit: BoxFit.cover,
-                            width: 100,
-                            height: 100,
-                          ),
-                        ),
-                      )
-                    : ClipOval(
-                        child: Image.asset(
-                          "img/Usuario/usu2.png",
+        backgroundColor: Colores.primaryColor,
+        actions: [
+          if (usuario.rol == '1')
+            IconButton(
+              icon: const Icon(Icons.edit),
+              onPressed: () {
+                setState(() {
+                  _editingEnabled = !_editingEnabled;
+                });
+              },
+            ),
+        ],
+      ),
+      body: ListView(
+        children: [
+          const SizedBox(height: 20),
+          Container(
+            height: 100,
+            width: 100,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(150),
+            ),
+            child: CircleAvatar(
+              radius: 30,
+              backgroundColor: Colors.transparent,
+              child: providerHistorial.historiales.isNotEmpty
+                  ? Center(
+                      child: ClipOval(
+                        child: Image.network(
+                          usuario.imgperfil ?? "img/Usuario/usu2.png",
                           fit: BoxFit.cover,
-                          width: 90,
-                          height: 90,
+                          width: 100,
+                          height: 100,
                         ),
                       ),
-              ),
+                    )
+                  : ClipOval(
+                      child: Image.asset(
+                        "img/Usuario/usu2.png",
+                        fit: BoxFit.cover,
+                        width: 90,
+                        height: 90,
+                      ),
+                    ),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: size.width * .1,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 20),
-                  _editingEnabled
-                      ? textFieldEditable("Nombres y apellidos",
-                      "${usuario.nombres} ${usuario.apellidos}")
-                      : textField("Nombres y apellidos",
-                      "${usuario.nombres} ${usuario.apellidos}"),
-                  const SizedBox(height: 15),
-                  _editingEnabled
-                      ? textFieldEditable("Documento de Identidad", "${usuario.dni}")
-                      : textField("Documento de Identidad", "${usuario.dni}"),
-                  const SizedBox(height: 15),
-                  _editingEnabled
-                      ? textFieldEditable("Fecha de Nacimiento", fechaFormateada)
-                      : textField("Fecha de Nacimiento", fechaFormateada),
-                  const SizedBox(height: 15),
-                  _editingEnabled
-                      ? textFieldEditable("Género", "${usuario.genero}")
-                      : textField("Género", "${usuario.genero}"),
-                  const SizedBox(height: 15),
-                  _editingEnabled
-                      ? textFieldEditable("Tipo de Sangre", "${usuario.rh}")
-                      : textField("Tipo de Sangre", "${usuario.rh}"),
-                  const SizedBox(height: 15),
-                  _editingEnabled
-                      ? textFieldEditable("Dirección", "${usuario.direccion}")
-                      : textField("Dirección", "${usuario.direccion}"),
-                  const SizedBox(height: 15),
-                  _editingEnabled
-                      ? textFieldEditable("EPS(Entidad de salud)", "${usuario.eps}")
-                      : textField("EPS(Entidad de salud)", "${usuario.eps}"),
-                  const SizedBox(height: 15),
-                  _editingEnabled
-                      ? textFieldEditable("Alergias", "${usuario.alergias}")
-                      : textField("Alergias", "${usuario.alergias}"),
-                  const SizedBox(height: 15),
-                  _editingEnabled
-                      ? textFieldEditable("IMC",
-                      '${double.parse(ultimoHistorial.imc ?? '0').toStringAsFixed(2)}   ${ultimoHistorial.imcdescripcion}')
-                      : textField("IMC",
-                      '${double.parse(ultimoHistorial.imc ?? '0').toStringAsFixed(2)}   ${ultimoHistorial.imcdescripcion}'),
-                      const SizedBox(height: 15),
-                  _editingEnabled
-                      ? textFieldEditable("Grupo", "${usuario.grupo}")
-                      : textField("Grupo", "${usuario.grupo}"),
-                  const SizedBox(height: 15),
-                  _editingEnabled
-                      ? textFieldEditable("Peso (KG)", ultimoHistorial.peso ?? '0')
-                      : textField("Peso (KG)", ultimoHistorial.peso ?? '0'),
-                  const SizedBox(height: 15),
-                  _editingEnabled
-                      ? textFieldEditable("Talla (Metros)", "${usuario.talla}")
-                      : textField("Talla (Metros)", "${usuario.talla}"),
-                  const SizedBox(height: 25),
-                ],
-              ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(
+              horizontal: size.width * .1,
             ),
-          ],
-        ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 20),
+                _editingEnabled
+                    ? textFieldEditable("Nombres y apellidos",
+                        "${usuario.nombres} ${usuario.apellidos}")
+                    : textField("Nombres y apellidos",
+                        "${usuario.nombres} ${usuario.apellidos}"),
+                const SizedBox(height: 15),
+                _editingEnabled
+                    ? textFieldEditable("Documento de Identidad", "${usuario.dni}")
+                    : textField("Documento de Identidad", "${usuario.dni}"),
+                const SizedBox(height: 15),
+                _editingEnabled
+                    ? textFieldEditable("Fecha de Nacimiento", fechaFormateada)
+                    : textField("Fecha de Nacimiento", fechaFormateada),
+                const SizedBox(height: 15),
+                _editingEnabled
+                    ? textFieldEditable("Género", "${usuario.genero}")
+                    : textField("Género", "${usuario.genero}"),
+                const SizedBox(height: 15),
+                _editingEnabled
+                    ? textFieldEditable("Tipo de Sangre", "${usuario.rh}")
+                    : textField("Tipo de Sangre", "${usuario.rh}"),
+                const SizedBox(height: 15),
+                _editingEnabled
+                    ? textFieldEditable("Dirección", "${usuario.direccion}")
+                    : textField("Dirección", "${usuario.direccion}"),
+                const SizedBox(height: 15),
+                _editingEnabled
+                    ? textFieldEditable("EPS(Entidad de salud)", "${usuario.eps}")
+                    : textField("EPS(Entidad de salud)", "${usuario.eps}"),
+                const SizedBox(height: 15),
+                _editingEnabled
+                    ? textFieldEditable("Alergias", "${usuario.alergias}")
+                    : textField("Alergias", "${usuario.alergias}"),
+                const SizedBox(height: 15),
+                _editingEnabled
+                    ? textFieldEditable("IMC",
+                        '${double.parse(ultimoHistorial.imc ?? '0').toStringAsFixed(2)}   ${ultimoHistorial.imcdescripcion}')
+                    : textField("IMC",
+                        '${double.parse(ultimoHistorial.imc ?? '0').toStringAsFixed(2)}   ${ultimoHistorial.imcdescripcion}'),
+                const SizedBox(height: 15),
+                _editingEnabled
+                    ? textFieldEditable("Grupo", "${usuario.grupo}")
+                    : textField("Grupo", "${usuario.grupo}"),
+                const SizedBox(height: 15),
+                _editingEnabled
+                    ? textFieldEditable("Peso (KG)", ultimoHistorial.peso ?? '0')
+                    : textField("Peso (KG)", ultimoHistorial.peso ?? '0'),
+                const SizedBox(height: 15),
+                _editingEnabled
+                    ? textFieldEditable("Talla (Metros)", "${usuario.talla}")
+                    : textField("Talla (Metros)", "${usuario.talla}"),
+                const SizedBox(height: 25),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

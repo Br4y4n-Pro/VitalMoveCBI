@@ -129,7 +129,7 @@ class _HomeUserState extends State<HomeUser> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
+        
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -99,6 +99,7 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
                                 },
                               ),
                             ),
+                             style: TextStyle(color: Colors.black),
                           ),
                         ),
                       ),
