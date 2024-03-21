@@ -13,7 +13,7 @@ import 'package:vitalmovecbi/widgets/loginTextField.dart';
 class TestBruceMod extends StatefulWidget {
   final Usuario? usuario;
 
-  const TestBruceMod({Key? key, this.usuario}) : super(key: key);
+  const TestBruceMod({super.key, this.usuario});
 
   @override
   State<TestBruceMod> createState() => _TestBruceMod();

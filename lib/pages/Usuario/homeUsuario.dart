@@ -402,7 +402,7 @@ class _HomeUserState extends State<HomeUser> {
               ),
               elevation: 3,
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

@@ -7,33 +7,27 @@ import 'package:vitalmovecbi/services/localStorage.dart';
 
 class RecomendacionGetProvider extends ChangeNotifier {
   List<Recomendacion> recomendaciones = [];
+  bool recomendacionCargada = false;
 
   recomendacionOneUser(BuildContext context) {
-    print('Inicio el get de recomendacion');
-    final idTest = LocalStorage.prefs.getString('idTest');
-    print('id de usuario es $idTest');
-    print('aqui?');
-    // final idUsuario = idusario;
-    AllApi.httpGet('allRecomendaciones/$idTest').then((rpta) {
-      // Asumiendo que `rpta` es una lista de mapas, cada uno representando una Caminata.
-      print(rpta.runtimeType);
-      // final Map<String, dynamic> jsonResponse = rpta;
-      // print(jsonResponse);
-      if (rpta is List) {
-        // Limpia la lista actual para evitar duplicados
-        recomendaciones.clear();
-        // Itera sobre la lista y crea una caminata por cada mapa en la lista
-        for (var item in rpta) {
-          final recomendacion = Recomendacion.fromJsonMap(item);
-          recomendaciones.add(recomendacion);
-        }
+    final idTest = LocalStorage.prefs.getInt('idEtapa');
 
-        // Notifica a los listeners que la lista de usuarios ha cambiado
-        notifyListeners();
-      }
+    print('id de test es $idTest');
+    print('aqui?');
+    AllApi.httpGet('allRecomendaciones/$idTest').then((rpta) {
+      print('Inicio el get de recomendacion $idTest');
+      print(rpta.runtimeType);
+      recomendacionCargada = true;
+      print(rpta.runtimeType);
+      final Map<String, dynamic> jsonResponse = rpta;
+      print(jsonResponse);
+      final Recomendaciones recomendacion =
+          Recomendaciones.fromlist([jsonResponse]);
+      recomendaciones = recomendacion.dato;
+      notifyListeners();
     }).catchError((error) {
-      // Considera manejar el error de alguna manera
-      print(" providerGetCaminata: Error al obtener Caminatas: $error");
+      print(
+          " providerGetRecomendaciones: Error al obtener la recomendación: $error");
     });
   }
 }
