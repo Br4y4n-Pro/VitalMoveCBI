@@ -160,66 +160,70 @@ class _PageBrucesState extends State<PageBruces> {
         ),
         backgroundColor: Colores.primaryColor,
       ),
-      body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(height: 20),
-              textSub("Historico de Test Bruce realizadas"),
-              const SizedBox(height: 40),
-            
-              SizedBox(
-                height: 200,
-                child: BarChart(
-                  BarChartData(
-                    titlesData: FlTitlesData(
-                      show: true,
-                      bottomTitles: AxisTitles(
-                        sideTitles: SideTitles(
-                          showTitles: true,
-                          reservedSize: 30,
-                          getTitlesWidget: getTitles,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: ListView(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(height: 20),
+                Column(
+                  children: [
+                    textSub(
+                        "Historico de Test Bruce realizadas"), // Función que devuelve un widget de texto con estilo
+                    // Función que devuelve un widget de texto con estilo
+                  ],
+                ),
+                const SizedBox(height: 40),
+                SizedBox(
+                  height: 200,
+                  child: BarChart(
+                    BarChartData(
+                      titlesData: FlTitlesData(
+                        show: true,
+                        bottomTitles: AxisTitles(
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            reservedSize: 30,
+                            getTitlesWidget: getTitles,
+                          ),
+                        ),
+                        leftTitles: AxisTitles(
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            getTitlesWidget: (double value, TitleMeta meta) {
+                              // Personaliza aquí los títulos del eje Y
+                              final String text =
+                                  value == 0 ? '0' : '${value.toInt()}';
+                              return Text(text,
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 10));
+                            },
+                            reservedSize: 28,
+                            interval:
+                                20, // Define el intervalo de los valores en el eje Y
+                          ),
+                        ),
+                        topTitles: const AxisTitles(
+                          sideTitles: SideTitles(showTitles: false),
+                        ),
+                        rightTitles: const AxisTitles(
+                          sideTitles: SideTitles(showTitles: false),
                         ),
                       ),
-                      leftTitles: AxisTitles(
-                        sideTitles: SideTitles(
-
-                          showTitles: true,
-                          getTitlesWidget: (double value, TitleMeta meta) {
-                            // Personaliza aquí los títulos del eje Y
-                            final String text =
-                                value == 0 ? '0' : '${value.toInt()}';
-                            return Text(text,
-                                style: const TextStyle(
-                                    color: Colors.black, fontSize: 10));
-                          },
-                          reservedSize: 28,
-                          interval:
-                              1, // Define el intervalo de los valores en el eje Y
+                      barGroups: listBruceBar,
+                      gridData: const FlGridData(show: false),
+                      alignment: BarChartAlignment.spaceAround,
+                      maxY:
+                          200, // Asegúrate de ajustar este valor al máximo valor que esperas en el eje Y
+                      borderData: FlBorderData(
+                        show: true,
+                        border: const Border(
+                          bottom: BorderSide(color: Colors.black, width: 1),
+                          left: BorderSide(color: Colors.black, width: 1),
                         ),
                       ),
-                      topTitles: const AxisTitles(
-                        sideTitles: SideTitles(showTitles: false),
-                      ),
-                      rightTitles: const AxisTitles(
-                        sideTitles: SideTitles(showTitles: false),
-                      ),
-                    ),
-                    barGroups: listBruceBar,
-                    gridData: const FlGridData(show: false),
-                    alignment: BarChartAlignment.spaceAround,
-                    maxY: 10,
-                         // Asegúrate de ajustar este valor al máximo valor que esperas en el eje Y
-                    borderData: FlBorderData(
-                      show: true,
-                    
-                      border: const Border(
-                        bottom: BorderSide(color: Colors.black, width: 1),
-                        left: BorderSide(color: Colors.black, width: 1),
-                      ),
-                    ),
 
                     barTouchData: BarTouchData(
                       enabled: true,
