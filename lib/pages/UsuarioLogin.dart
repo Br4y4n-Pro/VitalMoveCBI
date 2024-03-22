@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-// ignore_for_file: file_names
-
-=======
->>>>>>> a3bf107e42b47ac8621bec06f2b478f15c7539f4
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/provider/login/LoginFromProvider.dart';
