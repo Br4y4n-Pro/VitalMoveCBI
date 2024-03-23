@@ -16,7 +16,7 @@ class Recomendaciones {
 
 class Recomendacion {
   String? descripcion;
-  String? idtests;
+  int? idtests;
 
   Recomendacion({this.descripcion, this.idtests});
 

@@ -130,15 +130,14 @@ class _PageBrucesState extends State<PageBruces> {
             mostrarUltimo5 = true; // Cambiar a mostrar el otro listado
             // No es necesario verificar si _selectedIndex es nulo después de asignarlo
             if (_selectedIndex != null) {
-              final idEtapa = ultimo5Bruces[_selectedIndex!.toInt()].idetapa;
-
-              // Asegurar que idEtapa no sea nulo antes de asignarlo
-              if (idEtapa != null) {
-                LocalStorage.prefs.setString('idTest', idEtapa as String);
+              final idTest = ultimo5Bruces[_selectedIndex!].idtest;
+              if (idTest != null) {
+                LocalStorage.prefs.setInt('idEtapa', idTest);
+              } else {
+                print('Hay error en el idEtapa es null');
               }
+              recomendacionProvider.recomendacionOneUser(context);
             }
-            // Manejar el caso en que usuario sea null de forma segura
-            recomendacionProvider.recomendacionOneUser(context);
           });
         },
         child: SideTitleWidget(
@@ -162,6 +161,7 @@ class _PageBrucesState extends State<PageBruces> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 20),
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -196,12 +196,11 @@ class _PageBrucesState extends State<PageBruces> {
                               final String text =
                                   value == 0 ? '0' : '${value.toInt()}';
                               return Text(text,
-                                  style: const TextStyle(
-                                      fontSize: 10));
+                                  style: const TextStyle(fontSize: 10));
                             },
                             reservedSize: 28,
                             interval:
-                                20, // Define el intervalo de los valores en el eje Y
+                                1, // Define el intervalo de los valores en el eje Y
                           ),
                         ),
                         topTitles: const AxisTitles(
@@ -215,12 +214,14 @@ class _PageBrucesState extends State<PageBruces> {
                       gridData: const FlGridData(show: false),
                       alignment: BarChartAlignment.spaceAround,
                       maxY:
-                          200, // Asegúrate de ajustar este valor al máximo valor que esperas en el eje Y
+                          10, // Asegúrate de ajustar este valor al máximo valor que esperas en el eje Y
                       borderData: FlBorderData(
                         show: true,
                         border: const Border(
-                          bottom: BorderSide(color: Colores.primaryColor, width: 1),
-                          left: BorderSide(color: Colores.primaryColor, width: 1),
+                          bottom:
+                              BorderSide(color: Colores.primaryColor, width: 1),
+                          left:
+                              BorderSide(color: Colores.primaryColor, width: 1),
                         ),
                       ),
 
@@ -250,7 +251,7 @@ class _PageBrucesState extends State<PageBruces> {
                     swapAnimationDuration: const Duration(
                         milliseconds: 500), // Duración de la animación
                     swapAnimationCurve:
-                        Curves.ease, // Tipo de curva de animación
+                        Curves.easeInOutExpo, // Tipo de curva de animación
                   ),
                 ),
               ],
@@ -276,7 +277,15 @@ class _PageBrucesState extends State<PageBruces> {
                               print(
                                   'Se selecciono full fechas $_selectedIndexFullFechas');
                               print(index);
-                              // _selectedIndex = null;
+                              final idTest =
+                                  listBruces[_selectedIndexFullFechas!].idtest;
+                              if (idTest != null) {
+                                LocalStorage.prefs.setInt('idEtapa', idTest);
+                              } else {
+                                print('Hay error en el idEtapa es null');
+                              }
+                              recomendacionProvider
+                                  .recomendacionOneUser(context);
                               mostrarUltimo5 =
                                   false; // Cambiar a mostrar el otro listado
                             });
@@ -298,8 +307,8 @@ class _PageBrucesState extends State<PageBruces> {
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromARGB(255, 80, 79, 79).withOpacity(.3),
-                      offset: Offset(6, 6),
-                      blurRadius: 10,
+                      offset: Offset(6, 4),
+                      blurRadius: 5,
                       spreadRadius: 1,
                     ),
                   ],
@@ -623,12 +632,27 @@ class _PageBrucesState extends State<PageBruces> {
               ),
             ),
             SizedBox(height: 20),
-            Container(
-                child: recomendacionProvider.recomendaciones.isEmpty
-                    ? textSub('Aqui iria una recomendación')
-                    : Text(
-                        recomendacionProvider.recomendaciones.toString(),
-                      ))
+             !recomendacionProvider.recomendacionCargada
+              ? Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  elevation: 3,
+                  child: Container(
+                      padding: EdgeInsets.all(20),
+                      child: textSub(
+                          'Selecciona una fecha para ver la recomendación')))
+              : Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  elevation: 3,
+                  child: Container(
+                    padding: EdgeInsets.all(20),
+                    child: textSub(
+                        recomendacionProvider.recomendaciones[0].descripcion!),
+                  )),
+          SizedBox(height: 20),
           ],
         ),
       ),
