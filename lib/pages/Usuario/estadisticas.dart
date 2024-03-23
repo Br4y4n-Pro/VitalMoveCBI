@@ -16,7 +16,7 @@ class _EstadisticasState extends State<Estadisticas> {
 
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colores.quaternaryColor),
+        automaticallyImplyLeading: false,
         title: const Text(
           'Estadisticas',
           style: TextStyle(

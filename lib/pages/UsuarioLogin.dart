@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: file_names, avoid_print
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/provider/login/LoginFromProvider.dart';
@@ -10,7 +10,7 @@ import 'package:vitalmovecbi/widgets/loginTextField.dart';
 import 'package:vitalmovecbi/widgets/navap.dart';
 
 class UsuarioLogin extends StatefulWidget {
-  const UsuarioLogin({Key? key});
+  const UsuarioLogin({super.key});
 
   @override
   State<UsuarioLogin> createState() => _UsuarioLoginState();
@@ -99,7 +99,7 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
                                 },
                               ),
                             ),
-                             style: TextStyle(color: Colors.black),
+                             style: const TextStyle(color: Colors.black),
                           ),
                         ),
                       ),

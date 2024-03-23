@@ -36,7 +36,7 @@ class _PerfilVistaState extends State<PerfilVista> {
 
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colores.quaternaryColor),
+        automaticallyImplyLeading: false,
         title: const Text(
           'Datos Personales',
           style: TextStyle(

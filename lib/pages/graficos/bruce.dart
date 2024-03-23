@@ -197,7 +197,7 @@ class _PageBrucesState extends State<PageBruces> {
                                   value == 0 ? '0' : '${value.toInt()}';
                               return Text(text,
                                   style: const TextStyle(
-                                      color: Colors.black, fontSize: 10));
+                                      fontSize: 10));
                             },
                             reservedSize: 28,
                             interval:
@@ -219,8 +219,8 @@ class _PageBrucesState extends State<PageBruces> {
                       borderData: FlBorderData(
                         show: true,
                         border: const Border(
-                          bottom: BorderSide(color: Colors.black, width: 1),
-                          left: BorderSide(color: Colors.black, width: 1),
+                          bottom: BorderSide(color: Colores.primaryColor, width: 1),
+                          left: BorderSide(color: Colores.primaryColor, width: 1),
                         ),
                       ),
 

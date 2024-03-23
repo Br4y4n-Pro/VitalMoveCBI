@@ -26,7 +26,7 @@ class _PerfilVistaContactState extends State<PerfilVistaContact> {
 
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colores.quaternaryColor),
+        automaticallyImplyLeading: false,
         title: const Text(
           'Contacto',
           style: TextStyle(

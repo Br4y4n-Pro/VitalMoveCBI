@@ -435,7 +435,6 @@ class _HomeUserState extends State<HomeUser> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     margin: const EdgeInsets.all(1),
                     decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 241, 242, 242),
                       borderRadius: BorderRadius.all(Radius.circular(5)),
                     ),
                     child: Column(
@@ -447,7 +446,6 @@ class _HomeUserState extends State<HomeUser> {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
-                            color: Colors.black,
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -455,7 +453,6 @@ class _HomeUserState extends State<HomeUser> {
                           "Peso saludable Si le es difícil controlar su peso, ciertamente no está solo en el mundo actual. De hecho, más del 39 por ciento de los adultos en los Estados Unidos tienen obesidad.1 El exceso de peso puede causar enfermedades del corazón, diabetes tipo 2, enfermedad renal y otros problemas de salud crónicos. Establecer metas para mejorar su salud puede ayudarle a reducir la probabilidad de desarrollar problemas de salud relacionados con el peso.",
                           style: TextStyle(
                             fontSize: 15,
-                            color: Color.fromARGB(255, 48, 48, 48),
                           ),
                         ),
                         const SizedBox(height: 12),

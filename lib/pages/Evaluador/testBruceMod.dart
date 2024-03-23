@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
@@ -13,7 +15,7 @@ import 'package:vitalmovecbi/widgets/loginTextField.dart';
 class TestBruceMod extends StatefulWidget {
   final Usuario? usuario;
 
-  const TestBruceMod({Key? key, this.usuario}) : super(key: key);
+  const TestBruceMod({super.key, this.usuario});
 
   @override
   State<TestBruceMod> createState() => _TestBruceMod();

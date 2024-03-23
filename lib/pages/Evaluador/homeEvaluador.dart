@@ -250,7 +250,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
         onTap: () async {
           _pickImageGallery(fromProvider);
         },
-        child: Column(
+        child: const Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(Icons.photo_library),
@@ -269,7 +269,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
           });
           Navigator.of(context).pop();
         },
-        child: Column(
+        child: const Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(Icons.cancel, color: Color.fromRGBO(196, 12, 12, 1)),
@@ -286,7 +286,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
           Navigator.of(context).pop();
           _mostrarNotificacion();
         },
-        child: Column(
+        child: const Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(Icons.check, color: Color.fromRGBO(0, 212, 46, 1)),
