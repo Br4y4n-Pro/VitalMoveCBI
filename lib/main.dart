@@ -8,8 +8,8 @@ import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
 import 'package:vitalmovecbi/provider/caminata/ProviderCaminata.dart';
 import 'package:vitalmovecbi/provider/caminata/caminataFromProvider.dart';
 import 'package:vitalmovecbi/provider/caminata/gets/providerGetCaminata.dart';
-import 'package:vitalmovecbi/provider/configuracion/publicaciones/publicacionesFromProvider.dart';
-import 'package:vitalmovecbi/provider/configuracion/publicaciones/publicacionesProvider.dart';
+import 'package:vitalmovecbi/provider/publicaciones/publicacionesFromProvider.dart';
+import 'package:vitalmovecbi/provider/publicaciones/publicacionesProvider.dart';
 import 'package:vitalmovecbi/provider/datosGenerales/fechaTestsProvider.dart';
 import 'package:vitalmovecbi/provider/datosGenerales/historialUser.dart';
 import 'package:vitalmovecbi/provider/datosGenerales/notasDiariasProvider.dart';
@@ -139,5 +139,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// holad

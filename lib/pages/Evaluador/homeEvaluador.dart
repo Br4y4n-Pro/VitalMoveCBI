@@ -8,8 +8,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/index.dart';
 import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
-import 'package:vitalmovecbi/provider/configuracion/publicaciones/publicacionesFromProvider.dart';
-import 'package:vitalmovecbi/provider/configuracion/publicaciones/publicacionesProvider.dart';
+import 'package:vitalmovecbi/provider/publicaciones/publicacionesFromProvider.dart';
+import 'package:vitalmovecbi/provider/publicaciones/publicacionesProvider.dart';
 import 'package:vitalmovecbi/provider/login/ProviderLogin.dart';
 
 class HomeEvaluador extends StatefulWidget {

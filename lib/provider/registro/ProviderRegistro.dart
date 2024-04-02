@@ -39,6 +39,26 @@ class RegistroProvider extends ChangeNotifier {
 
   registro(RegistroFromProvider fromProvider, BuildContext context) async {
     // Verificar que los campos obligatorios no estén vacíos
+
+    print('dni: ${fromProvider.dni}');
+    print('nombres: ${fromProvider.nombres}');
+    print('apellidos: ${fromProvider.apellidos}');
+    print('genero: ${fromProvider.genero}');
+    print('direccion: ${fromProvider.direccion}');
+    print('dependencia: ${fromProvider.dependencia}');
+    print(
+        'fechanacimiento: ${fromProvider.fechaNacimiento?.toIso8601String()}');
+    print('talla: ${fromProvider.talla}');
+    print('rh: ${fromProvider.rh}');
+    print('nombreemergencia: ${fromProvider.nombreEmergencia}');
+    print('parentesco: ${fromProvider.parentesco}');
+    print('telefonoemergencia: ${fromProvider.telefonoEmergencia}');
+    print('eps: ${fromProvider.eps}');
+    print('alergias: ${fromProvider.alergias}');
+    print('contrasena: ${fromProvider.dni}');
+    print('actividadsemana: ${fromProvider.actividadsemana}');
+    print('grupo: ${fromProvider.grupo}');
+    print('img:${fromProvider.imgperfil}');
     if (fromProvider.dni.isEmpty ||
         fromProvider.nombres.isEmpty ||
         fromProvider.apellidos.isEmpty ||
@@ -56,8 +76,8 @@ class RegistroProvider extends ChangeNotifier {
         fromProvider.contrasena.isEmpty ||
         fromProvider.actividadsemana.isEmpty ||
         fromProvider.grupo.isEmpty ||
-        fromProvider.peso.isEmpty ||
-        fromProvider.imgperfil!.path.isEmpty) {
+        fromProvider.peso.isEmpty) {
+      print('ALgo Falta');
       // Mostrar mensaje de error o realizar alguna acción apropiada
       ischeck = false;
       notifyListeners();
@@ -118,9 +138,10 @@ class RegistroProvider extends ChangeNotifier {
       "telefonoemergencia": fromProvider.telefonoEmergencia,
       "eps": fromProvider.eps,
       "alergias": fromProvider.alergias,
-      "contrasena": fromProvider.contrasena,
+      "contrasena": fromProvider.dni,
       "actividadsemana": fromProvider.actividadsemana,
       "grupo": fromProvider.grupo,
+      "peso": fromProvider.peso
     });
 
 // Agrega la imagen como un archivo al FormData
@@ -131,9 +152,14 @@ class RegistroProvider extends ChangeNotifier {
           "imgperfil",
           await MultipartFile.fromFile(fromProvider.imgperfil!.path),
         ));
+      } else {
+        // Modificación aquí: Agregar un MapEntry para 'imgperfil' con una cadena vacía como valor
+        formData.fields.add(const MapEntry("imgperfil", ""));
       }
+    } else {
+      formData.fields.add(const MapEntry("imgperfil", ""));
     }
-    print(formData);
+    print(formData.fields);
 
     AllApi.httpPost('addUser', formData).then((dynamic rpta) {
       ischeck = false;
@@ -143,6 +169,7 @@ class RegistroProvider extends ChangeNotifier {
 
       final Map<String, dynamic> jsonResponse = rpta;
       print(jsonResponse);
+
       if (jsonResponse['rp'] == 'si') {
         limpiarDatos(fromProvider);
         ischeck = false;
@@ -177,8 +204,11 @@ class RegistroProvider extends ChangeNotifier {
                 ),
               ),
             )));
-        Navigator.pushReplacementNamed(context, '/evaluadorHome');
+        Navigator.pushReplacementNamed(context, '/pageviewsEvaluador');
+        notifyListeners();
       } else {
+        ischeck = false;
+
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             behavior: SnackBarBehavior.floating,
             backgroundColor: Colors.transparent,
@@ -209,6 +239,7 @@ class RegistroProvider extends ChangeNotifier {
                 ),
               ),
             )));
+        notifyListeners();
       }
     }).catchError((onError) {
       print(onError.toString());

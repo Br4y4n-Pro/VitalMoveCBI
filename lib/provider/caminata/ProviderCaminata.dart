@@ -7,6 +7,7 @@ import 'package:vitalmovecbi/provider/recomendacionTests/recomendacionFromProvid
 import 'package:vitalmovecbi/services/localStorage.dart';
 
 class ProviderCaminata extends ChangeNotifier {
+  bool ischeck = false;
   limpiarDatos(RecomendacionFromProvider fromProviderRecomendacion,
       CaminataFromProvider fromProvider) {
     fromProvider.tiempo = '';
@@ -36,41 +37,69 @@ class ProviderCaminata extends ChangeNotifier {
     AllApi.httpPost('crearCaminata', data).then((rpta) {
       print("Esperando");
       print(rpta.runtimeType);
-
+      ischeck = false;
+      notifyListeners();
       final Map<String, dynamic> jsonResponse = rpta;
       if (jsonResponse["rp"] == "si") {
         limpiarDatos(fromProviderRecomendacion, fromProvider);
         Navigator.pop(context);
-        notifyListeners();
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            behavior: SnackBarBehavior.floating,
-            backgroundColor: Colors.transparent,
-            elevation: 40,
-            content: Container(
-              height: 70,
-              decoration: BoxDecoration(
-                  color: Colors.green.shade600,
-                  borderRadius: const BorderRadius.all(Radius.circular(20))),
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.info_outline_rounded,
-                      color: Colors.white,
-                      weight: 40,
-                      size: 30,
-                    ),
-                    const SizedBox(width: 10),
-                    Text(
-                      '${jsonResponse['mensaje']}',
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 14),
-                    ),
-                  ],
-                ),
+        showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              contentPadding: const EdgeInsets.all(30),
+              content: Text(
+                'La baremación de su test es ${jsonResponse['barevodos']}',
+                style: TextStyle(fontSize: 20),
               ),
-            )));
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        behavior: SnackBarBehavior.floating,
+                        backgroundColor: Colors.transparent,
+                        elevation: 40,
+                        content: Container(
+                          height: 70,
+                          decoration: BoxDecoration(
+                              color: Colors.green.shade600,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20))),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(
+                                  Icons.info_outline_rounded,
+                                  color: Colors.white,
+                                  weight: 40,
+                                  size: 30,
+                                ),
+                                const SizedBox(width: 10),
+                                Text(
+                                  '${jsonResponse['mensaje']}',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )));
+
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    'Regresar',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                )
+              ],
+            );
+          },
+        );
+        notifyListeners();
       } else {
         // ischeck = false;
         notifyListeners();

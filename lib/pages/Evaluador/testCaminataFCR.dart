@@ -156,7 +156,7 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
           Consumer(
             builder: (context, value, child) => InputLogin(
               onChanged: (value) => fromProvider.fcr = value,
-              campo: "Ingrese FCR",
+              campo: "Ingrese Frecuencia Cardiaca en Reposo",
               tamano: size.width,
               tipo: TextInputType.number,
             ),
@@ -165,7 +165,7 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
           Consumer(
             builder: (context, value, child) => InputLogin(
               onChanged: (value) => fromProvider.fcm = value,
-              campo: "Ingrese FCM",
+              campo: "Ingrese Frecuencia cardiaca maxima",
               tamano: size.width,
               tipo: TextInputType.number,
             ),
@@ -174,7 +174,7 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
           Consumer(
             builder: (context, value, child) => InputLogin(
               onChanged: (value) => fromProvider.tiempo = value,
-              campo: "Ingrese TIEMPO",
+              campo: "Ingrese el tiempo realizado",
               tamano: size.width,
               tipo: TextInputType.number,
             ),
@@ -183,7 +183,7 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
           Consumer(
             builder: (context, value, child) => InputLogin(
               onChanged: (value) => fromProvider.distancia = value,
-              campo: "Ingrese DISTANCIA",
+              campo: "Ingrese la distancia recorrida",
               tamano: size.width,
               tipo: TextInputType.number,
             ),
@@ -227,6 +227,7 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
                 ),
               ),
               onPressed: () {
+                provider.ischeck = true;
                 try {
                   provider.caminata(
                       fromProvider, fromProviderRecomendacion, context);
