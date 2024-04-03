@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/CaminataModelo.dart';
 import 'package:vitalmovecbi/provider/caminata/gets/providerGetCaminata.dart';
+import 'package:vitalmovecbi/provider/recomendacionTests/gets/recomendacionOneUser.dart';
+import 'package:vitalmovecbi/services/localStorage.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 import 'package:vitalmovecbi/widgets/textperfil.dart';
 
@@ -29,6 +31,8 @@ class _PageCaminataState extends State<PageCaminata> {
 
   @override
   Widget build(BuildContext context) {
+    final recomendacionProvider =
+        Provider.of<RecomendacionGetProvider>(context);
     print(_selectedIndex);
     final caminata = Provider.of<CaminataGetProvider>(context);
     final listCaminatas = caminata.caminatas;
@@ -122,6 +126,15 @@ class _PageCaminataState extends State<PageCaminata> {
             _selectedIndex = numero;
             _selectedIndexFullFechas = null;
             mostrarUltimo5 = true; // Cambiar a mostrar el otro listado
+            if (_selectedIndex != null) {
+              final idTest = ultimo5caminatas[_selectedIndex!].idtest;
+              if (idTest != null) {
+                LocalStorage.prefs.setInt('idEtapa', idTest);
+              } else {
+                print('Hay error en el idEtapa es null');
+              }
+              recomendacionProvider.recomendacionOneUser(context);
+            }
           });
         },
         child: SideTitleWidget(
@@ -180,7 +193,8 @@ class _PageCaminataState extends State<PageCaminata> {
                                   value == 0 ? '0' : '${value.toInt()}';
                               return Text(text,
                                   style: const TextStyle(
-                                      color: Colores.primaryColor, fontSize: 10));
+                                      color: Colores.primaryColor,
+                                      fontSize: 10));
                             },
                             reservedSize: 28,
                             interval:
@@ -202,8 +216,10 @@ class _PageCaminataState extends State<PageCaminata> {
                       borderData: FlBorderData(
                         show: true,
                         border: const Border(
-                          bottom: BorderSide(color: Colores.primaryColor, width: 1),
-                          left: BorderSide(color: Colores.primaryColor, width: 1),
+                          bottom:
+                              BorderSide(color: Colores.primaryColor, width: 1),
+                          left:
+                              BorderSide(color: Colores.primaryColor, width: 1),
                         ),
                       ),
 
@@ -257,8 +273,19 @@ class _PageCaminataState extends State<PageCaminata> {
                               print(_selectedIndexFullFechas);
                               print(index);
                               _selectedIndex = null;
-                              mostrarUltimo5 =
-                                  false; // Cambiar a mostrar el otro listado
+                              mostrarUltimo5 = false;
+                              final idTest =
+                                  listCaminatas[_selectedIndexFullFechas!]
+                                      .idtest;
+                              if (idTest != null) {
+                                LocalStorage.prefs.setInt('idEtapa', idTest);
+                              } else {
+                                print('Hay error en el idCaminata es null');
+                              }
+                              recomendacionProvider
+                                  .recomendacionOneUser(context);
+
+                              // Cambiar a mostrar el otro listado
                             });
                             Navigator.pop(
                                 context); // Cierra el BottomSheet al seleccionar una fecha
@@ -587,6 +614,28 @@ class _PageCaminataState extends State<PageCaminata> {
                 ],
               ),
             ),
+            SizedBox(height: 20),
+            !recomendacionProvider.recomendacionCargada
+                ? Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    elevation: 3,
+                    child: Container(
+                        padding: EdgeInsets.all(20),
+                        child: textSub(
+                            'Selecciona una fecha para ver la recomendación')))
+                : Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    elevation: 3,
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      child: textSub(recomendacionProvider
+                          .recomendaciones[0].descripcion!),
+                    )),
+            SizedBox(height: 20),
           ],
         ),
       ),

@@ -126,7 +126,6 @@ class MyApp extends StatelessWidget {
         '/pageAcercaDe': (context) => const AcercaDe(),
         '/pageTestC': (context) => const TestCaminata(),
         '/pageTestBM': (context) => TestBruceMod(usuario: usuario),
-        '/TB': (context) => const BruceTest(),
         '/pageviewUser': (context) => const Registro(),
         '/pageViewHome': (context) => const PageHome(),
         '/pageviewsEvaluador': (context) => const PageViewEvaluador(),

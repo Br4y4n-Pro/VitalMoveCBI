@@ -60,10 +60,10 @@ class _BuscarPersonaState extends State<BuscarPersona> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-     final darkModeProvider = Provider.of<DarkModeProvider>(context);
+    final darkModeProvider = Provider.of<DarkModeProvider>(context);
     return Scaffold(
       appBar: AppBar(
-       automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false,
         title: const Text(
           "Buscar Persona",
           style: TextStyle(
@@ -99,7 +99,7 @@ class _BuscarPersonaState extends State<BuscarPersona> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide.none)),
-                           style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                 )),
             const SizedBox(height: 50),
             Expanded(
@@ -121,13 +121,14 @@ class _BuscarPersonaState extends State<BuscarPersona> {
                       margin: const EdgeInsets.only(bottom: 10),
                       height: 70,
                       decoration: BoxDecoration(
-                         color: (darkModeProvider.isDarkModeEnabled)
-                                  ? Colores.primaryColor
-                                  : Colores.quaternaryColor,
-                          borderRadius: const BorderRadius.all(Radius.circular(20))),
+                          color: (darkModeProvider.isDarkModeEnabled)
+                              ? Colores.primaryColor
+                              : Colores.quaternaryColor,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20))),
                       child: ListTile(
                         leading: CircleAvatar(
-                          backgroundImage: (usuario.imgperfil != null)
+                          backgroundImage: (usuario.imgperfil != '')
                               ? NetworkImage(usuario.imgperfil.toString())
                               : const AssetImage('img/Usuario/usu2.png')
                                   as ImageProvider<Object>?,

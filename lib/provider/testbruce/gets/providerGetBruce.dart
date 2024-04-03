@@ -22,8 +22,8 @@ class BruceGetProvider extends ChangeNotifier {
         bruces.clear();
         // Itera sobre la lista y crea una caminata por cada mapa en la lista
         for (var item in rpta) {
-          final caminata = BruceTest.fromJsonMap(item);
-          bruces.add(caminata);
+          final bruce = BruceTest.fromJsonMap(item);
+          bruces.add(bruce);
         }
         print(bruces);
         print(bruces.length);

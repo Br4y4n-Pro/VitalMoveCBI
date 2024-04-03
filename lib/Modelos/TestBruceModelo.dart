@@ -1,5 +1,19 @@
 // ignore_for_file: file_names
 
+class BrucesTests {
+  List<BruceTest> dato = [];
+  BrucesTests();
+
+  BrucesTests.fromlist(List<dynamic> datos) {
+    if (datos.isEmpty) return;
+
+    for (var item in datos) {
+      final detalle = BruceTest.fromJsonMap(item);
+      dato.add(detalle);
+    }
+  }
+}
+
 class BruceTest {
   dynamic fecha;
   dynamic elefinal;

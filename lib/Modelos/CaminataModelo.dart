@@ -23,7 +23,8 @@ class Caminata {
   String? consumovo2;
   String? barevodos;
   String? fcm;
-
+  int? idcaminata;
+  int? idtest;
   Caminata(
       {this.barevodos,
       this.consumovo2,
@@ -32,7 +33,9 @@ class Caminata {
       this.fcr,
       this.fecha,
       this.idusuario,
-      this.tiempo});
+      this.tiempo,
+      this.idcaminata,
+      this.idtest});
 
   Caminata.fromJsonMap(Map<String, dynamic> datos) {
     idusuario = datos['idusuario'];
@@ -43,5 +46,7 @@ class Caminata {
     fcm = datos['fcm'];
     consumovo2 = datos['consumovo2'];
     barevodos = datos['barevodos'];
+    idcaminata = datos['idcaminata'];
+    idtest = datos['idtest'];
   }
 }

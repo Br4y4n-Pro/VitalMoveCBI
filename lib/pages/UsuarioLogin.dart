@@ -30,18 +30,18 @@ class _UsuarioLoginState extends State<UsuarioLogin> {
     Orientation orientation = MediaQuery.of(context).orientation;
     bool isLandscape = orientation == Orientation.landscape;
     // Define los breakpoints para pantallas verticales
-    final double verticalSmall = 400;
-    final double verticalMedium = 600;
-    final double verticalLarge = 900;
+    const double verticalSmall = 400;
+    const double verticalMedium = 600;
+    const double verticalLarge = 900;
 
     // Define los breakpoints para pantallas apaisadas
     const double landscapeSmall = 815;
-    final double landscapeMedium = 1000;
-    final double landscapeLarge = 1200;
+    const double landscapeMedium = 1000;
+    const double landscapeLarge = 1200;
     bool masAnchoqueLarge = landscapeLarge < size.width;
-    print(orientation);
-    print(isLandscape);
-    print('Ancho: ${size.width} Altura: ${size.height}');
+    // print(orientation);
+    // print(isLandscape);
+    // print('Ancho: ${size.width} Altura: ${size.height}');
     return SafeArea(
       child: Scaffold(
         body: ListView(

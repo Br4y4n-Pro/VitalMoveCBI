@@ -11,11 +11,11 @@ class RecomendacionGetProvider extends ChangeNotifier {
 
   recomendacionOneUser(BuildContext context) {
     print('Inicio el get de recomendacion');
-        final idTest = LocalStorage.prefs.getInt('idEtapa');
+    final idTest = LocalStorage.prefs.getInt('idEtapa');
 
-    print('id de test es $idTest');
+    print('id de test es /allrecomendaciones/$idTest');
     AllApi.httpGet('allRecomendaciones/$idTest').then((rpta) {
-            recomendacionCargada = true;
+      recomendacionCargada = true;
       print(rpta.runtimeType);
       final Map<String, dynamic> jsonResponse = rpta;
       print(jsonResponse);
@@ -23,9 +23,6 @@ class RecomendacionGetProvider extends ChangeNotifier {
           Recomendaciones.fromlist([jsonResponse]);
       recomendaciones = recomendacion.dato;
       notifyListeners();
-
-
-
     }).catchError((error) {
       // Considera manejar el error de alguna manera
       print(" providerGetCaminata: Error al obtener la recomendación: $error");
