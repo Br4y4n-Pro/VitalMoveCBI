@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:vitalmovecbi/widgets/colores.dart';
 
@@ -7,7 +8,8 @@ Widget bottombar2({
   required int currentIndex,
   required Function(int) onTap,
 }) {
-  return Container(
+return
+   Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(20),
     ),
