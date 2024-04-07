@@ -21,7 +21,7 @@ class PublicacionesProvider extends ChangeNotifier {
     if (!kIsWeb) {
       if (fromProvider.imagen != null) {
         formData.files.add(MapEntry(
-          "imgperfil",
+          "imagen",
           await MultipartFile.fromFile(fromProvider.imagen!.path),
         ));
       } else {
@@ -39,10 +39,12 @@ class PublicacionesProvider extends ChangeNotifier {
       notifyListeners();
     }
 
-    AllApi.httpPost('publicaciones', formData).then((dynamic rpta) {
+    AllApi.httpPost('crearPublicacion', formData).then((dynamic rpta) {
       print(fromProvider.titulo);
       ischeck = false;
-
+      print(fromProvider.recomendaciones);
+      print(fromProvider.titulo);
+      print(fromProvider.imagen);
       print("ESperando");
       print(rpta.runtimeType);
 

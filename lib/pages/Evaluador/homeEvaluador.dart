@@ -64,7 +64,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
             ),
             subtitle: Text("${usuario.dni}"),
             leading: CircleAvatar(
-              backgroundImage: usuario.imgperfil != null
+              backgroundImage: usuario.imgperfil != ''
                   ? NetworkImage(usuario.imgperfil!, scale: 1.0)
                   : const NetworkImage("img/Usuario/usu2.png")
                       as ImageProvider<Object>,
@@ -169,7 +169,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
       var f = await returnedImage.readAsBytes();
       setState(() {
         webImage = f;
-        fromProvider.imagen = null;
+        fromProvider.imagen = '' as File?;
       });
     }
   }
@@ -225,7 +225,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                     width: 100,
                     height: 100,
                     child: ClipRRect(
-                      child: _imgperfil != null
+                      child: _imgperfil != ''
                           ? kIsWeb
                               ? Image.memory(webImage)
                               : Image.file(
@@ -264,7 +264,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
           setState(() {
             fromProvider.titulo = '';
             fromProvider.recomendaciones = '';
-            _imgperfil = null;
+            _imgperfil = '' as File?;
             fromProvider.imagen = _imgperfil;
           });
           Navigator.of(context).pop();
@@ -281,8 +281,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
       ),
       TextButton(
         onPressed: () {
-          fromProvider.titulo = '';
-          fromProvider.recomendaciones = '';
+          provider.publicacionesPr(fromProvider, context);
           Navigator.of(context).pop();
           _mostrarNotificacion();
         },
