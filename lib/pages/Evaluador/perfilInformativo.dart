@@ -7,7 +7,6 @@ import 'package:vitalmovecbi/widgets/colores.dart';
 
 class PerfilInformativo extends StatefulWidget {
   final Usuario usuario;
-
   const PerfilInformativo({super.key, required this.usuario});
   @override
   State<PerfilInformativo> createState() => _PerfilInformativoState();
@@ -17,15 +16,15 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
   @override
   void initState() {
     super.initState();
-    LocalStorage.prefs
-        .setInt('idUSuarioPerfilInfo', widget.usuario.idUsuario as int);
+    LocalStorage.prefs.setString('id', widget.usuario.idUsuario.toString());
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    var usuarioId = LocalStorage.prefs.getInt('idUSuarioPerfilInfo');
+    var usuarioId = LocalStorage.prefs.getString('id');
     print(usuarioId);
+
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colores.quaternaryColor),

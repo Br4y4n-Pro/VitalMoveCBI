@@ -64,7 +64,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
             ),
             subtitle: Text("${usuario.dni}"),
             leading: CircleAvatar(
-              backgroundImage: usuario.imgperfil != ''
+              backgroundImage: usuario.imgperfil != null
                   ? NetworkImage(usuario.imgperfil!, scale: 1.0)
                   : const NetworkImage("img/Usuario/usu2.png")
                       as ImageProvider<Object>,
@@ -225,7 +225,7 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
                     width: 100,
                     height: 100,
                     child: ClipRRect(
-                      child: _imgperfil != ''
+                      child: _imgperfil != null
                           ? kIsWeb
                               ? Image.memory(webImage)
                               : Image.file(
@@ -243,59 +243,59 @@ class _HomeEvaluadorState extends State<HomeEvaluador> {
             ),
           ),
           actions: [
-  Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      GestureDetector(
-        onTap: () async {
-          _pickImageGallery(fromProvider);
-        },
-        child: const Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.photo_library),
-            Text('Galería'),
-          ],
-        ),
-      ),
-        const SizedBox(width: 10),
-      TextButton(
-        onPressed: () {
-          setState(() {
-            fromProvider.titulo = '';
-            fromProvider.recomendaciones = '';
-            _imgperfil = '' as File?;
-            fromProvider.imagen = _imgperfil;
-          });
-          Navigator.of(context).pop();
-        },
-        child: const Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.cancel, color: Color.fromRGBO(196, 12, 12, 1)),
-            Text(
-              "Cancelar",
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () async {
+                    _pickImageGallery(fromProvider);
+                  },
+                  child: const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.photo_library),
+                      Text('Galería'),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 10),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      fromProvider.titulo = '';
+                      fromProvider.recomendaciones = '';
+                      _imgperfil = '' as File?;
+                      fromProvider.imagen = _imgperfil;
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.cancel, color: Color.fromRGBO(196, 12, 12, 1)),
+                      Text(
+                        "Cancelar",
+                      ),
+                    ],
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    provider.publicacionesPr(fromProvider, context);
+                    Navigator.of(context).pop();
+                    _mostrarNotificacion();
+                  },
+                  child: const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.check, color: Color.fromRGBO(0, 212, 46, 1)),
+                      Text("Publicar"),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ],
-        ),
-      ),
-      TextButton(
-        onPressed: () {
-          provider.publicacionesPr(fromProvider, context);
-          Navigator.of(context).pop();
-          _mostrarNotificacion();
-        },
-        child: const Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.check, color: Color.fromRGBO(0, 212, 46, 1)),
-            Text("Publicar"),
-          ],
-        ),
-      ),
-    ],
-  ),
-],
         );
       },
     );
