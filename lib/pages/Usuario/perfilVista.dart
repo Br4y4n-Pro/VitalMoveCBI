@@ -69,11 +69,11 @@ class _PerfilVistaState extends State<PerfilVista> {
             child: CircleAvatar(
               radius: 30,
               backgroundColor: Colors.transparent,
-              child: providerHistorial.historiales.isNotEmpty
+              child: usuario.imgperfil!.isNotEmpty
                   ? Center(
                       child: ClipOval(
                         child: Image.network(
-                          usuario.imgperfil ?? "img/Usuario/usu2.png",
+                          usuario.imgperfil.toString(),
                           fit: BoxFit.cover,
                           width: 100,
                           height: 100,
@@ -106,7 +106,8 @@ class _PerfilVistaState extends State<PerfilVista> {
                         "${usuario.nombres} ${usuario.apellidos}"),
                 const SizedBox(height: 15),
                 _editingEnabled
-                    ? textFieldEditable("Documento de Identidad", "${usuario.dni}")
+                    ? textFieldEditable(
+                        "Documento de Identidad", "${usuario.dni}")
                     : textField("Documento de Identidad", "${usuario.dni}"),
                 const SizedBox(height: 15),
                 _editingEnabled
@@ -126,7 +127,8 @@ class _PerfilVistaState extends State<PerfilVista> {
                     : textField("Dirección", "${usuario.direccion}"),
                 const SizedBox(height: 15),
                 _editingEnabled
-                    ? textFieldEditable("EPS(Entidad de salud)", "${usuario.eps}")
+                    ? textFieldEditable(
+                        "EPS(Entidad de salud)", "${usuario.eps}")
                     : textField("EPS(Entidad de salud)", "${usuario.eps}"),
                 const SizedBox(height: 15),
                 _editingEnabled
@@ -144,7 +146,8 @@ class _PerfilVistaState extends State<PerfilVista> {
                     : textField("Grupo", "${usuario.grupo}"),
                 const SizedBox(height: 15),
                 _editingEnabled
-                    ? textFieldEditable("Peso (KG)", ultimoHistorial.peso ?? '0')
+                    ? textFieldEditable(
+                        "Peso (KG)", ultimoHistorial.peso ?? '0')
                     : textField("Peso (KG)", ultimoHistorial.peso ?? '0'),
                 const SizedBox(height: 15),
                 _editingEnabled

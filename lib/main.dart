@@ -8,6 +8,7 @@ import 'package:vitalmovecbi/pages/Evaluador/testCaminata.dart';
 import 'package:vitalmovecbi/provider/caminata/ProviderCaminata.dart';
 import 'package:vitalmovecbi/provider/caminata/caminataFromProvider.dart';
 import 'package:vitalmovecbi/provider/caminata/gets/providerGetCaminata.dart';
+import 'package:vitalmovecbi/provider/peso/get/providerGetPeso.dart';
 import 'package:vitalmovecbi/provider/publicaciones/publicacionesFromProvider.dart';
 import 'package:vitalmovecbi/provider/publicaciones/publicacionesProvider.dart';
 import 'package:vitalmovecbi/provider/datosGenerales/fechaTestsProvider.dart';
@@ -81,6 +82,8 @@ class AppState extends StatelessWidget {
             lazy: false, create: (_) => ProviderRecomendacion()),
         ChangeNotifierProvider(
             lazy: false, create: (_) => RecomendacionGetProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => HistorialGetProvider()),
       ],
       child: const MyApp(),
     );
