@@ -173,8 +173,9 @@ class _PerfilVistaState extends State<PerfilVista> {
     );
   }
 
-  Widget textFieldEditable(String labelText, String initialValue) {
+  Widget textFieldEditable(String labelText, String initialValue,String atributo) {
     return TextFormField(
+      onChanged: (value) => print(value),
       initialValue: initialValue,
       decoration: InputDecoration(
         labelText: labelText,
