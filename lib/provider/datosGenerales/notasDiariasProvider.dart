@@ -27,4 +27,3 @@ class NotasDiariasProvider extends ChangeNotifier {
     });
   }
 }
-

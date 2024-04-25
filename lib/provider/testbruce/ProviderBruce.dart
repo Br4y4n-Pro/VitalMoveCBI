@@ -16,6 +16,7 @@ class BruceProvider extends ChangeNotifier {
     fromProviderRecomendacion.descripcion = '';
     notifyListeners(); // Notificar a los oyentes sobre el cambio
   }
+
   bruce(
       BruceFromProvider fromProvider,
       RecomendacionFromProvider fromProviderRecomendacion,

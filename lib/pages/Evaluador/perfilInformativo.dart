@@ -1,9 +1,14 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vitalmovecbi/Modelos/UsuariosModelo.dart';
+import 'package:vitalmovecbi/index.dart';
+import 'package:vitalmovecbi/provider/datosGenerales/historialUser.dart';
+import 'package:vitalmovecbi/provider/peso/fromProviderPeso.dart';
+import 'package:vitalmovecbi/provider/peso/providerPeso.dart';
 import 'package:vitalmovecbi/services/localStorage.dart';
-import 'package:vitalmovecbi/widgets/colores.dart';
+import 'package:vitalmovecbi/widgets/loginTextField.dart';
 
 class PerfilInformativo extends StatefulWidget {
   final Usuario usuario;
@@ -17,6 +22,9 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
   void initState() {
     super.initState();
     LocalStorage.prefs.setString('id', widget.usuario.idUsuario.toString());
+    final historialProvider =
+        Provider.of<HistorialProvider>(context, listen: false);
+    historialProvider.historialOnePerson(context);
   }
 
   @override
@@ -24,7 +32,10 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
     final size = MediaQuery.of(context).size;
     var usuarioId = LocalStorage.prefs.getString('id');
     print(usuarioId);
-
+    final fromProvider = Provider.of<PesoFromProvider>(context, listen: false);
+    final provider = Provider.of<ProviderPeso>(context);
+    final providerHistorial = Provider.of<HistorialProvider>(context);
+    final ultimoHistorial = providerHistorial.historiales;
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colores.quaternaryColor),
@@ -72,19 +83,25 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
               children: [
                 Column(
                   children: [
-                    const Text(" Ultima medicion IMC"),
+                    const Text(" Baremacion IMC"),
+                    const SizedBox(height: 10),
                     Container(
-                      width: 30,
                       height: 30,
+                      width: size.width * .25,
                       decoration: const BoxDecoration(
                           color: Color(0xff0096C7),
                           borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: const Center(
-                          child: Text(
-                        "5",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w500),
-                      )),
+                      child: Center(
+                          child: !providerHistorial.historialCargado
+                              ? const CircularProgressIndicator()
+                              : ultimoHistorial.isNotEmpty
+                                  ? Text(
+                                      '${ultimoHistorial[0].imcdescripcion}',
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500),
+                                    )
+                                  : const Center(child: Text('No hay data'))),
                     )
                   ],
                 ),
@@ -104,7 +121,75 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
                             borderRadius: BorderRadius.circular(40),
                           ),
                         ),
-                        onPressed: () async {},
+                        onPressed: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Container(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    textSub('Registra nuevo peso'),
+                                    const SizedBox(height: 10),
+                                    InputLogin(
+                                      campo: "Ingrese Documento de Identidad",
+                                      tamano: size.width,
+                                      tipo: TextInputType.number,
+                                      onChanged: (value) =>
+                                          fromProvider.peso = value,
+                                    ),
+                                    const SizedBox(height: 10),
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          fixedSize: Size(size.width * .4,
+                                              size.height * .06),
+                                          backgroundColor: Colores.primaryColor,
+                                          padding: EdgeInsets.all(
+                                              size.height * .002),
+                                          textStyle: const TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(40),
+                                          ),
+                                        ),
+                                        onPressed: () async {
+                                          setState(() {
+                                            try {
+                                              provider.ischeck = true;
+                                              fromProvider.idusuario =
+                                                  widget.usuario.idUsuario;
+                                              fromProvider.talla =
+                                                  widget.usuario.talla;
+                                              provider.actualizarPeso(
+                                                  fromProvider, context);
+                                              Provider.of<HistorialProvider>(
+                                                      context,
+                                                      listen: false)
+                                                  .historialOnePerson(context);
+                                            } catch (error) {
+                                              print(
+                                                  'Error al enviar la solicitud: $error');
+                                            }
+                                          });
+                                        },
+                                        child: (!provider.ischeck)
+                                            ? const Text(
+                                                'Acceder',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              )
+                                            : const CircularProgressIndicator(
+                                                color: Colors.white,
+                                              )),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
                         child: const Center(
                           child: Text(
                             "Actualizar Peso",
@@ -121,20 +206,30 @@ class _PerfilInformativoState extends State<PerfilInformativo> {
                 Column(
                   children: [
                     const Text(" Ultima medicion IMC"),
+                    const SizedBox(height: 10),
                     Container(
-                      width: 30,
-                      height: 30,
-                      decoration: const BoxDecoration(
-                        color: Color(0xff0096C7),
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: const Center(
-                          child: Text(
-                        "5",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w500),
-                      )),
-                    )
+                        width: size.width * .25,
+                        height: 30,
+                        decoration: const BoxDecoration(
+                          color: Color(0xff0096C7),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        child: Center(
+                          child: providerHistorial.historialCargado
+                              ? ultimoHistorial.isNotEmpty
+                                  ? Text(
+                                      ultimoHistorial.isNotEmpty
+                                          ? double.parse(
+                                                  ultimoHistorial[0].imc ?? '0')
+                                              .toStringAsFixed(2)
+                                          : '0.00',
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500),
+                                    )
+                                  : const Center(child: Text('No hay data'))
+                              : const CircularProgressIndicator(),
+                        ))
                   ],
                 )
               ],

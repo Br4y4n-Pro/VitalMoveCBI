@@ -17,11 +17,9 @@ nav(context) {
         width: size.width * 1,
         height: size.height * .38,
         decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("img/General/fondo.png"), fit: BoxFit.fill
-                ),
-                ),
-
+          image: DecorationImage(
+              image: AssetImage("img/General/fondo.png"), fit: BoxFit.fill),
+        ),
       ),
       Container(
         height: 90,

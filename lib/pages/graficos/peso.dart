@@ -1,3 +1,4 @@
+
 // ignore_for_file: avoid_print, prefer_const_constructors
 
 import 'package:fl_chart/fl_chart.dart';
@@ -23,8 +24,9 @@ class _PagePesoState extends State<PagePeso> {
   @override
   initState() {
     super.initState();
-    final caminata = Provider.of<HistorialGetProvider>(context, listen: false);
-    caminata.pesoOfUSer(context);
+    final pesoLlamado =
+        Provider.of<HistorialGetProvider>(context, listen: false);
+    pesoLlamado.pesoOfUSer(context);
   }
 
   @override
@@ -136,7 +138,7 @@ class _PagePesoState extends State<PagePeso> {
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colores.quaternaryColor),
         title: const Text(
-          "Estadisticas de Caminata",
+          "Registro de Peso",
           style: TextStyle(
               color: Colores.quaternaryColor, fontWeight: FontWeight.w500),
         ),
@@ -257,6 +259,8 @@ class _PagePesoState extends State<PagePeso> {
                             setState(() {
                               _selectedIndexFullFechas = index;
                               print(_selectedIndexFullFechas);
+                              print('<<< full');
+                              print(listPesos.length);
                               print(index);
                               _selectedIndex = null;
                               mostrarUltimo5 = false;
@@ -368,8 +372,7 @@ class _PagePesoState extends State<PagePeso> {
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold)),
                                   Text(
-                                    peso.pesos.isNotEmpty ?                                       '${double.parse(ultimo5pesos[_selectedIndex!].imc.toStringAsFixed(2))}'
-: ''
+                                      '${ultimo5pesos[_selectedIndex!].imc?.substring(0, 5)}',
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w400)),
@@ -461,7 +464,7 @@ class _PagePesoState extends State<PagePeso> {
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
                                       Text(
-                                          '${listPesos[_selectedIndexFullFechas!].imc}',
+                                          '${listPesos[_selectedIndexFullFechas!].imc?.substring(0, 5)}',
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.w400)),

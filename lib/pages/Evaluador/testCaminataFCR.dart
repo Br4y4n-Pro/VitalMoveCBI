@@ -110,9 +110,8 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
         backgroundColor: Colores.primaryColor,
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         children: [
-          const SizedBox(height: 30),
           const Text(
             "Usuario seleccionado:",
             textAlign: TextAlign.start,
@@ -139,16 +138,30 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
               ),
               title: Text('${usuario?.nombres} ${usuario?.apellidos}'),
               subtitle: Text('${usuario?.dni}'),
-              trailing: IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.open_with)),
             ),
+          ),
+          const SizedBox(height: 30),
+          Column(
+            children: [
+              Text(
+                'Pasos a Seguir para realizar el text',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Test de Caminata de 6 minutos (TC6M) en campo. \n El sujeto comienza en posición ortostática (de pie) y camina durante 6 minutos en línea recta ida y vuelta dentro de una distancia demarcada de 20 mts.\n Antes de cada cambio de dirección, el sujeto debe detenerse durante al menos 1 segundo, girar hacia la nueva dirección y comenzar a caminar nuevamente.\nAl finalizar la prueba, introduzca en las casillas correspondientes los valores de la distancia recorrida en metros y la frecuencia cardiaca máxima alcanzada durante la prueba.',
+                style: TextStyle(fontSize: 18),
+              ),
+              SizedBox(height: 20),
+              Image(image: AssetImage('img/General/instrucionesCaminata.jpg'))
+            ],
           ),
           const SizedBox(height: 30),
           const Text(
             "Ingresa Los datos a evaluar ",
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 20,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -235,7 +248,7 @@ class _TestCaminataFCRState extends State<TestCaminataFCR> {
                   print('Error al enviar la solicitud: $error');
                 }
               },
-              child: const Text('Siguiente'),
+              child: const Text('Guardar test'),
             ),
           ),
         ],

@@ -65,7 +65,7 @@ class _Testbruce extends State<Testbruce> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-     final darkModeProvider = Provider.of<DarkModeProvider>(context);
+    final darkModeProvider = Provider.of<DarkModeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -107,7 +107,7 @@ class _Testbruce extends State<Testbruce> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide.none)),
-                           style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                 )),
             const SizedBox(height: 50),
             Container(
@@ -160,7 +160,8 @@ class _Testbruce extends State<Testbruce> {
                                 Text('${usuario.nombres} ${usuario.apellidos}'),
                             subtitle: Text('${usuario.dni}'),
                             trailing: IconButton(
-                                onPressed: () {}, icon: const Icon(Icons.open_with)),
+                                onPressed: () {},
+                                icon: const Icon(Icons.open_with)),
                           ),
                         ),
                       );

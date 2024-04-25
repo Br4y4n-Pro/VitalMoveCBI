@@ -27,7 +27,7 @@ class _RegistroState extends State<Registro> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-         automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false,
         title: const Text(
           'Registro de Usuario',
           style: TextStyle(
@@ -103,7 +103,6 @@ class _RegistroState extends State<Registro> {
                 ),
             ],
           ),
-     
         ],
       ),
     );

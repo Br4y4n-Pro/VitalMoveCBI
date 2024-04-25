@@ -30,7 +30,6 @@ class _PageHomeState extends State<PageHome> {
     final notasProvider =
         Provider.of<NotasDiariasProvider>(context, listen: false)
             .notadiaria(context);
-
   }
 
   @override
@@ -97,4 +96,4 @@ class _PageHomeState extends State<PageHome> {
     );
   }
 }
-// 
+//

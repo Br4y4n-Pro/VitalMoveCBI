@@ -3,7 +3,7 @@
 import 'package:flutter/cupertino.dart';
 
 class LoginFromProvider extends ChangeNotifier {
-  GlobalKey<FormState> fromkey =  GlobalKey<FormState>();
+  GlobalKey<FormState> fromkey = GlobalKey<FormState>();
 
   String usuario = '';
   String password = '';
@@ -13,7 +13,7 @@ class LoginFromProvider extends ChangeNotifier {
   validateFrom() {
     if (fromkey.currentState!.validate()) {
       print('from valid ... login');
-    
+
       return true;
     } else {
       print('from not valid');
