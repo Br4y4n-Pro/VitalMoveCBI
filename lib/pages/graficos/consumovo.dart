@@ -21,7 +21,10 @@ class _PageVOdosState extends State<PageVOdos> {
   int? _selectedIndexFullFechas;
   String valueSelect = '';
   bool mostrarUltimo5 = true;
-
+  int? _selectedIndexbruce;
+  int? _selectedIndexFullFechasbruce;
+  String valueSelectbruce = '';
+  bool mostrarUltimo5bruce = true;
   @override
   initState() {
     super.initState();
@@ -235,9 +238,9 @@ class _PageVOdosState extends State<PageVOdos> {
       return GestureDetector(
         onTap: () {
           setState(() {
-            _selectedIndex = numero;
-            _selectedIndexFullFechas = null;
-            mostrarUltimo5 = true; // Cambiar a mostrar el otro listado
+            _selectedIndexbruce = numero;
+            _selectedIndexFullFechasbruce = null;
+            mostrarUltimo5bruce = true; // Cambiar a mostrar el otro listado
           });
         },
         child: SideTitleWidget(
@@ -654,13 +657,13 @@ class _PageVOdosState extends State<PageVOdos> {
                           onTap: () {
                             setState(() {
                               print('el index es $index');
-                              _selectedIndexFullFechas = index;
-                              print(_selectedIndexFullFechas);
+                              _selectedIndexFullFechasbruce = index;
+                              print(_selectedIndexFullFechasbruce);
                               print(
-                                  'Se selecciono full fechas $_selectedIndexFullFechas');
+                                  'Se selecciono full fechas $_selectedIndexFullFechasbruce');
                               print(index);
 
-                              mostrarUltimo5 =
+                              mostrarUltimo5bruce =
                                   false; // Cambiar a mostrar el otro listado
                             });
                             Navigator.pop(
@@ -696,7 +699,7 @@ class _PageVOdosState extends State<PageVOdos> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _selectedIndex != null && mostrarUltimo5
+                  _selectedIndexbruce != null && mostrarUltimo5bruce
                       ? Container(
                           padding: EdgeInsets.all(15),
                           child: Column(
@@ -705,7 +708,7 @@ class _PageVOdosState extends State<PageVOdos> {
                             children: [
                               Center(
                                 child: Text(
-                                  'Estadistica de ${ultimo5Bruces[_selectedIndex!].fecha!.substring(0, 10)}',
+                                  'Estadistica de ${ultimo5Bruces[_selectedIndexbruce!].fecha!.substring(0, 10)}',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 22),
@@ -721,7 +724,7 @@ class _PageVOdosState extends State<PageVOdos> {
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold)),
                                   Text(
-                                      ultimo5Bruces[_selectedIndex!]
+                                      ultimo5Bruces[_selectedIndexbruce!]
                                           .fecha!
                                           .substring(0, 10),
                                       style: TextStyle(
@@ -739,7 +742,7 @@ class _PageVOdosState extends State<PageVOdos> {
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold)),
                                     Text(
-                                        ultimo5Bruces[_selectedIndex!]
+                                        ultimo5Bruces[_selectedIndexbruce!]
                                             .barevodos
                                             .toString(),
                                         style: TextStyle(
@@ -756,7 +759,7 @@ class _PageVOdosState extends State<PageVOdos> {
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold)),
                                   Text(
-                                      ultimo5Bruces[_selectedIndex!]
+                                      ultimo5Bruces[_selectedIndexbruce!]
                                           .vodos
                                           .toString(),
                                       style: TextStyle(
@@ -767,7 +770,8 @@ class _PageVOdosState extends State<PageVOdos> {
                             ],
                           ),
                         )
-                      : _selectedIndexFullFechas != null && !mostrarUltimo5
+                      : _selectedIndexFullFechasbruce != null &&
+                              !mostrarUltimo5bruce
                           ? Container(
                               padding: EdgeInsets.all(15),
                               child: Column(
@@ -777,7 +781,7 @@ class _PageVOdosState extends State<PageVOdos> {
                                 children: [
                                   Center(
                                     child: Text(
-                                      'Estadistica de ${listBruces[_selectedIndexFullFechas!].fecha!.substring(0, 10)}',
+                                      'Estadistica de ${listBruces[_selectedIndexFullFechasbruce!].fecha!.substring(0, 10)}',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 22),
@@ -794,7 +798,8 @@ class _PageVOdosState extends State<PageVOdos> {
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
                                       Text(
-                                          ultimo5Bruces[_selectedIndex!]
+                                          ultimo5Bruces[
+                                                  _selectedIndexFullFechasbruce!]
                                               .fecha!
                                               .substring(0, 10),
                                           style: TextStyle(
@@ -814,7 +819,8 @@ class _PageVOdosState extends State<PageVOdos> {
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold)),
                                         Text(
-                                            ultimo5Bruces[_selectedIndex!]
+                                            ultimo5Bruces[
+                                                    _selectedIndexFullFechasbruce!]
                                                 .barevodos
                                                 .toString(),
                                             style: TextStyle(
@@ -833,7 +839,8 @@ class _PageVOdosState extends State<PageVOdos> {
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
                                       Text(
-                                          ultimo5Bruces[_selectedIndex!]
+                                          ultimo5Bruces[
+                                                  _selectedIndexFullFechasbruce!]
                                               .vodos
                                               .toString(),
                                           style: TextStyle(

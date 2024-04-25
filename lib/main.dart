@@ -123,7 +123,7 @@ class MyApp extends StatelessWidget {
         '/pageCaminata': (context) => const PageCaminata(),
         '/pageVOdos': (context) => const PageVOdos(),
         '/pageIMC': (context) => const PageIMC(),
-        '/pagePeso': (context) => const PageVOdos(),
+        '/pagePeso': (context) => const PagePeso(),
         '/perfilInformativo': (context) => PerfilInformativo(usuario: usuario),
         '/buscarPersona': (context) => const BuscarPersona(),
         '/configuracion': (context) => const Configuracion(),
