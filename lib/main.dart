@@ -33,7 +33,6 @@ import 'package:vitalmovecbi/provider/usuarios/providerUsuarios.dart';
 import 'package:vitalmovecbi/provider/configuracion/modoscuroProvider.dart';
 
 import 'services/localStorage.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AllApi.configuteDio();
