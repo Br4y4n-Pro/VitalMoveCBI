@@ -4,9 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 
-
 class RegistroFromProvider extends ChangeNotifier {
-
   GlobalKey<FormState> fromkey = GlobalKey<FormState>();
   String dni = '';
   String nombres = '';
@@ -25,12 +23,10 @@ class RegistroFromProvider extends ChangeNotifier {
   String contrasena = '';
   String actividadsemana = '';
   String nivelsemana = '';
-  File? imgperfil ;
+  File? imgperfil;
   String rol = '';
   String grupo = '';
   String peso = '';
-
-  
 
   validateFrom() {
     if (fromkey.currentState!.validate()) {

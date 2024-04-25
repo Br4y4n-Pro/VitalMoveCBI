@@ -44,9 +44,7 @@ class _HomeUserState extends State<HomeUser> {
     List<BarChartGroupData> ultimo5fechasbar = [];
     final nota = providerNota.notas;
     final ultimoHistorial = providerHistorial.historiales;
-    // List<Caminata> restoLista =
-    //     caminatas.sublist(0, (longitud - 5).clamp(0, longitud));
-    // final List<BarChartGroupData> barGroups = [];
+
     final size = MediaQuery.of(context).size;
     for (int i = 0; i < ultimo5fechas.length; i++) {
       final barGroupData = BarChartGroupData(
@@ -129,7 +127,6 @@ class _HomeUserState extends State<HomeUser> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

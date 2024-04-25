@@ -1,3 +1,1 @@
-Map<String,dynamic> jsonData = {
-
-};
+Map<String, dynamic> jsonData = {};

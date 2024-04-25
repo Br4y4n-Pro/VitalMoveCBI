@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 
-
 Widget inputLogin2(String campo) {
   return Container(
       margin: EdgeInsets.symmetric(horizontal: 50),

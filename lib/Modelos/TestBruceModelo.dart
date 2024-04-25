@@ -27,6 +27,7 @@ class BruceTest {
   int? idusuario;
   int? idetapa;
   int? idtest;
+  String? barevodos;
 
   BruceTest({
     this.idetapa,
@@ -41,6 +42,7 @@ class BruceTest {
     this.saturacionvodos,
     this.idusuario,
     this.idtest,
+    this.barevodos,
   });
 
   BruceTest.fromJsonMap(Map<String, dynamic> datos) {
@@ -59,5 +61,6 @@ class BruceTest {
     idusuario = datos['idusuario'] as int?;
     idetapa = datos['idetapa'] as int?;
     idtest = datos['idtest'] as int?;
+    barevodos = datos['barevodos'] ?? 'N/A';
   }
 }

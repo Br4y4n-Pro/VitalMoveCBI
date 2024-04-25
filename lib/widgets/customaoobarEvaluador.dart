@@ -7,8 +7,7 @@ Widget bottombar2({
   required int currentIndex,
   required Function(int) onTap,
 }) {
-return
-   Container(
+  return Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(20),
     ),
@@ -64,4 +63,3 @@ Widget _buildBottomNavItem(
     ),
   );
 }
-

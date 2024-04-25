@@ -58,4 +58,3 @@ Widget _buildBottomNavItem(
     ),
   );
 }
-
